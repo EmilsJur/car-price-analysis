@@ -77,12 +77,12 @@ const Header = ({
     setMobileMenuOpen(!mobileMenuOpen);
   };
   
-  // Navigation items
+  // Navigation items - with Latvian text
   const navItems = [
-    { name: 'Dashboard', icon: <DirectionsCarIcon />, href: '/' },
-    { name: 'Search', icon: <SearchIcon />, href: '/search' },
-    { name: 'Analysis', icon: <AnalyticsIcon />, href: '/analysis' },
-    { name: 'Compare', icon: <CompareIcon />, href: '/compare' },
+    { name: 'Sākums', icon: <DirectionsCarIcon />, href: '/' },
+    { name: 'Meklēt', icon: <SearchIcon />, href: '/search' },
+    { name: 'Analīze', icon: <AnalyticsIcon />, href: '/analysis' },
+    { name: 'Salīdzināt', icon: <CompareIcon />, href: '/compare' },
   ];
   
   // Mobile drawer
@@ -101,7 +101,7 @@ const Header = ({
         <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
           <DirectionsCarIcon sx={{ mr: 1 }} />
           <Typography variant="h6" component="div">
-            Car Market Analysis
+            Auto Tirgus Analīze
           </Typography>
         </Box>
         <Divider />
@@ -124,7 +124,7 @@ const Header = ({
               <ListItemIcon>
                 <FavoriteIcon />
               </ListItemIcon>
-              <ListItemText primary="Favorites" />
+              <ListItemText primary="Izlase" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -132,7 +132,7 @@ const Header = ({
               <ListItemIcon>
                 <HistoryIcon />
               </ListItemIcon>
-              <ListItemText primary="Search History" />
+              <ListItemText primary="Vēsture" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -140,7 +140,7 @@ const Header = ({
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
-              <ListItemText primary="Settings" />
+              <ListItemText primary="Iestatījumi" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -184,7 +184,7 @@ const Header = ({
               textDecoration: 'none',
             }}
           >
-            Car Market Analysis
+            Auto Tirgus Analīze
           </Typography>
           
           {/* Mobile logo */}
@@ -202,7 +202,7 @@ const Header = ({
               textDecoration: 'none',
             }}
           >
-            Car Market
+            Auto Tirgus
           </Typography>
           
           {/* Desktop navigation */}
@@ -222,14 +222,14 @@ const Header = ({
           {/* Right side icons */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {/* Theme toggle */}
-            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+            <Tooltip title={darkMode ? "Gaišais režīms" : "Tumšais režīms"}>
               <IconButton onClick={onToggleTheme} color="inherit">
                 {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
             
             {/* Favorites */}
-            <Tooltip title="Favorites">
+            <Tooltip title="Izlase">
               <IconButton color="inherit" href="/favorites">
                 <Badge badgeContent={favouriteCount} color="error">
                   <FavoriteIcon />
@@ -238,7 +238,7 @@ const Header = ({
             </Tooltip>
             
             {/* Notifications */}
-            <Tooltip title="Notifications">
+            <Tooltip title="Paziņojumi">
               <IconButton 
                 color="inherit" 
                 onClick={handleOpenNotificationsMenu}
@@ -261,26 +261,26 @@ const Header = ({
             >
               <MenuItem onClick={handleCloseNotificationsMenu}>
                 <ListItemText 
-                  primary="New price alerts available" 
-                  secondary="5 minutes ago"
+                  primary="Jauni cenu brīdinājumi" 
+                  secondary="Pirms 5 minūtēm"
                 />
               </MenuItem>
               <MenuItem onClick={handleCloseNotificationsMenu}>
                 <ListItemText 
-                  primary="Price dropped for your watched cars" 
-                  secondary="2 hours ago"
+                  primary="Cenas samazinājušās jūsu novērotajām automašīnām" 
+                  secondary="Pirms 2 stundām"
                 />
               </MenuItem>
               <Divider />
               <MenuItem onClick={handleCloseNotificationsMenu}>
                 <Typography variant="body2" color="primary" align="center" sx={{ width: '100%' }}>
-                  View all notifications
+                  Skatīt visus paziņojumus
                 </Typography>
               </MenuItem>
             </Menu>
             
             {/* User menu */}
-            <Tooltip title="Account settings">
+            <Tooltip title="Konta iestatījumi">
               <IconButton 
                 onClick={handleOpenUserMenu} 
                 sx={{ ml: 1 }}
@@ -311,7 +311,7 @@ const Header = ({
                 <Box sx={{ px: 2, py: 1 }}>
                   <Typography variant="subtitle1">{userName}</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    User Account
+                    Lietotāja Konts
                   </Typography>
                 </Box>
               ) : null}
@@ -320,19 +320,19 @@ const Header = ({
                 <ListItemIcon>
                   <AccountCircleIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Profile" />
+                <ListItemText primary="Profils" />
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu} component="a" href="/settings">
                 <ListItemIcon>
                   <SettingsIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Settings" />
+                <ListItemText primary="Iestatījumi" />
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu} component="a" href="/help">
                 <ListItemIcon>
                   <HelpIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Help" />
+                <ListItemText primary="Palīdzība" />
               </MenuItem>
               <Divider />
               <MenuItem onClick={() => {
@@ -342,7 +342,7 @@ const Header = ({
                 <ListItemIcon>
                   <LogoutIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="Iziet" />
               </MenuItem>
             </Menu>
           </Box>
