@@ -11,7 +11,20 @@ function App() {
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  // Define systemStatus state here
   const [systemStatus, setSystemStatus] = useState(null);
+  
+  // Initial search parameters
+  const [searchParams, setSearchParams] = useState({
+    brand: '',
+    model: '',
+    yearFrom: new Date().getFullYear() - 10,
+    yearTo: new Date().getFullYear(),
+    priceFrom: 0,
+    priceTo: 100000,
+    fuelType: '',
+    transmission: ''
+  });
   
   // Fetch system status on component mount
   useEffect(() => {
@@ -29,7 +42,7 @@ function App() {
   }, []);
 
   // Function to handle search submission
-  const handleSearch = async (searchParams) => {
+  const handleSearch = async () => {
     setIsLoading(true);
     setError(null);
     
@@ -46,17 +59,33 @@ function App() {
     }
   };
 
+  // Function to handle parameter change
+  const handleParamChange = (param, value) => {
+    setSearchParams(prev => ({
+      ...prev,
+      [param]: value
+    }));
+  };
+
   return (
     <div className="app">
       <Header systemStatus={systemStatus} />
       <main className="container">
-        <SearchForm onSearch={handleSearch} />
+        <SearchForm 
+          params={searchParams}
+          onParamChange={handleParamChange}
+          onSearch={handleSearch}
+          loading={isLoading}
+        />
         {error && (
           <div className="error-message">
             <p>{error}</p>
           </div>
         )}
-        <ResultsSection results={results} isLoading={isLoading} />
+        <ResultsSection 
+          cars={results?.listings || []} 
+          isLoading={isLoading} 
+        />
       </main>
       <Footer />
     </div>

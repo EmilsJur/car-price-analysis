@@ -144,10 +144,10 @@ const ResultsSection = ({
     return (
       <Box sx={{ py: 4, textAlign: 'center' }}>
         <Typography variant="body1" color="text.secondary">
-          No cars found matching your search criteria.
+          Nav atrasta neviena automašīna, kas atbilst jūsu meklēšanas kritērijiem.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          Try adjusting your filters to see more results.
+          Mēģiniet pielāgot filtrus, lai redzētu vairāk rezultātu.
         </Typography>
       </Box>
     );
@@ -159,7 +159,7 @@ const ResultsSection = ({
       <TableRow>
         {compareMode && (
           <TableCell padding="checkbox">
-            <Typography variant="srOnly">Select</Typography>
+            <Typography variant="srOnly">Izvēlēties</Typography>
           </TableCell>
         )}
         <TableCell>
@@ -168,10 +168,10 @@ const ResultsSection = ({
             direction={orderBy === 'brand' ? order : 'asc'}
             onClick={() => handleRequestSort('brand')}
           >
-            Brand & Model
+            Marka un Modelis
             {orderBy === 'brand' ? (
               <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
               </Box>
             ) : null}
           </TableSortLabel>
@@ -182,26 +182,26 @@ const ResultsSection = ({
             direction={orderBy === 'year' ? order : 'asc'}
             onClick={() => handleRequestSort('year')}
           >
-            Year
+            Gads
             {orderBy === 'year' ? (
               <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
               </Box>
             ) : null}
           </TableSortLabel>
         </TableCell>
-        <TableCell>Engine</TableCell>
-        <TableCell>Transmission</TableCell>
+        <TableCell>Dzinējs</TableCell>
+        <TableCell>Ātrumkārba</TableCell>
         <TableCell>
           <TableSortLabel
             active={orderBy === 'mileage'}
             direction={orderBy === 'mileage' ? order : 'asc'}
             onClick={() => handleRequestSort('mileage')}
           >
-            Mileage
+            Nobraukums
             {orderBy === 'mileage' ? (
               <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
               </Box>
             ) : null}
           </TableSortLabel>
@@ -212,15 +212,15 @@ const ResultsSection = ({
             direction={orderBy === 'price' ? order : 'asc'}
             onClick={() => handleRequestSort('price')}
           >
-            Price
+            Cena
             {orderBy === 'price' ? (
               <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
               </Box>
             ) : null}
           </TableSortLabel>
         </TableCell>
-        <TableCell>Actions</TableCell>
+        <TableCell>Darbības</TableCell>
       </TableRow>
     </TableHead>
   );
@@ -228,10 +228,10 @@ const ResultsSection = ({
   return (
     <Box>
       <TableContainer>
-        <Table size="small" aria-label="car listings table">
+        <Table size="small" aria-label="automašīnu saraksta tabula">
           <TableHeader />
           <TableBody>
-            {/* ResultsSection.js car mapping */}
+            {/* Car rows */}
             {sortedCars
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((car) => {
@@ -269,7 +269,7 @@ const ResultsSection = ({
                             {car.brand} {car.model}
                           </Typography>
                           {isFavorite(car) && (
-                            <Tooltip title="Favorite">
+                            <Tooltip title="Izlase">
                               <FavoriteIcon 
                                 color="error" 
                                 fontSize="small" 
@@ -284,7 +284,10 @@ const ResultsSection = ({
                         {car.engine || (car.engine_volume && `${car.engine_volume}L ${car.engine_type}`)}
                         {car.engine_type && (
                           <Chip 
-                            label={car.engine_type} 
+                            label={car.engine_type === 'Petrol' ? 'Benzīns' : 
+                                   car.engine_type === 'Diesel' ? 'Dīzelis' : 
+                                   car.engine_type === 'Electric' ? 'Elektriskais' :
+                                   car.engine_type === 'Hybrid' ? 'Hibrīds' : car.engine_type} 
                             size="small" 
                             sx={{ ml: 1 }} 
                             color={
@@ -296,13 +299,17 @@ const ResultsSection = ({
                           />
                         )}
                       </TableCell>
-                      <TableCell>{car.transmission}</TableCell>
                       <TableCell>
-                        {car.mileage ? `${car.mileage.toLocaleString()} km` : 'N/A'}
+                        {car.transmission === 'Manual' ? 'Manuālā' : 
+                         car.transmission === 'Automatic' ? 'Automātiskā' : 
+                         car.transmission === 'Semi-Automatic' ? 'Pusautomātiskā' : car.transmission}
+                      </TableCell>
+                      <TableCell>
+                        {car.mileage ? `${car.mileage.toLocaleString()} km` : 'Nav norādīts'}
                       </TableCell>
                       <TableCell>
                         <Typography fontWeight="bold">
-                          €{car.price ? car.price.toLocaleString() : 'N/A'}
+                          €{car.price ? car.price.toLocaleString() : 'Nav norādīts'}
                         </Typography>
                       </TableCell>
                       <TableCell>
@@ -367,37 +374,37 @@ const ResultsSection = ({
                         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                           <Box sx={{ py: 2, px: 1 }}>
                             <Typography variant="subtitle1" gutterBottom component="div">
-                              {car.brand} {car.model} Details
+                              {car.brand} {car.model} Detaļas
                             </Typography>
                             
                             <Grid container spacing={2}>
                               <Grid item xs={12} sm={6} md={4}>
                                 <Typography variant="body2" color="text.secondary">
-                                  Region: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.region || 'N/A'}
+                                  Reģions: <Typography component="span" variant="body2" fontWeight="medium">
+                                    {car.region || 'Nav norādīts'}
                                   </Typography>
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                  Body Type: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.body_type || 'N/A'}
+                                  Virsbūves tips: <Typography component="span" variant="body2" fontWeight="medium">
+                                    {car.body_type || 'Nav norādīts'}
                                   </Typography>
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                  Color: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.color || 'N/A'}
+                                  Krāsa: <Typography component="span" variant="body2" fontWeight="medium">
+                                    {car.color || 'Nav norādīts'}
                                   </Typography>
                                 </Typography>
                               </Grid>
                               
                               <Grid item xs={12} sm={6} md={4}>
                                 <Typography variant="body2" color="text.secondary">
-                                  Listing Date: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.listing_date ? new Date(car.listing_date).toLocaleDateString() : 'N/A'}
+                                  Sludinājuma datums: <Typography component="span" variant="body2" fontWeight="medium">
+                                    {car.listing_date ? new Date(car.listing_date).toLocaleDateString() : 'Nav norādīts'}
                                   </Typography>
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                  Source: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.source || 'Unknown'}
+                                  Avots: <Typography component="span" variant="body2" fontWeight="medium">
+                                    {car.source || 'Nav zināms'}
                                   </Typography>
                                 </Typography>
                               </Grid>
@@ -409,7 +416,7 @@ const ResultsSection = ({
                                     variant="outlined"
                                     onClick={() => onOpenCarDetails(car)}
                                   >
-                                    View Details
+                                    Skatīt detaļas
                                   </Button>
                                   
                                   {car.listing_url && (
@@ -422,7 +429,7 @@ const ResultsSection = ({
                                       rel="noopener noreferrer"
                                       endIcon={<OpenInNewIcon />}
                                     >
-                                      View Listing
+                                      Skatīt sludinājumu
                                     </Button>
                                   )}
                                 </Box>
@@ -453,6 +460,10 @@ const ResultsSection = ({
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Rindas lapā:"
+        labelDisplayedRows={({ from, to, count }) => 
+          `${from}-${to} no ${count !== -1 ? count : `vairāk nekā ${to}`}`
+        }
       />
       
       {/* Actions menu */}
@@ -466,7 +477,7 @@ const ResultsSection = ({
           handleCloseMenu();
         }}>
           <InfoIcon fontSize="small" sx={{ mr: 1 }} />
-          View Details
+          Skatīt detaļas
         </MenuItem>
         
         <MenuItem onClick={() => {
@@ -476,12 +487,12 @@ const ResultsSection = ({
           {isFavorite(actionCar) ? (
             <>
               <FavoriteIcon fontSize="small" sx={{ mr: 1 }} color="error" />
-              Remove from Favorites
+              Noņemt no izlases
             </>
           ) : (
             <>
               <FavoriteBorderIcon fontSize="small" sx={{ mr: 1 }} />
-              Add to Favorites
+              Pievienot izlasei
             </>
           )}
         </MenuItem>
@@ -493,8 +504,8 @@ const ResultsSection = ({
           }}>
             <CompareArrowsIcon fontSize="small" sx={{ mr: 1 }} />
             {selectedCars.some(selected => selected.id === actionCar?.id) 
-              ? 'Remove from Comparison' 
-              : 'Add to Comparison'}
+              ? 'Noņemt no salīdzinājuma' 
+              : 'Pievienot salīdzinājumam'}
           </MenuItem>
         )}
         
@@ -507,7 +518,7 @@ const ResultsSection = ({
             onClick={handleCloseMenu}
           >
             <OpenInNewIcon fontSize="small" sx={{ mr: 1 }} />
-            Open Original Listing
+            Atvērt oriģinālo sludinājumu
           </MenuItem>
         )}
       </Menu>

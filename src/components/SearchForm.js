@@ -25,9 +25,21 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 const SearchForm = ({ 
   brands = [], 
   models = [], 
-  params = {}, 
-  onParamChange, 
-  onSearch, 
+  params = {
+    brand: '',
+    model: '',
+    yearFrom: new Date().getFullYear() - 10,
+    yearTo: new Date().getFullYear(),
+    priceFrom: 0,
+    priceTo: 100000,
+    fuelType: '',
+    transmission: '',
+    region: '',
+    sortBy: 'price',
+    sortOrder: 'asc'
+  }, 
+  onParamChange = () => {}, 
+  onSearch = () => {}, 
   loading = false,
   savedSearches = [],
   onSaveSearch = () => {}
@@ -35,7 +47,7 @@ const SearchForm = ({
   const theme = useTheme();
 
   // Local state for form values with validation
-  const [localParams, setLocalParams] = useState(params);
+  const [localParams, setLocalParams] = useState({...params});
   const [advanced, setAdvanced] = useState(false);
   const [errors, setErrors] = useState({});
   const [searchName, setSearchName] = useState('');
@@ -43,7 +55,7 @@ const SearchForm = ({
 
   // Sync local params with parent state
   useEffect(() => {
-    setLocalParams(params);
+    setLocalParams({...params});
   }, [params]);
 
   // Validate price range
@@ -51,11 +63,11 @@ const SearchForm = ({
     const newErrors = {};
     
     if (localParams.priceFrom > localParams.priceTo) {
-      newErrors.price = 'Minimum price cannot exceed maximum price';
+      newErrors.price = 'Minimālā cena nevar pārsniegt maksimālo cenu';
     }
     
     if (localParams.yearFrom > localParams.yearTo) {
-      newErrors.year = 'Minimum year cannot exceed maximum year';
+      newErrors.year = 'Minimālais gads nevar pārsniegt maksimālo gadu';
     }
     
     setErrors(newErrors);
@@ -114,7 +126,7 @@ const SearchForm = ({
   // Save current search
   const handleSaveSearch = () => {
     if (!searchName.trim()) {
-      alert('Please enter a name for this search');
+      alert('Lūdzu, ievadiet meklēšanas nosaukumu');
       return;
     }
     
@@ -148,27 +160,32 @@ const SearchForm = ({
   }).length;
 
   // Format currencies
-  const formatCurrency = (value) => `€${value.toLocaleString()}`;
+  const formatCurrency = (value) => {
+    if (value === undefined || value === null) {
+      return '€0';
+    }
+    return `€${value.toLocaleString()}`;
+  };
 
   // Fuel type options
   const fuelTypes = [
-    { value: 'Petrol', label: 'Petrol' },
-    { value: 'Diesel', label: 'Diesel' },
-    { value: 'Hybrid', label: 'Hybrid' },
-    { value: 'Electric', label: 'Electric' },
-    { value: 'Gas', label: 'Gas/LPG' }
+    { value: 'Petrol', label: 'Benzīns' },
+    { value: 'Diesel', label: 'Dīzelis' },
+    { value: 'Hybrid', label: 'Hibrīds' },
+    { value: 'Electric', label: 'Elektriskais' },
+    { value: 'Gas', label: 'Gāze/LPG' }
   ];
 
   // Transmission options
   const transmissionTypes = [
-    { value: 'Manual', label: 'Manual' },
-    { value: 'Automatic', label: 'Automatic' },
-    { value: 'Semi-Automatic', label: 'Semi-Automatic' }
+    { value: 'Manual', label: 'Manuālā' },
+    { value: 'Automatic', label: 'Automātiskā' },
+    { value: 'Semi-Automatic', label: 'Pusautomātiskā' }
   ];
 
   // Region options (example - replace with actual data)
   const regions = [
-    { value: 'Riga', label: 'Riga' },
+    { value: 'Riga', label: 'Rīga' },
     { value: 'Kurzeme', label: 'Kurzeme' },
     { value: 'Vidzeme', label: 'Vidzeme' },
     { value: 'Latgale', label: 'Latgale' },
@@ -191,9 +208,9 @@ const SearchForm = ({
           renderInput={(params) => (
             <TextField 
               {...params} 
-              label="Brand" 
+              label="Marka" 
               variant="outlined"
-              placeholder="Any brand"
+              placeholder="Jebkura marka"
             />
           )}
           renderOption={(props, option) => (
@@ -217,9 +234,9 @@ const SearchForm = ({
           renderInput={(params) => (
             <TextField 
               {...params} 
-              label="Model" 
+              label="Modelis" 
               variant="outlined"
-              placeholder="Any model"
+              placeholder="Jebkurš modelis"
             />
           )}
           renderOption={(props, option) => (
@@ -233,7 +250,7 @@ const SearchForm = ({
       <Box sx={{ mt: 3, mb: 2 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
           <Typography id="year-range-slider" gutterBottom>
-            Year Range {localParams.yearFrom} - {localParams.yearTo}
+            Izlaiduma gads {localParams.yearFrom} - {localParams.yearTo}
           </Typography>
           {errors.year && (
             <Typography variant="caption" color="error">
@@ -257,7 +274,7 @@ const SearchForm = ({
           <Grid item xs={6}>
             <TextField
               size="small"
-              label="From"
+              label="No"
               value={localParams.yearFrom}
               onChange={(e) => handleLocalChange('yearFrom', parseInt(e.target.value) || 1990)}
               inputProps={{ min: 1990, max: new Date().getFullYear() }}
@@ -270,7 +287,7 @@ const SearchForm = ({
           <Grid item xs={6}>
             <TextField
               size="small"
-              label="To"
+              label="Līdz"
               value={localParams.yearTo}
               onChange={(e) => handleLocalChange('yearTo', parseInt(e.target.value) || new Date().getFullYear())}
               inputProps={{ min: 1990, max: new Date().getFullYear() }}
@@ -286,7 +303,7 @@ const SearchForm = ({
       <Box sx={{ mt: 3, mb: 2 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
           <Typography id="price-range-slider" gutterBottom>
-            Price Range {formatCurrency(localParams.priceFrom)} - {formatCurrency(localParams.priceTo)}
+            Cena {formatCurrency(localParams.priceFrom)} - {formatCurrency(localParams.priceTo)}
           </Typography>
           {errors.price && (
             <Typography variant="caption" color="error">
@@ -311,7 +328,7 @@ const SearchForm = ({
           <Grid item xs={6}>
             <TextField
               size="small"
-              label="From"
+              label="No"
               value={localParams.priceFrom}
               onChange={(e) => handleLocalChange('priceFrom', parseInt(e.target.value) || 0)}
               inputProps={{ min: 0, max: 1000000 }}
@@ -327,7 +344,7 @@ const SearchForm = ({
           <Grid item xs={6}>
             <TextField
               size="small"
-              label="To"
+              label="Līdz"
               value={localParams.priceTo}
               onChange={(e) => handleLocalChange('priceTo', parseInt(e.target.value) || 0)}
               inputProps={{ min: 0, max: 1000000 }}
@@ -352,7 +369,7 @@ const SearchForm = ({
           startIcon={advanced ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           disabled={loading}
         >
-          {advanced ? "Hide Advanced Filters" : "Show Advanced Filters"}
+          {advanced ? "Slēpt papildu filtrus" : "Rādīt papildu filtrus"}
         </Button>
         
         <Collapse in={advanced}>
@@ -360,16 +377,16 @@ const SearchForm = ({
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="fuel-type-label">Fuel Type</InputLabel>
+                  <InputLabel id="fuel-type-label">Degvielas tips</InputLabel>
                   <Select
                     labelId="fuel-type-label"
                     id="fuel-type"
                     value={localParams.fuelType}
-                    label="Fuel Type"
+                    label="Degvielas tips"
                     onChange={(e) => handleLocalChange('fuelType', e.target.value)}
                     disabled={loading}
                   >
-                    <MenuItem value="">Any</MenuItem>
+                    <MenuItem value="">Jebkurš</MenuItem>
                     {fuelTypes.map((type) => (
                       <MenuItem key={type.value} value={type.value}>
                         {type.label}
@@ -381,16 +398,16 @@ const SearchForm = ({
               
               <Grid item xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="transmission-label">Transmission</InputLabel>
+                  <InputLabel id="transmission-label">Ātrumkārba</InputLabel>
                   <Select
                     labelId="transmission-label"
                     id="transmission"
                     value={localParams.transmission}
-                    label="Transmission"
+                    label="Ātrumkārba"
                     onChange={(e) => handleLocalChange('transmission', e.target.value)}
                     disabled={loading}
                   >
-                    <MenuItem value="">Any</MenuItem>
+                    <MenuItem value="">Jebkura</MenuItem>
                     {transmissionTypes.map((type) => (
                       <MenuItem key={type.value} value={type.value}>
                         {type.label}
@@ -402,16 +419,16 @@ const SearchForm = ({
               
               <Grid item xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="region-label">Region</InputLabel>
+                  <InputLabel id="region-label">Reģions</InputLabel>
                   <Select
                     labelId="region-label"
                     id="region"
                     value={localParams.region}
-                    label="Region"
+                    label="Reģions"
                     onChange={(e) => handleLocalChange('region', e.target.value)}
                     disabled={loading}
                   >
-                    <MenuItem value="">Any</MenuItem>
+                    <MenuItem value="">Jebkurš</MenuItem>
                     {regions.map((region) => (
                       <MenuItem key={region.value} value={region.value}>
                         {region.label}
@@ -423,35 +440,35 @@ const SearchForm = ({
               
               <Grid item xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="sort-by-label">Sort By</InputLabel>
+                  <InputLabel id="sort-by-label">Kārtot pēc</InputLabel>
                   <Select
                     labelId="sort-by-label"
                     id="sort-by"
                     value={localParams.sortBy}
-                    label="Sort By"
+                    label="Kārtot pēc"
                     onChange={(e) => handleLocalChange('sortBy', e.target.value)}
                     disabled={loading}
                   >
-                    <MenuItem value="price">Price</MenuItem>
-                    <MenuItem value="year">Year</MenuItem>
-                    <MenuItem value="mileage">Mileage</MenuItem>
+                    <MenuItem value="price">Cenas</MenuItem>
+                    <MenuItem value="year">Gada</MenuItem>
+                    <MenuItem value="mileage">Nobraukuma</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               
               <Grid item xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="sort-order-label">Sort Order</InputLabel>
+                  <InputLabel id="sort-order-label">Kārtošanas secība</InputLabel>
                   <Select
                     labelId="sort-order-label"
                     id="sort-order"
                     value={localParams.sortOrder}
-                    label="Sort Order"
+                    label="Kārtošanas secība"
                     onChange={(e) => handleLocalChange('sortOrder', e.target.value)}
                     disabled={loading}
                   >
-                    <MenuItem value="asc">Ascending</MenuItem>
-                    <MenuItem value="desc">Descending</MenuItem>
+                    <MenuItem value="asc">Augoša</MenuItem>
+                    <MenuItem value="desc">Dilstoša</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -461,77 +478,75 @@ const SearchForm = ({
       </Box>
       
       {/* Active filters */}
-      {activeFiltersCount > 0 && (
-        <Box sx={{ my: 2 }}>
-          <Typography variant="body2" color="text.secondary" gutterBottom>
-            Active Filters:
-          </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-            {localParams.brand && (
-              <Chip 
-                label={`Brand: ${localParams.brand}`} 
-                size="small" 
-                onDelete={() => handleLocalChange('brand', '')}
-                disabled={loading}
-              />
-            )}
-            {localParams.model && (
-              <Chip 
-                label={`Model: ${localParams.model}`} 
-                size="small" 
-                onDelete={() => handleLocalChange('model', '')}
-                disabled={loading}
-              />
-            )}
-            {(localParams.yearFrom !== new Date().getFullYear() - 10 || localParams.yearTo !== new Date().getFullYear()) && (
-              <Chip 
-                label={`Year: ${localParams.yearFrom}-${localParams.yearTo}`} 
-                size="small" 
-                onDelete={() => {
-                  handleLocalChange('yearFrom', new Date().getFullYear() - 10);
-                  handleLocalChange('yearTo', new Date().getFullYear());
-                }}
-                disabled={loading}
-              />
-            )}
-            {(localParams.priceFrom !== 0 || localParams.priceTo !== 100000) && (
-              <Chip 
-                label={`Price: ${formatCurrency(localParams.priceFrom)}-${formatCurrency(localParams.priceTo)}`} 
-                size="small" 
-                onDelete={() => {
-                  handleLocalChange('priceFrom', 0);
-                  handleLocalChange('priceTo', 100000);
-                }}
-                disabled={loading}
-              />
-            )}
-            {localParams.fuelType && (
-              <Chip 
-                label={`Fuel: ${localParams.fuelType}`} 
-                size="small" 
-                onDelete={() => handleLocalChange('fuelType', '')}
-                disabled={loading}
-              />
-            )}
-            {localParams.transmission && (
-              <Chip 
-                label={`Transmission: ${localParams.transmission}`} 
-                size="small" 
-                onDelete={() => handleLocalChange('transmission', '')}
-                disabled={loading}
-              />
-            )}
-            {localParams.region && (
-              <Chip 
-                label={`Region: ${localParams.region}`} 
-                size="small" 
-                onDelete={() => handleLocalChange('region', '')}
-                disabled={loading}
-              />
-            )}
-          </Box>
+      <Box sx={{ my: 2 }}>
+        <Typography variant="body2" color="text.secondary" gutterBottom>
+          Aktīvie filtri:
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          {localParams.brand && (
+            <Chip 
+              label={`Marka: ${localParams.brand}`} 
+              size="small" 
+              onDelete={() => handleLocalChange('brand', '')}
+              disabled={loading}
+            />
+          )}
+          {localParams.model && (
+            <Chip 
+              label={`Modelis: ${localParams.model}`} 
+              size="small" 
+              onDelete={() => handleLocalChange('model', '')}
+              disabled={loading}
+            />
+          )}
+          {(localParams.yearFrom !== new Date().getFullYear() - 10 || localParams.yearTo !== new Date().getFullYear()) && (
+            <Chip 
+              label={`Gads: ${localParams.yearFrom}-${localParams.yearTo}`} 
+              size="small" 
+              onDelete={() => {
+                handleLocalChange('yearFrom', new Date().getFullYear() - 10);
+                handleLocalChange('yearTo', new Date().getFullYear());
+              }}
+              disabled={loading}
+            />
+          )}
+          {(localParams.priceFrom !== 0 || localParams.priceTo !== 100000) && (
+            <Chip 
+              label={`Cena: ${formatCurrency(localParams.priceFrom)}-${formatCurrency(localParams.priceTo)}`} 
+              size="small" 
+              onDelete={() => {
+                handleLocalChange('priceFrom', 0);
+                handleLocalChange('priceTo', 100000);
+              }}
+              disabled={loading}
+            />
+          )}
+          {localParams.fuelType && (
+            <Chip 
+              label={`Degviela: ${fuelTypes.find(t => t.value === localParams.fuelType)?.label || localParams.fuelType}`} 
+              size="small" 
+              onDelete={() => handleLocalChange('fuelType', '')}
+              disabled={loading}
+            />
+          )}
+          {localParams.transmission && (
+            <Chip 
+              label={`Ātrumkārba: ${transmissionTypes.find(t => t.value === localParams.transmission)?.label || localParams.transmission}`} 
+              size="small" 
+              onDelete={() => handleLocalChange('transmission', '')}
+              disabled={loading}
+            />
+          )}
+          {localParams.region && (
+            <Chip 
+              label={`Reģions: ${regions.find(r => r.value === localParams.region)?.label || localParams.region}`} 
+              size="small" 
+              onDelete={() => handleLocalChange('region', '')}
+              disabled={loading}
+            />
+          )}
         </Box>
-      )}
+      </Box>
       
       {/* Saved searches section */}
       {savedSearches.length > 0 && (
@@ -543,7 +558,7 @@ const SearchForm = ({
             startIcon={showSavedSearches ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             disabled={loading}
           >
-            {showSavedSearches ? "Hide Saved Searches" : "Show Saved Searches"}
+            {showSavedSearches ? "Slēpt saglabātos meklējumus" : "Parādīt saglabātos meklējumus"}
           </Button>
           
           <Collapse in={showSavedSearches}>
@@ -563,7 +578,7 @@ const SearchForm = ({
                     onClick={() => handleApplySavedSearch(search)}
                     disabled={loading}
                   >
-                    Apply
+                    Lietot
                   </Button>
                 </Box>
               ))}
@@ -582,7 +597,7 @@ const SearchForm = ({
           disabled={loading || Object.keys(errors).length > 0}
           color="primary"
         >
-          {loading ? "Searching..." : "Search"}
+          {loading ? "Meklē..." : "Meklēt"}
         </Button>
         
         <Box sx={{ display: 'flex', gap: 1 }}>
@@ -592,7 +607,7 @@ const SearchForm = ({
             onClick={handleReset}
             disabled={loading}
           >
-            Reset
+            Atiestatīt
           </Button>
           
           <Button
@@ -602,7 +617,7 @@ const SearchForm = ({
             onClick={() => document.getElementById('search-name-input')?.focus()}
             disabled={loading}
           >
-            Save
+            Saglabāt
           </Button>
         </Box>
       </Box>
@@ -611,13 +626,13 @@ const SearchForm = ({
       <Box sx={{ mt: 2 }}>
         <TextField
           id="search-name-input"
-          label="Search Name"
+          label="Meklēšanas nosaukums"
           size="small"
           fullWidth
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
           disabled={loading}
-          placeholder="Enter name to save this search"
+          placeholder="Ievadiet nosaukumu, lai saglabātu šo meklēšanu"
           InputProps={{
             endAdornment: (
               <IconButton 
