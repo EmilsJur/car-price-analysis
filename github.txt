@@ -1,0 +1,30 @@
+git checkout develop
+
+git add .
+git commit -m "..."
+
+git push origin develop
+
+
+
+
+
+git checkout develop
+git pull origin develop
+
+git checkout main
+git pull origin main
+
+git merge develop
+
+If there are any merge conflicts, resolve them, then:
+Commit the merge if there were conflicts
+git add .
+git commit -m "Merge develop into main"
+
+git push origin main
+
+After pushing to main, update develop with any changes from main:
+git checkout develop
+git merge main
+git push origin develop
