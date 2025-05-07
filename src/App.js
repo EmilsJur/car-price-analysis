@@ -50,7 +50,10 @@ function App() {
     priceFrom: 0,
     priceTo: 100000,
     fuelType: '',
-    transmission: ''
+    transmission: '',
+    region: '',
+    sortBy: 'price',
+    sortOrder: 'asc'
   });
   
   // Fetch system status and brands on component mount
