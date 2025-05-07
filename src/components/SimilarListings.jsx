@@ -1,5 +1,3 @@
-// src/components/SimilarListings.jsx
-
 import React, { useState } from 'react';
 import {
   Box,

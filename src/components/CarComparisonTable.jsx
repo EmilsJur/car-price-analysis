@@ -1,5 +1,3 @@
-// src/components/CarComparisonTable.jsx
-
 import React from 'react';
 import {
   Box,

@@ -1,5 +1,3 @@
-// src/components/Header.js (updated version)
-
 import React, { useState } from 'react';
 import { 
   AppBar, 
