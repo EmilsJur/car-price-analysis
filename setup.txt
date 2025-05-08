@@ -1,2 +1,12 @@
 npm install @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/utils @testing-library/jest-dom @testing-library/react @testing-library/user-event axios react react-bootstrap react-dom react-scripts web-vitals
 npm install react-router-dom
+
+database:
+python app.py --mode init
+python app.py --mode scrape --debug
+
+api: 
+python app.py --mode api --debug
+
+front:
+npm start
