@@ -2,7 +2,7 @@ import os
 import argparse
 import logging
 from models import init_db
-from ss_scraper import run_ss_scraper  # New import for the new scraper
+from ss_scraper import run_ss_scraper
 from api import app as api_app
 
 # Set up logging
@@ -27,8 +27,8 @@ def parse_arguments():
                       help='Run in debug mode')
     
     # New arguments for the scraper
-    parser.add_argument('--brands', type=int, default=5,
-                      help='Maximum number of brands to scrape (default: 5)')
+    parser.add_argument('--brands', type=int, default=4,
+                      help='Maximum number of brands to scrape (default: 4)')
     
     parser.add_argument('--models', type=int, default=3,
                       help='Maximum number of models per brand (default: 3)')
@@ -42,20 +42,20 @@ def init_database():
     """Initialize database with default data"""
     logger.info("Initializing database")
     
-    # Just initialize the database - no need to initialize sources
-    # as the new scraper handles source creation automatically
+    # Just initialize the database
     session, _ = init_db()
     
     logger.info("Database initialization completed")
 
 def run_scraper(args):
-    """Run scraping process with new scraper"""
+    """Run scraping process with our scraper"""
     logger.info("Starting scraping process")
     
-    # Use the new scraper with parameters from command line
+    # Use our scraper with parameters from command line
+    target_brands = ["tesla", "infiniti", "smart", "suzuki"]
+    
     results = run_ss_scraper(
-        max_brands=args.brands,
-        models_per_brand=args.models,
+        target_brands=target_brands,
         pages_per_model=args.pages,
         debug_mode=args.debug
     )
@@ -64,7 +64,7 @@ def run_scraper(args):
     
     if results["success"]:
         logger.info(f"Scraping successful: {results['total_listings']} listings processed")
-        logger.info(f"New: {results['new_listings']}, Updated: {results['updated_listings']}, Deactivated: {results['deactivated_listings']}")
+        logger.info(f"New: {results['new_listings']}, Updated: {results['updated_listings']}")
     else:
         logger.error(f"Scraping failed: {results['error']}")
 

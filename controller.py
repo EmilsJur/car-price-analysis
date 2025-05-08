@@ -1,6 +1,6 @@
 import logging
 from models import init_db
-from all_in_one_scraper import init_default_sources, scrape_all_sources
+from ss_scraper import run_ss_scraper
 from analysis import CarDataAnalyzer
 
 class CarPriceController:
@@ -27,7 +27,8 @@ class CarPriceController:
     def initialize_sources(self):
         """Initialize default data sources"""
         try:
-            init_default_sources(self.session)
+            # We don't need to initialize sources anymore as our scraper
+            # handles creating the SS.LV source automatically
             self.logger.info("Default sources initialized")
             return True
         except Exception as e:
@@ -37,7 +38,10 @@ class CarPriceController:
     def run_scraper(self, max_listings=1000):
         """Run web scraping for all sources"""
         try:
-            results = scrape_all_sources(self.session, max_listings)
+            # Use our new scraper implementation
+            results = run_ss_scraper(
+                pages_per_model=max(1, max_listings // 100)  # Estimate pages based on max listings
+            )
             self.logger.info(f"Scraping completed with results: {results}")
             return results
         except Exception as e:

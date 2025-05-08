@@ -1,4 +1,3 @@
-# simplified_scraper.py
 import requests
 import asyncio
 import aiohttp
@@ -18,9 +17,9 @@ from models import init_db, Brand, Model, Car, Listing, Region, Source
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='simplified_scraper.log'
+    filename='ss_scraper.log'
 )
-logger = logging.getLogger('simplified_scraper')
+logger = logging.getLogger('ss_scraper')
 
 # Add console output so we can see what's happening
 console = logging.StreamHandler()
@@ -28,8 +27,8 @@ console.setLevel(logging.INFO)
 console.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 logger.addHandler(console)
 
-class SimplifiedScraper:
-    """Scraper for SS.LV car listings focused on our target brands"""
+class Scraper:
+    """Scraper for SS.LV for now :p"""
     
     def __init__(self, target_brands=None, db_url="sqlite:///car_price_analysis.db", debug_mode=False):
         """Set up the scraper with our settings"""
@@ -920,17 +919,16 @@ class SimplifiedScraper:
 
 
 # Helper function to run the scraper from another file
-def run_simplified_scraper(target_brands=None, pages_per_model=2, db_url=None, debug_mode=False):
-   """Run the SS.LV scraper with the specified settings"""
-   if target_brands is None:
-       target_brands = ["tesla", "infiniti", "smart", "suzuki"]
-   
-   scraper = SimplifiedScraper(
-       target_brands=target_brands,
-       db_url=db_url if db_url else "sqlite:///car_price_analysis.db",
-       debug_mode=debug_mode
-   )
-   return scraper.run(pages_per_model)
+def run_ss_scraper(target_brands=None, pages_per_model=2, db_url=None, debug_mode=False):
+    if target_brands is None:
+        target_brands = ["tesla", "infiniti", "smart", "suzuki"]
+    
+    scraper = Scraper(
+        target_brands=target_brands,
+        db_url=db_url if db_url else "sqlite:///car_price_analysis.db",
+        debug_mode=debug_mode
+    )
+    return scraper.run(pages_per_model)
 
 
 # When running this file directly from command line
@@ -948,7 +946,7 @@ if __name__ == "__main__":
    args = parser.parse_args()
    
    # Run the scraper
-   result = run_simplified_scraper(
+   result = run_ss_scraper(
        target_brands=args.brands,
        pages_per_model=args.pages,
        db_url=args.db,

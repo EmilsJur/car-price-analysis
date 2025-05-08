@@ -4,7 +4,7 @@ import json
 import logging
 from datetime import datetime
 from models import init_db
-from ss_scraper import run_ss_scraper  # New import for the new scraper
+from ss_scraper import run_ss_scraper
 from analysis import CarDataAnalyzer
 
 # Set up logging
