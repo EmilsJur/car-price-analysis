@@ -4,7 +4,7 @@ import json
 import logging
 from datetime import datetime
 from models import init_db
-from all_in_one_scraper import init_default_sources, scrape_all_sources
+from ss_scraper import run_ss_scraper  # New import for the new scraper
 from analysis import CarDataAnalyzer
 
 # Set up logging
@@ -25,14 +25,8 @@ session, engine = init_db()
 # Initialize data analyzer
 analyzer = CarDataAnalyzer(session)
 
-# Initialize default sources when starting the app
-# Replace the @app.before_first_request decorator with this function
-with app.app_context():
-    try:
-        init_default_sources(session)
-        logger.info("Default sources initialized")
-    except Exception as e:
-        logger.error(f"Error initializing default sources: {str(e)}")
+# No need to initialize default sources - the new scraper handles this automatically
+# Remove the initialization code that used init_default_sources
 
 @app.route('/api/search', methods=['POST'])
 def search_cars():
@@ -284,9 +278,18 @@ def scrape_data():
         
         logger.info("Data scraping request received")
         
-        # Run scraping process asynchronously (in a real app, this would be a background task)
-        # For now, just run it synchronously
-        results = scrape_all_sources(session)
+        # Get parameters from request if provided
+        data = request.json or {}
+        max_brands = data.get('max_brands', 5)
+        models_per_brand = data.get('models_per_brand', 3)
+        pages_per_model = data.get('pages_per_model', 2)
+        
+        # Run scraping using the new scraper
+        results = run_ss_scraper(
+            max_brands=max_brands,
+            models_per_brand=models_per_brand,
+            pages_per_model=pages_per_model
+        )
         
         return jsonify({"status": "success", "results": results})
         
