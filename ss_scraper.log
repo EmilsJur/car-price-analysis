@@ -568,3 +568,19 @@
 2025-05-08 23:00:07,645 - werkzeug - INFO - 127.0.0.1 - - [08/May/2025 23:00:07] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
 2025-05-08 23:00:07,831 - car_analysis - INFO - Retrieved 0 popular brands
 2025-05-08 23:00:07,831 - werkzeug - INFO - 127.0.0.1 - - [08/May/2025 23:00:07] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:37:19,246 - car_app - INFO - Starting API server on port 5000
+2025-05-09 13:37:19,280 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 13:37:19,280 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 13:37:19,282 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 13:37:20,446 - car_app - INFO - Starting API server on port 5000
+2025-05-09 13:37:20,455 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 13:37:20,457 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 13:38:10,616 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:38:10,817 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:38:10,926 - car_analysis - INFO - Retrieved 0 popular brands
+2025-05-09 13:38:10,927 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:38:10,928 - car_analysis - INFO - Retrieved 0 popular brands
+2025-05-09 13:38:10,929 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
