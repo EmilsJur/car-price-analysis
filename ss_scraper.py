@@ -334,7 +334,6 @@ class Scraper:
             soup = BeautifulSoup(response.content, 'html.parser')
             listing_rows = soup.select("tr[id^='tr_']")
             
-            # Using getLogger for DEBUG/CRITICAL to ensure it's from the right logger if there was any confusion
             logging.getLogger('ss_scraper').critical(f"TESTING DEBUG OUTPUT: About to loop through {len(listing_rows)} rows. Console level should be DEBUG.")
             logging.getLogger('ss_scraper').debug(f"DIRECT LOGGER.DEBUG TEST: Number of listing_rows: {len(listing_rows)}")
             logger.info(f"Found {len(listing_rows)} potential listing rows on this page") # This is an INFO log

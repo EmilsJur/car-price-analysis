@@ -4,3 +4,140 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.0.246:5000
 2025-05-10 00:05:44,073 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-10 00:05:54,377 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:54] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:54,559 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:54] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:54,681 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 00:05:54,682 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:54] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 00:05:54,684 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 00:05:54,684 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:54] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 00:05:56,696 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 00:05:56,697 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:56] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 00:05:57,295 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:57] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:05:57,601 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-10 00:05:57,603 - car_analysis - INFO - Statistics calculated for 60 listings
+2025-05-10 00:05:57,606 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:57] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:05:57,863 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-10 00:05:57,951 - car_analysis - INFO - Created price distribution chart with 60 data points
+2025-05-10 00:05:57,951 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:57] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:06:03,156 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:03] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:06:03,459 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-10 00:06:03,461 - car_analysis - INFO - Statistics calculated for 60 listings
+2025-05-10 00:06:03,464 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:03] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:06:03,721 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-10 00:06:03,880 - car_analysis - INFO - Created price distribution chart with 60 data points
+2025-05-10 00:06:03,880 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:03] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:11,463 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:11] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:11,725 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=2015-2025
+2025-05-10 00:11:11,728 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-10 00:11:11,732 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:11] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:11,771 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 2015-2025
+2025-05-10 00:11:11,954 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-10 00:11:11,955 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:11] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:17,446 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:17] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:17,751 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model S, year=2015-2025
+2025-05-10 00:11:17,753 - car_analysis - INFO - Statistics calculated for 10 listings
+2025-05-10 00:11:17,755 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:17] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:18,013 - car_api - INFO - Price distribution chart request: Tesla Tesla Model S, 2015-2025
+2025-05-10 00:11:18,238 - car_analysis - INFO - Created price distribution chart with 10 data points
+2025-05-10 00:11:18,239 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:18] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+S&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:21,005 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model S, year=2015-2025
+2025-05-10 00:11:21,007 - car_analysis - INFO - Statistics calculated for 10 listings
+2025-05-10 00:11:21,008 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:21] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:21,338 - car_api - INFO - Price distribution chart request: Tesla Tesla Model S, 2015-2025
+2025-05-10 00:11:21,502 - car_analysis - INFO - Created price distribution chart with 10 data points
+2025-05-10 00:11:21,503 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:21] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+S&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:24,643 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:24] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:24,952 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model Y, year=2015-2025
+2025-05-10 00:11:24,954 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-10 00:11:24,956 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:24] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:25,213 - car_api - INFO - Price distribution chart request: Tesla Tesla Model Y, 2015-2025
+2025-05-10 00:11:25,393 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-10 00:11:25,394 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:25] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+Y&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:28,084 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model X, year=2015-2025
+2025-05-10 00:11:28,086 - car_analysis - INFO - Statistics calculated for 8 listings
+2025-05-10 00:11:28,088 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:28] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:28,427 - car_api - INFO - Price distribution chart request: Tesla Tesla Model X, 2015-2025
+2025-05-10 00:11:28,604 - car_analysis - INFO - Created price distribution chart with 8 data points
+2025-05-10 00:11:28,604 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:28] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+X&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:31,053 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:31] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:31,366 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model S, year=2015-2025
+2025-05-10 00:11:31,367 - car_analysis - INFO - Statistics calculated for 10 listings
+2025-05-10 00:11:31,369 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:31] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:31,627 - car_api - INFO - Price distribution chart request: Tesla Tesla Model S, 2015-2025
+2025-05-10 00:11:31,770 - car_analysis - INFO - Created price distribution chart with 10 data points
+2025-05-10 00:11:31,770 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:31] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+S&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:49,208 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:49,514 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model S, year=2012-2025
+2025-05-10 00:11:49,516 - car_analysis - INFO - Statistics calculated for 19 listings
+2025-05-10 00:11:49,518 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:49] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:49,776 - car_api - INFO - Price distribution chart request: Tesla Tesla Model S, 2012-2025
+2025-05-10 00:11:50,033 - car_analysis - INFO - Created price distribution chart with 19 data points
+2025-05-10 00:11:50,033 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:50] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+S&yearFrom=2012&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:11:52,774 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-10 00:11:52,775 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:52] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-10 00:11:58,834 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:59,093 - car_api - INFO - Search request: brand=Suzuki, model=, year=2000-2025
+2025-05-10 00:11:59,095 - car_analysis - INFO - Statistics calculated for 50 listings
+2025-05-10 00:11:59,097 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:59] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:11:59,139 - car_api - INFO - Price distribution chart request: Suzuki None, 2000-2025
+2025-05-10 00:11:59,325 - car_analysis - INFO - Created price distribution chart with 50 data points
+2025-05-10 00:11:59,325 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:11:59] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2000&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:12:02,093 - car_api - INFO - Search request: brand=Suzuki, model=, year=1996-2025
+2025-05-10 00:12:02,095 - car_analysis - INFO - Statistics calculated for 53 listings
+2025-05-10 00:12:02,098 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:02] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:12:02,435 - car_api - INFO - Price distribution chart request: Suzuki None, 1996-2025
+2025-05-10 00:12:02,666 - car_analysis - INFO - Created price distribution chart with 53 data points
+2025-05-10 00:12:02,667 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:02] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=1996&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:12:05,541 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:05] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:12:05,858 - car_api - INFO - Search request: brand=Suzuki, model=, year=1990-2025
+2025-05-10 00:12:05,860 - car_analysis - INFO - Statistics calculated for 54 listings
+2025-05-10 00:12:05,863 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:05] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:12:06,104 - car_api - INFO - Price distribution chart request: Suzuki None, 1990-2025
+2025-05-10 00:12:06,456 - car_analysis - INFO - Created price distribution chart with 54 data points
+2025-05-10 00:12:06,457 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:06] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=1990&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:12:51,557 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 00:12:51,558 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:51] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 00:12:53,566 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:53] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 00:12:53,829 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=1990-2025
+2025-05-10 00:12:53,831 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-10 00:12:53,834 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:53] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 00:12:53,876 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 1990-2025
+2025-05-10 00:12:54,040 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-10 00:12:54,040 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:12:54] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=1990&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 00:13:26,340 - car_api - INFO - Price trend chart request: Tesla Tesla Model 3, 12 months
+2025-05-10 00:13:26,343 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', 'Tesla Model 3', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 00:13:26,344 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 00:13:26,344 - car_api - INFO - No price trend chart data for Tesla Tesla Model 3, trying brand-level data
+2025-05-10 00:13:26,346 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 00:13:26,346 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 00:13:26,346 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:13:26] "[33mGET /api/charts/price-trend?brand=Tesla&model=Tesla+Model+3&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 00:13:28,982 - car_api - INFO - Price trend chart request: Tesla Tesla Model 3, 12 months
+2025-05-10 00:13:28,984 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', 'Tesla Model 3', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 00:13:28,984 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 00:13:28,984 - car_api - INFO - No price trend chart data for Tesla Tesla Model 3, trying brand-level data
+2025-05-10 00:13:28,985 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 00:13:28,985 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 00:13:28,985 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:13:28] "[33mGET /api/charts/price-trend?brand=Tesla&model=Tesla+Model+3&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 00:13:29,238 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 1990-2025
+2025-05-10 00:13:29,451 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-10 00:13:29,452 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:13:29] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=1990&yearTo=2025 HTTP/1.1" 200 -
