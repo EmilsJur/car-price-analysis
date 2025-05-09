@@ -12,7 +12,7 @@ const API_BASE_URL = 'http://localhost:5000/api';
  */
 export const searchCars = async (params) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/search`, {
+    const response = await fetch(`${API_BASE_URL}/status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

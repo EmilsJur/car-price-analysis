@@ -10,6 +10,9 @@ from io import BytesIO
 import base64
 import sqlite3
 from dateutil.relativedelta import relativedelta
+import matplotlib
+matplotlib.use('Agg')  # noninteractive agg backend prieks matplitlib
+import matplotlib.pyplot as plt
 
 # Set up logging
 logging.basicConfig(

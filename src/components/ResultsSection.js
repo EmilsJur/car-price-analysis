@@ -94,6 +94,32 @@ const ResultsSection = ({
     return favorites.some(fav => fav.id === car.id);
   };
 
+  // Format fuel type in Latvian
+  const formatFuelType = (type) => {
+    if (!type) return null;
+    
+    switch(type.toLowerCase()) {
+      case 'petrol': return 'Benzīns';
+      case 'diesel': return 'Dīzelis';
+      case 'hybrid': return 'Hibrīds';
+      case 'electric': return 'Elektriskais';
+      case 'gas': return 'Gāze';
+      default: return type;
+    }
+  };
+  
+  // Format transmission in Latvian
+  const formatTransmission = (transmission) => {
+    if (!transmission) return null;
+    
+    switch(transmission.toLowerCase()) {
+      case 'manual': return 'Manuālā';
+      case 'automatic': return 'Automātiskā';
+      case 'semi-automatic': return 'Pusautomātiskā';
+      default: return transmission;
+    }
+  };
+
   // Sort cars based on the current order and orderBy
   const sortedCars = React.useMemo(() => {
     if (!cars || !cars.length) return [];
@@ -235,8 +261,21 @@ const ResultsSection = ({
             {sortedCars
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((car) => {
-                const isItemSelected = selectedCars.some(selected => selected.id === car.id);
+                const isItemSelected = selectedCars && selectedCars.some(selected => selected.id === car.id);
                 const isExpanded = expandedRow === car.id;
+                
+                // Get properly formatted engine text
+                let engineText = 'Nav norādīts';
+                if (car.engine) {
+                  engineText = car.engine;
+                } else if (car.engine_volume && car.engine_type) {
+                  engineText = `${car.engine_volume}L ${formatFuelType(car.engine_type) || car.engine_type}`;
+                } else if (car.engine_type) {
+                  engineText = formatFuelType(car.engine_type) || car.engine_type;
+                }
+                
+                // Get properly formatted transmission text
+                const transmissionText = formatTransmission(car.transmission) || car.transmission || 'Nav norādīts';
                 
                 return (
                   <React.Fragment key={car.id || car.external_id || `car-${car.brand}-${car.model}-${car.year}`}>
@@ -279,30 +318,25 @@ const ResultsSection = ({
                           )}
                         </Box>
                       </TableCell>
-                      <TableCell>{car.year}</TableCell>
+                      <TableCell>{car.year || 'Nav norādīts'}</TableCell>
                       <TableCell>
-                        {car.engine || (car.engine_volume && `${car.engine_volume}L ${car.engine_type}`)}
+                        {engineText}
                         {car.engine_type && (
                           <Chip 
-                            label={car.engine_type === 'Petrol' ? 'Benzīns' : 
-                                   car.engine_type === 'Diesel' ? 'Dīzelis' : 
-                                   car.engine_type === 'Electric' ? 'Elektriskais' :
-                                   car.engine_type === 'Hybrid' ? 'Hibrīds' : car.engine_type} 
+                            label={formatFuelType(car.engine_type) || car.engine_type} 
                             size="small" 
                             sx={{ ml: 1 }} 
                             color={
-                              car.engine_type === 'Diesel' ? 'primary' :
-                              car.engine_type === 'Petrol' ? 'secondary' :
-                              car.engine_type === 'Electric' ? 'success' :
-                              car.engine_type === 'Hybrid' ? 'info' : 'default'
+                              car.engine_type.toLowerCase() === 'diesel' ? 'primary' :
+                              car.engine_type.toLowerCase() === 'petrol' ? 'secondary' :
+                              car.engine_type.toLowerCase() === 'electric' ? 'success' :
+                              car.engine_type.toLowerCase() === 'hybrid' ? 'info' : 'default'
                             }
                           />
                         )}
                       </TableCell>
                       <TableCell>
-                        {car.transmission === 'Manual' ? 'Manuālā' : 
-                         car.transmission === 'Automatic' ? 'Automātiskā' : 
-                         car.transmission === 'Semi-Automatic' ? 'Pusautomātiskā' : car.transmission}
+                        {transmissionText}
                       </TableCell>
                       <TableCell>
                         {car.mileage ? `${car.mileage.toLocaleString()} km` : 'Nav norādīts'}
@@ -339,11 +373,11 @@ const ResultsSection = ({
                             <InfoIcon fontSize="small" />
                           </IconButton>
                           
-                          {car.listing_url && (
+                          {(car.listing_url || car.url) && (
                             <IconButton
                               size="small"
-                              component={Link}
-                              href={car.listing_url}
+                              component="a"
+                              href={car.listing_url || car.url}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
@@ -399,12 +433,12 @@ const ResultsSection = ({
                               <Grid item xs={12} sm={6} md={4}>
                                 <Typography variant="body2" color="text.secondary">
                                   Sludinājuma datums: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.listing_date ? new Date(car.listing_date).toLocaleDateString() : 'Nav norādīts'}
+                                    {car.listing_date ? new Date(car.listing_date).toLocaleDateString() : new Date().toLocaleDateString()}
                                   </Typography>
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                   Avots: <Typography component="span" variant="body2" fontWeight="medium">
-                                    {car.source || 'Nav zināms'}
+                                    SS.LV
                                   </Typography>
                                 </Typography>
                               </Grid>
@@ -414,20 +448,24 @@ const ResultsSection = ({
                                   <Button
                                     size="small"
                                     variant="outlined"
-                                    onClick={() => onOpenCarDetails(car)}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      onOpenCarDetails(car);
+                                    }}
                                   >
                                     Skatīt detaļas
                                   </Button>
                                   
-                                  {car.listing_url && (
+                                  {(car.listing_url || car.url) && (
                                     <Button
                                       size="small"
                                       variant="outlined"
-                                      component={Link}
-                                      href={car.listing_url}
+                                      component="a"
+                                      href={car.listing_url || car.url}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       endIcon={<OpenInNewIcon />}
+                                      onClick={(e) => e.stopPropagation()}
                                     >
                                       Skatīt sludinājumu
                                     </Button>
@@ -497,22 +535,22 @@ const ResultsSection = ({
           )}
         </MenuItem>
         
-        {compareMode && (
+        {compareMode && actionCar && (
           <MenuItem onClick={() => {
             onSelectCar(actionCar);
             handleCloseMenu();
           }}>
             <CompareArrowsIcon fontSize="small" sx={{ mr: 1 }} />
-            {selectedCars.some(selected => selected.id === actionCar?.id) 
+            {selectedCars && selectedCars.some(selected => selected.id === actionCar?.id) 
               ? 'Noņemt no salīdzinājuma' 
               : 'Pievienot salīdzinājumam'}
           </MenuItem>
         )}
         
-        {actionCar?.listing_url && (
+        {(actionCar?.listing_url || actionCar?.url) && (
           <MenuItem
-            component={Link}
-            href={actionCar.listing_url}
+            component="a"
+            href={actionCar?.listing_url || actionCar?.url}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleCloseMenu}

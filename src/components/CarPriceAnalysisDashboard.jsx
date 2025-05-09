@@ -46,6 +46,7 @@ import SearchForm from './SearchForm';
 import ResultsSection from './ResultsSection';
 import PriceChart from './PriceChart';
 import axios from 'axios';
+import CarDetailsDialog from './CarDetailsDialog';
 
 function CarPriceAnalysisDashboard() {
   // State for car data and search parameters
@@ -55,6 +56,9 @@ function CarPriceAnalysisDashboard() {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [chartData, setChartData] = useState(null);
+  const [carDetailsOpen, setCarDetailsOpen] = useState(false);
+  const [selectedCarDetails, setSelectedCarDetails] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   
   // Search parameters state
   const [searchParams, setSearchParams] = useState({
@@ -183,6 +187,40 @@ function CarPriceAnalysisDashboard() {
       ...searchParams,
       [param]: value
     });
+  };
+
+  // Handle toggle favorite
+  const handleToggleFavorite = (car) => {
+    const isFavorite = favorites.some(fav => fav.id === car.id);
+    
+    if (isFavorite) {
+      // Remove from favorites
+      setFavorites(prev => prev.filter(fav => fav.id !== car.id));
+      
+      setNotification({
+        open: true,
+        message: `${car.brand} ${car.model} removed from favorites`,
+        severity: 'info'
+      });
+    } else {
+      // Add to favorites
+      setFavorites(prev => [...prev, car]);
+      
+      setNotification({
+        open: true,
+        message: `${car.brand} ${car.model} added to favorites`,
+        severity: 'success'
+      });
+    }
+  };
+
+  const handleOpenCarDetails = (car) => {
+    setSelectedCarDetails(car);
+    setCarDetailsOpen(true);
+  };
+
+  const handleCloseCarDetails = () => {
+    setCarDetailsOpen(false);
   };
   
   // Handle tab change
@@ -716,6 +754,9 @@ function CarPriceAnalysisDashboard() {
                       compareMode={compareMode}
                       selectedCars={selectedCars}
                       onSelectCar={handleSelectCar}
+                      onOpenCarDetails={handleOpenCarDetails}
+                      onToggleFavorite={handleToggleFavorite}
+                      favorites={favorites}
                     />
                   )}
                   
@@ -731,6 +772,14 @@ function CarPriceAnalysisDashboard() {
             </Paper>
           </Grid>
         </Grid>
+          <CarDetailsDialog
+          open={carDetailsOpen}
+          car={selectedCarDetails}
+          onClose={handleCloseCarDetails}
+          onAddToCompare={handleSelectCar}
+          onToggleFavorite={handleToggleFavorite}
+          isFavorite={selectedCarDetails ? favorites.some(fav => fav.id === selectedCarDetails.id) : false}
+        />
       </Container>
       
       <Footer />

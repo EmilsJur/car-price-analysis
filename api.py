@@ -25,8 +25,6 @@ session, engine = init_db()
 # Initialize data analyzer
 analyzer = CarDataAnalyzer(session)
 
-# No need to initialize default sources - the new scraper handles this automatically
-# Remove the initialization code that used init_default_sources
 
 @app.route('/api/search', methods=['POST'])
 def search_cars():
@@ -55,26 +53,90 @@ def search_cars():
             fuel_type=fuel_type
         )
         
-        # Get similar listings
+        # Get matching listings
         listings = []
-        if brand and model:
-            # Use middle of year range if both from and to are provided
-            year = None
-            if year_from and year_to:
-                year = (int(year_from) + int(year_to)) // 2
-            elif year_from:
-                year = int(year_from)
-            elif year_to:
-                year = int(year_to)
+        if brand:  # Only require brand, not model
+            # Create query dynamically based on available parameters
+            from models import Brand, Model, Car, Listing, Region
+            from sqlalchemy import func
             
-            if year:
-                listings = analyzer.get_similar_listings(
-                    brand=brand,
-                    model=model,
-                    year=year,
-                    engine_type=fuel_type,
-                    limit=20
+            query = (
+                analyzer.session.query(
+                    Brand.name.label('brand'),
+                    Model.name.label('model'),
+                    Car.year,
+                    Car.engine_volume,
+                    Car.engine_type,
+                    Car.transmission,
+                    Car.mileage,
+                    Car.body_type, 
+                    Car.color,
+                    Listing.price,
+                    Listing.listing_date,
+                    Listing.listing_url,
+                    Listing.external_id,
+                    Region.name.label('region')
                 )
+                .join(Model, Brand.brand_id == Model.brand_id)
+                .join(Car, Model.model_id == Car.model_id)
+                .join(Listing, Car.car_id == Listing.car_id)
+                .join(Region, Car.region_id == Region.region_id)
+                .filter(func.lower(Brand.name) == func.lower(brand))
+            )
+            
+            if model:
+                query = query.filter(func.lower(Model.name) == func.lower(model))
+            
+            if year_from:
+                query = query.filter(Car.year >= year_from)
+                
+            if year_to:
+                query = query.filter(Car.year <= year_to)
+                
+            if fuel_type:
+                query = query.filter(func.lower(Car.engine_type) == func.lower(fuel_type))
+                
+            if transmission:
+                query = query.filter(func.lower(Car.transmission) == func.lower(transmission))
+                
+            if price_from:
+                query = query.filter(Listing.price >= price_from)
+                
+            if price_to:
+                query = query.filter(Listing.price <= price_to)
+            
+            # Filter for active listings only
+            query = query.filter(Listing.is_active == True)
+            
+            # Order by latest listings first
+            query = query.order_by(Listing.listing_date.desc())
+            
+            # Limit results
+            query = query.limit(50)
+            
+            # Execute query
+            results = query.all()
+            
+            # Convert to list of dictionaries
+            for row in results:
+                listings.append({
+                    'brand': row.brand,
+                    'model': row.model,
+                    'year': row.year,
+                    'engine_volume': row.engine_volume,
+                    'engine_type': row.engine_type,
+                    'engine': f"{row.engine_volume}L {row.engine_type}" if row.engine_volume and row.engine_type else "Nav norādīts",
+                    'transmission': row.transmission or "Nav norādīts",
+                    'mileage': row.mileage or 0,
+                    'body_type': row.body_type or "Nav norādīts",
+                    'color': row.color or "Nav norādīts",
+                    'price': row.price,
+                    'listing_date': row.listing_date.strftime('%Y-%m-%d') if row.listing_date else "",
+                    'listing_url': row.listing_url,
+                    'url': row.listing_url,  # Add both for compatibility
+                    'region': row.region or "Nav norādīts",
+                    'id': row.external_id or f"listing-{hash(str(row.listing_url))}"
+                })
         
         # Prepare response
         response = {
@@ -193,6 +255,16 @@ def price_distribution_chart():
             year_to=year_to
         )
         
+        if not chart_data and model:
+            # If no data for the specific model, try getting data for the brand
+            logger.info(f"No chart data for {brand} {model}, trying brand-level data")
+            chart_data = analyzer.create_price_distribution_chart(
+                brand=brand,
+                model=None,  # Remove model constraint
+                year_from=year_from,
+                year_to=year_to
+            )
+        
         if not chart_data:
             return jsonify({"error": "Insufficient data for chart generation"}), 404
         
@@ -211,8 +283,8 @@ def price_trend_chart():
         model = request.args.get('model')
         months = request.args.get('months', default=12, type=int)
         
-        if not brand or not model:
-            return jsonify({"error": "Brand and model are required"}), 400
+        if not brand:
+            return jsonify({"error": "Brand is required"}), 400
         
         logger.info(f"Price trend chart request: {brand} {model}, {months} months")
         
@@ -222,6 +294,15 @@ def price_trend_chart():
             model=model,
             months=months
         )
+        
+        if not chart_data and model:
+            # If no data for the specific model, try getting data for the brand
+            logger.info(f"No price trend chart data for {brand} {model}, trying brand-level data")
+            chart_data = analyzer.create_price_trend_chart(
+                brand=brand,
+                model=None,  # Remove model constraint
+                months=months
+            )
         
         if not chart_data:
             return jsonify({"error": "Insufficient data for chart generation"}), 404
