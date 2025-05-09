@@ -218,7 +218,7 @@ class ReportAnalysis(Base):
 
 
 # Database initialization function
-def init_db(db_url="sqlite:///car_data.db"):
+def init_db(db_url="sqlite:///car_price_analysis.db"):
     """Initialize the database with all tables"""
     engine = create_engine(db_url)
     Base.metadata.create_all(engine)

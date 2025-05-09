@@ -584,3 +584,650 @@
 2025-05-09 13:38:10,927 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
 2025-05-09 13:38:10,928 - car_analysis - INFO - Retrieved 0 popular brands
 2025-05-09 13:38:10,929 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:38:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:41:43,260 - car_app - INFO - Initializing database
+2025-05-09 13:41:43,262 - car_app - INFO - Database initialization completed
+2025-05-09 13:43:47,475 - car_app - INFO - Initializing database
+2025-05-09 13:43:47,497 - car_app - INFO - Database initialization completed
+2025-05-09 13:48:07,326 - car_app - INFO - Initializing database
+2025-05-09 13:48:07,328 - car_app - INFO - Database initialization completed
+2025-05-09 13:49:18,253 - car_app - INFO - Starting scraping process
+2025-05-09 13:49:18,298 - ss_scraper - INFO - Adding SS.LV as a data source
+2025-05-09 13:49:18,303 - ss_scraper - INFO - Using source_id 1 for SS.LV
+2025-05-09 13:49:18,304 - ss_scraper - INFO - Starting the scraper at 2025-05-09 13:49:18.304348
+2025-05-09 13:49:18,304 - ss_scraper - INFO - Getting car brands from SS.LV
+2025-05-09 13:49:18,363 - ss_scraper - INFO - Found 4 target car brands
+2025-05-09 13:49:18,363 - ss_scraper - INFO - Starting to scrape brand: Infiniti
+2025-05-09 13:49:18,363 - ss_scraper - INFO - Getting models for Infiniti
+2025-05-09 13:49:18,416 - ss_scraper - INFO - Found 6 models for Infiniti
+2025-05-09 13:49:18,417 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti FX
+2025-05-09 13:49:18,417 - ss_scraper - INFO - Getting listings for Infiniti Infiniti FX
+2025-05-09 13:49:18,417 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/fx/
+2025-05-09 13:49:18,531 - ss_scraper - INFO - Found 19 listings on this page
+2025-05-09 13:49:18,535 - ss_scraper - INFO - Found 18 total listings for Infiniti Infiniti FX
+2025-05-09 13:49:18,572 - ss_scraper - INFO - Adding new brand: Infiniti
+2025-05-09 13:49:18,577 - ss_scraper - INFO - Adding new model: Infiniti Infiniti FX
+2025-05-09 13:49:18,583 - ss_scraper - INFO - Adding new region: Nav nor\u0101d\u012bts
+2025-05-09 13:49:18,592 - ss_scraper - INFO - Added new listing: 56334335
+2025-05-09 13:49:18,608 - ss_scraper - INFO - Added new listing: 56249864
+2025-05-09 13:49:18,622 - ss_scraper - INFO - Added new listing: 54746773
+2025-05-09 13:49:18,675 - ss_scraper - INFO - Added new listing: 55953052
+2025-05-09 13:49:18,708 - ss_scraper - INFO - Added new listing: 56130732
+2025-05-09 13:49:18,724 - ss_scraper - INFO - Added new listing: 56197335
+2025-05-09 13:49:18,762 - ss_scraper - INFO - Added new listing: 55401515
+2025-05-09 13:49:18,789 - ss_scraper - INFO - Added new listing: 56241552
+2025-05-09 13:49:18,817 - ss_scraper - INFO - Added new listing: 55890011
+2025-05-09 13:49:18,836 - ss_scraper - INFO - Added new listing: 56088036
+2025-05-09 13:49:18,852 - ss_scraper - INFO - Added new listing: 55235422
+2025-05-09 13:49:18,863 - ss_scraper - INFO - Added new listing: 56290547
+2025-05-09 13:49:18,890 - ss_scraper - INFO - Added new listing: 55566593
+2025-05-09 13:49:18,930 - ss_scraper - ERROR - Error saving listing 56145562: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (14, 1, '56145562', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/fx/blxip.html', 1, '2025-05-09 13:49:18.930299', '2025-05-09 13:49:18.930299')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:18,954 - ss_scraper - INFO - Added new listing: 55164933
+2025-05-09 13:49:18,981 - ss_scraper - INFO - Added new listing: 55517237
+2025-05-09 13:49:19,003 - ss_scraper - INFO - Added new listing: 55075065
+2025-05-09 13:49:19,036 - ss_scraper - INFO - Added new listing: 56145559
+2025-05-09 13:49:20,834 - ss_scraper - INFO - Processed 18 listings for Infiniti Infiniti FX
+2025-05-09 13:49:20,834 - ss_scraper - INFO - Results: {'new': 17, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:49:21,984 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti M30
+2025-05-09 13:49:21,985 - ss_scraper - INFO - Getting listings for Infiniti Infiniti M30
+2025-05-09 13:49:21,985 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/m30/
+2025-05-09 13:49:22,021 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 13:49:22,022 - ss_scraper - INFO - Found 1 total listings for Infiniti Infiniti M30
+2025-05-09 13:49:22,089 - ss_scraper - INFO - Adding new model: Infiniti Infiniti M30
+2025-05-09 13:49:22,096 - ss_scraper - INFO - Added new listing: 56239041
+2025-05-09 13:49:23,180 - ss_scraper - INFO - Processed 1 listings for Infiniti Infiniti M30
+2025-05-09 13:49:23,180 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:49:25,097 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti Q30
+2025-05-09 13:49:25,097 - ss_scraper - INFO - Getting listings for Infiniti Infiniti Q30
+2025-05-09 13:49:25,098 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/q30/
+2025-05-09 13:49:25,215 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 13:49:25,216 - ss_scraper - INFO - Found 3 total listings for Infiniti Infiniti Q30
+2025-05-09 13:49:25,283 - ss_scraper - INFO - Adding new model: Infiniti Infiniti Q30
+2025-05-09 13:49:25,291 - ss_scraper - INFO - Added new listing: 55482795
+2025-05-09 13:49:25,309 - ss_scraper - ERROR - Error saving listing 55963871: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (20, 1, '55963871', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/q30/cfncec.html', 1, '2025-05-09 13:49:25.308772', '2025-05-09 13:49:25.308772')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:25,325 - ss_scraper - INFO - Added new listing: 56332300
+2025-05-09 13:49:26,816 - ss_scraper - INFO - Processed 3 listings for Infiniti Infiniti Q30
+2025-05-09 13:49:26,816 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:49:28,288 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti QX56
+2025-05-09 13:49:28,288 - ss_scraper - INFO - Getting listings for Infiniti Infiniti QX56
+2025-05-09 13:49:28,289 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/qx56/
+2025-05-09 13:49:28,416 - ss_scraper - INFO - Found 5 listings on this page
+2025-05-09 13:49:28,419 - ss_scraper - INFO - Found 4 total listings for Infiniti Infiniti QX56
+2025-05-09 13:49:28,486 - ss_scraper - INFO - Adding new model: Infiniti Infiniti QX56
+2025-05-09 13:49:28,493 - ss_scraper - INFO - Added new listing: 56241714
+2025-05-09 13:49:28,508 - ss_scraper - INFO - Added new listing: 55810705
+2025-05-09 13:49:28,519 - ss_scraper - INFO - Added new listing: 56330766
+2025-05-09 13:49:28,548 - ss_scraper - INFO - Added new listing: 56263111
+2025-05-09 13:49:30,205 - ss_scraper - INFO - Processed 4 listings for Infiniti Infiniti QX56
+2025-05-09 13:49:30,205 - ss_scraper - INFO - Results: {'new': 4, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:49:32,089 - ss_scraper - INFO - Starting to scrape model: Infiniti Citi
+2025-05-09 13:49:32,089 - ss_scraper - INFO - Getting listings for Infiniti Citi
+2025-05-09 13:49:32,090 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/another/
+2025-05-09 13:49:32,218 - ss_scraper - INFO - Found 11 listings on this page
+2025-05-09 13:49:32,221 - ss_scraper - INFO - Found 10 total listings for Infiniti Citi
+2025-05-09 13:49:32,251 - ss_scraper - INFO - Adding new model: Infiniti Citi
+2025-05-09 13:49:32,262 - ss_scraper - INFO - Added new listing: 54839212
+2025-05-09 13:49:32,290 - ss_scraper - INFO - Added new listing: 55660414
+2025-05-09 13:49:32,306 - ss_scraper - INFO - Added new listing: 56328413
+2025-05-09 13:49:32,324 - ss_scraper - INFO - Added new listing: 56063291
+2025-05-09 13:49:32,338 - ss_scraper - INFO - Added new listing: 51250000
+2025-05-09 13:49:32,354 - ss_scraper - INFO - Added new listing: 54632479
+2025-05-09 13:49:32,372 - ss_scraper - INFO - Added new listing: 55430318
+2025-05-09 13:49:32,398 - ss_scraper - INFO - Added new listing: 55921800
+2025-05-09 13:49:32,411 - ss_scraper - INFO - Added new listing: 55089285
+2025-05-09 13:49:32,482 - ss_scraper - INFO - Added new listing: 56200691
+2025-05-09 13:49:34,129 - ss_scraper - INFO - Processed 10 listings for Infiniti Citi
+2025-05-09 13:49:34,130 - ss_scraper - INFO - Results: {'new': 10, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:49:35,355 - ss_scraper - INFO - Starting to scrape model: Infiniti Vieglo auto mai\u0146a
+2025-05-09 13:49:35,355 - ss_scraper - INFO - Getting listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 13:49:35,355 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/exchange/
+2025-05-09 13:49:35,460 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:49:35,461 - ss_scraper - INFO - Found 2 total listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 13:49:35,498 - ss_scraper - INFO - Adding new model: Infiniti Vieglo auto mai\u0146a
+2025-05-09 13:49:35,503 - ss_scraper - ERROR - Error saving listing 55963871: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (35, 1, '55963871', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/q30/cfncec.html', 1, '2025-05-09 13:49:35.502584', '2025-05-09 13:49:35.502584')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:35,522 - ss_scraper - ERROR - Error saving listing 56145562: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (35, 1, '56145562', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/fx/blxip.html', 1, '2025-05-09 13:49:35.522453', '2025-05-09 13:49:35.522453')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:36,935 - ss_scraper - INFO - Processed 2 listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 13:49:36,935 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:49:38,483 - ss_scraper - INFO - Finished scraping brand Infiniti. Processed 38 listings.
+2025-05-09 13:49:42,452 - ss_scraper - INFO - Starting to scrape brand: Smart
+2025-05-09 13:49:42,452 - ss_scraper - INFO - Getting models for Smart
+2025-05-09 13:49:42,552 - ss_scraper - INFO - Found 6 models for Smart
+2025-05-09 13:49:42,553 - ss_scraper - INFO - Starting to scrape model: Smart Smart Crossblade
+2025-05-09 13:49:42,553 - ss_scraper - INFO - Getting listings for Smart Smart Crossblade
+2025-05-09 13:49:42,553 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/crossblade/
+2025-05-09 13:49:42,644 - ss_scraper - INFO - Found 0 listings on this page
+2025-05-09 13:49:42,645 - ss_scraper - INFO - Found 0 total listings for Smart Smart Crossblade
+2025-05-09 13:49:42,645 - ss_scraper - WARNING - No listings found for Smart Smart Crossblade
+2025-05-09 13:49:44,691 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForFour
+2025-05-09 13:49:44,691 - ss_scraper - INFO - Getting listings for Smart Smart ForFour
+2025-05-09 13:49:44,691 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/forfour/
+2025-05-09 13:49:44,799 - ss_scraper - INFO - Found 6 listings on this page
+2025-05-09 13:49:44,801 - ss_scraper - INFO - Found 5 total listings for Smart Smart ForFour
+2025-05-09 13:49:44,854 - ss_scraper - INFO - Adding new brand: Smart
+2025-05-09 13:49:44,858 - ss_scraper - INFO - Adding new model: Smart Smart ForFour
+2025-05-09 13:49:44,863 - ss_scraper - INFO - Added new listing: 56341084
+2025-05-09 13:49:44,884 - ss_scraper - INFO - Added new listing: 56331643
+2025-05-09 13:49:44,903 - ss_scraper - INFO - Added new listing: 54390045
+2025-05-09 13:49:44,915 - ss_scraper - INFO - Added new listing: 55916765
+2025-05-09 13:49:44,928 - ss_scraper - INFO - Added new listing: 55767179
+2025-05-09 13:49:46,805 - ss_scraper - INFO - Processed 5 listings for Smart Smart ForFour
+2025-05-09 13:49:46,806 - ss_scraper - INFO - Results: {'new': 5, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:49:48,569 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForTwo
+2025-05-09 13:49:48,569 - ss_scraper - INFO - Getting listings for Smart Smart ForTwo
+2025-05-09 13:49:48,569 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/fortwo/
+2025-05-09 13:49:48,696 - ss_scraper - INFO - Found 22 listings on this page
+2025-05-09 13:49:48,700 - ss_scraper - INFO - Found 21 total listings for Smart Smart ForTwo
+2025-05-09 13:49:48,727 - ss_scraper - INFO - Adding new model: Smart Smart ForTwo
+2025-05-09 13:49:48,738 - ss_scraper - INFO - Added new listing: 56277624
+2025-05-09 13:49:48,760 - ss_scraper - INFO - Added new listing: 56282945
+2025-05-09 13:49:48,775 - ss_scraper - INFO - Added new listing: 56221897
+2025-05-09 13:49:48,790 - ss_scraper - ERROR - Error saving listing 56337546: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (43, 1, '56337546', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/peugeot/107/fcbbe.html', 1, '2025-05-09 13:49:48.789903', '2025-05-09 13:49:48.789903')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:48,815 - ss_scraper - INFO - Added new listing: 55392965
+2025-05-09 13:49:48,826 - ss_scraper - ERROR - Error saving listing 56329357: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (44, 1, '56329357', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/cbilx.html', 1, '2025-05-09 13:49:48.825198', '2025-05-09 13:49:48.825198')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:49:48,837 - ss_scraper - INFO - Added new listing: 55675450
+2025-05-09 13:49:48,855 - ss_scraper - INFO - Added new listing: 56320991
+2025-05-09 13:49:48,881 - ss_scraper - INFO - Added new listing: 55916671
+2025-05-09 13:49:48,913 - ss_scraper - INFO - Added new listing: 56309534
+2025-05-09 13:49:48,940 - ss_scraper - INFO - Added new listing: 55554048
+2025-05-09 13:49:48,963 - ss_scraper - INFO - Added new listing: 56108973
+2025-05-09 13:49:48,988 - ss_scraper - INFO - Added new listing: 56174123
+2025-05-09 13:49:49,012 - ss_scraper - INFO - Added new listing: 56142142
+2025-05-09 13:49:49,034 - ss_scraper - INFO - Added new listing: 56284458
+2025-05-09 13:49:49,057 - ss_scraper - INFO - Added new listing: 56286385
+2025-05-09 13:49:49,084 - ss_scraper - INFO - Added new listing: 53558462
+2025-05-09 13:49:49,102 - ss_scraper - INFO - Added new listing: 55866475
+2025-05-09 13:49:49,132 - ss_scraper - INFO - Added new listing: 54341372
+2025-05-09 13:49:49,162 - ss_scraper - INFO - Added new listing: 56135614
+2025-05-09 13:49:49,184 - ss_scraper - INFO - Added new listing: 56039220
+2025-05-09 13:49:51,069 - ss_scraper - INFO - Processed 21 listings for Smart Smart ForTwo
+2025-05-09 13:49:51,069 - ss_scraper - INFO - Results: {'new': 19, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:49:53,461 - ss_scraper - INFO - Starting to scrape model: Smart Smart Roadster
+2025-05-09 13:49:53,461 - ss_scraper - INFO - Getting listings for Smart Smart Roadster
+2025-05-09 13:49:53,461 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/roadster/
+2025-05-09 13:49:53,574 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:49:53,575 - ss_scraper - INFO - Found 2 total listings for Smart Smart Roadster
+2025-05-09 13:49:53,650 - ss_scraper - INFO - Adding new model: Smart Smart Roadster
+2025-05-09 13:49:53,657 - ss_scraper - INFO - Added new listing: 56272014
+2025-05-09 13:49:53,671 - ss_scraper - INFO - Added new listing: 55829114
+2025-05-09 13:49:55,349 - ss_scraper - INFO - Processed 2 listings for Smart Smart Roadster
+2025-05-09 13:49:55,350 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:49:57,650 - ss_scraper - INFO - Starting to scrape model: Smart Citi
+2025-05-09 13:49:57,650 - ss_scraper - INFO - Getting listings for Smart Citi
+2025-05-09 13:49:57,650 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/another/
+2025-05-09 13:49:57,750 - ss_scraper - INFO - Found 0 listings on this page
+2025-05-09 13:49:57,750 - ss_scraper - INFO - Found 0 total listings for Smart Citi
+2025-05-09 13:49:57,751 - ss_scraper - WARNING - No listings found for Smart Citi
+2025-05-09 13:50:00,216 - ss_scraper - INFO - Starting to scrape model: Smart Vieglo auto mai\u0146a
+2025-05-09 13:50:00,216 - ss_scraper - INFO - Getting listings for Smart Vieglo auto mai\u0146a
+2025-05-09 13:50:00,216 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/exchange/
+2025-05-09 13:50:00,291 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:00,293 - ss_scraper - INFO - Found 2 total listings for Smart Vieglo auto mai\u0146a
+2025-05-09 13:50:00,317 - ss_scraper - INFO - Adding new model: Smart Vieglo auto mai\u0146a
+2025-05-09 13:50:00,323 - ss_scraper - ERROR - Error saving listing 56329357: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (61, 1, '56329357', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/cbilx.html', 1, '2025-05-09 13:50:00.323329', '2025-05-09 13:50:00.323329')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:00,338 - ss_scraper - ERROR - Error saving listing 56337546: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (61, 1, '56337546', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/peugeot/107/fcbbe.html', 1, '2025-05-09 13:50:00.337235', '2025-05-09 13:50:00.337235')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:01,818 - ss_scraper - INFO - Processed 2 listings for Smart Vieglo auto mai\u0146a
+2025-05-09 13:50:01,818 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:50:04,612 - ss_scraper - INFO - Finished scraping brand Smart. Processed 30 listings.
+2025-05-09 13:50:07,423 - ss_scraper - INFO - Starting to scrape brand: Suzuki
+2025-05-09 13:50:07,424 - ss_scraper - INFO - Getting models for Suzuki
+2025-05-09 13:50:07,498 - ss_scraper - INFO - Found 14 models for Suzuki
+2025-05-09 13:50:07,499 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Alto
+2025-05-09 13:50:07,499 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Alto
+2025-05-09 13:50:07,499 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/alto/
+2025-05-09 13:50:07,585 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 13:50:07,586 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Alto
+2025-05-09 13:50:07,660 - ss_scraper - INFO - Adding new brand: Suzuki
+2025-05-09 13:50:07,664 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Alto
+2025-05-09 13:50:07,671 - ss_scraper - INFO - Added new listing: 55993457
+2025-05-09 13:50:08,204 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Alto
+2025-05-09 13:50:08,205 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:09,279 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Grand Vitara
+2025-05-09 13:50:09,279 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Grand Vitara
+2025-05-09 13:50:09,279 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/grand-vitara/
+2025-05-09 13:50:09,364 - ss_scraper - INFO - Found 13 listings on this page
+2025-05-09 13:50:09,367 - ss_scraper - INFO - Found 12 total listings for Suzuki Suzuki Grand Vitara
+2025-05-09 13:50:09,416 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Grand Vitara
+2025-05-09 13:50:09,420 - ss_scraper - ERROR - Error saving listing 55555762: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (12, 1, None, None, None, None, None, None, None, '2025-05-09 13:50:09.420701', '2025-05-09 13:50:09.420701')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:09,432 - ss_scraper - INFO - Added new listing: 56339108
+2025-05-09 13:50:09,447 - ss_scraper - INFO - Added new listing: 55026363
+2025-05-09 13:50:09,470 - ss_scraper - INFO - Added new listing: 56326691
+2025-05-09 13:50:09,482 - ss_scraper - INFO - Added new listing: 55606679
+2025-05-09 13:50:09,496 - ss_scraper - INFO - Added new listing: 56320471
+2025-05-09 13:50:09,520 - ss_scraper - INFO - Added new listing: 56208270
+2025-05-09 13:50:09,547 - ss_scraper - INFO - Added new listing: 56110071
+2025-05-09 13:50:09,578 - ss_scraper - INFO - Added new listing: 56266339
+2025-05-09 13:50:09,601 - ss_scraper - INFO - Added new listing: 56254700
+2025-05-09 13:50:09,627 - ss_scraper - INFO - Added new listing: 55879537
+2025-05-09 13:50:09,655 - ss_scraper - INFO - Added new listing: 55965489
+2025-05-09 13:50:11,518 - ss_scraper - INFO - Processed 12 listings for Suzuki Suzuki Grand Vitara
+2025-05-09 13:50:11,518 - ss_scraper - INFO - Results: {'new': 11, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:50:12,779 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Ignis
+2025-05-09 13:50:12,779 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Ignis
+2025-05-09 13:50:12,779 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/ignis/
+2025-05-09 13:50:12,862 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:12,863 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki Ignis
+2025-05-09 13:50:12,926 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Ignis
+2025-05-09 13:50:12,932 - ss_scraper - INFO - Added new listing: 54341293
+2025-05-09 13:50:12,946 - ss_scraper - INFO - Added new listing: 54757255
+2025-05-09 13:50:14,115 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki Ignis
+2025-05-09 13:50:14,116 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:16,816 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimni
+2025-05-09 13:50:16,817 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimni
+2025-05-09 13:50:16,817 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimni/
+2025-05-09 13:50:16,915 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:16,917 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki Jimni
+2025-05-09 13:50:16,972 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimni
+2025-05-09 13:50:16,979 - ss_scraper - INFO - Added new listing: 56308801
+2025-05-09 13:50:16,991 - ss_scraper - INFO - Added new listing: 56302901
+2025-05-09 13:50:18,998 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki Jimni
+2025-05-09 13:50:18,998 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:20,394 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimny
+2025-05-09 13:50:20,395 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimny
+2025-05-09 13:50:20,395 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimny/
+2025-05-09 13:50:20,450 - ss_scraper - INFO - Found 11 listings on this page
+2025-05-09 13:50:20,452 - ss_scraper - INFO - Found 10 total listings for Suzuki Suzuki Jimny
+2025-05-09 13:50:20,489 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimny
+2025-05-09 13:50:20,501 - ss_scraper - INFO - Added new listing: 56312234
+2025-05-09 13:50:20,522 - ss_scraper - INFO - Added new listing: 55183582
+2025-05-09 13:50:20,537 - ss_scraper - INFO - Added new listing: 55255184
+2025-05-09 13:50:20,548 - ss_scraper - INFO - Added new listing: 55651363
+2025-05-09 13:50:20,564 - ss_scraper - INFO - Added new listing: 55898463
+2025-05-09 13:50:20,579 - ss_scraper - INFO - Added new listing: 55994551
+2025-05-09 13:50:20,591 - ss_scraper - INFO - Added new listing: 56179973
+2025-05-09 13:50:20,609 - ss_scraper - INFO - Added new listing: 56246001
+2025-05-09 13:50:20,624 - ss_scraper - INFO - Added new listing: 55936661
+2025-05-09 13:50:20,636 - ss_scraper - INFO - Added new listing: 55668230
+2025-05-09 13:50:22,402 - ss_scraper - INFO - Processed 10 listings for Suzuki Suzuki Jimny
+2025-05-09 13:50:22,403 - ss_scraper - INFO - Results: {'new': 10, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:24,913 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Liana
+2025-05-09 13:50:24,914 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Liana
+2025-05-09 13:50:24,914 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/liana/
+2025-05-09 13:50:25,036 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 13:50:25,037 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Liana
+2025-05-09 13:50:25,095 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Liana
+2025-05-09 13:50:25,102 - ss_scraper - INFO - Added new listing: 56331076
+2025-05-09 13:50:25,159 - ss_scraper - INFO - Added new listing: 56337010
+2025-05-09 13:50:25,171 - ss_scraper - INFO - Added new listing: 55410083
+2025-05-09 13:50:26,921 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Liana
+2025-05-09 13:50:26,921 - ss_scraper - INFO - Results: {'new': 3, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:29,556 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Samurai
+2025-05-09 13:50:29,557 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Samurai
+2025-05-09 13:50:29,557 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/samurai/
+2025-05-09 13:50:29,671 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 13:50:29,673 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Samurai
+2025-05-09 13:50:29,726 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Samurai
+2025-05-09 13:50:29,733 - ss_scraper - INFO - Added new listing: 56324766
+2025-05-09 13:50:29,747 - ss_scraper - INFO - Added new listing: 55859335
+2025-05-09 13:50:29,759 - ss_scraper - ERROR - Error saving listing 54644471: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (92, 1, '54644471', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/samurai/hiexn.html', 1, '2025-05-09 13:50:29.759077', '2025-05-09 13:50:29.759077')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:31,475 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Samurai
+2025-05-09 13:50:31,476 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:50:33,318 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SJ 410
+2025-05-09 13:50:33,318 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SJ 410
+2025-05-09 13:50:33,318 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sj-410/
+2025-05-09 13:50:33,437 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 13:50:33,438 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki SJ 410
+2025-05-09 13:50:33,495 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SJ 410
+2025-05-09 13:50:33,502 - ss_scraper - INFO - Added new listing: 56046803
+2025-05-09 13:50:34,747 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki SJ 410
+2025-05-09 13:50:34,748 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:37,006 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Swift
+2025-05-09 13:50:37,007 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Swift
+2025-05-09 13:50:37,007 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/swift/
+2025-05-09 13:50:37,107 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:37,108 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki Swift
+2025-05-09 13:50:37,172 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Swift
+2025-05-09 13:50:37,178 - ss_scraper - INFO - Added new listing: 56113138
+2025-05-09 13:50:37,192 - ss_scraper - INFO - Added new listing: 56276311
+2025-05-09 13:50:38,893 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki Swift
+2025-05-09 13:50:38,893 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:40,504 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SX4
+2025-05-09 13:50:40,504 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SX4
+2025-05-09 13:50:40,504 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sx4/
+2025-05-09 13:50:40,593 - ss_scraper - INFO - Found 8 listings on this page
+2025-05-09 13:50:40,595 - ss_scraper - INFO - Found 7 total listings for Suzuki Suzuki SX4
+2025-05-09 13:50:40,626 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SX4
+2025-05-09 13:50:40,633 - ss_scraper - INFO - Added new listing: 55902865
+2025-05-09 13:50:40,648 - ss_scraper - INFO - Added new listing: 56339455
+2025-05-09 13:50:40,664 - ss_scraper - INFO - Added new listing: 56131611
+2025-05-09 13:50:40,688 - ss_scraper - INFO - Added new listing: 55883238
+2025-05-09 13:50:40,701 - ss_scraper - INFO - Added new listing: 55618593
+2025-05-09 13:50:40,717 - ss_scraper - ERROR - Error saving listing 56034763: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (100, 1, '56034763', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/sx4/cxcgid.html', 1, '2025-05-09 13:50:40.717132', '2025-05-09 13:50:40.717132')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:40,740 - ss_scraper - INFO - Added new listing: 56034761
+2025-05-09 13:50:42,501 - ss_scraper - INFO - Processed 7 listings for Suzuki Suzuki SX4
+2025-05-09 13:50:42,501 - ss_scraper - INFO - Results: {'new': 6, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:50:45,310 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Vitara
+2025-05-09 13:50:45,310 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Vitara
+2025-05-09 13:50:45,310 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/vitara/
+2025-05-09 13:50:45,342 - ss_scraper - INFO - Found 19 listings on this page
+2025-05-09 13:50:45,345 - ss_scraper - INFO - Found 18 total listings for Suzuki Suzuki Vitara
+2025-05-09 13:50:45,378 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Vitara
+2025-05-09 13:50:45,386 - ss_scraper - INFO - Added new listing: 56339371
+2025-05-09 13:50:45,405 - ss_scraper - INFO - Added new listing: 56062743
+2025-05-09 13:50:45,424 - ss_scraper - INFO - Added new listing: 56138185
+2025-05-09 13:50:45,441 - ss_scraper - INFO - Added new listing: 56162503
+2025-05-09 13:50:45,453 - ss_scraper - INFO - Added new listing: 56257606
+2025-05-09 13:50:45,467 - ss_scraper - INFO - Added new listing: 56188082
+2025-05-09 13:50:45,481 - ss_scraper - INFO - Added new listing: 56224574
+2025-05-09 13:50:45,506 - ss_scraper - INFO - Added new listing: 56070812
+2025-05-09 13:50:45,526 - ss_scraper - INFO - Added new listing: 56064345
+2025-05-09 13:50:45,542 - ss_scraper - INFO - Added new listing: 56140084
+2025-05-09 13:50:45,552 - ss_scraper - ERROR - Error saving listing 55833646: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (21, 1, None, None, None, None, None, None, None, '2025-05-09 13:50:45.551954', '2025-05-09 13:50:45.551954')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:45,567 - ss_scraper - INFO - Added new listing: 56178887
+2025-05-09 13:50:45,583 - ss_scraper - INFO - Added new listing: 56294699
+2025-05-09 13:50:45,611 - ss_scraper - INFO - Added new listing: 56218877
+2025-05-09 13:50:45,637 - ss_scraper - INFO - Added new listing: 56218931
+2025-05-09 13:50:45,669 - ss_scraper - INFO - Added new listing: 56156608
+2025-05-09 13:50:45,700 - ss_scraper - INFO - Added new listing: 54040917
+2025-05-09 13:50:45,721 - ss_scraper - INFO - Added new listing: 56265324
+2025-05-09 13:50:47,644 - ss_scraper - INFO - Processed 18 listings for Suzuki Suzuki Vitara
+2025-05-09 13:50:47,645 - ss_scraper - INFO - Results: {'new': 17, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:50:49,976 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki X-90
+2025-05-09 13:50:49,977 - ss_scraper - INFO - Getting listings for Suzuki Suzuki X-90
+2025-05-09 13:50:49,977 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/x-90/
+2025-05-09 13:50:50,091 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:50,092 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki X-90
+2025-05-09 13:50:50,154 - ss_scraper - INFO - Adding new model: Suzuki Suzuki X-90
+2025-05-09 13:50:50,161 - ss_scraper - INFO - Added new listing: 56220373
+2025-05-09 13:50:50,175 - ss_scraper - INFO - Added new listing: 55815289
+2025-05-09 13:50:52,093 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki X-90
+2025-05-09 13:50:52,093 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:50:53,152 - ss_scraper - INFO - Starting to scrape model: Suzuki Citi
+2025-05-09 13:50:53,152 - ss_scraper - INFO - Getting listings for Suzuki Citi
+2025-05-09 13:50:53,152 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/another/
+2025-05-09 13:50:53,243 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 13:50:53,244 - ss_scraper - INFO - Found 3 total listings for Suzuki Citi
+2025-05-09 13:50:53,293 - ss_scraper - INFO - Adding new model: Suzuki Citi
+2025-05-09 13:50:53,298 - ss_scraper - ERROR - Error saving listing 52177755: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (23, 1, None, None, None, None, None, None, None, '2025-05-09 13:50:53.297866', '2025-05-09 13:50:53.297866')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:53,314 - ss_scraper - INFO - Added new listing: 55066776
+2025-05-09 13:50:53,322 - ss_scraper - ERROR - Error saving listing 53375486: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (23, 1, None, None, None, None, None, None, None, '2025-05-09 13:50:53.322200', '2025-05-09 13:50:53.322200')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:54,945 - ss_scraper - INFO - Processed 3 listings for Suzuki Citi
+2025-05-09 13:50:54,946 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:50:57,600 - ss_scraper - INFO - Starting to scrape model: Suzuki Vieglo auto mai\u0146a
+2025-05-09 13:50:57,600 - ss_scraper - INFO - Getting listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 13:50:57,600 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/exchange/
+2025-05-09 13:50:57,678 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 13:50:57,680 - ss_scraper - INFO - Found 2 total listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 13:50:57,712 - ss_scraper - INFO - Adding new model: Suzuki Vieglo auto mai\u0146a
+2025-05-09 13:50:57,717 - ss_scraper - ERROR - Error saving listing 54644471: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (121, 1, '54644471', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/samurai/hiexn.html', 1, '2025-05-09 13:50:57.716828', '2025-05-09 13:50:57.716828')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:57,732 - ss_scraper - ERROR - Error saving listing 56034763: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (121, 1, '56034763', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/sx4/cxcgid.html', 1, '2025-05-09 13:50:57.731727', '2025-05-09 13:50:57.731727')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:50:58,876 - ss_scraper - INFO - Processed 2 listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 13:50:58,877 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:50:59,921 - ss_scraper - INFO - Finished scraping brand Suzuki. Processed 68 listings.
+2025-05-09 13:51:02,483 - ss_scraper - INFO - Starting to scrape brand: Tesla
+2025-05-09 13:51:02,484 - ss_scraper - INFO - Getting models for Tesla
+2025-05-09 13:51:02,556 - ss_scraper - INFO - Found 5 models for Tesla
+2025-05-09 13:51:02,556 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model 3
+2025-05-09 13:51:02,556 - ss_scraper - INFO - Getting listings for Tesla Tesla Model 3
+2025-05-09 13:51:02,557 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-3/
+2025-05-09 13:51:02,659 - ss_scraper - INFO - Found 31 listings on this page
+2025-05-09 13:51:02,664 - ss_scraper - INFO - Found 30 total listings for Tesla Tesla Model 3
+2025-05-09 13:51:02,695 - ss_scraper - INFO - Adding new brand: Tesla
+2025-05-09 13:51:02,698 - ss_scraper - INFO - Adding new model: Tesla Tesla Model 3
+2025-05-09 13:51:02,704 - ss_scraper - INFO - Added new listing: 56308441
+2025-05-09 13:51:02,718 - ss_scraper - INFO - Added new listing: 56032876
+2025-05-09 13:51:02,729 - ss_scraper - INFO - Added new listing: 56165325
+2025-05-09 13:51:02,748 - ss_scraper - INFO - Added new listing: 56205466
+2025-05-09 13:51:02,766 - ss_scraper - INFO - Added new listing: 56162234
+2025-05-09 13:51:02,784 - ss_scraper - INFO - Added new listing: 55758488
+2025-05-09 13:51:02,800 - ss_scraper - INFO - Added new listing: 56330989
+2025-05-09 13:51:02,833 - ss_scraper - INFO - Added new listing: 56133187
+2025-05-09 13:51:02,897 - ss_scraper - INFO - Added new listing: 56240770
+2025-05-09 13:51:02,911 - ss_scraper - ERROR - Error saving listing 55794532: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (130, 1, '55794532', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfldix.html', 1, '2025-05-09 13:51:02.911256', '2025-05-09 13:51:02.911256')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:51:02,923 - ss_scraper - INFO - Added new listing: 56227746
+2025-05-09 13:51:02,959 - ss_scraper - INFO - Added new listing: 55941718
+2025-05-09 13:51:02,978 - ss_scraper - ERROR - Error saving listing 56132058: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (25, 1, None, None, None, None, None, None, None, '2025-05-09 13:51:02.978499', '2025-05-09 13:51:02.978499')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:51:03,001 - ss_scraper - INFO - Added new listing: 56091748
+2025-05-09 13:51:03,043 - ss_scraper - INFO - Added new listing: 55750307
+2025-05-09 13:51:03,067 - ss_scraper - INFO - Added new listing: 55748649
+2025-05-09 13:51:03,092 - ss_scraper - INFO - Added new listing: 56021507
+2025-05-09 13:51:03,126 - ss_scraper - INFO - Added new listing: 56315501
+2025-05-09 13:51:03,153 - ss_scraper - INFO - Added new listing: 56279213
+2025-05-09 13:51:03,183 - ss_scraper - INFO - Added new listing: 56279176
+2025-05-09 13:51:03,199 - ss_scraper - INFO - Added new listing: 56311160
+2025-05-09 13:51:03,220 - ss_scraper - INFO - Added new listing: 56273714
+2025-05-09 13:51:03,239 - ss_scraper - INFO - Added new listing: 56273736
+2025-05-09 13:51:03,272 - ss_scraper - INFO - Added new listing: 56221656
+2025-05-09 13:51:03,302 - ss_scraper - INFO - Added new listing: 56306638
+2025-05-09 13:51:03,326 - ss_scraper - INFO - Added new listing: 56306542
+2025-05-09 13:51:03,362 - ss_scraper - INFO - Added new listing: 56305809
+2025-05-09 13:51:03,377 - ss_scraper - INFO - Added new listing: 56303258
+2025-05-09 13:51:03,409 - ss_scraper - INFO - Added new listing: 56035568
+2025-05-09 13:51:03,434 - ss_scraper - INFO - Added new listing: 56302828
+2025-05-09 13:51:05,151 - ss_scraper - INFO - Processed 30 listings for Tesla Tesla Model 3
+2025-05-09 13:51:05,151 - ss_scraper - INFO - Results: {'new': 28, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 13:51:06,209 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model S
+2025-05-09 13:51:06,210 - ss_scraper - INFO - Getting listings for Tesla Tesla Model S
+2025-05-09 13:51:06,210 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-s/
+2025-05-09 13:51:06,306 - ss_scraper - INFO - Found 20 listings on this page
+2025-05-09 13:51:06,309 - ss_scraper - INFO - Found 19 total listings for Tesla Tesla Model S
+2025-05-09 13:51:06,358 - ss_scraper - INFO - Adding new model: Tesla Tesla Model S
+2025-05-09 13:51:06,364 - ss_scraper - INFO - Added new listing: 55826057
+2025-05-09 13:51:06,382 - ss_scraper - INFO - Added new listing: 56329160
+2025-05-09 13:51:06,393 - ss_scraper - INFO - Added new listing: 56256069
+2025-05-09 13:51:06,409 - ss_scraper - INFO - Added new listing: 56242524
+2025-05-09 13:51:06,450 - ss_scraper - INFO - Added new listing: 56214032
+2025-05-09 13:51:06,479 - ss_scraper - INFO - Added new listing: 56323864
+2025-05-09 13:51:06,503 - ss_scraper - INFO - Added new listing: 56092783
+2025-05-09 13:51:06,530 - ss_scraper - INFO - Added new listing: 56226091
+2025-05-09 13:51:06,557 - ss_scraper - INFO - Added new listing: 56287044
+2025-05-09 13:51:06,581 - ss_scraper - INFO - Added new listing: 55885579
+2025-05-09 13:51:06,606 - ss_scraper - INFO - Added new listing: 56052401
+2025-05-09 13:51:06,624 - ss_scraper - INFO - Added new listing: 56025024
+2025-05-09 13:51:06,640 - ss_scraper - INFO - Added new listing: 56219138
+2025-05-09 13:51:06,663 - ss_scraper - INFO - Added new listing: 56284015
+2025-05-09 13:51:06,677 - ss_scraper - INFO - Added new listing: 56079697
+2025-05-09 13:51:06,691 - ss_scraper - INFO - Added new listing: 55823235
+2025-05-09 13:51:06,703 - ss_scraper - INFO - Added new listing: 55957038
+2025-05-09 13:51:06,715 - ss_scraper - INFO - Added new listing: 56101526
+2025-05-09 13:51:06,926 - ss_scraper - INFO - Added new listing: 56278362
+2025-05-09 13:51:08,487 - ss_scraper - INFO - Processed 19 listings for Tesla Tesla Model S
+2025-05-09 13:51:08,487 - ss_scraper - INFO - Results: {'new': 19, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:51:10,985 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model X
+2025-05-09 13:51:10,986 - ss_scraper - INFO - Getting listings for Tesla Tesla Model X
+2025-05-09 13:51:10,986 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-x/
+2025-05-09 13:51:11,102 - ss_scraper - INFO - Found 9 listings on this page
+2025-05-09 13:51:11,104 - ss_scraper - INFO - Found 8 total listings for Tesla Tesla Model X
+2025-05-09 13:51:11,162 - ss_scraper - INFO - Adding new model: Tesla Tesla Model X
+2025-05-09 13:51:11,170 - ss_scraper - INFO - Added new listing: 56176897
+2025-05-09 13:51:11,189 - ss_scraper - INFO - Added new listing: 56307453
+2025-05-09 13:51:11,206 - ss_scraper - INFO - Added new listing: 56024425
+2025-05-09 13:51:11,223 - ss_scraper - INFO - Added new listing: 56093641
+2025-05-09 13:51:11,259 - ss_scraper - INFO - Added new listing: 56261096
+2025-05-09 13:51:11,282 - ss_scraper - INFO - Added new listing: 56049118
+2025-05-09 13:51:11,306 - ss_scraper - INFO - Added new listing: 56128172
+2025-05-09 13:51:11,348 - ss_scraper - INFO - Added new listing: 56100683
+2025-05-09 13:51:13,053 - ss_scraper - INFO - Processed 8 listings for Tesla Tesla Model X
+2025-05-09 13:51:13,054 - ss_scraper - INFO - Results: {'new': 8, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:51:15,057 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model Y
+2025-05-09 13:51:15,057 - ss_scraper - INFO - Getting listings for Tesla Tesla Model Y
+2025-05-09 13:51:15,057 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-y/
+2025-05-09 13:51:15,172 - ss_scraper - INFO - Found 15 listings on this page
+2025-05-09 13:51:15,174 - ss_scraper - INFO - Found 14 total listings for Tesla Tesla Model Y
+2025-05-09 13:51:15,223 - ss_scraper - INFO - Adding new model: Tesla Tesla Model Y
+2025-05-09 13:51:15,230 - ss_scraper - INFO - Added new listing: 56338298
+2025-05-09 13:51:15,246 - ss_scraper - INFO - Added new listing: 55927936
+2025-05-09 13:51:15,262 - ss_scraper - INFO - Added new listing: 56283344
+2025-05-09 13:51:15,318 - ss_scraper - INFO - Added new listing: 56236893
+2025-05-09 13:51:15,332 - ss_scraper - INFO - Added new listing: 55930680
+2025-05-09 13:51:15,349 - ss_scraper - INFO - Added new listing: 56192003
+2025-05-09 13:51:15,375 - ss_scraper - INFO - Added new listing: 56311761
+2025-05-09 13:51:15,388 - ss_scraper - INFO - Added new listing: 56187143
+2025-05-09 13:51:15,416 - ss_scraper - INFO - Added new listing: 55837597
+2025-05-09 13:51:15,453 - ss_scraper - INFO - Added new listing: 56054830
+2025-05-09 13:51:15,467 - ss_scraper - INFO - Added new listing: 56189392
+2025-05-09 13:51:15,499 - ss_scraper - INFO - Added new listing: 56224850
+2025-05-09 13:51:15,529 - ss_scraper - INFO - Added new listing: 56262373
+2025-05-09 13:51:15,558 - ss_scraper - INFO - Added new listing: 56171198
+2025-05-09 13:51:17,385 - ss_scraper - INFO - Processed 14 listings for Tesla Tesla Model Y
+2025-05-09 13:51:17,386 - ss_scraper - INFO - Results: {'new': 14, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 13:51:20,051 - ss_scraper - INFO - Starting to scrape model: Tesla Vieglo auto mai\u0146a
+2025-05-09 13:51:20,051 - ss_scraper - INFO - Getting listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 13:51:20,051 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/exchange/
+2025-05-09 13:51:20,152 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 13:51:20,154 - ss_scraper - INFO - Found 1 total listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 13:51:20,188 - ss_scraper - INFO - Adding new model: Tesla Vieglo auto mai\u0146a
+2025-05-09 13:51:20,194 - ss_scraper - ERROR - Error saving listing 55794532: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (190, 1, '55794532', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfldix.html', 1, '2025-05-09 13:51:20.193659', '2025-05-09 13:51:20.193659')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 13:51:21,968 - ss_scraper - INFO - Processed 1 listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 13:51:21,968 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 13:51:23,071 - ss_scraper - INFO - Finished scraping brand Tesla. Processed 72 listings.
+2025-05-09 13:51:27,395 - ss_scraper - INFO - No listings to mark as inactive
+2025-05-09 13:51:27,401 - ss_scraper - INFO - Scraping completed at 2025-05-09 13:51:27.401125
+2025-05-09 13:51:27,401 - ss_scraper - INFO - Total time: 129.10 seconds
+2025-05-09 13:51:27,401 - ss_scraper - INFO - Total listings processed: 208
+2025-05-09 13:51:27,402 - ss_scraper - INFO - New listings: 189
+2025-05-09 13:51:27,402 - ss_scraper - INFO - Updated listings: 0
+2025-05-09 13:51:27,402 - ss_scraper - INFO - Errors: 0
+2025-05-09 13:51:27,402 - car_app - INFO - Scraping process completed
+2025-05-09 13:51:27,402 - car_app - INFO - Scraping successful: 208 listings processed
+2025-05-09 13:51:27,402 - car_app - INFO - New: 189, Updated: 0
+2025-05-09 13:52:00,362 - car_app - INFO - Starting API server on port 5000
+2025-05-09 13:52:00,376 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 13:52:00,376 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 13:52:00,377 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 13:52:01,557 - car_app - INFO - Starting API server on port 5000
+2025-05-09 13:52:01,566 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 13:52:01,568 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 13:52:01,665 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:01] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:01,668 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:01] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:01,978 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:01,979 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:01] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:01,981 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:01] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:02,284 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:02,284 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:02] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:02,290 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:02] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:02,593 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:02,593 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:02] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:02,899 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:02,900 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:02] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:14,612 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:14] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:14,874 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:14] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 13:52:14,918 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:14,918 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:14] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:14,919 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 13:52:14,919 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:14] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 13:52:18,679 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 13:52:18,679 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:18] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:52:19,451 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:19] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:19,767 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 13:52:19,769 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 13:52:19,769 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:19] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:20,012 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 13:52:20,517 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 13:52:20,518 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:20] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 13:52:24,140 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 13:52:24,142 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 13:52:24,142 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:24] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:24,485 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 13:52:24,583 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 13:52:24,584 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:24] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 13:52:26,083 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:26] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:26,388 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=2015-2025
+2025-05-09 13:52:26,389 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-09 13:52:26,391 - car_analysis - INFO - Found 7 similar listings
+2025-05-09 13:52:26,391 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:26] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:26,650 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 2015-2025
+2025-05-09 13:52:26,771 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-09 13:52:26,771 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:26] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 13:52:45,810 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:45] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:46,113 - car_api - INFO - Search request: brand=, model=, year=2015-2025
+2025-05-09 13:52:46,116 - car_analysis - INFO - Statistics calculated for 28 listings
+2025-05-09 13:52:46,116 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:46] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:47,841 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-09 13:52:47,841 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:47] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:52:48,771 - car_api - INFO - Search request: brand=Suzuki, model=, year=2015-2025
+2025-05-09 13:52:48,773 - car_analysis - INFO - Statistics calculated for 10 listings
+2025-05-09 13:52:48,773 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:48] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:49,034 - car_api - INFO - Price distribution chart request: Suzuki None, 2015-2025
+2025-05-09 13:52:49,340 - car_analysis - INFO - Created price distribution chart with 10 data points
+2025-05-09 13:52:49,341 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:49] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 13:52:53,130 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:53] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:53,432 - car_api - INFO - Search request: brand=Suzuki, model=Suzuki Vitara, year=2015-2025
+2025-05-09 13:52:53,434 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-09 13:52:53,435 - car_analysis - INFO - Found 4 similar listings
+2025-05-09 13:52:53,436 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:53] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:52:53,693 - car_api - INFO - Price distribution chart request: Suzuki Suzuki Vitara, 2015-2025
+2025-05-09 13:52:53,902 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-09 13:52:53,902 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:53] "GET /api/charts/price-distribution?brand=Suzuki&model=Suzuki+Vitara&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 13:52:58,346 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 13:52:58,346 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:52:58] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:53:01,083 - car_analysis - INFO - Retrieved 5 popular models
+2025-05-09 13:53:01,083 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:53:01] "GET /api/popular/models?brand=Infiniti&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:53:03,004 - car_analysis - INFO - Retrieved 3 popular models
+2025-05-09 13:53:03,004 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:53:03] "GET /api/popular/models?brand=Smart&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:53:07,056 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:53:07] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:53:07,318 - car_api - INFO - Search request: brand=Smart, model=Smart ForTwo, year=2015-2025
+2025-05-09 13:53:07,320 - car_analysis - INFO - Statistics calculated for 1 listings
+2025-05-09 13:53:07,321 - car_analysis - INFO - Found 1 similar listings
+2025-05-09 13:53:07,321 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:53:07] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:53:07,364 - car_api - INFO - Price distribution chart request: Smart Smart ForTwo, 2015-2025
+2025-05-09 13:53:07,365 - car_analysis - INFO - Insufficient data for chart: 1 listings found
+2025-05-09 13:53:07,366 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:53:07] "[33mGET /api/charts/price-distribution?brand=Smart&model=Smart+ForTwo&yearFrom=2015&yearTo=2025 HTTP/1.1[0m" 404 -
+2025-05-09 13:54:09,760 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 13:54:09,761 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:54:09] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 13:54:11,804 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:54:11] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 13:54:12,110 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=2015-2025
+2025-05-09 13:54:12,112 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-09 13:54:12,114 - car_analysis - INFO - Found 7 similar listings
+2025-05-09 13:54:12,114 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:54:12] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 13:54:12,373 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 2015-2025
+2025-05-09 13:54:12,700 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-09 13:54:12,700 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 13:54:12] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -

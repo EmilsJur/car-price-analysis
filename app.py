@@ -42,8 +42,8 @@ def init_database():
     """Initialize database with default data"""
     logger.info("Initializing database")
     
-    # Just initialize the database
-    session, _ = init_db()
+    # database file
+    session, _ = init_db("sqlite:///car_price_analysis.db")
     
     logger.info("Database initialization completed")
 
