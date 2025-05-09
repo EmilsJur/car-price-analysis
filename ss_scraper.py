@@ -547,7 +547,16 @@ class Scraper:
             ]:
                 field_elem = soup.select_one(f"td.ads_opt#{field_id}")
                 if field_elem:
-                    details[field_name] = field_elem.text.strip()
+                    if field_name == "year":
+                        # Extract only the numeric year part from strings like "2019 decembris"
+                        year_text = field_elem.text.strip()
+                        try:
+                            details[field_name] = int(year_text.split()[0])  # Take just the first part
+                        except (ValueError, IndexError):
+                            # Fall back to the original text if conversion fails
+                            details[field_name] = year_text
+                    else:
+                        details[field_name] = field_elem.text.strip()
             
             # Price from specific ID
             price_elem = soup.select_one("span.ads_price#tdo_8")

@@ -1702,3 +1702,997 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listin
 2025-05-09 20:56:32,716 - car_app - INFO - Starting API server on port 5000
 2025-05-09 20:56:32,725 - werkzeug - WARNING -  * Debugger is active!
 2025-05-09 20:56:32,727 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 20:58:59,757 - car_app - INFO - Starting API server on port 5000
+2025-05-09 20:58:59,767 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 20:58:59,767 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 20:59:04,734 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:04] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 20:59:04,937 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:04] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 20:59:05,044 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 20:59:05,044 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:05] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 20:59:05,045 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 20:59:05,046 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:05] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 20:59:13,376 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-09 20:59:13,376 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:13] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-09 20:59:13,864 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:13] "OPTIONS /api/status HTTP/1.1" 200 -
+2025-05-09 20:59:14,174 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:14] "[31m[1mPOST /api/status HTTP/1.1[0m" 405 -
+2025-05-09 20:59:58,860 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:58] "OPTIONS /api/status HTTP/1.1" 200 -
+2025-05-09 20:59:59,165 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 20:59:59] "[31m[1mPOST /api/status HTTP/1.1[0m" 405 -
+2025-05-09 21:00:02,201 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:00:02] "[31m[1mPOST /api/status HTTP/1.1[0m" 405 -
+2025-05-09 21:00:29,769 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:00:29] "OPTIONS /api/status HTTP/1.1" 200 -
+2025-05-09 21:00:45,685 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:00:45] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:02:13,019 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:13] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:02:13,264 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:13] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:02:13,324 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:02:13,324 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:13] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:02:13,326 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:02:13,326 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:13] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:02:14,140 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:02:14,141 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:14] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:02:14,516 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:14] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:14,830 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:02:14,832 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:02:14,835 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:14] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:15,077 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:02:15,156 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:02:15,156 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:15] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:02:24,772 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:24] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:25,078 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:02:25,079 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:02:25,080 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:25] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:25,340 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:02:25,415 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:02:25,415 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:25] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:02:36,410 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:36] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:02:36,721 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:36] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:02:36,780 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:02:36,780 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:36] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:02:37,088 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:02:37,088 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:37] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:02:39,542 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:02:39,543 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:39] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:02:40,194 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:40] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:40,510 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:02:40,511 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:02:40,512 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:40] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:02:40,756 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:02:40,824 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:02:40,824 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:02:40] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:05:08,382 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:05:08,390 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:05:08,390 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:05:34,514 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:34] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:05:34,719 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:34] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:05:34,828 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:05:34,828 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:34] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:05:34,830 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:05:34,831 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:34] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:05:35,857 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:05:35,857 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:35] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:05:39,197 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:39] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:05:39,503 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:05:39,505 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:05:39,507 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:39] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:05:39,764 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:05:39,848 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:05:39,849 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:39] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:05:50,365 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:50] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:05:55,628 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:05:55,629 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:05:55,631 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:55] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:05:55,889 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:05:55,961 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:05:55,962 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:55] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:05:58,738 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:05:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:06:16,208 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:06:16,469 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:06:16,512 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:06:16,512 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:16] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:06:16,514 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:06:16,514 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:16] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:06:19,405 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:19] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:06:19,667 - car_api - INFO - Search request: brand=, model=, year=2015-2025
+2025-05-09 21:06:19,669 - car_analysis - INFO - Statistics calculated for 28 listings
+2025-05-09 21:06:19,669 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:19] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:06:21,492 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:06:21,492 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:21] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:06:22,403 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:06:22,404 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:06:22,405 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:22] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:06:22,649 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:06:22,731 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:06:22,732 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:06:22] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:07:28,518 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:07:28] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:07:28,779 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:07:28,781 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:07:28,783 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:07:28] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:07:28,825 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:07:28,916 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:07:28,916 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:07:28] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:07:31,008 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:07:31,009 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:07:31,011 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:07:31] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:07:31,374 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:07:31,440 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:07:31,440 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:07:31] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:08:23,767 - car_api - INFO - Search request: brand=Tesla, model=, year=2010-2025
+2025-05-09 21:08:23,768 - car_analysis - INFO - Statistics calculated for 19 listings
+2025-05-09 21:08:23,769 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:08:23] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:10:47,610 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:47] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:10:47,855 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:47] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:10:47,916 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:10:47,916 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:47] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:10:47,918 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:10:47,918 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:47] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:10:48,513 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:48] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:10:48,759 - car_api - INFO - Search request: brand=, model=, year=2015-2025
+2025-05-09 21:10:48,761 - car_analysis - INFO - Statistics calculated for 28 listings
+2025-05-09 21:10:48,761 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:48] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:10:50,646 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:10:50,646 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:50] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:10:51,499 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:10:51,500 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:10:51,501 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:51] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:10:51,759 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:10:51,837 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:10:51,837 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:10:51] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:14:50,880 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:14:50,895 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:14:50,895 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:14:50,896 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:14:52,144 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:14:52,152 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:14:52,154 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:15:19,273 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:15:19] "GET /api/debug/counts?brand=Tesla HTTP/1.1" 200 -
+2025-05-09 21:17:33,613 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:17:33,632 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:17:33,632 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:17:33,633 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:17:34,873 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:17:34,883 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:17:34,884 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:17:51,566 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:17:51,745 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:17:53,023 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:17:53,033 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:17:53,034 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:18:18,070 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:18:18,239 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:18:19,475 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:18:19,485 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:18:19,487 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:18:24,983 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:18:25,000 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:18:25,001 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:18:25,001 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:18:26,157 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:18:26,165 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:18:26,167 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:18:54,683 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:54] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:18:54,869 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:54] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:18:54,992 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:18:54,992 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:54] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:18:54,994 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:18:54,994 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:54] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:18:55,805 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:18:55,805 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:55] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:18:56,660 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:56] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:18:56,974 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:18:56,980 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:56] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:18:57,234 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:18:57,310 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:18:57,310 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:18:57] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:19:13,403 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:19:13] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:19:13,706 - car_analysis - INFO - Statistics calculated for 19 listings
+2025-05-09 21:19:13,709 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:19:13] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:19:13,966 - car_api - INFO - Price distribution chart request: Tesla None, 2010-2025
+2025-05-09 21:19:14,041 - car_analysis - INFO - Created price distribution chart with 19 data points
+2025-05-09 21:19:14,042 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:19:14] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2010&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:19:18,320 - car_analysis - INFO - Statistics calculated for 19 listings
+2025-05-09 21:19:18,322 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:19:18] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:19:18,663 - car_api - INFO - Price distribution chart request: Tesla None, 2000-2025
+2025-05-09 21:19:18,727 - car_analysis - INFO - Created price distribution chart with 19 data points
+2025-05-09 21:19:18,727 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:19:18] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2000&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:20:40,370 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:20:40,577 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:20:41,793 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:20:41,802 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:20:41,803 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:20:46,985 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:20:46] "[31m[1mGET /api/listings/breakdown HTTP/1.1[0m" 405 -
+2025-05-09 21:20:56,639 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:20:56,656 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:20:56,657 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:20:56,657 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:20:57,836 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:20:57,845 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:20:57,847 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:21:12,281 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:21:12] "[31m[1mGET /api/listings/breakdown HTTP/1.1[0m" 405 -
+2025-05-09 21:21:13,495 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:21:13] "[31m[1mGET /api/listings/breakdown HTTP/1.1[0m" 405 -
+2025-05-09 21:21:15,390 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:21:15] "[31m[1mGET /api/listings/breakdown HTTP/1.1[0m" 405 -
+2025-05-09 21:21:31,093 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:21:31] "POST /api/listings/breakdown HTTP/1.1" 200 -
+2025-05-09 21:22:26,277 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:22:26,459 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:22:27,742 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:22:27,752 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:22:27,753 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:22:32,513 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:22:32] "[31m[1mPOST /api/listings/years?brand=Tesla HTTP/1.1[0m" 405 -
+2025-05-09 21:22:36,333 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:22:36] "GET /api/listings/years?brand=Tesla HTTP/1.1" 200 -
+2025-05-09 21:23:33,260 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:23:33,447 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:23:34,688 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:23:34,696 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:23:34,698 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:23:36,782 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:36] "GET /api/listings/years?brand=Tesla HTTP/1.1" 200 -
+2025-05-09 21:23:42,387 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:42] "[31m[1mPOST /api/listings/years?brand=Tesla HTTP/1.1[0m" 405 -
+2025-05-09 21:23:45,913 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:45] "[33mGET /api/listings/breakdown HTTP/1.1[0m" 404 -
+2025-05-09 21:23:50,202 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:23:50,450 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:23:50,509 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:23:50,510 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:23:50,511 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:23:50,511 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:23:51,863 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:23:51,863 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:51] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:23:52,565 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:52] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:23:52,877 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:23:52,880 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:23:52,885 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:52] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:23:53,138 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:23:53,226 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:23:53,227 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:53] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:23:58,371 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:23:58,685 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:23:58,686 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:23:58,688 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:58] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:23:58,930 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:23:59,010 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:23:59,011 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:23:59] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:24:10,472 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:24:10] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:24:10,786 - car_api - INFO - Search request: brand=Tesla, model=, year=2019-2025
+2025-05-09 21:24:10,788 - car_analysis - INFO - Statistics calculated for 9 listings
+2025-05-09 21:24:10,790 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:24:10] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:24:11,032 - car_api - INFO - Price distribution chart request: Tesla None, 2019-2025
+2025-05-09 21:24:11,108 - car_analysis - INFO - Created price distribution chart with 9 data points
+2025-05-09 21:24:11,109 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:24:11] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2019&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:25:51,954 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\update_dates.py', reloading
+2025-05-09 21:25:52,145 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:25:53,405 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:25:53,414 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:25:53,416 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:26:06,179 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:26:06,194 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:26:06,194 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:26:06,194 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:26:07,394 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:26:07,402 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:26:07,403 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:27:12,883 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:27:13,053 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:27:14,307 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:27:14,318 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:27:14,320 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:27:16,481 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:27:16,648 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:27:17,840 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:27:17,849 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:27:17,850 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:27:25,188 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:27:25,374 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:27:26,621 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:27:26,632 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:27:26,634 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:31:54,926 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\ss_scraper.py', reloading
+2025-05-09 21:31:55,106 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:31:56,397 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:31:56,407 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:31:56,408 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:31:57,083 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:57] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:31:57,285 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:57] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:31:57,394 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:31:57,394 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:57] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:31:57,397 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:31:57,398 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:57] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:31:58,069 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:31:58,069 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:58] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:31:58,385 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:31:58,698 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:31:58,700 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:31:58,700 - car_api - ERROR - Error in search endpoint: type object 'Car' has no attribute 'month_name'
+2025-05-09 21:31:58,700 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:31:58] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-09 21:32:08,929 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\ss_scraper.py', reloading
+2025-05-09 21:32:09,124 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:32:10,373 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:32:10,383 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:32:10,384 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:38:37,343 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\ss_scraper.py', reloading
+2025-05-09 21:38:37,510 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:38:38,775 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:38:38,784 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:38:38,786 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:38:47,952 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:47] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:38:48,142 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:48] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:38:48,265 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:38:48,266 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:48] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:38:48,267 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:38:48,267 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:48] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:38:49,062 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:38:49,063 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:49] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:38:49,416 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:38:49,721 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:38:49,723 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:38:49,723 - car_api - ERROR - Error in search endpoint: type object 'Car' has no attribute 'month_name'
+2025-05-09 21:38:49,723 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:38:49] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-09 21:39:06,521 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:39:06,536 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:39:06,536 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:39:06,537 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:39:07,746 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:39:07,755 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:39:07,757 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:39:30,674 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:30] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:39:30,854 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:30] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:39:30,994 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:39:30,994 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:30] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:39:30,997 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:39:30,998 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:30] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:39:31,805 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:39:31,806 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:31] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:39:32,331 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:32] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:39:32,648 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:39:32,650 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:39:32,650 - car_api - ERROR - Error in search endpoint: type object 'Car' has no attribute 'month_name'
+2025-05-09 21:39:32,651 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:39:32] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-09 21:43:45,069 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-09 21:43:45,271 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:43:46,598 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:43:46,610 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:43:46,611 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:43:49,574 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:43:49] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:43:49,766 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:43:49] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:43:49,888 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:43:49,888 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:43:49] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:43:49,890 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:43:49,891 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:43:49] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:43:50,904 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:43:50,904 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:43:50] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:45:39,570 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:45:39] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:45:39,830 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:45:39,832 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:45:39,835 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:45:39] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:45:39,876 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:45:39,960 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:45:39,961 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:45:39] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:45:41,983 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:45:41,984 - car_analysis - INFO - Statistics calculated for 15 listings
+2025-05-09 21:45:41,986 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:45:41] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:45:42,325 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:45:42,397 - car_analysis - INFO - Created price distribution chart with 15 data points
+2025-05-09 21:45:42,398 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:45:42] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:46:24,584 - ss_scraper - INFO - Adding SS.LV as a data source
+2025-05-09 21:46:24,589 - ss_scraper - INFO - Using source_id 1 for SS.LV
+2025-05-09 21:46:24,590 - ss_scraper - INFO - Starting the scraper at 2025-05-09 21:46:24.590103
+2025-05-09 21:46:24,590 - ss_scraper - INFO - Getting car brands from SS.LV
+2025-05-09 21:46:24,675 - ss_scraper - INFO - Found 4 target car brands
+2025-05-09 21:46:24,675 - ss_scraper - INFO - Starting to scrape brand: Infiniti
+2025-05-09 21:46:24,676 - ss_scraper - INFO - Getting models for Infiniti
+2025-05-09 21:46:24,722 - ss_scraper - INFO - Found 6 models for Infiniti
+2025-05-09 21:46:24,723 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti FX
+2025-05-09 21:46:24,723 - ss_scraper - INFO - Getting listings for Infiniti Infiniti FX
+2025-05-09 21:46:24,723 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/fx/
+2025-05-09 21:46:24,837 - ss_scraper - INFO - Found 19 listings on this page
+2025-05-09 21:46:24,841 - ss_scraper - INFO - Found 18 total listings for Infiniti Infiniti FX
+2025-05-09 21:46:24,877 - ss_scraper - INFO - Adding new brand: Infiniti
+2025-05-09 21:46:24,882 - ss_scraper - INFO - Adding new model: Infiniti Infiniti FX
+2025-05-09 21:46:24,886 - ss_scraper - INFO - Adding new region: Nav nor\u0101d\u012bts
+2025-05-09 21:46:24,897 - ss_scraper - INFO - Added new listing: 56334335
+2025-05-09 21:46:24,913 - ss_scraper - INFO - Added new listing: 54746773
+2025-05-09 21:46:24,928 - ss_scraper - INFO - Added new listing: 56249864
+2025-05-09 21:46:24,954 - ss_scraper - INFO - Added new listing: 56088036
+2025-05-09 21:46:24,975 - ss_scraper - INFO - Added new listing: 56130732
+2025-05-09 21:46:24,988 - ss_scraper - INFO - Added new listing: 56197335
+2025-05-09 21:46:25,009 - ss_scraper - INFO - Added new listing: 55953052
+2025-05-09 21:46:25,034 - ss_scraper - INFO - Added new listing: 55401515
+2025-05-09 21:46:25,060 - ss_scraper - INFO - Added new listing: 56241552
+2025-05-09 21:46:25,102 - ss_scraper - INFO - Added new listing: 55890011
+2025-05-09 21:46:25,118 - ss_scraper - INFO - Added new listing: 55235422
+2025-05-09 21:46:25,130 - ss_scraper - INFO - Added new listing: 56290547
+2025-05-09 21:46:25,165 - ss_scraper - INFO - Added new listing: 55566593
+2025-05-09 21:46:25,203 - ss_scraper - ERROR - Error saving listing 56145562: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (14, 1, '56145562', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/fx/blxip.html', 1, '2025-05-09 21:46:25.202828', '2025-05-09 21:46:25.202828')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:25,223 - ss_scraper - INFO - Added new listing: 55164933
+2025-05-09 21:46:25,240 - ss_scraper - INFO - Added new listing: 55075065
+2025-05-09 21:46:25,274 - ss_scraper - INFO - Added new listing: 55517237
+2025-05-09 21:46:25,308 - ss_scraper - INFO - Added new listing: 56145559
+2025-05-09 21:46:27,053 - ss_scraper - INFO - Processed 18 listings for Infiniti Infiniti FX
+2025-05-09 21:46:27,054 - ss_scraper - INFO - Results: {'new': 17, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:46:29,240 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti M30
+2025-05-09 21:46:29,240 - ss_scraper - INFO - Getting listings for Infiniti Infiniti M30
+2025-05-09 21:46:29,240 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/m30/
+2025-05-09 21:46:29,320 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 21:46:29,322 - ss_scraper - INFO - Found 1 total listings for Infiniti Infiniti M30
+2025-05-09 21:46:29,359 - ss_scraper - INFO - Adding new model: Infiniti Infiniti M30
+2025-05-09 21:46:29,367 - ss_scraper - INFO - Added new listing: 56239041
+2025-05-09 21:46:31,028 - ss_scraper - INFO - Processed 1 listings for Infiniti Infiniti M30
+2025-05-09 21:46:31,028 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:46:32,352 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti Q30
+2025-05-09 21:46:32,352 - ss_scraper - INFO - Getting listings for Infiniti Infiniti Q30
+2025-05-09 21:46:32,353 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/q30/
+2025-05-09 21:46:32,427 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 21:46:32,429 - ss_scraper - INFO - Found 3 total listings for Infiniti Infiniti Q30
+2025-05-09 21:46:32,506 - ss_scraper - INFO - Adding new model: Infiniti Infiniti Q30
+2025-05-09 21:46:32,513 - ss_scraper - ERROR - Error saving listing 55963871: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (19, 1, '55963871', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/q30/cfncec.html', 1, '2025-05-09 21:46:32.513088', '2025-05-09 21:46:32.513088')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:32,531 - ss_scraper - INFO - Added new listing: 56332300
+2025-05-09 21:46:32,549 - ss_scraper - INFO - Added new listing: 55482795
+2025-05-09 21:46:34,000 - ss_scraper - INFO - Processed 3 listings for Infiniti Infiniti Q30
+2025-05-09 21:46:34,000 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:46:36,015 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti QX56
+2025-05-09 21:46:36,015 - ss_scraper - INFO - Getting listings for Infiniti Infiniti QX56
+2025-05-09 21:46:36,015 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/qx56/
+2025-05-09 21:46:36,105 - ss_scraper - INFO - Found 5 listings on this page
+2025-05-09 21:46:36,107 - ss_scraper - INFO - Found 4 total listings for Infiniti Infiniti QX56
+2025-05-09 21:46:36,165 - ss_scraper - INFO - Adding new model: Infiniti Infiniti QX56
+2025-05-09 21:46:36,173 - ss_scraper - INFO - Added new listing: 56330766
+2025-05-09 21:46:36,191 - ss_scraper - INFO - Added new listing: 55810705
+2025-05-09 21:46:36,208 - ss_scraper - INFO - Added new listing: 56241714
+2025-05-09 21:46:36,225 - ss_scraper - INFO - Added new listing: 56263111
+2025-05-09 21:46:38,140 - ss_scraper - INFO - Processed 4 listings for Infiniti Infiniti QX56
+2025-05-09 21:46:38,140 - ss_scraper - INFO - Results: {'new': 4, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:46:40,341 - ss_scraper - INFO - Starting to scrape model: Infiniti Citi
+2025-05-09 21:46:40,342 - ss_scraper - INFO - Getting listings for Infiniti Citi
+2025-05-09 21:46:40,342 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/another/
+2025-05-09 21:46:40,452 - ss_scraper - INFO - Found 11 listings on this page
+2025-05-09 21:46:40,455 - ss_scraper - INFO - Found 10 total listings for Infiniti Citi
+2025-05-09 21:46:40,525 - ss_scraper - INFO - Adding new model: Infiniti Citi
+2025-05-09 21:46:40,532 - ss_scraper - INFO - Added new listing: 55660414
+2025-05-09 21:46:40,549 - ss_scraper - INFO - Added new listing: 56328413
+2025-05-09 21:46:40,566 - ss_scraper - INFO - Added new listing: 54839212
+2025-05-09 21:46:40,585 - ss_scraper - INFO - Added new listing: 56063291
+2025-05-09 21:46:40,617 - ss_scraper - INFO - Added new listing: 51250000
+2025-05-09 21:46:40,643 - ss_scraper - INFO - Added new listing: 55430318
+2025-05-09 21:46:40,678 - ss_scraper - INFO - Added new listing: 55921800
+2025-05-09 21:46:40,706 - ss_scraper - INFO - Added new listing: 54632479
+2025-05-09 21:46:40,725 - ss_scraper - INFO - Added new listing: 55089285
+2025-05-09 21:46:40,765 - ss_scraper - INFO - Added new listing: 56200691
+2025-05-09 21:46:42,420 - ss_scraper - INFO - Processed 10 listings for Infiniti Citi
+2025-05-09 21:46:42,420 - ss_scraper - INFO - Results: {'new': 10, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:46:45,220 - ss_scraper - INFO - Starting to scrape model: Infiniti Vieglo auto mai\u0146a
+2025-05-09 21:46:45,220 - ss_scraper - INFO - Getting listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 21:46:45,221 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/exchange/
+2025-05-09 21:46:45,304 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:46:45,305 - ss_scraper - INFO - Found 2 total listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 21:46:45,372 - ss_scraper - INFO - Adding new model: Infiniti Vieglo auto mai\u0146a
+2025-05-09 21:46:45,378 - ss_scraper - ERROR - Error saving listing 56145562: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (35, 1, '56145562', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/fx/blxip.html', 1, '2025-05-09 21:46:45.377760', '2025-05-09 21:46:45.377760')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:45,396 - ss_scraper - ERROR - Error saving listing 55963871: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (35, 1, '55963871', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/infiniti/q30/cfncec.html', 1, '2025-05-09 21:46:45.395143', '2025-05-09 21:46:45.395143')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:46,482 - ss_scraper - INFO - Processed 2 listings for Infiniti Vieglo auto mai\u0146a
+2025-05-09 21:46:46,483 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:46:47,869 - ss_scraper - INFO - Finished scraping brand Infiniti. Processed 38 listings.
+2025-05-09 21:46:52,148 - ss_scraper - INFO - Starting to scrape brand: Smart
+2025-05-09 21:46:52,148 - ss_scraper - INFO - Getting models for Smart
+2025-05-09 21:46:52,205 - ss_scraper - INFO - Found 6 models for Smart
+2025-05-09 21:46:52,206 - ss_scraper - INFO - Starting to scrape model: Smart Smart Crossblade
+2025-05-09 21:46:52,206 - ss_scraper - INFO - Getting listings for Smart Smart Crossblade
+2025-05-09 21:46:52,206 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/crossblade/
+2025-05-09 21:46:52,287 - ss_scraper - INFO - Found 0 listings on this page
+2025-05-09 21:46:52,288 - ss_scraper - INFO - Found 0 total listings for Smart Smart Crossblade
+2025-05-09 21:46:52,288 - ss_scraper - WARNING - No listings found for Smart Smart Crossblade
+2025-05-09 21:46:54,087 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForFour
+2025-05-09 21:46:54,087 - ss_scraper - INFO - Getting listings for Smart Smart ForFour
+2025-05-09 21:46:54,087 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/forfour/
+2025-05-09 21:46:54,161 - ss_scraper - INFO - Found 6 listings on this page
+2025-05-09 21:46:54,163 - ss_scraper - INFO - Found 5 total listings for Smart Smart ForFour
+2025-05-09 21:46:54,199 - ss_scraper - INFO - Adding new brand: Smart
+2025-05-09 21:46:54,203 - ss_scraper - INFO - Adding new model: Smart Smart ForFour
+2025-05-09 21:46:54,210 - ss_scraper - INFO - Added new listing: 54390045
+2025-05-09 21:46:54,225 - ss_scraper - INFO - Added new listing: 56341084
+2025-05-09 21:46:54,241 - ss_scraper - INFO - Added new listing: 56331643
+2025-05-09 21:46:54,260 - ss_scraper - INFO - Added new listing: 55916765
+2025-05-09 21:46:54,274 - ss_scraper - INFO - Added new listing: 55767179
+2025-05-09 21:46:55,688 - ss_scraper - INFO - Processed 5 listings for Smart Smart ForFour
+2025-05-09 21:46:55,688 - ss_scraper - INFO - Results: {'new': 5, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:46:57,885 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForTwo
+2025-05-09 21:46:57,885 - ss_scraper - INFO - Getting listings for Smart Smart ForTwo
+2025-05-09 21:46:57,886 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/fortwo/
+2025-05-09 21:46:57,983 - ss_scraper - INFO - Found 22 listings on this page
+2025-05-09 21:46:57,987 - ss_scraper - INFO - Found 21 total listings for Smart Smart ForTwo
+2025-05-09 21:46:58,020 - ss_scraper - INFO - Adding new model: Smart Smart ForTwo
+2025-05-09 21:46:58,027 - ss_scraper - INFO - Added new listing: 56277624
+2025-05-09 21:46:58,057 - ss_scraper - INFO - Added new listing: 56221897
+2025-05-09 21:46:58,072 - ss_scraper - INFO - Added new listing: 56282945
+2025-05-09 21:46:58,088 - ss_scraper - ERROR - Error saving listing 56337546: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (43, 1, '56337546', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/peugeot/107/fcbbe.html', 1, '2025-05-09 21:46:58.087503', '2025-05-09 21:46:58.087503')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:58,119 - ss_scraper - INFO - Added new listing: 55392965
+2025-05-09 21:46:58,132 - ss_scraper - ERROR - Error saving listing 56329357: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (44, 1, '56329357', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/cbilx.html', 1, '2025-05-09 21:46:58.131210', '2025-05-09 21:46:58.131210')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:46:58,146 - ss_scraper - INFO - Added new listing: 55675450
+2025-05-09 21:46:58,164 - ss_scraper - INFO - Added new listing: 56320991
+2025-05-09 21:46:58,185 - ss_scraper - INFO - Added new listing: 55916671
+2025-05-09 21:46:58,211 - ss_scraper - INFO - Added new listing: 56309534
+2025-05-09 21:46:58,233 - ss_scraper - INFO - Added new listing: 55554048
+2025-05-09 21:46:58,257 - ss_scraper - INFO - Added new listing: 56108973
+2025-05-09 21:46:58,274 - ss_scraper - INFO - Added new listing: 56142142
+2025-05-09 21:46:58,287 - ss_scraper - INFO - Added new listing: 56284458
+2025-05-09 21:46:58,301 - ss_scraper - INFO - Added new listing: 56286385
+2025-05-09 21:46:58,464 - ss_scraper - INFO - Added new listing: 56174123
+2025-05-09 21:46:58,487 - ss_scraper - INFO - Added new listing: 53558462
+2025-05-09 21:46:58,502 - ss_scraper - INFO - Added new listing: 55866475
+2025-05-09 21:46:58,542 - ss_scraper - INFO - Added new listing: 54341372
+2025-05-09 21:46:58,554 - ss_scraper - INFO - Added new listing: 56039220
+2025-05-09 21:46:58,582 - ss_scraper - INFO - Added new listing: 56135614
+2025-05-09 21:47:00,426 - ss_scraper - INFO - Processed 21 listings for Smart Smart ForTwo
+2025-05-09 21:47:00,426 - ss_scraper - INFO - Results: {'new': 19, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:47:03,214 - ss_scraper - INFO - Starting to scrape model: Smart Smart Roadster
+2025-05-09 21:47:03,214 - ss_scraper - INFO - Getting listings for Smart Smart Roadster
+2025-05-09 21:47:03,214 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/roadster/
+2025-05-09 21:47:03,302 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:47:03,303 - ss_scraper - INFO - Found 2 total listings for Smart Smart Roadster
+2025-05-09 21:47:03,367 - ss_scraper - INFO - Adding new model: Smart Smart Roadster
+2025-05-09 21:47:03,374 - ss_scraper - INFO - Added new listing: 56272014
+2025-05-09 21:47:03,389 - ss_scraper - INFO - Added new listing: 55829114
+2025-05-09 21:47:04,816 - ss_scraper - INFO - Processed 2 listings for Smart Smart Roadster
+2025-05-09 21:47:04,816 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:07,049 - ss_scraper - INFO - Starting to scrape model: Smart Citi
+2025-05-09 21:47:07,049 - ss_scraper - INFO - Getting listings for Smart Citi
+2025-05-09 21:47:07,049 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/another/
+2025-05-09 21:47:07,130 - ss_scraper - INFO - Found 0 listings on this page
+2025-05-09 21:47:07,132 - ss_scraper - INFO - Found 0 total listings for Smart Citi
+2025-05-09 21:47:07,132 - ss_scraper - WARNING - No listings found for Smart Citi
+2025-05-09 21:47:08,158 - ss_scraper - INFO - Starting to scrape model: Smart Vieglo auto mai\u0146a
+2025-05-09 21:47:08,158 - ss_scraper - INFO - Getting listings for Smart Vieglo auto mai\u0146a
+2025-05-09 21:47:08,159 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/exchange/
+2025-05-09 21:47:08,230 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:47:08,231 - ss_scraper - INFO - Found 2 total listings for Smart Vieglo auto mai\u0146a
+2025-05-09 21:47:08,286 - ss_scraper - INFO - Adding new model: Smart Vieglo auto mai\u0146a
+2025-05-09 21:47:08,291 - ss_scraper - ERROR - Error saving listing 56329357: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (61, 1, '56329357', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/cbilx.html', 1, '2025-05-09 21:47:08.290925', '2025-05-09 21:47:08.290925')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:08,308 - ss_scraper - ERROR - Error saving listing 56337546: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (61, 1, '56337546', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/peugeot/107/fcbbe.html', 1, '2025-05-09 21:47:08.307314', '2025-05-09 21:47:08.307314')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:09,574 - ss_scraper - INFO - Processed 2 listings for Smart Vieglo auto mai\u0146a
+2025-05-09 21:47:09,575 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:47:12,192 - ss_scraper - INFO - Finished scraping brand Smart. Processed 30 listings.
+2025-05-09 21:47:16,336 - ss_scraper - INFO - Starting to scrape brand: Suzuki
+2025-05-09 21:47:16,336 - ss_scraper - INFO - Getting models for Suzuki
+2025-05-09 21:47:16,381 - ss_scraper - INFO - Found 14 models for Suzuki
+2025-05-09 21:47:16,381 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Alto
+2025-05-09 21:47:16,382 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Alto
+2025-05-09 21:47:16,382 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/alto/
+2025-05-09 21:47:16,474 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 21:47:16,475 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Alto
+2025-05-09 21:47:16,540 - ss_scraper - INFO - Adding new brand: Suzuki
+2025-05-09 21:47:16,544 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Alto
+2025-05-09 21:47:16,550 - ss_scraper - INFO - Added new listing: 55993457
+2025-05-09 21:47:18,446 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Alto
+2025-05-09 21:47:18,447 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:20,694 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Grand Vitara
+2025-05-09 21:47:20,694 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Grand Vitara
+2025-05-09 21:47:20,694 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/grand-vitara/
+2025-05-09 21:47:20,724 - ss_scraper - INFO - Found 14 listings on this page
+2025-05-09 21:47:20,726 - ss_scraper - INFO - Found 13 total listings for Suzuki Suzuki Grand Vitara
+2025-05-09 21:47:20,767 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Grand Vitara
+2025-05-09 21:47:20,776 - ss_scraper - INFO - Added new listing: 55857829
+2025-05-09 21:47:20,799 - ss_scraper - INFO - Added new listing: 56339108
+2025-05-09 21:47:20,817 - ss_scraper - ERROR - Error saving listing 55555762: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (12, 1, None, None, None, None, None, None, None, '2025-05-09 21:47:20.817067', '2025-05-09 21:47:20.817067')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:20,838 - ss_scraper - INFO - Added new listing: 55606679
+2025-05-09 21:47:20,853 - ss_scraper - INFO - Added new listing: 56326691
+2025-05-09 21:47:20,875 - ss_scraper - INFO - Added new listing: 56208270
+2025-05-09 21:47:20,888 - ss_scraper - INFO - Added new listing: 56320471
+2025-05-09 21:47:20,901 - ss_scraper - INFO - Added new listing: 56110071
+2025-05-09 21:47:20,946 - ss_scraper - INFO - Added new listing: 55879537
+2025-05-09 21:47:20,971 - ss_scraper - INFO - Added new listing: 55026363
+2025-05-09 21:47:20,996 - ss_scraper - INFO - Added new listing: 56266339
+2025-05-09 21:47:21,019 - ss_scraper - INFO - Added new listing: 56254700
+2025-05-09 21:47:21,038 - ss_scraper - INFO - Added new listing: 55965489
+2025-05-09 21:47:22,667 - ss_scraper - INFO - Processed 13 listings for Suzuki Suzuki Grand Vitara
+2025-05-09 21:47:22,667 - ss_scraper - INFO - Results: {'new': 12, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:47:23,775 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Ignis
+2025-05-09 21:47:23,775 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Ignis
+2025-05-09 21:47:23,775 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/ignis/
+2025-05-09 21:47:23,809 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 21:47:23,811 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Ignis
+2025-05-09 21:47:23,877 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Ignis
+2025-05-09 21:47:23,883 - ss_scraper - INFO - Added new listing: 54757255
+2025-05-09 21:47:24,484 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Ignis
+2025-05-09 21:47:24,485 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:27,409 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimni
+2025-05-09 21:47:27,409 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimni
+2025-05-09 21:47:27,409 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimni/
+2025-05-09 21:47:27,439 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:47:27,440 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki Jimni
+2025-05-09 21:47:27,469 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimni
+2025-05-09 21:47:27,477 - ss_scraper - INFO - Added new listing: 56308801
+2025-05-09 21:47:27,500 - ss_scraper - INFO - Added new listing: 56302901
+2025-05-09 21:47:29,225 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki Jimni
+2025-05-09 21:47:29,226 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:31,718 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimny
+2025-05-09 21:47:31,718 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimny
+2025-05-09 21:47:31,718 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimny/
+2025-05-09 21:47:31,745 - ss_scraper - INFO - Found 10 listings on this page
+2025-05-09 21:47:31,747 - ss_scraper - INFO - Found 9 total listings for Suzuki Suzuki Jimny
+2025-05-09 21:47:31,778 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimny
+2025-05-09 21:47:31,784 - ss_scraper - INFO - Added new listing: 55255184
+2025-05-09 21:47:31,800 - ss_scraper - INFO - Added new listing: 56312234
+2025-05-09 21:47:31,811 - ss_scraper - INFO - Added new listing: 55183582
+2025-05-09 21:47:31,824 - ss_scraper - INFO - Added new listing: 55651363
+2025-05-09 21:47:31,837 - ss_scraper - INFO - Added new listing: 56179973
+2025-05-09 21:47:31,852 - ss_scraper - INFO - Added new listing: 55936661
+2025-05-09 21:47:31,867 - ss_scraper - INFO - Added new listing: 55668230
+2025-05-09 21:47:31,885 - ss_scraper - INFO - Added new listing: 55898463
+2025-05-09 21:47:31,899 - ss_scraper - INFO - Added new listing: 56246001
+2025-05-09 21:47:33,797 - ss_scraper - INFO - Processed 9 listings for Suzuki Suzuki Jimny
+2025-05-09 21:47:33,798 - ss_scraper - INFO - Results: {'new': 9, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:36,520 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Liana
+2025-05-09 21:47:36,520 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Liana
+2025-05-09 21:47:36,520 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/liana/
+2025-05-09 21:47:36,551 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 21:47:36,552 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Liana
+2025-05-09 21:47:36,611 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Liana
+2025-05-09 21:47:36,618 - ss_scraper - INFO - Added new listing: 56331076
+2025-05-09 21:47:36,632 - ss_scraper - INFO - Added new listing: 55410083
+2025-05-09 21:47:36,647 - ss_scraper - INFO - Added new listing: 56337010
+2025-05-09 21:47:38,599 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Liana
+2025-05-09 21:47:38,599 - ss_scraper - INFO - Results: {'new': 3, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:39,907 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Samurai
+2025-05-09 21:47:39,907 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Samurai
+2025-05-09 21:47:39,908 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/samurai/
+2025-05-09 21:47:39,959 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 21:47:39,960 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Samurai
+2025-05-09 21:47:40,008 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Samurai
+2025-05-09 21:47:40,015 - ss_scraper - INFO - Added new listing: 55859335
+2025-05-09 21:47:40,027 - ss_scraper - INFO - Added new listing: 56324766
+2025-05-09 21:47:40,072 - ss_scraper - ERROR - Error saving listing 54644471: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (91, 1, '54644471', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/samurai/hiexn.html', 1, '2025-05-09 21:47:40.071587', '2025-05-09 21:47:40.071587')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:41,156 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Samurai
+2025-05-09 21:47:41,157 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:47:43,036 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SJ 410
+2025-05-09 21:47:43,036 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SJ 410
+2025-05-09 21:47:43,036 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sj-410/
+2025-05-09 21:47:43,126 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 21:47:43,127 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki SJ 410
+2025-05-09 21:47:43,187 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SJ 410
+2025-05-09 21:47:43,197 - ss_scraper - INFO - Added new listing: 56046803
+2025-05-09 21:47:44,360 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki SJ 410
+2025-05-09 21:47:44,360 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:46,007 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Swift
+2025-05-09 21:47:46,007 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Swift
+2025-05-09 21:47:46,007 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/swift/
+2025-05-09 21:47:46,036 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:47:46,037 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki Swift
+2025-05-09 21:47:46,099 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Swift
+2025-05-09 21:47:46,107 - ss_scraper - INFO - Added new listing: 56113138
+2025-05-09 21:47:46,122 - ss_scraper - INFO - Added new listing: 56276311
+2025-05-09 21:47:47,918 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki Swift
+2025-05-09 21:47:47,918 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:47:49,181 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SX4
+2025-05-09 21:47:49,181 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SX4
+2025-05-09 21:47:49,181 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sx4/
+2025-05-09 21:47:49,210 - ss_scraper - INFO - Found 8 listings on this page
+2025-05-09 21:47:49,212 - ss_scraper - INFO - Found 7 total listings for Suzuki Suzuki SX4
+2025-05-09 21:47:49,268 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SX4
+2025-05-09 21:47:49,275 - ss_scraper - INFO - Added new listing: 55902865
+2025-05-09 21:47:49,292 - ss_scraper - INFO - Added new listing: 56339455
+2025-05-09 21:47:49,307 - ss_scraper - INFO - Added new listing: 56131611
+2025-05-09 21:47:49,331 - ss_scraper - INFO - Added new listing: 55883238
+2025-05-09 21:47:49,355 - ss_scraper - INFO - Added new listing: 55618593
+2025-05-09 21:47:49,389 - ss_scraper - ERROR - Error saving listing 56034763: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (99, 1, '56034763', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/sx4/cxcgid.html', 1, '2025-05-09 21:47:49.388476', '2025-05-09 21:47:49.388476')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:49,419 - ss_scraper - INFO - Added new listing: 56034761
+2025-05-09 21:47:51,200 - ss_scraper - INFO - Processed 7 listings for Suzuki Suzuki SX4
+2025-05-09 21:47:51,200 - ss_scraper - INFO - Results: {'new': 6, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:47:52,772 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Vitara
+2025-05-09 21:47:52,772 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Vitara
+2025-05-09 21:47:52,772 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/vitara/
+2025-05-09 21:47:52,854 - ss_scraper - INFO - Found 18 listings on this page
+2025-05-09 21:47:52,857 - ss_scraper - INFO - Found 17 total listings for Suzuki Suzuki Vitara
+2025-05-09 21:47:52,893 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Vitara
+2025-05-09 21:47:52,900 - ss_scraper - INFO - Added new listing: 56064345
+2025-05-09 21:47:52,922 - ss_scraper - INFO - Added new listing: 56339371
+2025-05-09 21:47:52,941 - ss_scraper - INFO - Added new listing: 56138185
+2025-05-09 21:47:52,959 - ss_scraper - INFO - Added new listing: 56162503
+2025-05-09 21:47:52,972 - ss_scraper - INFO - Added new listing: 56257606
+2025-05-09 21:47:52,986 - ss_scraper - INFO - Added new listing: 56062743
+2025-05-09 21:47:53,007 - ss_scraper - INFO - Added new listing: 56070812
+2025-05-09 21:47:53,024 - ss_scraper - INFO - Added new listing: 56188082
+2025-05-09 21:47:53,043 - ss_scraper - INFO - Added new listing: 56224574
+2025-05-09 21:47:53,063 - ss_scraper - INFO - Added new listing: 56140084
+2025-05-09 21:47:53,079 - ss_scraper - ERROR - Error saving listing 55833646: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (21, 1, None, None, None, None, None, None, None, '2025-05-09 21:47:53.079008', '2025-05-09 21:47:53.079008')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:47:53,105 - ss_scraper - INFO - Added new listing: 56294699
+2025-05-09 21:47:53,136 - ss_scraper - INFO - Added new listing: 56178887
+2025-05-09 21:47:53,162 - ss_scraper - INFO - Added new listing: 56218931
+2025-05-09 21:47:53,182 - ss_scraper - INFO - Added new listing: 56218877
+2025-05-09 21:47:53,216 - ss_scraper - INFO - Added new listing: 54040917
+2025-05-09 21:47:53,242 - ss_scraper - INFO - Added new listing: 56156608
+2025-05-09 21:47:55,207 - ss_scraper - INFO - Processed 17 listings for Suzuki Suzuki Vitara
+2025-05-09 21:47:55,207 - ss_scraper - INFO - Results: {'new': 16, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:47:58,199 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki X-90
+2025-05-09 21:47:58,199 - ss_scraper - INFO - Getting listings for Suzuki Suzuki X-90
+2025-05-09 21:47:58,199 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/x-90/
+2025-05-09 21:47:58,293 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:47:58,294 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki X-90
+2025-05-09 21:47:58,374 - ss_scraper - INFO - Adding new model: Suzuki Suzuki X-90
+2025-05-09 21:47:58,382 - ss_scraper - INFO - Added new listing: 55815289
+2025-05-09 21:47:58,397 - ss_scraper - INFO - Added new listing: 56220373
+2025-05-09 21:47:59,338 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki X-90
+2025-05-09 21:47:59,339 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:48:00,463 - ss_scraper - INFO - Starting to scrape model: Suzuki Citi
+2025-05-09 21:48:00,463 - ss_scraper - INFO - Getting listings for Suzuki Citi
+2025-05-09 21:48:00,463 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/another/
+2025-05-09 21:48:00,568 - ss_scraper - INFO - Found 4 listings on this page
+2025-05-09 21:48:00,570 - ss_scraper - INFO - Found 3 total listings for Suzuki Citi
+2025-05-09 21:48:00,621 - ss_scraper - INFO - Adding new model: Suzuki Citi
+2025-05-09 21:48:00,627 - ss_scraper - ERROR - Error saving listing 52177755: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (23, 1, None, None, None, None, None, None, None, '2025-05-09 21:48:00.626753', '2025-05-09 21:48:00.626753')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:00,646 - ss_scraper - INFO - Added new listing: 55066776
+2025-05-09 21:48:00,653 - ss_scraper - ERROR - Error saving listing 53375486: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (23, 1, None, None, None, None, None, None, None, '2025-05-09 21:48:00.653076', '2025-05-09 21:48:00.653076')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:02,668 - ss_scraper - INFO - Processed 3 listings for Suzuki Citi
+2025-05-09 21:48:02,669 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:48:05,273 - ss_scraper - INFO - Starting to scrape model: Suzuki Vieglo auto mai\u0146a
+2025-05-09 21:48:05,273 - ss_scraper - INFO - Getting listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 21:48:05,273 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/exchange/
+2025-05-09 21:48:05,420 - ss_scraper - INFO - Found 3 listings on this page
+2025-05-09 21:48:05,421 - ss_scraper - INFO - Found 2 total listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 21:48:05,455 - ss_scraper - INFO - Adding new model: Suzuki Vieglo auto mai\u0146a
+2025-05-09 21:48:05,466 - ss_scraper - ERROR - Error saving listing 56034763: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (119, 1, '56034763', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/sx4/cxcgid.html', 1, '2025-05-09 21:48:05.464098', '2025-05-09 21:48:05.464098')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:05,488 - ss_scraper - ERROR - Error saving listing 54644471: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (119, 1, '54644471', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/suzuki/samurai/hiexn.html', 1, '2025-05-09 21:48:05.486946', '2025-05-09 21:48:05.486946')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:06,412 - ss_scraper - INFO - Processed 2 listings for Suzuki Vieglo auto mai\u0146a
+2025-05-09 21:48:06,413 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:48:08,322 - ss_scraper - INFO - Finished scraping brand Suzuki. Processed 66 listings.
+2025-05-09 21:48:10,388 - ss_scraper - INFO - Starting to scrape brand: Tesla
+2025-05-09 21:48:10,388 - ss_scraper - INFO - Getting models for Tesla
+2025-05-09 21:48:10,425 - ss_scraper - INFO - Found 5 models for Tesla
+2025-05-09 21:48:10,426 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model 3
+2025-05-09 21:48:10,426 - ss_scraper - INFO - Getting listings for Tesla Tesla Model 3
+2025-05-09 21:48:10,426 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-3/
+2025-05-09 21:48:10,530 - ss_scraper - INFO - Found 31 listings on this page
+2025-05-09 21:48:10,536 - ss_scraper - INFO - Found 30 total listings for Tesla Tesla Model 3
+2025-05-09 21:48:10,573 - ss_scraper - INFO - Adding new brand: Tesla
+2025-05-09 21:48:10,576 - ss_scraper - INFO - Adding new model: Tesla Tesla Model 3
+2025-05-09 21:48:10,583 - ss_scraper - INFO - Added new listing: 56344533
+2025-05-09 21:48:10,602 - ss_scraper - INFO - Added new listing: 56262009
+2025-05-09 21:48:10,620 - ss_scraper - INFO - Added new listing: 56205466
+2025-05-09 21:48:10,639 - ss_scraper - INFO - Added new listing: 55754730
+2025-05-09 21:48:10,651 - ss_scraper - INFO - Added new listing: 56165325
+2025-05-09 21:48:10,682 - ss_scraper - INFO - Added new listing: 56032876
+2025-05-09 21:48:10,700 - ss_scraper - INFO - Added new listing: 56308441
+2025-05-09 21:48:10,719 - ss_scraper - INFO - Added new listing: 56162234
+2025-05-09 21:48:10,739 - ss_scraper - INFO - Added new listing: 55758488
+2025-05-09 21:48:10,908 - ss_scraper - INFO - Added new listing: 56330989
+2025-05-09 21:48:10,925 - ss_scraper - INFO - Added new listing: 56133187
+2025-05-09 21:48:10,943 - ss_scraper - ERROR - Error saving listing 55794532: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (130, 1, '55794532', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfldix.html', 1, '2025-05-09 21:48:10.943247', '2025-05-09 21:48:10.943247')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:10,968 - ss_scraper - INFO - Added new listing: 56240770
+2025-05-09 21:48:10,981 - ss_scraper - ERROR - Error saving listing 56132058: (sqlite3.IntegrityError) NOT NULL constraint failed: cars.year
+[SQL: INSERT INTO cars (model_id, region_id, year, engine_volume, engine_type, transmission, mileage, body_type, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (25, 1, None, None, None, None, None, None, None, '2025-05-09 21:48:10.981051', '2025-05-09 21:48:10.981051')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:11,002 - ss_scraper - INFO - Added new listing: 56227746
+2025-05-09 21:48:11,032 - ss_scraper - INFO - Added new listing: 56021507
+2025-05-09 21:48:11,052 - ss_scraper - INFO - Added new listing: 56091748
+2025-05-09 21:48:11,085 - ss_scraper - INFO - Added new listing: 55750307
+2025-05-09 21:48:11,100 - ss_scraper - INFO - Added new listing: 55941718
+2025-05-09 21:48:11,135 - ss_scraper - INFO - Added new listing: 55748649
+2025-05-09 21:48:11,182 - ss_scraper - INFO - Added new listing: 56279213
+2025-05-09 21:48:11,200 - ss_scraper - INFO - Added new listing: 56315501
+2025-05-09 21:48:11,222 - ss_scraper - INFO - Added new listing: 56279176
+2025-05-09 21:48:11,242 - ss_scraper - INFO - Added new listing: 56311160
+2025-05-09 21:48:11,267 - ss_scraper - INFO - Added new listing: 56273714
+2025-05-09 21:48:11,289 - ss_scraper - INFO - Added new listing: 56273736
+2025-05-09 21:48:11,325 - ss_scraper - INFO - Added new listing: 56221656
+2025-05-09 21:48:11,356 - ss_scraper - INFO - Added new listing: 56306542
+2025-05-09 21:48:11,384 - ss_scraper - INFO - Added new listing: 56305809
+2025-05-09 21:48:11,445 - ss_scraper - INFO - Added new listing: 56306638
+2025-05-09 21:48:13,021 - ss_scraper - INFO - Processed 30 listings for Tesla Tesla Model 3
+2025-05-09 21:48:13,021 - ss_scraper - INFO - Results: {'new': 28, 'updated': 0, 'unchanged': 0, 'error': 2}
+2025-05-09 21:48:14,993 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model S
+2025-05-09 21:48:14,993 - ss_scraper - INFO - Getting listings for Tesla Tesla Model S
+2025-05-09 21:48:14,993 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-s/
+2025-05-09 21:48:15,092 - ss_scraper - INFO - Found 20 listings on this page
+2025-05-09 21:48:15,096 - ss_scraper - INFO - Found 19 total listings for Tesla Tesla Model S
+2025-05-09 21:48:15,123 - ss_scraper - INFO - Adding new model: Tesla Tesla Model S
+2025-05-09 21:48:15,130 - ss_scraper - INFO - Added new listing: 55826057
+2025-05-09 21:48:15,176 - ss_scraper - INFO - Added new listing: 56256069
+2025-05-09 21:48:15,194 - ss_scraper - INFO - Added new listing: 56329160
+2025-05-09 21:48:15,209 - ss_scraper - INFO - Added new listing: 56242524
+2025-05-09 21:48:15,231 - ss_scraper - INFO - Added new listing: 56323864
+2025-05-09 21:48:15,251 - ss_scraper - INFO - Added new listing: 56214032
+2025-05-09 21:48:15,266 - ss_scraper - INFO - Added new listing: 56092783
+2025-05-09 21:48:15,289 - ss_scraper - INFO - Added new listing: 56226091
+2025-05-09 21:48:15,316 - ss_scraper - INFO - Added new listing: 56287044
+2025-05-09 21:48:15,351 - ss_scraper - INFO - Added new listing: 55885579
+2025-05-09 21:48:15,385 - ss_scraper - INFO - Added new listing: 56284015
+2025-05-09 21:48:15,414 - ss_scraper - INFO - Added new listing: 56052401
+2025-05-09 21:48:15,430 - ss_scraper - INFO - Added new listing: 56079697
+2025-05-09 21:48:15,462 - ss_scraper - INFO - Added new listing: 56025024
+2025-05-09 21:48:15,488 - ss_scraper - INFO - Added new listing: 56219138
+2025-05-09 21:48:15,509 - ss_scraper - INFO - Added new listing: 56101526
+2025-05-09 21:48:15,526 - ss_scraper - INFO - Added new listing: 55823235
+2025-05-09 21:48:15,549 - ss_scraper - INFO - Added new listing: 55957038
+2025-05-09 21:48:15,579 - ss_scraper - INFO - Added new listing: 56278362
+2025-05-09 21:48:17,288 - ss_scraper - INFO - Processed 19 listings for Tesla Tesla Model S
+2025-05-09 21:48:17,289 - ss_scraper - INFO - Results: {'new': 19, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:48:19,598 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model X
+2025-05-09 21:48:19,599 - ss_scraper - INFO - Getting listings for Tesla Tesla Model X
+2025-05-09 21:48:19,599 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-x/
+2025-05-09 21:48:19,693 - ss_scraper - INFO - Found 9 listings on this page
+2025-05-09 21:48:19,695 - ss_scraper - INFO - Found 8 total listings for Tesla Tesla Model X
+2025-05-09 21:48:19,755 - ss_scraper - INFO - Adding new model: Tesla Tesla Model X
+2025-05-09 21:48:19,763 - ss_scraper - INFO - Added new listing: 56176897
+2025-05-09 21:48:19,784 - ss_scraper - INFO - Added new listing: 56024425
+2025-05-09 21:48:19,801 - ss_scraper - INFO - Added new listing: 56307453
+2025-05-09 21:48:19,840 - ss_scraper - INFO - Added new listing: 56093641
+2025-05-09 21:48:20,047 - ss_scraper - INFO - Added new listing: 56128172
+2025-05-09 21:48:20,076 - ss_scraper - INFO - Added new listing: 56049118
+2025-05-09 21:48:20,112 - ss_scraper - INFO - Added new listing: 56261096
+2025-05-09 21:48:20,145 - ss_scraper - INFO - Added new listing: 56100683
+2025-05-09 21:48:21,446 - ss_scraper - INFO - Processed 8 listings for Tesla Tesla Model X
+2025-05-09 21:48:21,447 - ss_scraper - INFO - Results: {'new': 8, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:48:23,433 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model Y
+2025-05-09 21:48:23,433 - ss_scraper - INFO - Getting listings for Tesla Tesla Model Y
+2025-05-09 21:48:23,433 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-y/
+2025-05-09 21:48:23,528 - ss_scraper - INFO - Found 16 listings on this page
+2025-05-09 21:48:23,531 - ss_scraper - INFO - Found 15 total listings for Tesla Tesla Model Y
+2025-05-09 21:48:23,597 - ss_scraper - INFO - Adding new model: Tesla Tesla Model Y
+2025-05-09 21:48:23,603 - ss_scraper - INFO - Added new listing: 56344595
+2025-05-09 21:48:23,619 - ss_scraper - INFO - Added new listing: 56283344
+2025-05-09 21:48:23,637 - ss_scraper - INFO - Added new listing: 56262373
+2025-05-09 21:48:23,661 - ss_scraper - INFO - Added new listing: 56338298
+2025-05-09 21:48:23,684 - ss_scraper - INFO - Added new listing: 55927936
+2025-05-09 21:48:23,704 - ss_scraper - INFO - Added new listing: 56236893
+2025-05-09 21:48:23,732 - ss_scraper - INFO - Added new listing: 55930680
+2025-05-09 21:48:23,761 - ss_scraper - INFO - Added new listing: 56192003
+2025-05-09 21:48:23,786 - ss_scraper - INFO - Added new listing: 56311761
+2025-05-09 21:48:23,802 - ss_scraper - INFO - Added new listing: 56187143
+2025-05-09 21:48:23,827 - ss_scraper - INFO - Added new listing: 55837597
+2025-05-09 21:48:23,862 - ss_scraper - INFO - Added new listing: 56054830
+2025-05-09 21:48:23,877 - ss_scraper - INFO - Added new listing: 56189392
+2025-05-09 21:48:23,911 - ss_scraper - INFO - Added new listing: 56224850
+2025-05-09 21:48:24,077 - ss_scraper - INFO - Added new listing: 56171198
+2025-05-09 21:48:25,514 - ss_scraper - INFO - Processed 15 listings for Tesla Tesla Model Y
+2025-05-09 21:48:25,514 - ss_scraper - INFO - Results: {'new': 15, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-09 21:48:27,747 - ss_scraper - INFO - Starting to scrape model: Tesla Vieglo auto mai\u0146a
+2025-05-09 21:48:27,747 - ss_scraper - INFO - Getting listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 21:48:27,747 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/exchange/
+2025-05-09 21:48:27,822 - ss_scraper - INFO - Found 2 listings on this page
+2025-05-09 21:48:27,823 - ss_scraper - INFO - Found 1 total listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 21:48:27,859 - ss_scraper - INFO - Adding new model: Tesla Vieglo auto mai\u0146a
+2025-05-09 21:48:27,866 - ss_scraper - ERROR - Error saving listing 55794532: (sqlite3.IntegrityError) NOT NULL constraint failed: listings.price
+[SQL: INSERT INTO listings (car_id, source_id, external_id, price, listing_date, listing_url, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (189, 1, '55794532', None, '2025-05-09', 'https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfldix.html', 1, '2025-05-09 21:48:27.865603', '2025-05-09 21:48:27.865603')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-09 21:48:28,470 - ss_scraper - INFO - Processed 1 listings for Tesla Vieglo auto mai\u0146a
+2025-05-09 21:48:28,471 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 0, 'error': 1}
+2025-05-09 21:48:30,459 - ss_scraper - INFO - Finished scraping brand Tesla. Processed 73 listings.
+2025-05-09 21:48:35,291 - ss_scraper - INFO - No listings to mark as inactive
+2025-05-09 21:48:35,296 - ss_scraper - INFO - Scraping completed at 2025-05-09 21:48:35.296339
+2025-05-09 21:48:35,296 - ss_scraper - INFO - Total time: 130.71 seconds
+2025-05-09 21:48:35,296 - ss_scraper - INFO - Total listings processed: 207
+2025-05-09 21:48:35,296 - ss_scraper - INFO - New listings: 188
+2025-05-09 21:48:35,296 - ss_scraper - INFO - Updated listings: 0
+2025-05-09 21:48:35,296 - ss_scraper - INFO - Errors: 0
+2025-05-09 21:48:44,761 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:48:44,781 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-09 21:48:44,782 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 21:48:44,782 - werkzeug - INFO -  * Restarting with stat
+2025-05-09 21:48:46,516 - car_app - INFO - Starting API server on port 5000
+2025-05-09 21:48:46,527 - werkzeug - WARNING -  * Debugger is active!
+2025-05-09 21:48:46,529 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-09 21:48:53,620 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:53] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:48:53,813 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:53] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 21:48:53,936 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:48:53,936 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:53] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:48:53,938 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-09 21:48:53,938 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:53] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-09 21:48:54,982 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 21:48:54,982 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:54] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 21:48:55,321 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:55] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:48:55,627 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-09 21:48:55,630 - car_analysis - INFO - Statistics calculated for 61 listings
+2025-05-09 21:48:55,635 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:55] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:48:55,889 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-09 21:48:55,984 - car_analysis - INFO - Created price distribution chart with 61 data points
+2025-05-09 21:48:55,984 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:48:55] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 21:49:02,971 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:49:02] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 21:49:03,282 - car_api - INFO - Search request: brand=Tesla, model=, year=2011-2025
+2025-05-09 21:49:03,283 - car_analysis - INFO - Statistics calculated for 70 listings
+2025-05-09 21:49:03,286 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:49:03] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 21:49:03,543 - car_api - INFO - Price distribution chart request: Tesla None, 2011-2025
+2025-05-09 21:49:03,630 - car_analysis - INFO - Created price distribution chart with 70 data points
+2025-05-09 21:49:03,631 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 21:49:03] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2011&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 22:18:37,326 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:37] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 22:18:37,572 - car_api - INFO - Search request: brand=Tesla, model=, year=2011-2025
+2025-05-09 22:18:37,574 - car_analysis - INFO - Statistics calculated for 70 listings
+2025-05-09 22:18:37,578 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:37] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 22:18:37,633 - car_api - INFO - Price distribution chart request: Tesla None, 2011-2025
+2025-05-09 22:18:37,735 - car_analysis - INFO - Created price distribution chart with 70 data points
+2025-05-09 22:18:37,735 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:37] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2011&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 22:18:40,434 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-09 22:18:40,434 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:40] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-09 22:18:41,329 - car_api - INFO - Search request: brand=Suzuki, model=, year=2011-2025
+2025-05-09 22:18:41,330 - car_analysis - INFO - Statistics calculated for 23 listings
+2025-05-09 22:18:41,331 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:41] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 22:18:41,575 - car_api - INFO - Price distribution chart request: Suzuki None, 2011-2025
+2025-05-09 22:18:41,655 - car_analysis - INFO - Created price distribution chart with 23 data points
+2025-05-09 22:18:41,656 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:18:41] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2011&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 22:19:09,508 - car_analysis - INFO - Retrieved 5 popular models
+2025-05-09 22:19:09,508 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:09] "GET /api/popular/models?brand=Infiniti&limit=30 HTTP/1.1" 200 -
+2025-05-09 22:19:10,479 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:10] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-09 22:19:10,726 - car_api - INFO - Search request: brand=Infiniti, model=, year=2011-2025
+2025-05-09 22:19:10,727 - car_analysis - INFO - Statistics calculated for 19 listings
+2025-05-09 22:19:10,728 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:10] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 22:19:10,788 - car_api - INFO - Price distribution chart request: Infiniti None, 2011-2025
+2025-05-09 22:19:10,883 - car_analysis - INFO - Created price distribution chart with 19 data points
+2025-05-09 22:19:10,883 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:10] "GET /api/charts/price-distribution?brand=Infiniti&yearFrom=2011&yearTo=2025 HTTP/1.1" 200 -
+2025-05-09 22:19:12,837 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-09 22:19:12,837 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:12] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-09 22:19:13,743 - car_api - INFO - Search request: brand=Tesla, model=, year=2011-2025
+2025-05-09 22:19:13,744 - car_analysis - INFO - Statistics calculated for 70 listings
+2025-05-09 22:19:13,746 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:13] "POST /api/search HTTP/1.1" 200 -
+2025-05-09 22:19:14,004 - car_api - INFO - Price distribution chart request: Tesla None, 2011-2025
+2025-05-09 22:19:14,075 - car_analysis - INFO - Created price distribution chart with 70 data points
+2025-05-09 22:19:14,075 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 22:19:14] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2011&yearTo=2025 HTTP/1.1" 200 -

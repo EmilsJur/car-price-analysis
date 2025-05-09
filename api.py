@@ -87,6 +87,7 @@ def search_cars():
             if model:
                 query = query.filter(func.lower(Model.name) == func.lower(model))
             
+            # Standard numeric year comparisons now that data is normalized
             if year_from:
                 query = query.filter(Car.year >= year_from)
                 
@@ -112,7 +113,7 @@ def search_cars():
             query = query.order_by(Listing.listing_date.desc())
             
             # Limit results
-            query = query.limit(50)
+            query = query.limit(200)
             
             # Execute query
             results = query.all()
@@ -122,7 +123,8 @@ def search_cars():
                 listings.append({
                     'brand': row.brand,
                     'model': row.model,
-                    'year': row.year,
+                    'year': row.year,  # Numeric year for sorting
+                    'year_display': str(row.year),  # Just use the year as is
                     'engine_volume': row.engine_volume,
                     'engine_type': row.engine_type,
                     'engine': f"{row.engine_volume}L {row.engine_type}" if row.engine_volume and row.engine_type else "Nav norādīts",
@@ -150,7 +152,77 @@ def search_cars():
         logger.error(f"Error in search endpoint: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-
+@app.route('/api/debug/counts', methods=['GET'])
+def debug_counts():
+    """Debug endpoint to get counts of cars by brand"""
+    try:
+        from models import Brand, Model, Car, Listing
+        from sqlalchemy import func
+        
+        # Get brand parameter
+        brand = request.args.get('brand')
+        
+        # Base query for all cars of this brand
+        query = (
+            analyzer.session.query(
+                Brand.name, 
+                func.count(Car.car_id).label('car_count')
+            )
+            .join(Model, Brand.brand_id == Model.brand_id)
+            .join(Car, Model.model_id == Car.model_id)
+            .group_by(Brand.name)
+        )
+        
+        # Query for active listings
+        active_query = (
+            analyzer.session.query(
+                Brand.name, 
+                func.count(Listing.listing_id).label('listing_count')
+            )
+            .join(Model, Brand.brand_id == Model.brand_id)
+            .join(Car, Model.model_id == Car.model_id)
+            .join(Listing, Car.car_id == Listing.car_id)
+            .filter(Listing.is_active == True)
+            .group_by(Brand.name)
+        )
+        
+        # If brand is specified, filter by brand
+        if brand:
+            query = query.filter(func.lower(Brand.name) == func.lower(brand))
+            active_query = active_query.filter(func.lower(Brand.name) == func.lower(brand))
+        
+        # Execute queries
+        cars_by_brand = {row[0]: row[1] for row in query.all()}
+        active_listings_by_brand = {row[0]: row[1] for row in active_query.all()}
+        
+        # Get specific models for the brand if specified
+        models_data = []
+        if brand:
+            models_query = (
+                analyzer.session.query(
+                    Model.name,
+                    func.count(Listing.listing_id).label('count')
+                )
+                .join(Brand, Model.brand_id == Brand.brand_id)
+                .join(Car, Model.model_id == Car.model_id)
+                .join(Listing, Car.car_id == Listing.car_id)
+                .filter(func.lower(Brand.name) == func.lower(brand))
+                .filter(Listing.is_active == True)
+                .group_by(Model.name)
+            )
+            
+            models_data = [{"model": row[0], "count": row[1]} for row in models_query.all()]
+        
+        return jsonify({
+            "cars_by_brand": cars_by_brand,
+            "active_listings_by_brand": active_listings_by_brand,
+            "models": models_data
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in debug counts endpoint: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+    
 @app.route('/api/estimate', methods=['POST'])
 def estimate_value():
     """API endpoint for car value estimation"""
