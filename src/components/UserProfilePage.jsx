@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage';
 import {
   Box,
   Container,
@@ -38,20 +39,19 @@ const UserProfilePage = ({
 }) => {
   // Use localStorage to persist user profile information
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('userProfile');
-    return savedUser ? JSON.parse(savedUser) : {
-      name: 'Lietotājs',
-      email: 'lietotajs@example.com',
-      phone: '',
-      bio: '',
-      preferences: {
-        notifications: true,
-        darkMode: false,
-        language: 'lv',
-      },
-      avatar: null
-    };
+  return loadFromLocalStorage('userProfile', {
+    name: 'Lietotājs',
+    email: 'lietotajs@example.com',
+    phone: '',
+    bio: '',
+    preferences: {
+      notifications: true,
+      darkMode: false,
+      language: 'lv',
+    },
+    avatar: null
   });
+});
   
   // Edit mode for profile information
   const [editMode, setEditMode] = useState(false);
@@ -154,8 +154,8 @@ const UserProfilePage = ({
   
   // Save data to localStorage when it changes
   useEffect(() => {
-    localStorage.setItem('userProfile', JSON.stringify(user));
-  }, [user]);
+  saveToLocalStorage('userProfile', user);
+}, [user]);
   
   useEffect(() => {
     localStorage.setItem('savedSearches', JSON.stringify(savedSearches));

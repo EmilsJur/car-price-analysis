@@ -239,27 +239,38 @@ function App() {
   const handleSearch = async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
-      // Call the API to search for cars
-      const searchResults = await searchCars(searchParams);
-      setResults(searchResults);
+      const response = await searchCars(searchParams);
+      
+      // Ensure listings have proper IDs
+      const processedListings = (response.listings || []).map((car, index) => ({
+        ...car,
+        id: car.external_id || car.id || `car-${index}`,
+        // Ensure price is a number
+        price: typeof car.price === 'string' ? parseInt(car.price) : car.price
+      }));
+      
+      setResults({
+        ...response,
+        listings: processedListings
+      });
       
       // Show notification
       setNotification({
         open: true,
-        message: `Atrasti ${searchResults.listings?.length || 0} sludinājumi`,
-        severity: searchResults.listings?.length > 0 ? 'success' : 'info'
+        message: `Atrasti ${processedListings.length} sludinājumi`,
+        severity: processedListings.length > 0 ? 'success' : 'info'
       });
       
       // Fetch chart if brand is selected
       if (searchParams.brand) {
         handleFetchChart(chartType);
       }
-    } catch (error) {
-      console.error("Search error:", error);
-      setError("Kļūda meklēšanas laikā. Lūdzu, mēģiniet vēlreiz.");
-      setResults(null);
+      
+    } catch (err) {
+      console.error('Search error:', err);
+      setError('Neizdevās veikt meklēšanu. Lūdzu, mēģiniet vēlreiz.');
       
       setNotification({
         open: true,
@@ -360,7 +371,6 @@ function App() {
     const isAlreadyAdded = carsToCompare.some(c => c.id === car.id);
     
     if (isAlreadyAdded) {
-      // Remove if already added
       setCarsToCompare(prev => prev.filter(c => c.id !== car.id));
       
       setNotification({
@@ -369,7 +379,6 @@ function App() {
         severity: 'info'
       });
     } else {
-      // Add if not yet added and limit to 3 cars
       if (carsToCompare.length >= 3) {
         setNotification({
           open: true,
@@ -379,7 +388,21 @@ function App() {
         return;
       }
       
-      setCarsToCompare(prev => [...prev, car]);
+      // Ensure the car has all required fields for comparison
+      const carForComparison = {
+        ...car,
+        id: car.id || car.external_id || `car-${Date.now()}`,
+        brand: car.brand || 'Nav norādīts',
+        model: car.model || 'Nav norādīts',
+        year: car.year || 'Nav norādīts',
+        price: car.price || 0,
+        engine: car.engine || `${car.engine_volume || ''}L ${car.engine_type || ''}`,
+        transmission: car.transmission || 'Nav norādīts',
+        mileage: car.mileage || 0,
+        region: car.region || 'Nav norādīts'
+      };
+      
+      setCarsToCompare(prev => [...prev, carForComparison]);
       
       setNotification({
         open: true,
@@ -387,7 +410,7 @@ function App() {
         severity: 'success'
       });
       
-      // Switch to comparison tab if not already there
+      // Switch to comparison tab
       if (tabValue !== 2) {
         setTabValue(2);
       }

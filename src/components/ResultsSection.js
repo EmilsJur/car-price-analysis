@@ -20,7 +20,8 @@ import {
   Checkbox,
   Menu,
   MenuItem,
-  Grid
+  Grid,
+  Paper
 } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -28,7 +29,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InfoIcon from '@mui/icons-material/Info';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import DownloadIcon from '@mui/icons-material/Download';
 import { visuallyHidden } from '@mui/utils';
+
+// Import export helpers
+import { exportToCSV } from '../utils/exporthelpers';
 
 const ResultsSection = ({ 
   cars = [], 
@@ -92,6 +97,25 @@ const ResultsSection = ({
   // Check if car is in favorites
   const isFavorite = (car) => {
     return favorites.some(fav => fav.id === car.id);
+  };
+
+  // Export to CSV function
+  const handleExportCSV = () => {
+    if (!cars || cars.length === 0) return;
+    
+    const exportData = cars.map(car => ({
+      'Marka': car.brand,
+      'Modelis': car.model,
+      'Gads': car.year,
+      'Cena': car.price,
+      'Nobraukums': car.mileage,
+      'Dzinējs': car.engine,
+      'Ātrumkārba': car.transmission,
+      'Reģions': car.region,
+      'Saite': car.url || car.listing_url || ''
+    }));
+    
+    exportToCSV(exportData, 'car_search_results');
   };
 
   // Format fuel type in Latvian
@@ -253,7 +277,24 @@ const ResultsSection = ({
 
   return (
     <Box>
-      <TableContainer>
+      {/* Results header with export button */}
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h6">
+          Meklēšanas rezultāti ({cars.length})
+        </Typography>
+        
+        <Button
+          size="small"
+          variant="outlined"
+          startIcon={<DownloadIcon />}
+          onClick={handleExportCSV}
+          disabled={!cars || cars.length === 0}
+        >
+          Eksportēt CSV
+        </Button>
+      </Box>
+      
+      <TableContainer component={Paper}>
         <Table size="small" aria-label="automašīnu saraksta tabula">
           <TableHeader />
           <TableBody>

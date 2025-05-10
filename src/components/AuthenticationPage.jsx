@@ -79,15 +79,49 @@ const AuthenticationPage = ({
     }
   };
   
+  // Form validation
+  const validateForm = () => {
+    const errors = {};
+    
+    if (mode === 'register') {
+      if (!formData.name.trim()) {
+        errors.name = 'Vārds ir obligāts';
+      }
+      
+      if (!formData.email.trim()) {
+        errors.email = 'E-pasts ir obligāts';
+      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        errors.email = 'E-pasta formāts nav derīgs';
+      }
+      
+      if (!formData.password) {
+        errors.password = 'Parole ir obligāta';
+      } else if (formData.password.length < 6) {
+        errors.password = 'Parolei jābūt vismaz 6 simbolus garai';
+      }
+      
+      if (formData.password !== formData.confirmPassword) {
+        errors.confirmPassword = 'Paroles nesakrīt';
+      }
+    } else {
+      if (!formData.email.trim()) {
+        errors.email = 'E-pasts ir obligāts';
+      }
+      
+      if (!formData.password) {
+        errors.password = 'Parole ir obligāta';
+      }
+    }
+    
+    return errors;
+  };
+  
   // Handle login
   const handleLogin = (e) => {
     e.preventDefault();
     
     // Validate form
-    const errors = {};
-    if (!formData.email) errors.email = 'Lūdzu, ievadiet e-pastu';
-    if (!formData.password) errors.password = 'Lūdzu, ievadiet paroli';
-    
+    const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
@@ -97,8 +131,7 @@ const AuthenticationPage = ({
     setLoading(true);
     
     setTimeout(() => {
-      // Simulate successful login - in a real app this would check credentials with backend
-      // For now, we'll just simulate a successful login
+      // Simulate successful login
       const user = {
         name: 'Lietotājs',
         email: formData.email,
@@ -131,46 +164,59 @@ const AuthenticationPage = ({
     }, 1500);
   };
   
-  // Handle registration
-  const handleRegister = (e) => {
+  // Handle registration with proper user creation
+  const handleRegister = async (e) => {
     e.preventDefault();
     
-    // Validate form
-    const errors = {};
-    if (!formData.name) errors.name = 'Lūdzu, ievadiet vārdu';
-    if (!formData.email) errors.email = 'Lūdzu, ievadiet e-pastu';
-    if (!formData.password) errors.password = 'Lūdzu, ievadiet paroli';
-    if (formData.password && formData.password.length < 8) {
-      errors.password = 'Parolei jābūt vismaz 8 simbolus garai';
-    }
-    if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = 'Paroles nesakrīt';
-    }
-    
+    const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
     
-    // Simulate API call
     setLoading(true);
     
-    setTimeout(() => {
-      // Simulate successful registration
-      setLoading(false);
+    try {
+      // Create user object
+      const newUser = {
+        name: formData.name,
+        email: formData.email,
+        id: Date.now(), // Simple ID generation
+        createdAt: new Date().toISOString(),
+        preferences: {
+          darkMode: false,
+          language: 'lv',
+          notifications: true
+        }
+      };
       
-      // Show success message
+      // Save to localStorage
+      localStorage.setItem('user', JSON.stringify(newUser));
+      
+      // Show success
       setNotification({
         open: true,
-        message: 'Reģistrācija veiksmīga! Jūs varat pieslēgties.',
+        message: 'Reģistrācija veiksmīga! Jūs esat pieslēgts.',
         severity: 'success'
       });
       
-      // Switch to login mode
+      // Login user
+      onLogin(newUser);
+      
+      // Redirect to home
       setTimeout(() => {
-        setMode('login');
-      }, 2000);
-    }, 1500);
+        navigateTo('home');
+      }, 1000);
+      
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: 'Reģistrācija neizdevās. Mēģiniet vēlreiz.',
+        severity: 'error'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
   
   // Handle password reset
@@ -216,6 +262,14 @@ const AuthenticationPage = ({
   const handleSwitchMode = (newMode) => {
     setMode(newMode);
     setFormErrors({});
+    // Clear form data when switching modes
+    setFormData({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+      rememberMe: false
+    });
   };
   
   // Close notification

@@ -141,3 +141,45 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND lis
 2025-05-10 00:13:29,238 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 1990-2025
 2025-05-10 00:13:29,451 - car_analysis - INFO - Created price distribution chart with 27 data points
 2025-05-10 00:13:29,452 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:13:29] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=1990&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 18:51:52,884 - car_app - INFO - Starting API server on port 5000
+2025-05-10 18:51:52,905 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-10 18:51:52,905 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-10 18:51:58,324 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:51:58] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 18:51:58,516 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:51:58] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 18:51:58,640 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 18:51:58,640 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:51:58] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 18:51:58,642 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 18:51:58,643 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:51:58] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 18:52:07,663 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 18:52:07,663 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:52:07] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 18:52:08,879 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:52:08] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 18:52:09,196 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=2015-2025
+2025-05-10 18:52:09,200 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-10 18:52:09,204 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:52:09] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 18:52:09,442 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 2015-2025
+2025-05-10 18:52:09,577 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-10 18:52:09,578 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 18:52:09] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 19:42:29,153 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:42:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 19:42:29,413 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:42:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 19:42:29,458 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 19:42:29,459 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:42:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 19:42:29,460 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 19:42:29,460 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:42:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 19:53:27,153 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:53:27] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 19:53:27,430 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:53:27] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 19:53:27,460 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 19:53:27,460 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:53:27] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 19:53:27,491 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 19:53:27,491 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 19:53:27] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:00:29,727 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:00:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:00:29,967 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:00:29,967 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:00:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:09:41,683 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:09:41,945 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:09:41,989 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:09:41,990 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:09:41,991 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:09:41,991 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -

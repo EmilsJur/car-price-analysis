@@ -1,8 +1,4 @@
 
-/**
- * API service for communicating with the backend
- */
-
 const API_BASE_URL = 'http://localhost:5000/api';
 
 /**
@@ -106,7 +102,12 @@ export const getPriceDistributionChart = async (brand, model, yearFrom, yearTo) 
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     
-    return await response.json();
+    const data = await response.json();
+    
+    // Log for debugging
+    console.log('Chart response:', data);
+    
+    return data;
   } catch (error) {
     console.error('Error getting price distribution chart:', error);
     throw error;

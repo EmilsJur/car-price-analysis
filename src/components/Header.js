@@ -101,7 +101,6 @@ const Header = ({
   // Navigation items - with Latvian text
   const navItems = [
     { name: 'Sākums', icon: <DirectionsCarIcon />, page: 'home' },
-    { name: 'Meklēt', icon: <SearchIcon />, page: 'home' },
     { name: 'Analīze', icon: <AnalyticsIcon />, page: 'home' },
     { name: 'Salīdzināt', icon: <CompareIcon />, page: 'home' },
   ];
