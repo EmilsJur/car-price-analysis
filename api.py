@@ -71,6 +71,7 @@ def search_cars():
                     Car.mileage,
                     Car.body_type, 
                     Car.color,
+                    Car.tech_inspection,  # Added tech_inspection
                     Listing.price,
                     Listing.listing_date,
                     Listing.listing_url,
@@ -120,18 +121,26 @@ def search_cars():
             
             # Convert to list of dictionaries
             for row in results:
+                engine_display = ""
+                if row.engine_volume and row.engine_type:
+                    engine_display = f"{row.engine_volume}L {row.engine_type}"
+                elif row.engine_type:
+                    engine_display = row.engine_type
+                else:
+                    engine_display = "Nav norādīts"
                 listings.append({
                     'brand': row.brand,
                     'model': row.model,
                     'year': row.year,  # Numeric year for sorting
                     'year_display': str(row.year),  # Just use the year as is
+                    'engine': engine_display,
+                    'engine_type': row.engine_type or "Nav norādīts",
                     'engine_volume': row.engine_volume,
-                    'engine_type': row.engine_type,
-                    'engine': f"{row.engine_volume}L {row.engine_type}" if row.engine_volume and row.engine_type else "Nav norādīts",
                     'transmission': row.transmission or "Nav norādīts",
                     'mileage': row.mileage or 0,
                     'body_type': row.body_type or "Nav norādīts",
                     'color': row.color or "Nav norādīts",
+                    'tech_inspection': row.tech_inspection or "Nav norādīts",  # Added tech_inspection
                     'price': row.price,
                     'listing_date': row.listing_date.strftime('%Y-%m-%d') if row.listing_date else "",
                     'listing_url': row.listing_url,
@@ -223,6 +232,48 @@ def debug_counts():
         logger.error(f"Error in debug counts endpoint: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
+
+@app.route('/api/listing-details', methods=['GET'])
+def listing_details():
+    """API endpoint to get full listing details including description"""
+    try:
+        listing_url = request.args.get('url')
+        if not listing_url:
+            return jsonify({"error": "URL is required"}), 400
+        
+        # You can use BeautifulSoup to scrape additional details
+        import requests
+        from bs4 import BeautifulSoup
+        
+        response = requests.get(listing_url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract description
+        description_elem = soup.select_one('.msg_div_msg')
+        description = description_elem.text.strip() if description_elem else None
+        
+        # Extract equipment/features
+        equipment = []
+        equipment_section = soup.select('.options_list tr')
+        for row in equipment_section:
+            cells = row.select('td')
+            if len(cells) >= 2 and cells[1].text.strip() == '+':
+                equipment.append(cells[0].text.strip())
+        
+        # Extract image URL
+        image_elem = soup.select_one('#bigimage img')
+        image_url = image_elem['src'] if image_elem else None
+        
+        return jsonify({
+            "description": description,
+            "equipment": equipment,
+            "image_url": image_url
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in listing-details endpoint: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/estimate', methods=['POST'])
 def estimate_value():
     """API endpoint for car value estimation"""

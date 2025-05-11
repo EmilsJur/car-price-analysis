@@ -24,9 +24,6 @@ import {
 } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import CompareIcon from '@mui/icons-material/Compare';
 import SettingsIcon from '@mui/icons-material/Settings';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HistoryIcon from '@mui/icons-material/History';
@@ -47,6 +44,8 @@ const Header = ({
   favouriteCount = 0,
   notificationCount = 0,
   userName = '',
+  onTabChange = () => {},
+  currentTab = 0, 
   systemStatus = null
 }) => {
   const theme = useTheme();
@@ -98,13 +97,6 @@ const Header = ({
   
   const unreadNotifications = getUnreadNotificationsCount();
   
-  // Navigation items - with Latvian text
-  const navItems = [
-    { name: 'Sākums', icon: <DirectionsCarIcon />, page: 'home' },
-    { name: 'Analīze', icon: <AnalyticsIcon />, page: 'home' },
-    { name: 'Salīdzināt', icon: <CompareIcon />, page: 'home' },
-  ];
-  
   // Mobile drawer
   const mobileDrawer = (
     <Drawer
@@ -124,20 +116,6 @@ const Header = ({
             Auto Tirgus Analīze
           </Typography>
         </Box>
-        <Divider />
-        <List>
-          {navItems.map((item) => (
-            <ListItem key={item.name} disablePadding>
-              <ListItemButton onClick={() => navigateTo(item.page)}>
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
         <List>
           <ListItem disablePadding>
             <ListItemButton onClick={() => navigateTo('profile')}>
@@ -239,19 +217,7 @@ const Header = ({
             Auto Tirgus
           </Typography>
           
-          {/* Desktop navigation */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item.name}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                startIcon={item.icon}
-                onClick={() => navigateTo(item.page)}
-              >
-                {item.name}
-              </Button>
-            ))}
-          </Box>
+          <Box sx={{ flexGrow: 1 }} />
           
           {/* Right side icons */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

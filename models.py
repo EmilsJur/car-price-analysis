@@ -75,6 +75,7 @@ class Car(Base):
     engine_volume = Column(Float)
     engine_type = Column(String(20))
     transmission = Column(String(20))
+    tech_inspection = Column(String(20))
     mileage = Column(Integer)
     body_type = Column(String(20))
     color = Column(String(20))

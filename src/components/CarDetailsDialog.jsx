@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -10,7 +10,17 @@ import {
   Box,
   Chip,
   IconButton,
-  Divider
+  Divider,
+  CircularProgress,
+  Link,
+  Paper,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Alert,
+  Tooltip,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -21,6 +31,16 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import SpeedIcon from '@mui/icons-material/Speed';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PaletteIcon from '@mui/icons-material/Palette';
+import BuildIcon from '@mui/icons-material/Build';
+import DescriptionIcon from '@mui/icons-material/Description';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import axios from 'axios';
 
 const CarDetailsDialog = ({
   open,
@@ -28,238 +48,439 @@ const CarDetailsDialog = ({
   onClose,
   onAddToCompare,
   onToggleFavorite,
-  isFavorite
+  isFavorite,
+  onImageError
 }) => {
-  if (!car) return null;
-
-  // Format fuel type in Latvian
-  const formatFuelType = (type) => {
-    if (!type) return null;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  // State management
+  const [fullDetails, setFullDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [imageErrors, setImageErrors] = useState({});
+  const [expandedSections, setExpandedSections] = useState({
+    basic: true,
+    technical: false,
+    equipment: false,
+    description: false
+  });
+  
+  // Fetch full details when dialog opens
+  useEffect(() => {
+    if (open && car) {
+      resetState();
+      if (car.listing_url) {
+        fetchFullDetails();
+      } else {
+        setFullDetails(car);
+      }
+    }
+  }, [open, car]);
+  
+  const resetState = () => {
+    setFullDetails(null);
+    setLoading(false);
+    setError(null);
+    setImageErrors({});
+  };
+  
+  const fetchFullDetails = async () => {
+    setLoading(true);
+    setError(null);
     
-    switch(type.toLowerCase()) {
-      case 'petrol': return 'Benzīns';
-      case 'diesel': return 'Dīzelis';
-      case 'hybrid': return 'Hibrīds';
-      case 'electric': return 'Elektriskais';
-      case 'gas': return 'Gāze';
-      default: return type;
+    try {
+      const response = await axios.get(`/api/listing-details?url=${encodeURIComponent(car.listing_url)}`);
+      
+      if (response.data.error) {
+        throw new Error(response.data.error);
+      }
+      
+      setFullDetails({
+        ...car,
+        ...response.data
+      });
+    } catch (err) {
+      console.error('Error fetching car details:', err);
+      setError('Neizdevās ielādēt pilno informāciju. Tiek rādīta pamata informācija.');
+      setFullDetails(car);
+    } finally {
+      setLoading(false);
     }
   };
   
-  // Format transmission in Latvian
-  const formatTransmission = (transmission) => {
-    if (!transmission) return null;
-    
-    switch(transmission.toLowerCase()) {
-      case 'manual': return 'Manuālā';
-      case 'automatic': return 'Automātiskā';
-      case 'semi-automatic': return 'Pusautomātiskā';
-      default: return transmission;
+  const handleImageError = (imageIndex) => {
+    setImageErrors(prev => ({
+      ...prev,
+      [imageIndex]: true
+    }));
+    if (onImageError) {
+      onImageError(imageIndex);
     }
   };
-
-  // Get properly formatted engine text
-  let engineText = 'Nav norādīts';
-  if (car.engine) {
-    engineText = car.engine;
-  } else if (car.engine_volume && car.engine_type) {
-    engineText = `${car.engine_volume}L ${formatFuelType(car.engine_type) || car.engine_type}`;
-  } else if (car.engine_type) {
-    engineText = formatFuelType(car.engine_type) || car.engine_type;
-  }
-
-  // Get properly formatted transmission text
-  const transmissionText = formatTransmission(car.transmission) || car.transmission || 'Nav norādīts';
-
+  
+  const handleSectionExpand = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+  
+  if (!car) return null;
+  
+  const details = fullDetails || car;
+  
+  // Format values with fallbacks
+  const formatValue = (value, defaultText = 'Nav norādīts') => {
+    if (value === null || value === undefined || value === '') {
+      return defaultText;
+    }
+    return value;
+  };
+  
+  const formatCurrency = (value) => {
+    return value ? `€${Number(value).toLocaleString()}` : 'Nav norādīts';
+  };
+  
+  const formatMileage = (value) => {
+    return value ? `${Number(value).toLocaleString()} km` : 'Nav norādīts';
+  };
+  
+  const formatDate = (date) => {
+    if (!date) return 'Nav norādīts';
+    try {
+      return new Date(date).toLocaleDateString('lv-LV');
+    } catch {
+      return date;
+    }
+  };
+  
+  // Determine engine type details
+  const getEngineInfo = () => {
+    if (details.engine) return details.engine;
+    
+    const volume = details.engine_volume ? `${details.engine_volume}L` : '';
+    const type = details.engine_type || '';
+    
+    if (volume && type) return `${volume} ${type}`;
+    if (type) return type;
+    if (volume) return volume;
+    return 'Nav norādīts';
+  };
+  
   return (
     <Dialog 
       open={open} 
       onClose={onClose}
       maxWidth="md"
       fullWidth
+      scroll="paper"
+      PaperProps={{
+        sx: {
+          maxHeight: '90vh',
+          bgcolor: 'background.paper'
+        }
+      }}
     >
-      <DialogTitle sx={{ pr: 6 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <DirectionsCarIcon sx={{ mr: 1 }} color="primary" />
-          {car.brand} {car.model} ({car.year})
+      <DialogTitle sx={{ m: 0, p: 2, pr: 6 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <DirectionsCarIcon color="primary" />
+          <Typography variant="h6" component="div">
+            {car.brand} {car.model}
+          </Typography>
+          <Chip 
+            label={car.year} 
+            size="small" 
+            color="primary" 
+            variant="outlined"
+          />
         </Box>
+        
         <IconButton
           aria-label="close"
           onClick={onClose}
-          sx={{ position: 'absolute', right: 8, top: 8 }}
-          >
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-
-      <DialogContent dividers>
-        <Grid container spacing={3}>
-          {/* Main Car Details */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="subtitle1" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
-              <DirectionsCarIcon fontSize="small" sx={{ mr: 1 }} color="primary" />
-              Automašīnas informācija
-            </Typography>
-            
-            <Box sx={{ mb: 3 }}>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Marka un modelis: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.brand} {car.model}
+      
+      <DialogContent dividers sx={{ p: 0 }}>
+        {error && (
+          <Alert severity="warning" sx={{ m: 2 }}>
+            {error}
+          </Alert>
+        )}
+        
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 200 }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Box>
+            {/* Image Section */}
+            {(details.image_url || details.images) && (
+              <Box sx={{ position: 'relative', mb: 2 }}>
+                <Box
+                  component="img"
+                  src={details.image_url || (details.images && details.images[0])}
+                  alt={`${car.brand} ${car.model}`}
+                  onError={() => handleImageError(0)}
+                  sx={{
+                    width: '100%',
+                    maxHeight: 400,
+                    objectFit: 'contain',
+                    bgcolor: 'grey.100',
+                    display: imageErrors[0] ? 'none' : 'block'
+                  }}
+                />
+                {imageErrors[0] && (
+                  <Box sx={{ 
+                    width: '100%', 
+                    height: 300, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    bgcolor: 'grey.100',
+                    border: '1px dashed',
+                    borderColor: 'grey.400'
+                  }}>
+                    <Typography color="text.secondary">
+                      Attēlu nevar ielādēt
                     </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Gads: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.year || 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
-                    <LocalGasStationIcon fontSize="small" sx={{ mr: 0.5, color: 'primary.light' }} />
-                    Dzinējs: <Typography component="span" variant="body2" fontWeight="medium" sx={{ ml: 0.5 }}>
-                      {engineText}
-                    </Typography>
-                    {car.engine_type && (
-                      <Chip 
-                        label={formatFuelType(car.engine_type) || car.engine_type} 
-                        size="small" 
-                        sx={{ ml: 1 }} 
-                        color={
-                          car.engine_type.toLowerCase() === 'diesel' ? 'primary' :
-                          car.engine_type.toLowerCase() === 'petrol' ? 'secondary' :
-                          car.engine_type.toLowerCase() === 'electric' ? 'success' :
-                          car.engine_type.toLowerCase() === 'hybrid' ? 'info' : 'default'
-                        }
-                      />
-                    )}
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Ātrumkārba: <Typography component="span" variant="body2" fontWeight="medium">
-                      {transmissionText}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
-                    <SpeedIcon fontSize="small" sx={{ mr: 0.5, color: 'primary.light' }} />
-                    Nobraukums: <Typography component="span" variant="body2" fontWeight="medium" sx={{ ml: 0.5 }}>
-                      {car.mileage ? `${car.mileage.toLocaleString()} km` : 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Virsbūves tips: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.body_type || 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Krāsa: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.color || 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Reģions: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.region || 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-          
-          {/* Listing Details */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="subtitle1" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
-              <AttachMoneyIcon fontSize="small" sx={{ mr: 1 }} color="primary" />
-              Sludinājuma informācija
-            </Typography>
-            
-            <Box sx={{ mb: 2 }}>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Cena: <Typography component="span" variant="body2" fontWeight="bold" color="primary">
-                      €{car.price?.toLocaleString() || 'Nav norādīts'}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Publicēšanas datums: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.listing_date ? new Date(car.listing_date).toLocaleDateString() : new Date().toLocaleDateString()}
-                    </Typography>
-                  </Typography>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <Typography variant="body2" color="text.secondary">
-                    Avots: <Typography component="span" variant="body2" fontWeight="medium">
-                      SS.LV
-                    </Typography>
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-            
-            {(car.listing_url || car.url) && (
-              <Button
-                variant="contained"
-                component="a"
-                href={car.listing_url || car.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                endIcon={<OpenInNewIcon />}
-                sx={{ mt: 2 }}
-                fullWidth
-              >
-                Skatīt oriģinālo sludinājumu
-              </Button>
+                  </Box>
+                )}
+              </Box>
             )}
-          </Grid>
-        </Grid>
+            
+            {/* Price Header */}
+            <Paper elevation={1} sx={{ p: 2, m: 2, bgcolor: 'background.default' }}>
+              <Grid container alignItems="center" justifyContent="space-between">
+                <Grid item>
+                  <Typography variant="h5" component="div" color="primary" fontWeight="bold">
+                    {formatCurrency(details.price)}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Publicēts: {formatDate(details.listing_date)}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    <Tooltip title={isFavorite ? "Noņemt no izlases" : "Pievienot izlasei"}>
+                      <IconButton 
+                        onClick={() => onToggleFavorite(car)}
+                        color={isFavorite ? "error" : "default"}
+                      >
+                        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Pievienot salīdzinājumam">
+                      <IconButton onClick={() => onAddToCompare(car)}>
+                        <CompareArrowsIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Paper>
+            
+            {/* Basic Information Section */}
+            <Accordion 
+              expanded={expandedSections.basic} 
+              onChange={() => handleSectionExpand('basic')}
+              sx={{ mx: 2, mb: 1 }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <InfoIcon color="primary" />
+                  Pamatinformācija
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid container spacing={2}>
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Izlaiduma gads
+                    </Typography>
+                    <Typography variant="body1">
+                      {formatValue(details.year)}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Reģions
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <LocationOnIcon fontSize="small" color="action" />
+                      {formatValue(details.region)}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Krāsa
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <PaletteIcon fontSize="small" color="action" />
+                      {formatValue(details.color)}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Virsbūves tips
+                    </Typography>
+                    <Typography variant="body1">
+                      {formatValue(details.body_type)}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Tehniskā apskate
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <CalendarMonthIcon fontSize="small" color="action" />
+                      {formatValue(details.tech_inspection)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </AccordionDetails>
+            </Accordion>
+            
+            {/* Technical Information Section */}
+            <Accordion 
+              expanded={expandedSections.technical} 
+              onChange={() => handleSectionExpand('technical')}
+              sx={{ mx: 2, mb: 1 }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <BuildIcon color="primary" />
+                  Tehniskā informācija
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid container spacing={2}>
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Motors
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <LocalGasStationIcon fontSize="small" color="action" />
+                      {getEngineInfo()}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Ātrumkārba
+                    </Typography>
+                    <Typography variant="body1">
+                      {formatValue(details.transmission)}
+                    </Typography>
+                  </Grid>
+                  
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="caption" color="text.secondary">
+                      Nobraukums
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <SpeedIcon fontSize="small" color="action" />
+                      {formatMileage(details.mileage)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </AccordionDetails>
+            </Accordion>
+            
+            {/* Equipment Section */}
+            {details.equipment && details.equipment.length > 0 && (
+              <Accordion 
+                expanded={expandedSections.equipment} 
+                onChange={() => handleSectionExpand('equipment')}
+                sx={{ mx: 2, mb: 1 }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <CheckCircleIcon color="primary" />
+                    Aprīkojums ({details.equipment.length})
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                    {details.equipment.map((item, index) => (
+                      <Chip 
+                        key={index} 
+                        label={item} 
+                        size="small" 
+                        variant="outlined"
+                        color="success"
+                      />
+                    ))}
+                  </Box>
+                </AccordionDetails>
+              </Accordion>
+            )}
+            
+            {/* Description Section */}
+            {details.description && (
+              <Accordion 
+                expanded={expandedSections.description} 
+                onChange={() => handleSectionExpand('description')}
+                sx={{ mx: 2, mb: 1 }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <DescriptionIcon color="primary" />
+                    Apraksts
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      whiteSpace: 'pre-wrap',
+                      wordBreak: 'break-word',
+                      lineHeight: 1.6
+                    }}
+                  >
+                    {details.description}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            )}
+          </Box>
+        )}
       </DialogContent>
       
-      <DialogActions>
-        <Button onClick={onClose}>Aizvērt</Button>
-        <Button 
-          variant="outlined" 
-          startIcon={<CompareArrowsIcon />}
-          onClick={() => {
-            onAddToCompare(car);
-            onClose();
-          }}
-        >
-          Pievienot salīdzinājumam
-        </Button>
-        <Button 
-          variant="outlined"
-          color={isFavorite ? "error" : "primary"}
-          startIcon={isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-          onClick={() => {
-            onToggleFavorite(car);
-          }}
-        >
-          {isFavorite ? "Noņemt no izlases" : "Pievienot izlasei"}
-        </Button>
+      <DialogActions sx={{ p: 2, justifyContent: 'space-between' }}>
+        <Box>
+          <Button onClick={onClose}>
+            Aizvērt
+          </Button>
+        </Box>
+        
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          {car.listing_url && (
+            <Button
+              variant="contained"
+              component={Link}
+              href={car.listing_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              endIcon={<OpenInNewIcon />}
+            >
+              Skatīt SS.LV
+            </Button>
+          )}
+        </Box>
       </DialogActions>
     </Dialog>
   );

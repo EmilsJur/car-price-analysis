@@ -183,3 +183,391 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND lis
 2025-05-10 20:09:41,990 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
 2025-05-10 20:09:41,991 - car_analysis - INFO - Retrieved 4 popular brands
 2025-05-10 20:09:41,991 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:09:41] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:10:16,771 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:10:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:10:17,032 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:10:17] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:10:17,076 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:10:17,076 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:10:17] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:10:17,078 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:10:17,078 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:10:17] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:11:05,423 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 20:11:05,423 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:05] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 20:11:09,297 - car_api - INFO - Price trend chart request: Tesla , 12 months
+2025-05-10 20:11:09,300 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:09,301 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:09,301 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:09] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:11:11,063 - car_api - INFO - Price trend chart request: Tesla , 12 months
+2025-05-10 20:11:11,064 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:11,064 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:11,065 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:11] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:11:11,324 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-10 20:11:11,563 - car_analysis - INFO - Created price distribution chart with 60 data points
+2025-05-10 20:11:11,564 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:11] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 20:11:11,613 - car_api - INFO - Price trend chart request: Tesla , 12 months
+2025-05-10 20:11:11,614 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:11,614 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:11,615 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:11] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:11:21,351 - car_analysis - INFO - Retrieved 5 popular models
+2025-05-10 20:11:21,352 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:21] "GET /api/popular/models?brand=Infiniti&limit=30 HTTP/1.1" 200 -
+2025-05-10 20:11:23,670 - car_analysis - INFO - Retrieved 3 popular models
+2025-05-10 20:11:23,671 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:23] "GET /api/popular/models?brand=Smart&limit=30 HTTP/1.1" 200 -
+2025-05-10 20:11:26,262 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:26] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 20:11:26,509 - car_api - INFO - Search request: brand=Smart, model=Smart ForFour, year=2015-2025
+2025-05-10 20:11:26,511 - car_analysis - INFO - Statistics calculated for 2 listings
+2025-05-10 20:11:26,513 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:26] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 20:11:26,572 - car_api - INFO - Price trend chart request: Smart Smart ForFour, 12 months
+2025-05-10 20:11:26,573 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', 'Smart ForFour', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:26,573 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:26,573 - car_api - INFO - No price trend chart data for Smart Smart ForFour, trying brand-level data
+2025-05-10 20:11:26,576 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:26,576 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:26,577 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:26] "[33mGET /api/charts/price-trend?brand=Smart&model=Smart+ForFour&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:11:30,441 - car_api - INFO - Search request: brand=Smart, model=Smart ForFour, year=1997-2025
+2025-05-10 20:11:30,443 - car_analysis - INFO - Statistics calculated for 5 listings
+2025-05-10 20:11:30,445 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:30] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 20:11:30,789 - car_api - INFO - Price trend chart request: Smart Smart ForFour, 12 months
+2025-05-10 20:11:30,791 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', 'Smart ForFour', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:30,791 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:30,791 - car_api - INFO - No price trend chart data for Smart Smart ForFour, trying brand-level data
+2025-05-10 20:11:30,792 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:11:30,792 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:11:30,793 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:11:30] "[33mGET /api/charts/price-trend?brand=Smart&model=Smart+ForFour&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:12:04,924 - car_api - INFO - Price trend chart request: Smart Smart ForFour, 12 months
+2025-05-10 20:12:04,925 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', 'Smart ForFour', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:04,925 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:04,925 - car_api - INFO - No price trend chart data for Smart Smart ForFour, trying brand-level data
+2025-05-10 20:12:04,927 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:04,927 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:04,927 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:04] "[33mGET /api/charts/price-trend?brand=Smart&model=Smart+ForFour&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:12:07,460 - car_api - INFO - Price distribution chart request: Smart Smart ForFour, 1997-2025
+2025-05-10 20:12:07,609 - car_analysis - INFO - Created price distribution chart with 5 data points
+2025-05-10 20:12:07,610 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:07] "GET /api/charts/price-distribution?brand=Smart&model=Smart+ForFour&yearFrom=1997&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 20:12:07,722 - car_api - INFO - Price trend chart request: Smart Smart ForFour, 12 months
+2025-05-10 20:12:07,724 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', 'Smart ForFour', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:07,724 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:07,724 - car_api - INFO - No price trend chart data for Smart Smart ForFour, trying brand-level data
+2025-05-10 20:12:07,725 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:07,725 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:07,725 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:07] "[33mGET /api/charts/price-trend?brand=Smart&model=Smart+ForFour&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:12:09,775 - car_api - INFO - Price distribution chart request: Smart Smart ForFour, 1997-2025
+2025-05-10 20:12:09,930 - car_analysis - INFO - Created price distribution chart with 5 data points
+2025-05-10 20:12:09,931 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:09] "GET /api/charts/price-distribution?brand=Smart&model=Smart+ForFour&yearFrom=1997&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 20:12:10,524 - car_api - INFO - Price trend chart request: Smart Smart ForFour, 12 months
+2025-05-10 20:12:10,526 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', 'Smart ForFour', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:10,526 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:10,526 - car_api - INFO - No price trend chart data for Smart Smart ForFour, trying brand-level data
+2025-05-10 20:12:10,527 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Smart', '2024-05-15', '2025-05-10', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-10 20:12:10,527 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-10 20:12:10,528 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:10] "[33mGET /api/charts/price-trend?brand=Smart&model=Smart+ForFour&months=12 HTTP/1.1[0m" 404 -
+2025-05-10 20:12:18,420 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:12:18,875 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:12:18,880 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:12:19,229 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:12:19,230 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:12:19,492 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:12:19,492 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:12:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:13:36,949 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:13:36] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 20:13:37,208 - car_api - INFO - Search request: brand=, model=, year=2015-2025
+2025-05-10 20:13:37,211 - car_analysis - INFO - Statistics calculated for 92 listings
+2025-05-10 20:13:37,211 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:13:37] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 20:14:22,610 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 20:14:22,611 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:14:22] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 20:14:24,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:14:24] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 20:14:25,099 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-10 20:14:25,101 - car_analysis - INFO - Statistics calculated for 60 listings
+2025-05-10 20:14:25,106 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:14:25] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 20:14:25,145 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-10 20:14:25,422 - car_analysis - INFO - Created price distribution chart with 60 data points
+2025-05-10 20:14:25,423 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:14:25] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 20:21:27,777 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:27] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:21:27,939 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:27] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:21:28,091 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:21:28,091 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:28] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:21:28,122 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:21:28,122 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:28] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:21:30,054 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-10 20:21:30,055 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:30] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-10 20:21:31,603 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:31] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-10 20:21:31,865 - car_api - INFO - Search request: brand=Tesla, model=Tesla Model 3, year=2015-2025
+2025-05-10 20:21:31,868 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-10 20:21:31,871 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:31] "POST /api/search HTTP/1.1" 200 -
+2025-05-10 20:21:31,911 - car_api - INFO - Price distribution chart request: Tesla Tesla Model 3, 2015-2025
+2025-05-10 20:21:32,074 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-10 20:21:32,075 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:21:32] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-10 20:28:18,942 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:28:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:28:19,203 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:28:19] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:28:19,248 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:28:19,248 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:28:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:28:19,250 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:28:19,250 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:28:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:34:19,163 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:34:19] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:34:19,425 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:34:19] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 20:34:19,469 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:34:19,470 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:34:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-10 20:34:19,471 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-10 20:34:19,472 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 20:34:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 18:52:48,878 - car_app - INFO - Starting API server on port 5000
+2025-05-11 18:52:48,901 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-11 18:52:48,901 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 18:52:57,145 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:52:57] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 18:52:57,343 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:52:57] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 18:52:57,451 - car_analysis - INFO - Retrieved 3 popular brands
+2025-05-11 18:52:57,452 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:52:57] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 18:52:57,454 - car_analysis - INFO - Retrieved 3 popular brands
+2025-05-11 18:52:57,454 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:52:57] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 18:53:53,836 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-11 18:53:53,837 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:53:53] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-11 18:53:59,283 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:53:59] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 18:53:59,601 - car_api - INFO - Search request: brand=Suzuki, model=Citi, year=2015-2025
+2025-05-11 18:53:59,604 - car_analysis - INFO - Statistics calculated for 1 listings
+2025-05-11 18:53:59,608 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 18:53:59,608 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:53:59] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 18:54:01,376 - car_api - INFO - Search request: brand=Suzuki, model=Citi, year=1990-2025
+2025-05-11 18:54:01,379 - car_analysis - INFO - Statistics calculated for 1 listings
+2025-05-11 18:54:01,381 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 18:54:01,381 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:01] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 18:54:05,026 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:05] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 18:54:05,286 - car_api - INFO - Search request: brand=Suzuki, model=Suzuki Jimny, year=1990-2025
+2025-05-11 18:54:05,288 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-11 18:54:05,289 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 18:54:05,289 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:05] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 18:54:16,024 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 18:54:16,025 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:16] "GET /api/popular/models?brand=Infiniti&limit=30 HTTP/1.1" 200 -
+2025-05-11 18:54:16,911 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:16] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 18:54:17,157 - car_api - INFO - Search request: brand=Infiniti, model=, year=1990-2025
+2025-05-11 18:54:17,159 - car_analysis - INFO - Statistics calculated for 30 listings
+2025-05-11 18:54:17,163 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 18:54:17,163 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 18:54:17] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:20:43,894 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:20:43,904 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-11 19:20:43,904 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:20:52,030 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:52] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:20:52,338 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:20:52,339 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:52] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:20:52,340 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:52] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:20:52,674 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:20:52,674 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:52] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:20:53,213 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:20:53,214 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:53] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:20:54,321 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:54] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:20:54,584 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:20:54,586 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:20:54,588 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:20:54,588 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:20:54] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:21:16,935 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:21:17,253 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:17] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:21:17,296 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:21:17,296 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:17] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:21:17,604 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:21:17,604 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:17] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:21:18,373 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:21:18,373 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:18] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:21:18,794 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:18] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:21:19,110 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:21:19,111 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:21:19,112 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:21:19,112 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:21:19] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:27:49,205 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:27:49,220 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-11 19:27:49,220 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:28:32,227 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:32] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:28:32,412 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:32] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:28:32,535 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:28:32,535 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:32] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:28:32,536 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:28:32,536 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:32] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:28:33,459 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:28:33,460 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:33] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:28:33,837 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:33] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:28:34,149 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:28:34,152 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:28:34,156 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:28:34,156 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:34] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:28:49,209 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:28:54,969 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:28:54] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:29:13,581 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:29:13] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:31:19,510 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:31:19,534 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-11 19:31:19,534 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:31:19,535 - werkzeug - INFO -  * Restarting with stat
+2025-05-11 19:31:20,806 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:31:20,816 - werkzeug - WARNING -  * Debugger is active!
+2025-05-11 19:31:20,818 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-11 19:31:40,046 - car_app - INFO - Initializing database
+2025-05-11 19:31:40,047 - car_app - INFO - Database initialization completed
+2025-05-11 19:31:59,289 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:31:59] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:31:59,536 - car_api - INFO - Search request: brand=Smart, model=, year=2015-2025
+2025-05-11 19:31:59,595 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-11 19:31:59,599 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:31:59,599 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:31:59] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:32:19,281 - car_app - INFO - Initializing database
+2025-05-11 19:32:19,282 - car_app - INFO - Database initialization completed
+2025-05-11 19:34:40,699 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:34:40,714 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-11 19:34:40,714 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:34:40,715 - werkzeug - INFO -  * Restarting with stat
+2025-05-11 19:34:42,033 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:34:42,044 - werkzeug - WARNING -  * Debugger is active!
+2025-05-11 19:34:42,046 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-11 19:34:44,705 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:44] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:34:44,911 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:44] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:34:45,018 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:34:45,019 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:45] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:34:45,020 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:34:45,020 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:45] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:34:45,895 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:34:45,895 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:45] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:34:46,171 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:46] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:34:46,479 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:34:46,481 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:34:46,483 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:34:46,483 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:34:46] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:35:23,481 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:35:23,481 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:35:23] "GET /api/popular/brands?limit=10 HTTP/1.1" 200 -
+2025-05-11 19:35:48,631 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2024
+2025-05-11 19:35:48,632 - car_analysis - INFO - Statistics calculated for 63 listings
+2025-05-11 19:35:48,633 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:35:48,634 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:35:48] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:36:14,715 - car_api - INFO - Search request: brand=Tesla, model=None, year=None-None
+2025-05-11 19:36:14,717 - car_analysis - INFO - Statistics calculated for 73 listings
+2025-05-11 19:36:14,719 - car_api - ERROR - Error in search endpoint: tech_inspection
+2025-05-11 19:36:14,719 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:36:14] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-11 19:36:36,074 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:36:36] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:47:49,741 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-11 19:47:49,969 - werkzeug - INFO -  * Restarting with stat
+2025-05-11 19:47:51,303 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:47:51,313 - werkzeug - WARNING -  * Debugger is active!
+2025-05-11 19:47:51,314 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-11 19:51:41,037 - werkzeug - INFO -  * Detected change in 'C:\\Users\\PC\\Desktop\\claude\\car-price-analysis\\api.py', reloading
+2025-05-11 19:51:41,215 - werkzeug - INFO -  * Restarting with stat
+2025-05-11 19:51:42,473 - car_app - INFO - Starting API server on port 5000
+2025-05-11 19:51:42,482 - werkzeug - WARNING -  * Debugger is active!
+2025-05-11 19:51:42,484 - werkzeug - INFO -  * Debugger PIN: 149-658-108
+2025-05-11 19:52:29,005 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:52:29,212 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:52:29,319 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:52:29,320 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:52:29,322 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:52:29,322 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:52:36,570 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:52:36,570 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:36] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:52:37,069 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:37] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:52:37,384 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:52:37,385 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:52:37,389 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:37] "POST /api/search HTTP/1.1" 200 -
+2025-05-11 19:52:37,630 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-11 19:52:37,777 - car_analysis - INFO - Created price distribution chart with 64 data points
+2025-05-11 19:52:37,778 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:37] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-11 19:52:46,736 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-11 19:52:46,737 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:46] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:52:47,708 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:47] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:52:47,969 - car_api - INFO - Search request: brand=Suzuki, model=, year=2015-2025
+2025-05-11 19:52:47,970 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-11 19:52:47,971 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:47] "POST /api/search HTTP/1.1" 200 -
+2025-05-11 19:52:48,014 - car_api - INFO - Price distribution chart request: Suzuki None, 2015-2025
+2025-05-11 19:52:48,090 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-11 19:52:48,090 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:52:48] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-11 19:53:08,126 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:53:08,126 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:08] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:53:09,118 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:09] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:53:09,379 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:53:09,380 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:53:09,382 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:09] "POST /api/search HTTP/1.1" 200 -
+2025-05-11 19:53:09,425 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-11 19:53:09,510 - car_analysis - INFO - Created price distribution chart with 64 data points
+2025-05-11 19:53:09,510 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:09] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-11 19:53:29,427 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:53:29,902 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:53:29,906 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-11 19:53:30,255 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:53:30,255 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:30] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:53:30,516 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-11 19:53:30,517 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:30] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-11 19:53:30,654 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-11 19:53:30,655 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:30] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-11 19:53:31,562 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:31] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-11 19:53:31,824 - car_api - INFO - Search request: brand=Tesla, model=, year=2015-2025
+2025-05-11 19:53:31,826 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-11 19:53:31,831 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:31] "POST /api/search HTTP/1.1" 200 -
+2025-05-11 19:53:31,870 - car_api - INFO - Price distribution chart request: Tesla None, 2015-2025
+2025-05-11 19:53:32,053 - car_analysis - INFO - Created price distribution chart with 64 data points
+2025-05-11 19:53:32,053 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 19:53:32] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -

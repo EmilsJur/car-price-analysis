@@ -34,8 +34,10 @@ import { visuallyHidden } from '@mui/utils';
 
 // Import export helpers
 import { exportToCSV } from '../utils/exporthelpers';
+// Import CarDetailsDialog
+import CarDetailsDialog from './CarDetailsDialog';
 
-const ResultsSection = ({ 
+const ResultsSection = ({
   cars = [], 
   loading = false,
   compareMode = false,
@@ -53,11 +55,29 @@ const ResultsSection = ({
   const [expandedRow, setExpandedRow] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [actionCar, setActionCar] = useState(null);
+  
+  // State for CarDetailsDialog
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [selectedCarForDetails, setSelectedCarForDetails] = useState(null);
 
   // Reset pagination when cars change
   useEffect(() => {
     setPage(0);
   }, [cars]);
+
+  // Handle opening car details dialog
+  const handleOpenCarDetails = (car) => {
+    setSelectedCarForDetails(car);
+    setDetailsOpen(true);
+    // Also call the parent's handler if it exists
+    onOpenCarDetails(car);
+  };
+
+  // Handle closing car details dialog
+  const handleCloseCarDetails = () => {
+    setDetailsOpen(false);
+    setSelectedCarForDetails(null);
+  };
 
   // Handle change page
   const handleChangePage = (event, newPage) => {
@@ -408,7 +428,7 @@ const ResultsSection = ({
                             size="small"
                             onClick={(e) => {
                               e.stopPropagation();
-                              onOpenCarDetails(car);
+                              handleOpenCarDetails(car);
                             }}
                           >
                             <InfoIcon fontSize="small" />
@@ -491,7 +511,7 @@ const ResultsSection = ({
                                     variant="outlined"
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      onOpenCarDetails(car);
+                                      handleOpenCarDetails(car);
                                     }}
                                   >
                                     Skatīt detaļas
@@ -552,7 +572,7 @@ const ResultsSection = ({
         onClose={handleCloseMenu}
       >
         <MenuItem onClick={() => {
-          onOpenCarDetails(actionCar);
+          handleOpenCarDetails(actionCar);
           handleCloseMenu();
         }}>
           <InfoIcon fontSize="small" sx={{ mr: 1 }} />
@@ -601,6 +621,22 @@ const ResultsSection = ({
           </MenuItem>
         )}
       </Menu>
+      
+      {/* Car Details Dialog */}
+      <CarDetailsDialog
+        open={detailsOpen}
+        car={selectedCarForDetails}
+        onClose={handleCloseCarDetails}
+        onAddToCompare={selectedCars && onSelectCar ? 
+          (car) => {
+            onSelectCar(car);
+            handleCloseCarDetails();
+          } 
+          : undefined
+        }
+        onToggleFavorite={onToggleFavorite}
+        isFavorite={selectedCarForDetails ? isFavorite(selectedCarForDetails) : false}
+      />
     </Box>
   );
 };

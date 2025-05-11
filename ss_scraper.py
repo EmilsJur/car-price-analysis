@@ -319,13 +319,13 @@ class Scraper:
         model_name = model_data['name']
         model_url = model_data['url']
         
-        logger.info(f"Getting listings for {brand_name} {model_name}") # This is an INFO log
+        logger.info(f"Getting listings for {brand_name} {model_name}")
         listings = []
         page_num = 0 
         current_url = model_url
         
         while page_num < max_pages:
-            logger.info(f"Checking page {page_num+1} at {current_url}") # This is an INFO log
+            logger.info(f"Checking page {page_num+1} at {current_url}")
             response = self._make_request(current_url)
             if not response:
                 logger.error(f"Couldn't get listings page for {brand_name} {model_name} at {current_url}")
@@ -334,142 +334,180 @@ class Scraper:
             soup = BeautifulSoup(response.content, 'html.parser')
             listing_rows = soup.select("tr[id^='tr_']")
             
-            logging.getLogger('ss_scraper').critical(f"TESTING DEBUG OUTPUT: About to loop through {len(listing_rows)} rows. Console level should be DEBUG.")
-            logging.getLogger('ss_scraper').debug(f"DIRECT LOGGER.DEBUG TEST: Number of listing_rows: {len(listing_rows)}")
-            logger.info(f"Found {len(listing_rows)} potential listing rows on this page") # This is an INFO log
+            logger.critical(f"TESTING DEBUG OUTPUT: About to loop through {len(listing_rows)} rows. Console level should be DEBUG.")
+            logger.debug(f"DIRECT LOGGER.DEBUG TEST: Number of listing_rows: {len(listing_rows)}")
+            logger.info(f"Found {len(listing_rows)} potential listing rows on this page")
 
             if not listing_rows:
-                logging.getLogger('ss_scraper').debug("No rows matching tr[id^='tr_'] found on this page (inside if not listing_rows).")
+                logger.debug("No rows matching tr[id^='tr_'] found on this page.")
 
             for i, row in enumerate(listing_rows):
                 # Reset for each row
-                year, engine, mileage, price = None, "", None, None
-                listing_id, listing_url, title_text = None, None, None # Renamed title to title_text
+                year, engine_volume, mileage, price = None, None, None, None
+                listing_id, listing_url, title_text = None, None, None
 
                 try:
                     listing_id = row.get('id', '').replace('tr_', '')
-                    if not listing_id or "bnr" in listing_id.lower(): # Check for 'bnr' case-insensitively
-                        logging.getLogger('ss_scraper').debug(f"Row {i}: Skipping, no valid listing_id or is banner (ID: {listing_id}).")
+                    if not listing_id or "bnr" in listing_id.lower():
+                        logger.debug(f"Row {i}: Skipping, no valid listing_id or is banner (ID: {listing_id}).")
                         continue
                     
-                    logging.getLogger('ss_scraper').debug(f"Row {i}: Processing row with ID: {listing_id}")
+                    logger.debug(f"Row {i}: Processing row with ID: {listing_id}")
 
-                    title_link_elem = row.select_one("td.msg2 div.d1 a.am") 
-                    if not title_link_elem or not title_link_elem.has_attr('href'):
-                        logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Skipping, no title_link or href.")
-                        continue
+                    # Get title and URL from the main text cell
+                    title_cell = row.select_one("td.msg2")
+                    if title_cell:
+                        title_link = title_cell.select_one("a.am")
+                        if title_link and title_link.has_attr('href'):
+                            listing_url = self.base_url + title_link['href']
+                            title_text = title_link.text.strip()
                     
-                    listing_url = self.base_url + title_link_elem['href']
-                    title_text = title_link_elem.text.strip() # Use title_text here
+                    if not title_text or not listing_url:
+                        logger.debug(f"Row {i}, ID {listing_id}: Skipping, no title_link or href.")
+                        continue
 
-                    # NEW SIMPLIFIED SELECTOR FOR TESTING:
-                    # Just get ALL <td> elements that have class 'msga2-o' or 'msga2-r'
-                    potential_data_tds = row.select("td.msga2-o, td.msga2-r")
-                    logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Found {len(potential_data_tds)} potential_data_tds (selector 'td.msga2-o, td.msga2-r').")
-
-                    if not potential_data_tds:
-                        logging.getLogger('ss_scraper').warning(f"Row {i}, ID {listing_id}: No potential_data_tds found using 'td.msga2-o, td.msga2-r'. Row HTML: {str(row)}")
-                        # As a fallback, try selecting all <td>s that are not the image or title cell
-                        # This is very broad and might pick up unwanted cells.
-                        all_tds_in_row = row.find_all("td", recursive=False) # Get direct children <td>
-                        if len(all_tds_in_row) > 2: # Assuming first 2 are image/checkbox and title
-                             potential_data_tds = all_tds_in_row[2:] # Take all cells after the first two
-                             logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Fallback - using {len(potential_data_tds)} cells from all_tds_in_row[2:].")
+                    # Get all data cells
+                    data_cells = row.select("td.msga2-o.pp6, td.msga2-r.pp6")
+                    
+                    logger.debug(f"Row {i}, ID {listing_id}: Found {len(data_cells)} data cells")
+                    
+                    # Check if this is Tesla based on the number of data cells
+                    is_tesla = len(data_cells) == 3
+                    
+                    if is_tesla:
+                        # Tesla layout: Year | Mileage | Price (3 cells)
+                        if len(data_cells) >= 3:
+                            # Year is in cell 0
+                            year_cell = data_cells[0]
+                            year_text = year_cell.get_text(strip=True)
+                            if year_text.isdigit() and len(year_text) == 4:
+                                year = int(year_text)
+                            
+                            # Mileage is in cell 1
+                            mileage_cell = data_cells[1]
+                            mileage_text = mileage_cell.get_text(strip=True).lower()
+                            
+                            if "tūkst." in mileage_text:
+                                mileage_digits = ''.join(filter(str.isdigit, mileage_text.split("tūkst.")[0]))
+                                if mileage_digits:
+                                    mileage = int(mileage_digits) * 1000
+                            elif mileage_text.replace(' ', '').isdigit():
+                                mileage = int(mileage_text.replace(' ', ''))
+                            
+                            # Price is in cell 2
+                            price_cell = data_cells[2]
+                            price_text = price_cell.get_text(strip=True).lower()
+                            
+                            if "€" in price_text:
+                                # Check if it's an exchange listing
+                                if 'maiņai' in price_text or 'pērku' in price_text or 'maina' in price_text:
+                                    logger.info(f"Row {i}, ID {listing_id}: Skipping exchange/buying listing.")
+                                    continue
+                                    
+                                # Remove spaces, commas, and non-digit characters
+                                price_digits = ''.join(filter(str.isdigit, price_text.replace(' ', '').replace(',', '')))
+                                if price_digits:
+                                    price = int(price_digits)
+                            
+                            # For Tesla, set engine type to Electric
+                            engine_type = "Electric"
+                            
+                            logger.debug(f"Row {i}, ID {listing_id}: Tesla layout (3 cells) - Year:{year}, Mileage:{mileage}, Price:{price}")
                         else:
-                            logging.getLogger('ss_scraper').warning(f"Row {i}, ID {listing_id}: Fallback failed, not enough <td>s in row. Skipping. Row HTML: {str(row)}")
+                            logger.warning(f"Row {i}, ID {listing_id}: Tesla format but only {len(data_cells)} cells")
                             continue
-
-
-                    price_text_found_for_this_row = None # Renamed to avoid confusion with outer scope 'price'
-
-                    for cell_td_idx, cell_td in reversed(list(enumerate(potential_data_tds))): 
-                        current_cell_text_source = ""
-                        cell_text_content = ""
-
-                        a_tag = cell_td.find("a", class_="amopt")
-                        if a_tag:
-                            cell_text_content = a_tag.text.strip().lower()
-                            current_cell_text_source = f"td[{cell_td_idx}]/a.amopt"
+                    else:
+                        # Standard layout: Year | Engine | Mileage | Price (4 cells)
+                        if len(data_cells) >= 4:
+                            # Find the year cell (it's always a 4-digit number starting with "20")
+                            year_cell_index = None
+                            for idx, cell in enumerate(data_cells):
+                                cell_text = cell.get_text(strip=True)
+                                if cell_text.isdigit() and len(cell_text) == 4:
+                                    year_val = int(cell_text)
+                                    # Accept years from 1900 to current year + 1 (for future models)
+                                    if 1900 <= year_val <= datetime.now().year + 1:
+                                        year_cell_index = idx
+                                        year = year_val
+                                        break
+                            
+                            if year_cell_index is None:
+                                logger.debug(f"Row {i}, ID {listing_id}: No year found in data cells")
+                                continue
+                            
+                            # Engine is at year_index + 1
+                            if year_cell_index + 1 < len(data_cells):
+                                engine_cell = data_cells[year_cell_index + 1]
+                                engine_text = engine_cell.get_text(strip=True)
+                                
+                                # Extract numeric volume
+                                volume_match = re.search(r'(\d+\.?\d*)', engine_text)
+                                if volume_match:
+                                    try:
+                                        engine_volume = float(volume_match.group(1))
+                                    except ValueError:
+                                        pass
+                            
+                            # Mileage is at year_index + 2
+                            if year_cell_index + 2 < len(data_cells):
+                                mileage_cell = data_cells[year_cell_index + 2]
+                                mileage_text = mileage_cell.get_text(strip=True).lower()
+                                
+                                if "tūkst." in mileage_text:
+                                    mileage_digits = ''.join(filter(str.isdigit, mileage_text.split("tūkst.")[0]))
+                                    if mileage_digits:
+                                        mileage = int(mileage_digits) * 1000
+                                elif mileage_text.replace(' ', '').isdigit():
+                                    mileage = int(mileage_text.replace(' ', ''))
+                            
+                            # Price is at year_index + 3
+                            if year_cell_index + 3 < len(data_cells):
+                                price_cell = data_cells[year_cell_index + 3]
+                                price_text = price_cell.get_text(strip=True).lower()
+                                
+                                if "€" in price_text:
+                                    # Check if it's an exchange listing
+                                    if 'maiņai' in price_text or 'pērku' in price_text or 'maina' in price_text:
+                                        logger.info(f"Row {i}, ID {listing_id}: Skipping exchange/buying listing.")
+                                        continue
+                                        
+                                    # Remove spaces, commas, and non-digit characters
+                                    price_digits = ''.join(filter(str.isdigit, price_text.replace(' ', '').replace(',', '')))
+                                    if price_digits:
+                                        price = int(price_digits)
+                            
+                            logger.debug(f"Row {i}, ID {listing_id}: Standard layout (4 cells) - Year:{year}, Engine:{engine_volume}, Mileage:{mileage}, Price:{price}")
                         else:
-                            cell_text_content = cell_td.text.strip().lower()
-                            current_cell_text_source = f"td[{cell_td_idx}] direct text"
-                        
-                        logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Checking cell (from {current_cell_text_source}): '{cell_text_content}'")
-
-                        if "€" in cell_text_content and any(char.isdigit() for char in cell_text_content):
-                            price_text_found_for_this_row = cell_text_content
-                            price_digits = ''.join(filter(str.isdigit, price_text_found_for_this_row))
-                            if price_digits:
-                                if 'maiņai' in price_text_found_for_this_row or 'pērku' in price_text_found_for_this_row or 'maina' in price_text_found_for_this_row:
-                                    logging.getLogger('ss_scraper').info(f"Row {i}, ID {listing_id}: Skipping exchange/buying listing (text: {price_text_found_for_this_row}).")
-                                    price = "SKIP_EXCHANGE" # Use the sentinel value
-                                    break 
-                                price = int(price_digits)
-                                logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Price found as {price} from text '{price_text_found_for_this_row}'.")
-                                break 
-                    
-                    if price == "SKIP_EXCHANGE":
-                        price = None # Reset price so it doesn't carry over to next iteration as string
-                        continue
-                    if price is None:
-                        logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Price not found after checking all potential_data_tds. Row HTML: {str(row)}")
-                        continue
-
-                    # Year, Engine, Mileage extraction - very basic for now
-                    # These are often unreliable from summary; detail page is better.
-                    # You can add more sophisticated pattern matching here if needed.
-                    for cell_td in potential_data_tds:
-                        cell_text = cell_td.text.strip()
-                        # Year (very basic: 4 digits, plausible range, not already price/mileage)
-                        if year is None and cell_text.isdigit() and len(cell_text) == 4 and 1900 <= int(cell_text) <= datetime.now().year:
-                            # Ensure it's not part of a price or mileage string if those are just numbers
-                            if "€" not in cell_td.text and "tūkst." not in cell_td.text.lower():
-                                year = int(cell_text)
-                                logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Tentative year: {year}")
-                                continue # Move to next cell after finding year
-
-                        # Mileage (contains "tūkst." or is a large number)
-                        if mileage is None and ("tūkst." in cell_text.lower() or (cell_text.replace(' ', '').isdigit() and int(cell_text.replace(' ', '')) > 1000 and "€" not in cell_text) ):
-                            if "tūkst." in cell_text.lower():
-                                m_digits = ''.join(filter(str.isdigit, cell_text.lower().split("tūkst.")[0]))
-                                if m_digits: mileage = int(m_digits) * 1000
-                            else:
-                                m_digits = ''.join(filter(str.isdigit, cell_text))
-                                if m_digits: mileage = int(m_digits)
-                            logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Tentative mileage: {mileage}")
+                            logger.warning(f"Row {i}, ID {listing_id}: Standard format but only {len(data_cells)} cells")
                             continue
-
-                        # Engine (anything else that's not price, year, mileage)
-                        # This is highly speculative from summary.
-                        if price is not None and ("€" not in cell_text) and \
-                           (year is None or cell_text != str(year)) and \
-                           (mileage is None or (str(mileage) not in cell_text and str(mileage//1000) not in cell_text) ) and \
-                           len(cell_text) > 1 and len(cell_text) < 20 and not cell_text.isdigit(): # Avoid pure numbers unless specific format
-                            engine = cell_text
-                            logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Tentative engine: '{engine}'")
-                            # Don't break, there might be multiple engine-like fields. Take the first? Or last?
-                            # For now, let it be overwritten if multiple found; detail page is better.
                     
-                    thumbnail = ""
-                    img_elem = row.select_one("td.msga2 a img.isfoto")
-                    if img_elem and img_elem.has_attr('src'):
-                        thumbnail = img_elem['src']
-                    
-                    if price is not None: # Price must have been found
+                    # Only add if we have essential data
+                    if price and title_text and listing_url:
                         listing_data = {
-                            'external_id': listing_id, 'title': title_text, 'url': listing_url,
-                            'price': price, 'year': year, 'engine': engine, 'mileage': mileage,
-                            'thumbnail': thumbnail, 'brand': brand_name, 'model': model_name
+                            'external_id': listing_id,
+                            'title': title_text,
+                            'url': listing_url,
+                            'price': price,
+                            'year': year,
+                            'engine_volume': engine_volume,
+                            'mileage': mileage,
+                            'brand': brand_name,
+                            'model': model_name,
+                            # These will be filled in by get_listing_details_async:
+                            'engine_type': engine_type if is_tesla else None,
+                            'transmission': None,
+                            'region': None,
+                            'body_type': None,
+                            'color': None
                         }
                         listings.append(listing_data)
-                        logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Successfully appended. P:{price} Y:{year} E:'{engine}' M:{mileage}")
+                        logger.debug(f"Row {i}, ID {listing_id}: Success - P:{price} Y:{year} E:{engine_volume}L M:{mileage}")
                     else:
-                        # This should be rare now because of the 'continue' if price is None
-                        logging.getLogger('ss_scraper').debug(f"Row {i}, ID {listing_id}: Price was None at final append check (SHOULD NOT HAPPEN).")
+                        logger.warning(f"Row {i}, ID {listing_id}: Missing essential data - price:{price}, title:{bool(title_text)}, url:{bool(listing_url)}")
                 
                 except Exception as e:
                     current_id_in_loop = listing_id if listing_id else "UNKNOWN_ID_IN_LOOP_EXC"
-                    logging.getLogger('ss_scraper').error(f"Row {i}, ID {current_id_in_loop}: Exception: {str(e)}", exc_info=True)
+                    logger.error(f"Row {i}, ID {current_id_in_loop}: Exception: {str(e)}", exc_info=True)
                     continue
             
             # Next page logic
@@ -484,15 +522,15 @@ class Scraper:
             if next_page_link_tag and next_page_link_tag.has_attr('href'):
                 current_url = self.base_url + next_page_link_tag['href']
                 page_num += 1
-                logging.getLogger('ss_scraper').debug(f"Moving to next page: {current_url}")
+                logger.debug(f"Moving to next page: {current_url}")
                 self._random_delay()
             else:
-                logging.getLogger('ss_scraper').debug("No next page link found or href missing.")
+                logger.debug("No next page link found or href missing.")
                 break # No more pages
         
         logger.info(f"Found {len(listings)} total listings for {brand_name} {model_name} after processing all pages.")
         return listings
-    
+        
     async def get_listing_details_async(self, listing_basic, session):
         """Get all the detailed info from a car's individual listing page"""
         # Skip if no URL
