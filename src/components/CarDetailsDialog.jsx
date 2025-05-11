@@ -32,6 +32,7 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import SpeedIcon from '@mui/icons-material/Speed';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { getListingDetails } from '../services/apiService';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PaletteIcon from '@mui/icons-material/Palette';
@@ -85,21 +86,42 @@ const CarDetailsDialog = ({
     setImageErrors({});
   };
   
+   
   const fetchFullDetails = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const response = await axios.get(`/api/listing-details?url=${encodeURIComponent(car.listing_url)}`);
+      console.log('Fetching details for URL:', car.listing_url);
+      const response = await getListingDetails(car.listing_url);
       
-      if (response.data.error) {
-        throw new Error(response.data.error);
+      // Check for error in the response directly
+      if (response.error) {
+        throw new Error(response.error);
       }
       
-      setFullDetails({
+      // Merge the original car data with the new details
+      const mergedDetails = {
         ...car,
-        ...response.data
-      });
+        description: response.description,
+        equipment: response.equipment || [],
+        image_url: response.image_url,
+        region: response.region || car.region,
+        // Use the detailed fields if available
+        year: response.year_detail || car.year,
+        engine: response.engine_detail || car.engine,
+        transmission: response.transmission_detail || car.transmission,
+        mileage: response.mileage_detail || car.mileage,
+        color: response.color_detail || car.color,
+        body_type: response.body_type_detail || car.body_type,
+        tech_inspection: response.tech_inspection || car.tech_inspection,
+        // Add price from the details
+        price: response.price_detail || car.price
+      };
+      
+      console.log('Merged details:', mergedDetails);
+      setFullDetails(mergedDetails);
+      
     } catch (err) {
       console.error('Error fetching car details:', err);
       setError('Neizdevās ielādēt pilno informāciju. Tiek rādīta pamata informācija.');
@@ -224,11 +246,11 @@ const CarDetailsDialog = ({
         ) : (
           <Box>
             {/* Image Section */}
-            {(details.image_url || details.images) && (
+            {(details.image_url || details.image || details.images) && (
               <Box sx={{ position: 'relative', mb: 2 }}>
                 <Box
                   component="img"
-                  src={details.image_url || (details.images && details.images[0])}
+                  src={details.image_url || details.image || (details.images && details.images[0])}
                   alt={`${car.brand} ${car.model}`}
                   onError={() => handleImageError(0)}
                   sx={{
@@ -439,7 +461,7 @@ const CarDetailsDialog = ({
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <DescriptionIcon color="primary" />
-                    Apraksts
+                    Sludinājuma apraksts
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>

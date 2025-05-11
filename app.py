@@ -5,6 +5,7 @@ from models import init_db
 from ss_scraper import run_ss_scraper
 from api import app as api_app
 
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,

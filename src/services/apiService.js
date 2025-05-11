@@ -115,6 +115,30 @@ export const getPriceDistributionChart = async (brand, model, yearFrom, yearTo) 
 };
 
 /**
+ * Get full listing details from SS.LV
+ * @param {string} url - The listing URL
+ * @returns {Promise} Promise object representing the listing details
+ */
+export const getListingDetails = async (url) => {
+  try {
+    const apiUrl = new URL(`${API_BASE_URL}/listing-details`);
+    apiUrl.searchParams.append('url', url);
+    
+    const response = await fetch(apiUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error getting listing details:', error);
+    throw error;
+  }
+};
+
+
+/**
  * Get price trend chart
  * @param {string} brand - Car brand
  * @param {string} model - Car model

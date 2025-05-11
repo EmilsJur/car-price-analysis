@@ -3,36 +3,39 @@ from flask_cors import CORS
 import json
 import logging
 from datetime import datetime
-from models import init_db
+import requests
+from bs4 import BeautifulSoup
+from models import init_db, Brand, Model, Car, Listing, Region, Source # include Source
 from ss_scraper import run_ss_scraper
 from analysis import CarDataAnalyzer
 
-# Set up logging
+
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.INFO, # You can change to logging.DEBUG for more verbosity
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='api.log'
+    filename='api.log' # Logging to api.log
 )
-logger = logging.getLogger('car_api')
+logger = logging.getLogger('car_api') # General API logger
+logger_listing_details = logging.getLogger('car_api.listing_details') # Specific for details endpoint
+
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)  # This will enable CORS for all routes
 
-# Initialize database session
-session, engine = init_db()
-
-# Initialize data analyzer
-analyzer = CarDataAnalyzer(session)
+# Initialize database session and analyzer
+# This should be how your project sets them up
+session, engine = init_db() # Assuming init_db is in models.py and returns session & engine
+analyzer = CarDataAnalyzer(session) # Assuming CarDataAnalyzer is in analysis.py
 
 
 @app.route('/api/search', methods=['POST'])
 def search_cars():
-    """API endpoint for car search"""
+    """Handles car search requests based on various criteria."""
     try:
         data = request.json
         
-        # Extract search parameters
+        # Extracting search parameters from the request
         brand = data.get('brand')
         model = data.get('model')
         year_from = data.get('yearFrom')
@@ -42,9 +45,9 @@ def search_cars():
         price_from = data.get('priceFrom')
         price_to = data.get('priceTo')
         
-        logger.info(f"Search request: brand={brand}, model={model}, year={year_from}-{year_to}")
+        logger.info(f"Search request received: brand={brand}, model={model}, year={year_from}-{year_to}, fuel={fuel_type}, transmission={transmission}, price={price_from}-{price_to}")
         
-        # Get price statistics
+        # Fetching price statistics using the analyzer
         statistics = analyzer.get_price_statistics(
             brand=brand,
             model=model,
@@ -53,12 +56,10 @@ def search_cars():
             fuel_type=fuel_type
         )
         
-        # Get matching listings
+        # Building the query to find matching listings
         listings = []
-        if brand:  # Only require brand, not model
-            # Create query dynamically based on available parameters
-            from models import Brand, Model, Car, Listing, Region
-            from sqlalchemy import func
+        if brand:  # Brand is a minimum requirement for searching listings here
+            from sqlalchemy import func # Importing func for SQLAlchemy specific functions like lower
             
             query = (
                 analyzer.session.query(
@@ -71,7 +72,7 @@ def search_cars():
                     Car.mileage,
                     Car.body_type, 
                     Car.color,
-                    Car.tech_inspection,  # Added tech_inspection
+                    Car.tech_inspection,
                     Listing.price,
                     Listing.listing_date,
                     Listing.listing_url,
@@ -81,58 +82,44 @@ def search_cars():
                 .join(Model, Brand.brand_id == Model.brand_id)
                 .join(Car, Model.model_id == Car.model_id)
                 .join(Listing, Car.car_id == Listing.car_id)
-                .join(Region, Car.region_id == Region.region_id)
+                .join(Region, Car.region_id == Region.region_id) # Ensure Region is joined
                 .filter(func.lower(Brand.name) == func.lower(brand))
             )
             
             if model:
                 query = query.filter(func.lower(Model.name) == func.lower(model))
-            
-            # Standard numeric year comparisons now that data is normalized
             if year_from:
                 query = query.filter(Car.year >= year_from)
-                
             if year_to:
                 query = query.filter(Car.year <= year_to)
-                
             if fuel_type:
                 query = query.filter(func.lower(Car.engine_type) == func.lower(fuel_type))
-                
             if transmission:
                 query = query.filter(func.lower(Car.transmission) == func.lower(transmission))
-                
             if price_from:
                 query = query.filter(Listing.price >= price_from)
-                
             if price_to:
                 query = query.filter(Listing.price <= price_to)
             
-            # Filter for active listings only
-            query = query.filter(Listing.is_active == True)
+            query = query.filter(Listing.is_active == True) # Only active listings
+            query = query.order_by(Listing.listing_date.desc()) # Newest first
+            query = query.limit(200) # Limiting results for performance
             
-            # Order by latest listings first
-            query = query.order_by(Listing.listing_date.desc())
-            
-            # Limit results
-            query = query.limit(200)
-            
-            # Execute query
             results = query.all()
             
-            # Convert to list of dictionaries
+            # Formatting the listings for the API response
             for row in results:
-                engine_display = ""
+                engine_display = "Nav norādīts"
                 if row.engine_volume and row.engine_type:
                     engine_display = f"{row.engine_volume}L {row.engine_type}"
                 elif row.engine_type:
                     engine_display = row.engine_type
-                else:
-                    engine_display = "Nav norādīts"
+                
                 listings.append({
                     'brand': row.brand,
                     'model': row.model,
-                    'year': row.year,  # Numeric year for sorting
-                    'year_display': str(row.year),  # Just use the year as is
+                    'year': row.year,
+                    'year_display': str(row.year),
                     'engine': engine_display,
                     'engine_type': row.engine_type or "Nav norādīts",
                     'engine_volume': row.engine_volume,
@@ -140,39 +127,250 @@ def search_cars():
                     'mileage': row.mileage or 0,
                     'body_type': row.body_type or "Nav norādīts",
                     'color': row.color or "Nav norādīts",
-                    'tech_inspection': row.tech_inspection or "Nav norādīts",  # Added tech_inspection
+                    'tech_inspection': row.tech_inspection or "Nav norādīts",
                     'price': row.price,
                     'listing_date': row.listing_date.strftime('%Y-%m-%d') if row.listing_date else "",
                     'listing_url': row.listing_url,
-                    'url': row.listing_url,  # Add both for compatibility
-                    'region': row.region or "Nav norādīts",
-                    'id': row.external_id or f"listing-{hash(str(row.listing_url))}"
+                    'url': row.listing_url, # For compatibility
+                    'region': row.region or "Nav norādīts", # Region from the database
+                    'id': row.external_id or f"listing-{hash(str(row.listing_url))}" # Unique ID
                 })
         
-        # Prepare response
-        response = {
+        response_data = {
             "statistics": statistics if statistics else {},
             "listings": listings
         }
         
-        return jsonify(response)
+        return jsonify(response_data)
         
     except Exception as e:
-        logger.error(f"Error in search endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error during car search: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while searching for cars."}), 500
+
+
+@app.route('/api/listing-details', methods=['GET'])
+def listing_details():
+    """Fetches and scrapes full details for a single listing URL."""
+    listing_url = request.args.get('url')
+    if not listing_url:
+        logger_listing_details.warning("Listing details request made without a URL.")
+        return jsonify({"error": "URL parameter is required"}), 400
+
+    logger_listing_details.info(f"Attempting to fetch details for URL: {listing_url}")
+
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept-Language': 'lv-LV,lv;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Connection': 'keep-alive',
+            'Referer': 'https://www.ss.lv/'
+        }
+        
+        response = requests.get(listing_url, headers=headers, timeout=15)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        details_to_return = {}
+
+        # 1. Extract just the description text (before the tables)
+        description_div = soup.select_one('div#msg_div_msg')
+        if description_div:
+            # Remove both the parameters table and the price table
+            description_copy = description_div.__copy__()
+            
+            # Remove the options table
+            options_table = description_copy.select_one('table.options_list')
+            if options_table:
+                options_table.extract()
+            
+            # Remove all tables that contain price-related content
+            price_tables = description_copy.find_all('table')
+            for table in price_tables:
+                # Check if this table contains price information by looking for various indicators
+                price_indicators = [
+                    table.find('td', class_='ads_opt_name_big'),  # Class used for "Cena:" cell
+                    table.find('td', class_='ads_price'),         # Class used for price cell
+                    table.find('span', class_='ads_price'),       # Price span
+                    table.find('a', class_='a9a'),               # OCTA insurance link
+                    table.find('img', src=lambda x: x and 'octa_logo.png' in x)  # OCTA logo
+                ]
+                
+                # If any of these indicators are found, remove the table
+                if any(price_indicators):
+                    table.extract()
+                    continue
+                
+                # Also check for text content that includes "Cena:" or "€"
+                table_text = table.get_text()
+                if 'Cena:' in table_text or '€' in table_text or 'apdrošināšanu' in table_text:
+                    table.extract()
+            
+            # Get the text content and clean it up
+            description_text = description_copy.get_text(separator='\n', strip=True)
+            # Remove extra whitespace and empty lines
+            lines = [line.strip() for line in description_text.split('\n') if line.strip()]
+            description_text = '\n'.join(lines)
+            
+            details_to_return['description'] = description_text
+        else:
+            details_to_return['description'] = None
+            logger_listing_details.warning(f"Main description element 'div#msg_div_msg' not found for {listing_url}")
+
+        # 2. Extract publication date from footer
+        date_cell = soup.select_one('td.msg_footer[align="right"]')
+        if date_cell and 'Datums:' in date_cell.get_text():
+            # Extract just the date part after "Datums: "
+            date_text = date_cell.get_text().strip()
+            if 'Datums:' in date_text:
+                publication_date = date_text.split('Datums:')[1].strip()
+                details_to_return['publication_date'] = publication_date
+        else:
+            details_to_return['publication_date'] = None
+            logger_listing_details.warning(f"Publication date not found for {listing_url}")
+
+        # 3. Finding the main image URL
+        image_elem = soup.select_one('img#msg_img_img')
+        if image_elem and image_elem.has_attr('src'):
+            details_to_return['image_url'] = image_elem['src']
+        else:
+            image_elem_fallback = soup.select_one('div#big_pic_div img')
+            if image_elem_fallback and image_elem_fallback.has_attr('src'):
+                details_to_return['image_url'] = image_elem_fallback['src']
+            else:
+                details_to_return['image_url'] = None
+                logger_listing_details.warning(f"Main image element not found for {listing_url}")
+
+        # 4. Parsing the parameters table
+        params_table = soup.select_one('div#msg_div_msg table.options_list')
+        extracted_params = {}
+        if params_table:
+            rows = params_table.select('tr')
+            for row in rows:
+                label_cell = row.select_one('td.ads_opt_name')
+                value_cell = row.select_one('td.ads_opt')
+                if label_cell and value_cell:
+                    label_text = label_cell.get_text(strip=True).lower()
+                    value_text = value_cell.get_text(strip=True)
+                    
+                    # Clean up the value text (remove extra spaces)
+                    value_text = ' '.join(value_text.split())
+                    
+                    # Mapping labels to our desired keys
+                    if 'marka' in label_text:
+                        # Extract just the brand and model from the bold text
+                        bold_elem = value_cell.select_one('b')
+                        if bold_elem:
+                            extracted_params['brand_model_detail'] = bold_elem.get_text(strip=True)
+                        else:
+                            extracted_params['brand_model_detail'] = value_text
+                    elif 'izlaiduma gads' in label_text:
+                        extracted_params['year_detail'] = value_text
+                    elif 'dzinēja tips' in label_text or 'motors' in label_text:
+                        extracted_params['engine_detail'] = value_text
+                    elif 'ātr.kārba' in label_text or 'ātrumkārba' in label_text:
+                        extracted_params['transmission_detail'] = value_text
+                    elif 'nobraukums' in label_text:
+                        # Clean up mileage text (remove thousands separators)
+                        mileage_digits = ''.join(filter(str.isdigit, value_text))
+                        extracted_params['mileage_detail'] = mileage_digits
+                    elif 'krāsa' in label_text:
+                        # Get color without the color swatch
+                        color_text = value_text.split('\n')[0].strip()
+                        extracted_params['color_detail'] = color_text
+                    elif 'virsbūves tips' in label_text:
+                        extracted_params['body_type_detail'] = value_text
+                    elif 'tehniskā apskate' in label_text:
+                        extracted_params['tech_inspection'] = value_text
+            details_to_return.update(extracted_params)
+        else:
+            logger_listing_details.warning(f"Main parameters table not found for {listing_url}")
+
+        # 5. Extract price
+        price_elem = soup.select_one('span.ads_price#tdo_8')
+        if price_elem:
+            price_text = price_elem.get_text(strip=True)
+            # Remove currency symbol and spaces
+            price_clean = price_text.replace('€', '').replace(' ', '').replace(',', '')
+            try:
+                details_to_return['price_detail'] = int(price_clean)
+            except ValueError:
+                details_to_return['price_detail'] = price_text
+        else:
+            logger_listing_details.warning(f"Price element not found for {listing_url}")
+
+        # 6. Gathering the list of equipment
+        equipment_list = []
+        # Look for checkboxes in the description area
+        if description_div:
+            checkboxes = description_div.select('input[type="checkbox"]')
+            for checkbox in checkboxes:
+                # Get the label text associated with the checkbox
+                label = checkbox.find_next_sibling(text=True)
+                if label:
+                    equipment_list.append(label.strip())
+        
+        # Also check for equipment in the description text itself
+        if details_to_return.get('description'):
+            desc_text = details_to_return['description']
+            # Look for patterns like "• Equipment item" or "- Equipment item"
+            lines = desc_text.split('\n')
+            for line in lines:
+                line = line.strip()
+                if line.startswith('•') or line.startswith('-'):
+                    equipment_list.append(line[1:].strip())
+        
+        details_to_return['equipment'] = equipment_list
+        
+        # 7. Extract Region from the Contacts Table
+        contacts_table = soup.select_one('table.contacts_table')
+        if contacts_table:
+            rows = contacts_table.select('tr')
+            for row in rows:
+                label_cell = row.select_one('td.ads_contacts_name')
+                value_cell = row.select_one('td.ads_contacts')
+                
+                if label_cell and value_cell:
+                    label_text_contact = label_cell.get_text(strip=True)
+                    if label_text_contact == 'Vieta:':
+                        details_to_return['region'] = value_cell.get_text(strip=True)
+                        logger_listing_details.info(f"Found Region in contacts section: {details_to_return['region']}")
+                        break
+        else:
+            logger_listing_details.info(f"Contacts table not found for {listing_url}")
+        
+        # Log a summary of what was found
+        logger_listing_details.info(
+            f"Scraping for {listing_url} complete. Desc: {bool(details_to_return.get('description'))}, "
+            f"Img: {bool(details_to_return.get('image_url'))}, PubDate: {details_to_return.get('publication_date')}, "
+            f"TechInsp: {bool(details_to_return.get('tech_inspection'))}, "
+            f"Equip#: {len(details_to_return.get('equipment',[]))}, Region: {details_to_return.get('region')}"
+        )
+        
+        return jsonify(details_to_return)
+        
+    except requests.exceptions.Timeout:
+        logger_listing_details.error(f"Timeout while fetching details from {listing_url}")
+        return jsonify({"error": "Timeout trying to reach SS.LV to get listing details."}), 504
+    except requests.exceptions.RequestException as e:
+        logger_listing_details.error(f"Network error while fetching details from {listing_url}: {str(e)}")
+        return jsonify({"error": f"Could not connect to SS.LV to get listing details: {type(e).__name__}"}), 502
+    except Exception as e:
+        logger_listing_details.error(f"An unexpected error occurred while parsing details for {listing_url}: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to parse listing details from the page."}), 500
+
 
 @app.route('/api/debug/counts', methods=['GET'])
 def debug_counts():
-    """Debug endpoint to get counts of cars by brand"""
+    """Debug endpoint to get counts of cars by brand and model."""
     try:
-        from models import Brand, Model, Car, Listing
-        from sqlalchemy import func
+        from sqlalchemy import func # Specific import for this function
         
-        # Get brand parameter
-        brand = request.args.get('brand')
+        brand_name_filter = request.args.get('brand') # Optional brand filter
         
-        # Base query for all cars of this brand
-        query = (
+        # Query for total cars per brand
+        query_cars_by_brand = (
             analyzer.session.query(
                 Brand.name, 
                 func.count(Car.car_id).label('car_count')
@@ -182,8 +380,8 @@ def debug_counts():
             .group_by(Brand.name)
         )
         
-        # Query for active listings
-        active_query = (
+        # Query for active listings per brand
+        query_active_listings_by_brand = (
             analyzer.session.query(
                 Brand.name, 
                 func.count(Listing.listing_id).label('listing_count')
@@ -195,19 +393,17 @@ def debug_counts():
             .group_by(Brand.name)
         )
         
-        # If brand is specified, filter by brand
-        if brand:
-            query = query.filter(func.lower(Brand.name) == func.lower(brand))
-            active_query = active_query.filter(func.lower(Brand.name) == func.lower(brand))
+        if brand_name_filter: # Apply filter if brand is provided
+            query_cars_by_brand = query_cars_by_brand.filter(func.lower(Brand.name) == func.lower(brand_name_filter))
+            query_active_listings_by_brand = query_active_listings_by_brand.filter(func.lower(Brand.name) == func.lower(brand_name_filter))
         
-        # Execute queries
-        cars_by_brand = {row[0]: row[1] for row in query.all()}
-        active_listings_by_brand = {row[0]: row[1] for row in active_query.all()}
+        cars_by_brand_results = {row[0]: row[1] for row in query_cars_by_brand.all()}
+        active_listings_by_brand_results = {row[0]: row[1] for row in query_active_listings_by_brand.all()}
         
-        # Get specific models for the brand if specified
-        models_data = []
-        if brand:
-            models_query = (
+        # If a brand is specified, also get model counts for that brand
+        models_data_for_brand = []
+        if brand_name_filter:
+            query_models_for_brand = (
                 analyzer.session.query(
                     Model.name,
                     func.count(Listing.listing_id).label('count')
@@ -215,343 +411,308 @@ def debug_counts():
                 .join(Brand, Model.brand_id == Brand.brand_id)
                 .join(Car, Model.model_id == Car.model_id)
                 .join(Listing, Car.car_id == Listing.car_id)
-                .filter(func.lower(Brand.name) == func.lower(brand))
+                .filter(func.lower(Brand.name) == func.lower(brand_name_filter))
                 .filter(Listing.is_active == True)
                 .group_by(Model.name)
             )
-            
-            models_data = [{"model": row[0], "count": row[1]} for row in models_query.all()]
+            models_data_for_brand = [{"model": row[0], "count": row[1]} for row in query_models_for_brand.all()]
         
         return jsonify({
-            "cars_by_brand": cars_by_brand,
-            "active_listings_by_brand": active_listings_by_brand,
-            "models": models_data
+            "cars_by_brand": cars_by_brand_results,
+            "active_listings_by_brand": active_listings_by_brand_results,
+            "models_for_specific_brand": models_data_for_brand if brand_name_filter else "Provide a 'brand' query parameter for model counts."
         })
         
     except Exception as e:
-        logger.error(f"Error in debug counts endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error in debug counts endpoint: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to retrieve debug counts."}), 500
     
-
-@app.route('/api/listing-details', methods=['GET'])
-def listing_details():
-    """API endpoint to get full listing details including description"""
-    try:
-        listing_url = request.args.get('url')
-        if not listing_url:
-            return jsonify({"error": "URL is required"}), 400
-        
-        # You can use BeautifulSoup to scrape additional details
-        import requests
-        from bs4 import BeautifulSoup
-        
-        response = requests.get(listing_url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Extract description
-        description_elem = soup.select_one('.msg_div_msg')
-        description = description_elem.text.strip() if description_elem else None
-        
-        # Extract equipment/features
-        equipment = []
-        equipment_section = soup.select('.options_list tr')
-        for row in equipment_section:
-            cells = row.select('td')
-            if len(cells) >= 2 and cells[1].text.strip() == '+':
-                equipment.append(cells[0].text.strip())
-        
-        # Extract image URL
-        image_elem = soup.select_one('#bigimage img')
-        image_url = image_elem['src'] if image_elem else None
-        
-        return jsonify({
-            "description": description,
-            "equipment": equipment,
-            "image_url": image_url
-        })
-        
-    except Exception as e:
-        logger.error(f"Error in listing-details endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/estimate', methods=['POST'])
 def estimate_value():
-    """API endpoint for car value estimation"""
+    """Estimates car value based on provided parameters."""
     try:
         data = request.json
         
-        # Extract parameters
         brand = data.get('brand')
         model = data.get('model')
         year = data.get('year')
         mileage = data.get('mileage')
-        fuel_type = data.get('fuelType')
+        fuel_type = data.get('fuelType') # Note: frontend sends 'fuelType'
         transmission = data.get('transmission')
         
-        if not all([brand, model, year, mileage]):
-            return jsonify({"error": "Missing required parameters"}), 400
+        if not all([brand, model, year, mileage]): # Basic validation
+            return jsonify({"error": "Missing required parameters for estimation (brand, model, year, mileage)"}), 400
         
-        logger.info(f"Estimate request: {brand} {model} ({year}), {mileage} km")
+        logger.info(f"Value estimation request for: {brand} {model} ({year}), {mileage}km, Fuel: {fuel_type}, Transmission: {transmission}")
         
-        # Get value estimation
-        estimation = analyzer.estimate_car_value(
+        estimation_result = analyzer.estimate_car_value(
             brand=brand,
             model=model,
             year=int(year),
             mileage=int(mileage),
-            engine_type=fuel_type,
+            engine_type=fuel_type, # Pass it as engine_type to analyzer
             transmission=transmission
         )
         
-        if not estimation:
-            return jsonify({"error": "Insufficient data for estimation"}), 404
+        if not estimation_result:
+            logger.warning(f"Could not estimate value for {brand} {model} - insufficient data.")
+            return jsonify({"error": "Insufficient data for estimation for the given parameters."}), 404
         
-        # Get similar listings
-        listings = analyzer.get_similar_listings(
+        similar_listings_results = analyzer.get_similar_listings(
             brand=brand,
             model=model,
             year=int(year),
             mileage=int(mileage),
             engine_type=fuel_type,
-            limit=10
+            limit=10 # Fetch up to 10 similar listings
         )
         
-        # Prepare response
-        response = {
-            "estimation": estimation,
-            "similar_listings": listings
+        response_data = {
+            "estimation": estimation_result,
+            "similar_listings": similar_listings_results
         }
         
-        return jsonify(response)
+        return jsonify(response_data)
         
+    except ValueError: # Catch errors from int() conversion
+        logger.error(f"Invalid data type for estimation parameters (year/mileage should be numbers).")
+        return jsonify({"error": "Invalid data type for year or mileage."}), 400
     except Exception as e:
-        logger.error(f"Error in estimate endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error during value estimation: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred during value estimation."}), 500
 
 
 @app.route('/api/price-history', methods=['GET'])
 def price_history():
-    """API endpoint for price history data"""
+    """Provides price history data for a specific car model."""
     try:
         brand = request.args.get('brand')
         model = request.args.get('model')
-        months = request.args.get('months', default=6, type=int)
+        months = request.args.get('months', default=6, type=int) # Default to 6 months
         
         if not brand or not model:
-            return jsonify({"error": "Brand and model are required"}), 400
+            return jsonify({"error": "Brand and model parameters are required for price history."}), 400
         
-        logger.info(f"Price history request: {brand} {model}, {months} months")
+        logger.info(f"Price history request for: {brand} {model}, looking back {months} months.")
         
-        # Get price history data
-        history_data = analyzer.get_price_history(
+        history_data_results = analyzer.get_price_history(
             brand=brand,
             model=model,
             months=months
         )
         
-        if not history_data:
-            return jsonify({"error": "No price history data available"}), 404
+        if not history_data_results or not history_data_results.get('labels'): # Check if actual data was returned
+            logger.warning(f"No price history data found for {brand} {model} for the last {months} months.")
+            return jsonify({"error": "No price history data available for the selected criteria."}), 404
         
-        return jsonify(history_data)
+        return jsonify(history_data_results)
         
     except Exception as e:
-        logger.error(f"Error in price-history endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error fetching price history: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while fetching price history."}), 500
 
 
 @app.route('/api/charts/price-distribution', methods=['GET'])
 def price_distribution_chart():
-    """API endpoint for price distribution chart"""
+    """Generates data for a price distribution chart."""
     try:
         brand = request.args.get('brand')
-        model = request.args.get('model')
-        year_from = request.args.get('yearFrom', type=int)
-        year_to = request.args.get('yearTo', type=int)
+        model = request.args.get('model') # Optional
+        year_from = request.args.get('yearFrom', type=int) # Optional
+        year_to = request.args.get('yearTo', type=int) # Optional
         
-        logger.info(f"Price distribution chart request: {brand} {model}, {year_from}-{year_to}")
+        logger.info(f"Price distribution chart request: Brand={brand}, Model={model}, YearRange={year_from}-{year_to}")
         
-        # Generate chart
-        chart_data = analyzer.create_price_distribution_chart(
+        chart_data_result = analyzer.create_price_distribution_chart(
             brand=brand,
             model=model,
             year_from=year_from,
             year_to=year_to
         )
         
-        if not chart_data and model:
-            # If no data for the specific model, try getting data for the brand
-            logger.info(f"No chart data for {brand} {model}, trying brand-level data")
-            chart_data = analyzer.create_price_distribution_chart(
+        # If no data for specific model, try for the brand overall (as in original logic)
+        if not chart_data_result and model and brand:
+            logger.info(f"No chart data for {brand} {model}, attempting brand-level chart for {brand}.")
+            chart_data_result = analyzer.create_price_distribution_chart(
                 brand=brand,
-                model=None,  # Remove model constraint
+                model=None, # No model constraint
                 year_from=year_from,
                 year_to=year_to
             )
         
-        if not chart_data:
-            return jsonify({"error": "Insufficient data for chart generation"}), 404
+        if not chart_data_result:
+            logger.warning(f"Insufficient data to generate price distribution chart for Brand={brand}, Model={model}.")
+            return jsonify({"error": "Insufficient data for chart generation."}), 404
         
-        return jsonify({"chart": chart_data})
+        return jsonify({"chart": chart_data_result}) # The chart data is base64 encoded image string
         
     except Exception as e:
-        logger.error(f"Error in price-distribution endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error generating price distribution chart: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while generating the price distribution chart."}), 500
 
 
 @app.route('/api/charts/price-trend', methods=['GET'])
 def price_trend_chart():
-    """API endpoint for price trend chart"""
+    """Generates data for a price trend chart."""
     try:
         brand = request.args.get('brand')
-        model = request.args.get('model')
-        months = request.args.get('months', default=12, type=int)
+        model = request.args.get('model') # Optional
+        months = request.args.get('months', default=12, type=int) # Default to 12 months
         
-        if not brand:
-            return jsonify({"error": "Brand is required"}), 400
+        if not brand: # Brand is mandatory for trend chart
+            return jsonify({"error": "Brand parameter is required for price trend chart."}), 400
         
-        logger.info(f"Price trend chart request: {brand} {model}, {months} months")
+        logger.info(f"Price trend chart request: Brand={brand}, Model={model}, Months={months}")
         
-        # Generate chart
-        chart_data = analyzer.create_price_trend_chart(
+        chart_data_result = analyzer.create_price_trend_chart(
             brand=brand,
             model=model,
             months=months
         )
         
-        if not chart_data and model:
-            # If no data for the specific model, try getting data for the brand
-            logger.info(f"No price trend chart data for {brand} {model}, trying brand-level data")
-            chart_data = analyzer.create_price_trend_chart(
+        # If no data for specific model, try for the brand overall
+        if not chart_data_result and model:
+            logger.info(f"No price trend chart data for {brand} {model}, attempting brand-level trend for {brand}.")
+            chart_data_result = analyzer.create_price_trend_chart(
                 brand=brand,
-                model=None,  # Remove model constraint
+                model=None, # No model constraint
                 months=months
             )
+
+        if not chart_data_result:
+            logger.warning(f"Insufficient data to generate price trend chart for Brand={brand}, Model={model}.")
+            return jsonify({"error": "Insufficient data for chart generation."}), 404
         
-        if not chart_data:
-            return jsonify({"error": "Insufficient data for chart generation"}), 404
-        
-        return jsonify({"chart": chart_data})
+        return jsonify({"chart": chart_data_result}) # Base64 encoded image string
         
     except Exception as e:
-        logger.error(f"Error in price-trend endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error generating price trend chart: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while generating the price trend chart."}), 500
 
 
 @app.route('/api/popular/brands', methods=['GET'])
 def popular_brands():
-    """API endpoint for popular brands"""
+    """Returns a list of popular car brands."""
     try:
-        limit = request.args.get('limit', default=10, type=int)
+        limit = request.args.get('limit', default=10, type=int) # How many brands to return
         
-        # Get popular brands
-        brands = analyzer.get_popular_brands(limit=limit)
+        popular_brands_results = analyzer.get_popular_brands(limit=limit)
         
-        return jsonify({
-            "brands": [{"name": name, "count": count} for name, count in brands]
-        })
+        # Formatting for the API response
+        formatted_brands = [{"name": name, "count": count} for name, count in popular_brands_results]
+        
+        return jsonify({"brands": formatted_brands})
         
     except Exception as e:
-        logger.error(f"Error in popular-brands endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error fetching popular brands: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while fetching popular brands."}), 500
 
 
 @app.route('/api/popular/models', methods=['GET'])
 def popular_models():
-    """API endpoint for popular models"""
+    """Returns a list of popular car models, optionally filtered by brand."""
     try:
-        brand = request.args.get('brand')
-        limit = request.args.get('limit', default=10, type=int)
+        brand = request.args.get('brand') # Optional brand filter
+        limit = request.args.get('limit', default=10, type=int) # How many models to return
         
-        # Get popular models
-        models = analyzer.get_popular_models(brand=brand, limit=limit)
+        popular_models_results = analyzer.get_popular_models(brand=brand, limit=limit)
         
-        return jsonify({
-            "models": [{"brand": brand, "model": model, "count": count} for brand, model, count in models]
-        })
+        # Formatting for the API response
+        formatted_models = [{"brand": b, "model": m, "count": c} for b, m, c in popular_models_results]
+        
+        return jsonify({"models": formatted_models})
         
     except Exception as e:
-        logger.error(f"Error in popular-models endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error fetching popular models: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while fetching popular models."}), 500
 
 
 @app.route('/api/scrape', methods=['POST'])
 def scrape_data():
-    """API endpoint to trigger data scraping process (admin only)"""
+    """Triggers the data scraping process. Should be admin-protected in a real app."""
     try:
-        # TODO: Add authentication to restrict access to admin users
+        # TODO: Implement proper authentication/authorization for this endpoint.
+        logger.info("Data scraping process initiated via API request.")
         
-        logger.info("Data scraping request received")
-        
-        # Get parameters from request if provided
+        # Parameters for scraping, from request or defaults
         data = request.json or {}
-        max_brands = data.get('max_brands', 5)
-        models_per_brand = data.get('models_per_brand', 3)
-        pages_per_model = data.get('pages_per_model', 2)
+        max_brands_to_scrape = data.get('max_brands', 5) # Example: scrape top 5 brands
+        models_per_brand_to_scrape = data.get('models_per_brand', 3) # Top 3 models per brand
+        pages_per_model_to_scrape = data.get('pages_per_model', 2) # 2 pages of listings per model
         
-        # Run scraping using the new scraper
-        results = run_ss_scraper(
-            max_brands=max_brands,
-            models_per_brand=models_per_brand,
-            pages_per_model=pages_per_model
+        # Calling the scraper function (ensure ss_scraper.py's run_ss_scraper is robust)
+        scraping_results = run_ss_scraper( # This function is from your ss_scraper.py
+            # target_brands=None, # Or pass specific brands if needed
+            pages_per_model=pages_per_model_to_scrape,
+            # db_url=None, # Uses default from ss_scraper
+            # debug_mode=False # Or get from request
         )
         
-        return jsonify({"status": "success", "results": results})
+        logger.info(f"Scraping completed. Results: {scraping_results}")
+        return jsonify({"status": "Scraping process finished.", "results": scraping_results})
         
     except Exception as e:
-        logger.error(f"Error in scrape endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error during API-triggered scraping: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred during the scraping process."}), 500
 
 
 @app.route('/api/status', methods=['GET'])
 def system_status():
-    """API endpoint for system status"""
-    from models import Brand, Model, Car, Listing, Source
-    
+    """Provides current status of the system and database counts."""
     try:
-        # Get counts
+        # Getting various counts from the database
         brand_count = session.query(Brand).count()
         model_count = session.query(Model).count()
         car_count = session.query(Car).count()
         listing_count = session.query(Listing).count()
-        source_count = session.query(Source).count()
+        source_count = session.query(Source).count() # Assuming you have a Source model
         
-        # Get last scraping timestamp
-        latest_scrape = session.query(Source.name, Source.last_scraped_at).filter(Source.last_scraped_at != None).order_by(Source.last_scraped_at.desc()).first()
-        last_scraped = {
-            "source": latest_scrape[0],
-            "timestamp": latest_scrape[1].isoformat() if latest_scrape and latest_scrape[1] else None
-        } if latest_scrape else None
+        # Finding the last scrape time from the Source table
+        latest_scrape_info = session.query(Source.name, Source.last_scraped_at)\
+            .filter(Source.last_scraped_at != None)\
+            .order_by(Source.last_scraped_at.desc()).first()
+            
+        last_scraped_details = {
+            "source": latest_scrape_info[0] if latest_scrape_info else "N/A",
+            "timestamp": latest_scrape_info[1].isoformat() if latest_scrape_info and latest_scrape_info[1] else None
+        }
         
-        # Get latest listings
-        latest_listings = session.query(Listing.listing_date).order_by(Listing.listing_date.desc()).first()
-        latest_date = latest_listings[0] if latest_listings else None
+        # Finding the date of the newest listing in the database
+        latest_listing_date_tuple = session.query(Listing.listing_date)\
+            .order_by(Listing.listing_date.desc()).first()
+        newest_listing_date = latest_listing_date_tuple[0].isoformat() if latest_listing_date_tuple and latest_listing_date_tuple[0] else None
         
-        status = {
-            "database": {
+        status_info = {
+            "database_counts": {
                 "brands": brand_count,
                 "models": model_count,
                 "cars": car_count,
                 "listings": listing_count,
                 "sources": source_count
             },
-            "scraping": {
-                "last_scrape": last_scraped,
-                "latest_listing_date": latest_date.isoformat() if latest_date else None
+            "last_scrape_activity": {
+                "details": last_scraped_details,
+                "latest_listing_found_date": newest_listing_date
             },
-            "system": {
-                "version": "1.0.0",
-                "status": "operational",
-                "timestamp": datetime.now().isoformat()
+            "system_info": {
+                "version": "1.0.0", # Your app version
+                "status_message": "System is operational.",
+                "current_server_time": datetime.now().isoformat()
             }
         }
         
-        return jsonify(status)
+        return jsonify(status_info)
         
     except Exception as e:
-        logger.error(f"Error in status endpoint: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Error retrieving system status: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to retrieve system status."}), 500
 
 
 if __name__ == "__main__":
-    # Run the Flask app
-    app.run(debug=True, port=5000)
+    # This block runs when the script is executed directly (e.g., python api.py)
+    # Ensure your database session and analyzer are available to the routes if they are not already
+    # globally initialized or created per request. The current setup initializes them globally.
+    
+    logger.info("Starting Car Price Analysis API server...")
+    app.run(debug=True, port=5000) # Runs the Flask development server
