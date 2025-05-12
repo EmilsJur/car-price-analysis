@@ -6637,3 +6637,1367 @@
 2025-05-13 00:16:56,173 - ss_scraper - INFO - New listings: 196
 2025-05-13 00:16:56,173 - ss_scraper - INFO - Updated listings: 0
 2025-05-13 00:16:56,174 - ss_scraper - INFO - Errors: 0
+2025-05-13 00:33:07,975 - ss_scraper - INFO - Adding SS.LV as a data source
+2025-05-13 00:33:07,980 - ss_scraper - INFO - Using source_id 1 for SS.LV
+2025-05-13 00:33:07,980 - ss_scraper - INFO - Starting the scraper at 2025-05-13 00:33:07.980980
+2025-05-13 00:33:07,981 - ss_scraper - INFO - Getting car brands from SS.LV
+2025-05-13 00:33:08,018 - ss_scraper - INFO - Found 4 target car brands
+2025-05-13 00:33:08,019 - ss_scraper - INFO - Starting to scrape brand: Infiniti
+2025-05-13 00:33:08,019 - ss_scraper - INFO - Getting models for Infiniti
+2025-05-13 00:33:08,056 - ss_scraper - INFO - Found 5 models for Infiniti
+2025-05-13 00:33:08,057 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti FX
+2025-05-13 00:33:08,057 - ss_scraper - INFO - Getting listings for Infiniti Infiniti FX
+2025-05-13 00:33:08,057 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/fx/
+2025-05-13 00:33:08,087 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:33:08,090 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:33:08,105 - ss_scraper - INFO - Row 13, ID 56145562: Skipping exchange/buying listing.
+2025-05-13 00:33:08,111 - ss_scraper - INFO - Found 16 total listings for Infiniti Infiniti FX after processing all pages.
+2025-05-13 00:33:08,183 - ss_scraper - INFO - Adding new brand: Infiniti
+2025-05-13 00:33:08,190 - ss_scraper - INFO - Adding new model: Infiniti Infiniti FX
+2025-05-13 00:33:08,195 - ss_scraper - INFO - Adding new region: Rīga
+2025-05-13 00:33:08,207 - ss_scraper - INFO - Added new listing: 54746773
+2025-05-13 00:33:08,222 - ss_scraper - INFO - Adding new region: Daugavpils un raj.
+2025-05-13 00:33:08,229 - ss_scraper - INFO - Added new listing: 56334335
+2025-05-13 00:33:08,246 - ss_scraper - INFO - Added new listing: 56249864
+2025-05-13 00:33:08,270 - ss_scraper - INFO - Added new listing: 56088036
+2025-05-13 00:33:08,300 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56130732
+2025-05-13 00:33:08,300 - ss_scraper - INFO - Skipping listing as marked: 56130732
+2025-05-13 00:33:08,325 - ss_scraper - INFO - Adding new region: Liepāja un raj.
+2025-05-13 00:33:08,333 - ss_scraper - INFO - Added new listing: 56197335
+2025-05-13 00:33:08,368 - ss_scraper - INFO - Added new listing: 55401515
+2025-05-13 00:33:08,400 - ss_scraper - INFO - Adding new region: Valmiera un raj.
+2025-05-13 00:33:08,406 - ss_scraper - INFO - Added new listing: 55953052
+2025-05-13 00:33:08,423 - ss_scraper - INFO - Added new listing: 56241552
+2025-05-13 00:33:08,470 - ss_scraper - INFO - Added new listing: 55890011
+2025-05-13 00:33:08,488 - ss_scraper - INFO - Added new listing: 55235422
+2025-05-13 00:33:08,507 - ss_scraper - INFO - Adding new region: Ventspils un raj.
+2025-05-13 00:33:08,515 - ss_scraper - INFO - Added new listing: 55566593
+2025-05-13 00:33:08,540 - ss_scraper - INFO - Added new listing: 55164933
+2025-05-13 00:33:08,559 - ss_scraper - INFO - Added new listing: 55075065
+2025-05-13 00:33:08,589 - ss_scraper - INFO - Added new listing: 55517237
+2025-05-13 00:33:08,620 - ss_scraper - INFO - Adding new region: Talsi un raj.
+2025-05-13 00:33:08,626 - ss_scraper - INFO - Added new listing: 56145559
+2025-05-13 00:33:10,234 - ss_scraper - INFO - Processed 16 listings for Infiniti Infiniti FX
+2025-05-13 00:33:10,235 - ss_scraper - INFO - Results: {'new': 15, 'updated': 0, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:33:11,402 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti Q30
+2025-05-13 00:33:11,402 - ss_scraper - INFO - Getting listings for Infiniti Infiniti Q30
+2025-05-13 00:33:11,403 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/q30/
+2025-05-13 00:33:11,439 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:33:11,439 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:33:11,441 - ss_scraper - INFO - Row 2, ID 55963871: Skipping exchange/buying listing.
+2025-05-13 00:33:11,442 - ss_scraper - INFO - Found 2 total listings for Infiniti Infiniti Q30 after processing all pages.
+2025-05-13 00:33:11,515 - ss_scraper - INFO - Adding new model: Infiniti Infiniti Q30
+2025-05-13 00:33:11,522 - ss_scraper - INFO - Added new listing: 55482795
+2025-05-13 00:33:11,536 - ss_scraper - INFO - Adding new region: Jelgava un raj.
+2025-05-13 00:33:11,543 - ss_scraper - INFO - Added new listing: 56332300
+2025-05-13 00:33:13,309 - ss_scraper - INFO - Processed 2 listings for Infiniti Infiniti Q30
+2025-05-13 00:33:13,309 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:16,104 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti QX56
+2025-05-13 00:33:16,104 - ss_scraper - INFO - Getting listings for Infiniti Infiniti QX56
+2025-05-13 00:33:16,104 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/qx56/
+2025-05-13 00:33:16,129 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:33:16,130 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:33:16,133 - ss_scraper - INFO - Found 3 total listings for Infiniti Infiniti QX56 after processing all pages.
+2025-05-13 00:33:16,163 - ss_scraper - INFO - Adding new model: Infiniti Infiniti QX56
+2025-05-13 00:33:16,166 - ss_scraper - INFO - Adding new region: Rīgas rajons
+2025-05-13 00:33:16,172 - ss_scraper - INFO - Added new listing: 56330766
+2025-05-13 00:33:16,181 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55810705
+2025-05-13 00:33:16,181 - ss_scraper - INFO - Skipping listing as marked: 55810705
+2025-05-13 00:33:16,195 - ss_scraper - INFO - Adding new region: Cēsis un raj.
+2025-05-13 00:33:16,203 - ss_scraper - INFO - Added new listing: 56263111
+2025-05-13 00:33:17,682 - ss_scraper - INFO - Processed 3 listings for Infiniti Infiniti QX56
+2025-05-13 00:33:17,683 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:33:19,680 - ss_scraper - INFO - Starting to scrape model: Infiniti Citi
+2025-05-13 00:33:19,680 - ss_scraper - INFO - Getting listings for Infiniti Citi
+2025-05-13 00:33:19,680 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/another/
+2025-05-13 00:33:19,716 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 00:33:19,716 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 00:33:19,724 - ss_scraper - INFO - Found 10 total listings for Infiniti Citi after processing all pages.
+2025-05-13 00:33:19,757 - ss_scraper - INFO - Adding new model: Infiniti Citi
+2025-05-13 00:33:19,763 - ss_scraper - INFO - Added new listing: 54839212
+2025-05-13 00:33:19,781 - ss_scraper - INFO - Added new listing: 54727642
+2025-05-13 00:33:19,800 - ss_scraper - INFO - Added new listing: 56063291
+2025-05-13 00:33:19,816 - ss_scraper - INFO - Adding new region: Ogre un raj.
+2025-05-13 00:33:19,823 - ss_scraper - INFO - Added new listing: 56328413
+2025-05-13 00:33:19,842 - ss_scraper - INFO - Added new listing: 55660414
+2025-05-13 00:33:19,858 - ss_scraper - INFO - Added new listing: 51250000
+2025-05-13 00:33:19,878 - ss_scraper - INFO - Added new listing: 54632479
+2025-05-13 00:33:19,892 - ss_scraper - INFO - Adding new region: Preiļi un raj.
+2025-05-13 00:33:19,899 - ss_scraper - INFO - Added new listing: 55430318
+2025-05-13 00:33:19,913 - ss_scraper - INFO - Added new listing: 55089285
+2025-05-13 00:33:19,934 - ss_scraper - INFO - Added new listing: 56200691
+2025-05-13 00:33:21,725 - ss_scraper - INFO - Processed 10 listings for Infiniti Citi
+2025-05-13 00:33:21,725 - ss_scraper - INFO - Results: {'new': 10, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:22,925 - ss_scraper - INFO - Starting to scrape model: Infiniti Vieglo auto maiņa
+2025-05-13 00:33:22,925 - ss_scraper - INFO - Getting listings for Infiniti Vieglo auto maiņa
+2025-05-13 00:33:22,925 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/exchange/
+2025-05-13 00:33:22,951 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:33:22,951 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:33:22,952 - ss_scraper - WARNING - Row 0, ID 56145562: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:33:22,953 - ss_scraper - WARNING - Row 1, ID 55963871: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:33:22,954 - ss_scraper - INFO - Found 0 total listings for Infiniti Vieglo auto maiņa after processing all pages.
+2025-05-13 00:33:22,954 - ss_scraper - WARNING - No listings found for Infiniti Vieglo auto maiņa
+2025-05-13 00:33:25,692 - ss_scraper - INFO - Finished scraping brand Infiniti. Processed 31 listings.
+2025-05-13 00:33:28,673 - ss_scraper - INFO - Starting to scrape brand: Smart
+2025-05-13 00:33:28,673 - ss_scraper - INFO - Getting models for Smart
+2025-05-13 00:33:28,737 - ss_scraper - INFO - Found 6 models for Smart
+2025-05-13 00:33:28,737 - ss_scraper - INFO - Starting to scrape model: Smart Smart Crossblade
+2025-05-13 00:33:28,737 - ss_scraper - INFO - Getting listings for Smart Smart Crossblade
+2025-05-13 00:33:28,737 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/crossblade/
+2025-05-13 00:33:28,785 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:33:28,785 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:33:28,786 - ss_scraper - INFO - Found 0 total listings for Smart Smart Crossblade after processing all pages.
+2025-05-13 00:33:28,786 - ss_scraper - WARNING - No listings found for Smart Smart Crossblade
+2025-05-13 00:33:29,901 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForFour
+2025-05-13 00:33:29,902 - ss_scraper - INFO - Getting listings for Smart Smart ForFour
+2025-05-13 00:33:29,902 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/forfour/
+2025-05-13 00:33:29,940 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 00:33:29,940 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 00:33:29,946 - ss_scraper - INFO - Found 5 total listings for Smart Smart ForFour after processing all pages.
+2025-05-13 00:33:29,979 - ss_scraper - INFO - Adding new brand: Smart
+2025-05-13 00:33:29,984 - ss_scraper - INFO - Adding new model: Smart Smart ForFour
+2025-05-13 00:33:29,987 - ss_scraper - INFO - Adding new region: Jūrmala
+2025-05-13 00:33:29,993 - ss_scraper - INFO - Added new listing: 56341084
+2025-05-13 00:33:30,010 - ss_scraper - INFO - Added new listing: 54390045
+2025-05-13 00:33:30,022 - ss_scraper - INFO - Adding new region: Gulbene un raj.
+2025-05-13 00:33:30,029 - ss_scraper - INFO - Added new listing: 56331643
+2025-05-13 00:33:30,037 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916765
+2025-05-13 00:33:30,043 - ss_scraper - INFO - Added new listing: 55916765
+2025-05-13 00:33:30,053 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55767179
+2025-05-13 00:33:30,078 - ss_scraper - INFO - Added new listing: 55767179
+2025-05-13 00:33:31,887 - ss_scraper - INFO - Processed 5 listings for Smart Smart ForFour
+2025-05-13 00:33:31,888 - ss_scraper - INFO - Results: {'new': 5, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:33,110 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForTwo
+2025-05-13 00:33:33,110 - ss_scraper - INFO - Getting listings for Smart Smart ForTwo
+2025-05-13 00:33:33,111 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/fortwo/
+2025-05-13 00:33:33,141 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 26 rows. Console level should be DEBUG.
+2025-05-13 00:33:33,141 - ss_scraper - INFO - Found 26 potential listing rows on this page
+2025-05-13 00:33:33,149 - ss_scraper - INFO - Row 8, ID 56337546: Skipping exchange/buying listing.
+2025-05-13 00:33:33,150 - ss_scraper - INFO - Row 10, ID 56329357: Skipping exchange/buying listing.
+2025-05-13 00:33:33,159 - ss_scraper - INFO - Found 23 total listings for Smart Smart ForTwo after processing all pages.
+2025-05-13 00:33:33,193 - ss_scraper - INFO - Adding new model: Smart Smart ForTwo
+2025-05-13 00:33:33,200 - ss_scraper - INFO - Added new listing: 56178436
+2025-05-13 00:33:33,214 - ss_scraper - INFO - Added new listing: 56277624
+2025-05-13 00:33:33,227 - ss_scraper - INFO - Added new listing: 56179921
+2025-05-13 00:33:33,240 - ss_scraper - INFO - Added new listing: 56135931
+2025-05-13 00:33:33,248 - ss_scraper - INFO - Adding new region: Valka un raj.
+2025-05-13 00:33:33,254 - ss_scraper - INFO - Added new listing: 56349381
+2025-05-13 00:33:33,270 - ss_scraper - INFO - Added new listing: 56344874
+2025-05-13 00:33:33,285 - ss_scraper - INFO - Added new listing: 56282945
+2025-05-13 00:33:33,302 - ss_scraper - INFO - Added new listing: 56221897
+2025-05-13 00:33:33,314 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55392965
+2025-05-13 00:33:33,320 - ss_scraper - INFO - Added new listing: 55392965
+2025-05-13 00:33:33,333 - ss_scraper - INFO - Added new listing: 55675450
+2025-05-13 00:33:33,345 - ss_scraper - INFO - Added new listing: 56320991
+2025-05-13 00:33:33,353 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916671
+2025-05-13 00:33:33,359 - ss_scraper - INFO - Added new listing: 55916671
+2025-05-13 00:33:33,374 - ss_scraper - INFO - Added new listing: 56309534
+2025-05-13 00:33:33,388 - ss_scraper - INFO - Adding new region: Rēzekne un raj.
+2025-05-13 00:33:33,395 - ss_scraper - INFO - Added new listing: 55554048
+2025-05-13 00:33:33,411 - ss_scraper - INFO - Added new listing: 56108973
+2025-05-13 00:33:33,425 - ss_scraper - INFO - Adding new region: Cits
+2025-05-13 00:33:33,433 - ss_scraper - INFO - Added new listing: 56174123
+2025-05-13 00:33:33,450 - ss_scraper - INFO - Added new listing: 56284458
+2025-05-13 00:33:33,466 - ss_scraper - INFO - Added new listing: 56286385
+2025-05-13 00:33:33,480 - ss_scraper - INFO - Added new listing: 55866475
+2025-05-13 00:33:33,492 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 53558462
+2025-05-13 00:33:33,498 - ss_scraper - INFO - Added new listing: 53558462
+2025-05-13 00:33:33,512 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 54341372
+2025-05-13 00:33:33,518 - ss_scraper - INFO - Added new listing: 54341372
+2025-05-13 00:33:33,526 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 56039220
+2025-05-13 00:33:33,532 - ss_scraper - INFO - Added new listing: 56039220
+2025-05-13 00:33:33,549 - ss_scraper - INFO - Added new listing: 56135614
+2025-05-13 00:33:35,467 - ss_scraper - INFO - Processed 23 listings for Smart Smart ForTwo
+2025-05-13 00:33:35,468 - ss_scraper - INFO - Results: {'new': 23, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:36,775 - ss_scraper - INFO - Starting to scrape model: Smart Smart Roadster
+2025-05-13 00:33:36,775 - ss_scraper - INFO - Getting listings for Smart Smart Roadster
+2025-05-13 00:33:36,775 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/roadster/
+2025-05-13 00:33:36,812 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 5 rows. Console level should be DEBUG.
+2025-05-13 00:33:36,812 - ss_scraper - INFO - Found 5 potential listing rows on this page
+2025-05-13 00:33:36,816 - ss_scraper - INFO - Found 4 total listings for Smart Smart Roadster after processing all pages.
+2025-05-13 00:33:36,843 - ss_scraper - INFO - Adding new model: Smart Smart Roadster
+2025-05-13 00:33:36,849 - ss_scraper - INFO - Added new listing: 56353946
+2025-05-13 00:33:36,862 - ss_scraper - INFO - Added new listing: 56354795
+2025-05-13 00:33:36,875 - ss_scraper - INFO - Added new listing: 56272014
+2025-05-13 00:33:36,891 - ss_scraper - INFO - Added new listing: 55829114
+2025-05-13 00:33:38,842 - ss_scraper - INFO - Processed 4 listings for Smart Smart Roadster
+2025-05-13 00:33:38,843 - ss_scraper - INFO - Results: {'new': 4, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:40,403 - ss_scraper - INFO - Starting to scrape model: Smart Citi
+2025-05-13 00:33:40,403 - ss_scraper - INFO - Getting listings for Smart Citi
+2025-05-13 00:33:40,403 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/another/
+2025-05-13 00:33:40,452 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:33:40,453 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:33:40,454 - ss_scraper - INFO - Found 0 total listings for Smart Citi after processing all pages.
+2025-05-13 00:33:40,454 - ss_scraper - WARNING - No listings found for Smart Citi
+2025-05-13 00:33:42,061 - ss_scraper - INFO - Starting to scrape model: Smart Vieglo auto maiņa
+2025-05-13 00:33:42,061 - ss_scraper - INFO - Getting listings for Smart Vieglo auto maiņa
+2025-05-13 00:33:42,061 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/exchange/
+2025-05-13 00:33:42,086 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:33:42,087 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:33:42,088 - ss_scraper - WARNING - Row 0, ID 56337546: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:33:42,088 - ss_scraper - WARNING - Row 1, ID 56329357: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:33:42,090 - ss_scraper - INFO - Found 0 total listings for Smart Vieglo auto maiņa after processing all pages.
+2025-05-13 00:33:42,090 - ss_scraper - WARNING - No listings found for Smart Vieglo auto maiņa
+2025-05-13 00:33:44,874 - ss_scraper - INFO - Finished scraping brand Smart. Processed 32 listings.
+2025-05-13 00:33:48,735 - ss_scraper - INFO - Starting to scrape brand: Suzuki
+2025-05-13 00:33:48,735 - ss_scraper - INFO - Getting models for Suzuki
+2025-05-13 00:33:48,789 - ss_scraper - INFO - Found 14 models for Suzuki
+2025-05-13 00:33:48,790 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Alto
+2025-05-13 00:33:48,790 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Alto
+2025-05-13 00:33:48,790 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/alto/
+2025-05-13 00:33:48,818 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:33:48,819 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:33:48,822 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Alto after processing all pages.
+2025-05-13 00:33:48,856 - ss_scraper - INFO - Adding new brand: Suzuki
+2025-05-13 00:33:48,861 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Alto
+2025-05-13 00:33:48,874 - ss_scraper - INFO - Added new listing: 55993457
+2025-05-13 00:33:50,580 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Alto
+2025-05-13 00:33:50,580 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:52,099 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Grand Vitara
+2025-05-13 00:33:52,099 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Grand Vitara
+2025-05-13 00:33:52,099 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/grand-vitara/
+2025-05-13 00:33:52,127 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 17 rows. Console level should be DEBUG.
+2025-05-13 00:33:52,127 - ss_scraper - INFO - Found 17 potential listing rows on this page
+2025-05-13 00:33:52,141 - ss_scraper - INFO - Found 15 total listings for Suzuki Suzuki Grand Vitara after processing all pages.
+2025-05-13 00:33:52,177 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Grand Vitara
+2025-05-13 00:33:52,186 - ss_scraper - INFO - Added new listing: 56350900
+2025-05-13 00:33:52,204 - ss_scraper - INFO - Added new listing: 54965823
+2025-05-13 00:33:52,220 - ss_scraper - INFO - Added new listing: 56326691
+2025-05-13 00:33:52,253 - ss_scraper - INFO - Added new listing: 56344964
+2025-05-13 00:33:52,269 - ss_scraper - INFO - Added new listing: 55857829
+2025-05-13 00:33:52,281 - ss_scraper - INFO - Adding new region: Krāslava un raj.
+2025-05-13 00:33:52,287 - ss_scraper - INFO - Added new listing: 56339108
+2025-05-13 00:33:52,304 - ss_scraper - INFO - Added new listing: 55026363
+2025-05-13 00:33:52,319 - ss_scraper - INFO - Added new listing: 55606679
+2025-05-13 00:33:52,334 - ss_scraper - INFO - Added new listing: 56320471
+2025-05-13 00:33:52,349 - ss_scraper - INFO - Added new listing: 56208270
+2025-05-13 00:33:52,364 - ss_scraper - INFO - Added new listing: 56110071
+2025-05-13 00:33:52,379 - ss_scraper - INFO - Added new listing: 55879537
+2025-05-13 00:33:52,395 - ss_scraper - INFO - Added new listing: 56266339
+2025-05-13 00:33:52,405 - ss_scraper - INFO - Adding new region: Bauska un raj.
+2025-05-13 00:33:52,412 - ss_scraper - INFO - Added new listing: 56254700
+2025-05-13 00:33:52,427 - ss_scraper - INFO - Added new listing: 55965489
+2025-05-13 00:33:54,144 - ss_scraper - INFO - Processed 15 listings for Suzuki Suzuki Grand Vitara
+2025-05-13 00:33:54,144 - ss_scraper - INFO - Results: {'new': 15, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:33:56,837 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Ignis
+2025-05-13 00:33:56,837 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Ignis
+2025-05-13 00:33:56,838 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/ignis/
+2025-05-13 00:33:56,871 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:33:56,872 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:33:56,874 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Ignis after processing all pages.
+2025-05-13 00:33:56,926 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Ignis
+2025-05-13 00:33:56,933 - ss_scraper - INFO - Added new listing: 54757255
+2025-05-13 00:33:57,621 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Ignis
+2025-05-13 00:33:57,621 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:00,585 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimni
+2025-05-13 00:34:00,585 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimni
+2025-05-13 00:34:00,585 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimni/
+2025-05-13 00:34:00,609 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:34:00,610 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:34:00,612 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Jimni after processing all pages.
+2025-05-13 00:34:00,643 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimni
+2025-05-13 00:34:00,649 - ss_scraper - INFO - Added new listing: 56308801
+2025-05-13 00:34:02,351 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Jimni
+2025-05-13 00:34:02,351 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:04,946 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimny
+2025-05-13 00:34:04,946 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimny
+2025-05-13 00:34:04,947 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimny/
+2025-05-13 00:34:04,985 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 00:34:04,986 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 00:34:04,993 - ss_scraper - INFO - Found 8 total listings for Suzuki Suzuki Jimny after processing all pages.
+2025-05-13 00:34:05,018 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55183582
+2025-05-13 00:34:05,018 - ss_scraper - INFO - Skipping listing as marked: 55183582
+2025-05-13 00:34:05,032 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Jimny
+2025-05-13 00:34:05,039 - ss_scraper - INFO - Added new listing: 55255184
+2025-05-13 00:34:05,055 - ss_scraper - INFO - Added new listing: 55994551
+2025-05-13 00:34:05,070 - ss_scraper - INFO - Added new listing: 56312234
+2025-05-13 00:34:05,083 - ss_scraper - INFO - Added new listing: 55651363
+2025-05-13 00:34:05,102 - ss_scraper - INFO - Added new listing: 55898463
+2025-05-13 00:34:05,116 - ss_scraper - INFO - Added new listing: 56179973
+2025-05-13 00:34:05,130 - ss_scraper - INFO - Added new listing: 55668230
+2025-05-13 00:34:07,066 - ss_scraper - INFO - Processed 8 listings for Suzuki Suzuki Jimny
+2025-05-13 00:34:07,067 - ss_scraper - INFO - Results: {'new': 7, 'updated': 0, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:34:10,029 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Liana
+2025-05-13 00:34:10,029 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Liana
+2025-05-13 00:34:10,029 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/liana/
+2025-05-13 00:34:10,054 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:34:10,055 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:34:10,058 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Liana after processing all pages.
+2025-05-13 00:34:10,093 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Liana
+2025-05-13 00:34:10,100 - ss_scraper - INFO - Added new listing: 55410083
+2025-05-13 00:34:10,115 - ss_scraper - INFO - Added new listing: 56331076
+2025-05-13 00:34:10,132 - ss_scraper - INFO - Added new listing: 56337010
+2025-05-13 00:34:11,534 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Liana
+2025-05-13 00:34:11,535 - ss_scraper - INFO - Results: {'new': 3, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:12,945 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Samurai
+2025-05-13 00:34:12,945 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Samurai
+2025-05-13 00:34:12,945 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/samurai/
+2025-05-13 00:34:12,980 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:34:12,980 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:34:12,981 - ss_scraper - INFO - Row 0, ID 54644471: Skipping exchange/buying listing.
+2025-05-13 00:34:12,983 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Samurai after processing all pages.
+2025-05-13 00:34:13,014 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Samurai
+2025-05-13 00:34:13,021 - ss_scraper - INFO - Added new listing: 55859335
+2025-05-13 00:34:14,680 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Samurai
+2025-05-13 00:34:14,680 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:17,505 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SJ 410
+2025-05-13 00:34:17,505 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SJ 410
+2025-05-13 00:34:17,505 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sj-410/
+2025-05-13 00:34:17,541 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:34:17,542 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:34:17,543 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki SJ 410 after processing all pages.
+2025-05-13 00:34:17,573 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SJ 410
+2025-05-13 00:34:17,580 - ss_scraper - INFO - Added new listing: 56046803
+2025-05-13 00:34:18,149 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki SJ 410
+2025-05-13 00:34:18,150 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:20,837 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Swift
+2025-05-13 00:34:20,837 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Swift
+2025-05-13 00:34:20,837 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/swift/
+2025-05-13 00:34:20,874 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:34:20,875 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:34:20,878 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Swift after processing all pages.
+2025-05-13 00:34:20,910 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Swift
+2025-05-13 00:34:20,917 - ss_scraper - INFO - Added new listing: 56113138
+2025-05-13 00:34:20,933 - ss_scraper - INFO - Added new listing: 56276311
+2025-05-13 00:34:20,949 - ss_scraper - INFO - Added new listing: 56351046
+2025-05-13 00:34:22,694 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Swift
+2025-05-13 00:34:22,694 - ss_scraper - INFO - Results: {'new': 3, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:25,507 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SX4
+2025-05-13 00:34:25,507 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SX4
+2025-05-13 00:34:25,507 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sx4/
+2025-05-13 00:34:25,547 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 00:34:25,548 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 00:34:25,548 - ss_scraper - INFO - Row 0, ID 56199588: Skipping exchange/buying listing.
+2025-05-13 00:34:25,549 - ss_scraper - INFO - Row 1, ID 54834110: Skipping exchange/buying listing.
+2025-05-13 00:34:25,554 - ss_scraper - INFO - Row 8, ID 56034763: Skipping exchange/buying listing.
+2025-05-13 00:34:25,555 - ss_scraper - INFO - Found 7 total listings for Suzuki Suzuki SX4 after processing all pages.
+2025-05-13 00:34:25,590 - ss_scraper - INFO - Adding new model: Suzuki Suzuki SX4
+2025-05-13 00:34:25,597 - ss_scraper - INFO - Added new listing: 55902865
+2025-05-13 00:34:25,610 - ss_scraper - INFO - Added new listing: 56347442
+2025-05-13 00:34:25,647 - ss_scraper - INFO - Added new listing: 56339455
+2025-05-13 00:34:25,661 - ss_scraper - INFO - Adding new region: Ludza un raj.
+2025-05-13 00:34:25,667 - ss_scraper - INFO - Added new listing: 56131611
+2025-05-13 00:34:25,685 - ss_scraper - INFO - Added new listing: 55883238
+2025-05-13 00:34:25,693 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55618593
+2025-05-13 00:34:25,693 - ss_scraper - INFO - Skipping listing as marked: 55618593
+2025-05-13 00:34:25,713 - ss_scraper - INFO - Added new listing: 56034761
+2025-05-13 00:34:27,476 - ss_scraper - INFO - Processed 7 listings for Suzuki Suzuki SX4
+2025-05-13 00:34:27,477 - ss_scraper - INFO - Results: {'new': 6, 'updated': 0, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:34:29,564 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Vitara
+2025-05-13 00:34:29,564 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Vitara
+2025-05-13 00:34:29,564 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/vitara/
+2025-05-13 00:34:29,593 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:34:29,593 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:34:29,594 - ss_scraper - INFO - Row 0, ID 56354961: Skipping exchange/buying listing.
+2025-05-13 00:34:29,606 - ss_scraper - INFO - Found 16 total listings for Suzuki Suzuki Vitara after processing all pages.
+2025-05-13 00:34:29,657 - ss_scraper - INFO - Adding new model: Suzuki Suzuki Vitara
+2025-05-13 00:34:29,663 - ss_scraper - INFO - Added new listing: 54040917
+2025-05-13 00:34:29,680 - ss_scraper - INFO - Added new listing: 56354055
+2025-05-13 00:34:29,699 - ss_scraper - INFO - Added new listing: 56070812
+2025-05-13 00:34:29,716 - ss_scraper - INFO - Added new listing: 56064345
+2025-05-13 00:34:29,734 - ss_scraper - INFO - Added new listing: 56339371
+2025-05-13 00:34:29,755 - ss_scraper - INFO - Added new listing: 56138185
+2025-05-13 00:34:29,775 - ss_scraper - INFO - Added new listing: 56162503
+2025-05-13 00:34:29,790 - ss_scraper - INFO - Added new listing: 56062743
+2025-05-13 00:34:29,808 - ss_scraper - INFO - Added new listing: 56257606
+2025-05-13 00:34:29,824 - ss_scraper - INFO - Added new listing: 56188082
+2025-05-13 00:34:29,841 - ss_scraper - INFO - Added new listing: 56224574
+2025-05-13 00:34:29,857 - ss_scraper - INFO - Added new listing: 56294699
+2025-05-13 00:34:29,884 - ss_scraper - INFO - Added new listing: 56178887
+2025-05-13 00:34:29,904 - ss_scraper - INFO - Added new listing: 56140084
+2025-05-13 00:34:29,919 - ss_scraper - INFO - Added new listing: 56218877
+2025-05-13 00:34:29,936 - ss_scraper - INFO - Added new listing: 56218931
+2025-05-13 00:34:31,656 - ss_scraper - INFO - Processed 16 listings for Suzuki Suzuki Vitara
+2025-05-13 00:34:31,657 - ss_scraper - INFO - Results: {'new': 16, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:33,255 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki X-90
+2025-05-13 00:34:33,255 - ss_scraper - INFO - Getting listings for Suzuki Suzuki X-90
+2025-05-13 00:34:33,256 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/x-90/
+2025-05-13 00:34:33,291 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:34:33,291 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:34:33,294 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki X-90 after processing all pages.
+2025-05-13 00:34:33,326 - ss_scraper - INFO - Adding new model: Suzuki Suzuki X-90
+2025-05-13 00:34:33,334 - ss_scraper - INFO - Added new listing: 55815289
+2025-05-13 00:34:33,350 - ss_scraper - INFO - Added new listing: 56220373
+2025-05-13 00:34:34,638 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki X-90
+2025-05-13 00:34:34,638 - ss_scraper - INFO - Results: {'new': 2, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:36,421 - ss_scraper - INFO - Starting to scrape model: Suzuki Citi
+2025-05-13 00:34:36,421 - ss_scraper - INFO - Getting listings for Suzuki Citi
+2025-05-13 00:34:36,422 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/another/
+2025-05-13 00:34:36,456 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:34:36,456 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:34:36,459 - ss_scraper - INFO - Found 1 total listings for Suzuki Citi after processing all pages.
+2025-05-13 00:34:36,493 - ss_scraper - INFO - Adding new model: Suzuki Citi
+2025-05-13 00:34:36,497 - ss_scraper - INFO - Adding new region: Igaunija
+2025-05-13 00:34:36,504 - ss_scraper - INFO - Added new listing: 55066776
+2025-05-13 00:34:37,543 - ss_scraper - INFO - Processed 1 listings for Suzuki Citi
+2025-05-13 00:34:37,543 - ss_scraper - INFO - Results: {'new': 1, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:38,818 - ss_scraper - INFO - Starting to scrape model: Suzuki Vieglo auto maiņa
+2025-05-13 00:34:38,818 - ss_scraper - INFO - Getting listings for Suzuki Vieglo auto maiņa
+2025-05-13 00:34:38,818 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/exchange/
+2025-05-13 00:34:38,857 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 00:34:38,857 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 00:34:38,858 - ss_scraper - WARNING - Row 0, ID 56354961: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:38,859 - ss_scraper - WARNING - Row 1, ID 56199588: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:38,859 - ss_scraper - WARNING - Row 2, ID 54834110: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:38,860 - ss_scraper - WARNING - Row 3, ID 54644471: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:38,860 - ss_scraper - WARNING - Row 4, ID 56034763: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:38,861 - ss_scraper - INFO - Found 0 total listings for Suzuki Vieglo auto maiņa after processing all pages.
+2025-05-13 00:34:38,862 - ss_scraper - WARNING - No listings found for Suzuki Vieglo auto maiņa
+2025-05-13 00:34:40,228 - ss_scraper - INFO - Finished scraping brand Suzuki. Processed 60 listings.
+2025-05-13 00:34:43,960 - ss_scraper - INFO - Starting to scrape brand: Tesla
+2025-05-13 00:34:43,960 - ss_scraper - INFO - Getting models for Tesla
+2025-05-13 00:34:44,007 - ss_scraper - INFO - Found 6 models for Tesla
+2025-05-13 00:34:44,007 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model 3
+2025-05-13 00:34:44,008 - ss_scraper - INFO - Getting listings for Tesla Tesla Model 3
+2025-05-13 00:34:44,008 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-3/
+2025-05-13 00:34:44,041 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 31 rows. Console level should be DEBUG.
+2025-05-13 00:34:44,042 - ss_scraper - INFO - Found 31 potential listing rows on this page
+2025-05-13 00:34:44,054 - ss_scraper - INFO - Row 17, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 00:34:44,056 - ss_scraper - WARNING - Row 20, ID 56132058: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:34:44,063 - ss_scraper - INFO - Found 28 total listings for Tesla Tesla Model 3 after processing all pages.
+2025-05-13 00:34:44,106 - ss_scraper - INFO - Adding new brand: Tesla
+2025-05-13 00:34:44,109 - ss_scraper - INFO - Adding new model: Tesla Tesla Model 3
+2025-05-13 00:34:44,115 - ss_scraper - INFO - Added new listing: 56354235
+2025-05-13 00:34:44,134 - ss_scraper - INFO - Added new listing: 56353593
+2025-05-13 00:34:44,174 - ss_scraper - INFO - Added new listing: 55854200
+2025-05-13 00:34:44,198 - ss_scraper - INFO - Added new listing: 56279213
+2025-05-13 00:34:44,219 - ss_scraper - INFO - Added new listing: 56279176
+2025-05-13 00:34:44,240 - ss_scraper - INFO - Added new listing: 56308441
+2025-05-13 00:34:44,261 - ss_scraper - INFO - Added new listing: 56350049
+2025-05-13 00:34:44,280 - ss_scraper - INFO - Added new listing: 56348493
+2025-05-13 00:34:44,300 - ss_scraper - INFO - Added new listing: 56262009
+2025-05-13 00:34:44,322 - ss_scraper - INFO - Added new listing: 55754730
+2025-05-13 00:34:44,343 - ss_scraper - INFO - Added new listing: 56344533
+2025-05-13 00:34:44,364 - ss_scraper - INFO - Added new listing: 56205466
+2025-05-13 00:34:44,382 - ss_scraper - INFO - Added new listing: 56032876
+2025-05-13 00:34:44,404 - ss_scraper - INFO - Added new listing: 56162234
+2025-05-13 00:34:44,427 - ss_scraper - INFO - Added new listing: 55758488
+2025-05-13 00:34:44,446 - ss_scraper - INFO - Added new listing: 56330989
+2025-05-13 00:34:44,466 - ss_scraper - INFO - Added new listing: 56133187
+2025-05-13 00:34:44,488 - ss_scraper - INFO - Added new listing: 56240770
+2025-05-13 00:34:44,501 - ss_scraper - INFO - Added new listing: 56227746
+2025-05-13 00:34:44,514 - ss_scraper - INFO - Added new listing: 55941718
+2025-05-13 00:34:44,524 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56021507
+2025-05-13 00:34:44,524 - ss_scraper - INFO - Skipping listing as marked: 56021507
+2025-05-13 00:34:44,546 - ss_scraper - INFO - Added new listing: 55750307
+2025-05-13 00:34:44,568 - ss_scraper - INFO - Added new listing: 55748649
+2025-05-13 00:34:44,590 - ss_scraper - INFO - Added new listing: 56315501
+2025-05-13 00:34:44,603 - ss_scraper - INFO - Added new listing: 56311160
+2025-05-13 00:34:44,616 - ss_scraper - INFO - Added new listing: 56273714
+2025-05-13 00:34:44,629 - ss_scraper - INFO - Added new listing: 56273736
+2025-05-13 00:34:44,648 - ss_scraper - INFO - Added new listing: 56221656
+2025-05-13 00:34:46,453 - ss_scraper - INFO - Processed 28 listings for Tesla Tesla Model 3
+2025-05-13 00:34:46,453 - ss_scraper - INFO - Results: {'new': 27, 'updated': 0, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:34:48,357 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model S
+2025-05-13 00:34:48,357 - ss_scraper - INFO - Getting listings for Tesla Tesla Model S
+2025-05-13 00:34:48,358 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-s/
+2025-05-13 00:34:48,399 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 25 rows. Console level should be DEBUG.
+2025-05-13 00:34:48,400 - ss_scraper - INFO - Found 25 potential listing rows on this page
+2025-05-13 00:34:48,418 - ss_scraper - INFO - Found 24 total listings for Tesla Tesla Model S after processing all pages.
+2025-05-13 00:34:48,450 - ss_scraper - INFO - Adding new model: Tesla Tesla Model S
+2025-05-13 00:34:48,456 - ss_scraper - INFO - Added new listing: 56008706
+2025-05-13 00:34:48,474 - ss_scraper - INFO - Adding new region: Kuldīga un raj.
+2025-05-13 00:34:48,480 - ss_scraper - INFO - Added new listing: 56351063
+2025-05-13 00:34:48,500 - ss_scraper - INFO - Added new listing: 56284015
+2025-05-13 00:34:48,513 - ss_scraper - INFO - Added new listing: 55823235
+2025-05-13 00:34:48,549 - ss_scraper - INFO - Added new listing: 56108045
+2025-05-13 00:34:48,561 - ss_scraper - INFO - Added new listing: 55826057
+2025-05-13 00:34:48,575 - ss_scraper - INFO - Added new listing: 55823224
+2025-05-13 00:34:48,592 - ss_scraper - INFO - Added new listing: 56132345
+2025-05-13 00:34:48,622 - ss_scraper - INFO - Added new listing: 56329160
+2025-05-13 00:34:48,636 - ss_scraper - INFO - Added new listing: 56256069
+2025-05-13 00:34:48,652 - ss_scraper - INFO - Added new listing: 56242524
+2025-05-13 00:34:48,681 - ss_scraper - INFO - Added new listing: 56214032
+2025-05-13 00:34:48,705 - ss_scraper - INFO - Added new listing: 56323864
+2025-05-13 00:34:48,722 - ss_scraper - INFO - Added new listing: 56092783
+2025-05-13 00:34:48,742 - ss_scraper - INFO - Added new listing: 56226091
+2025-05-13 00:34:48,764 - ss_scraper - INFO - Added new listing: 56287044
+2025-05-13 00:34:48,800 - ss_scraper - INFO - Added new listing: 55885579
+2025-05-13 00:34:48,815 - ss_scraper - INFO - Added new listing: 56025024
+2025-05-13 00:34:48,847 - ss_scraper - INFO - Added new listing: 56052401
+2025-05-13 00:34:49,025 - ss_scraper - INFO - Added new listing: 56219138
+2025-05-13 00:34:49,041 - ss_scraper - INFO - Added new listing: 56079697
+2025-05-13 00:34:49,068 - ss_scraper - INFO - Added new listing: 56101526
+2025-05-13 00:34:49,091 - ss_scraper - INFO - Added new listing: 55957038
+2025-05-13 00:34:49,121 - ss_scraper - INFO - Added new listing: 56278362
+2025-05-13 00:34:50,862 - ss_scraper - INFO - Processed 24 listings for Tesla Tesla Model S
+2025-05-13 00:34:50,862 - ss_scraper - INFO - Results: {'new': 24, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:51,983 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model X
+2025-05-13 00:34:51,983 - ss_scraper - INFO - Getting listings for Tesla Tesla Model X
+2025-05-13 00:34:51,983 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-x/
+2025-05-13 00:34:52,021 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 00:34:52,021 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 00:34:52,028 - ss_scraper - INFO - Found 8 total listings for Tesla Tesla Model X after processing all pages.
+2025-05-13 00:34:52,064 - ss_scraper - INFO - Adding new model: Tesla Tesla Model X
+2025-05-13 00:34:52,071 - ss_scraper - INFO - Added new listing: 56352680
+2025-05-13 00:34:52,084 - ss_scraper - INFO - Added new listing: 56176897
+2025-05-13 00:34:52,107 - ss_scraper - INFO - Added new listing: 56307453
+2025-05-13 00:34:52,129 - ss_scraper - INFO - Added new listing: 56024425
+2025-05-13 00:34:52,149 - ss_scraper - INFO - Added new listing: 56093641
+2025-05-13 00:34:52,164 - ss_scraper - INFO - Added new listing: 56128172
+2025-05-13 00:34:52,185 - ss_scraper - INFO - Added new listing: 56261096
+2025-05-13 00:34:52,212 - ss_scraper - INFO - Added new listing: 56100683
+2025-05-13 00:34:53,906 - ss_scraper - INFO - Processed 8 listings for Tesla Tesla Model X
+2025-05-13 00:34:53,906 - ss_scraper - INFO - Results: {'new': 8, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:34:55,441 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model Y
+2025-05-13 00:34:55,442 - ss_scraper - INFO - Getting listings for Tesla Tesla Model Y
+2025-05-13 00:34:55,442 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-y/
+2025-05-13 00:34:55,485 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:34:55,485 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:34:55,498 - ss_scraper - INFO - Found 18 total listings for Tesla Tesla Model Y after processing all pages.
+2025-05-13 00:34:55,537 - ss_scraper - INFO - Adding new model: Tesla Tesla Model Y
+2025-05-13 00:34:55,543 - ss_scraper - INFO - Added new listing: 56079196
+2025-05-13 00:34:55,562 - ss_scraper - INFO - Added new listing: 56164583
+2025-05-13 00:34:55,575 - ss_scraper - INFO - Added new listing: 56192663
+2025-05-13 00:34:55,601 - ss_scraper - INFO - Added new listing: 56260424
+2025-05-13 00:34:55,644 - ss_scraper - INFO - Added new listing: 56344595
+2025-05-13 00:34:55,665 - ss_scraper - INFO - Added new listing: 56262373
+2025-05-13 00:34:55,684 - ss_scraper - INFO - Added new listing: 56283344
+2025-05-13 00:34:55,705 - ss_scraper - INFO - Added new listing: 56338298
+2025-05-13 00:34:55,729 - ss_scraper - INFO - Added new listing: 55930680
+2025-05-13 00:34:55,749 - ss_scraper - INFO - Added new listing: 55927936
+2025-05-13 00:34:55,763 - ss_scraper - INFO - Added new listing: 56236893
+2025-05-13 00:34:55,796 - ss_scraper - INFO - Added new listing: 56192003
+2025-05-13 00:34:55,817 - ss_scraper - INFO - Added new listing: 56187143
+2025-05-13 00:34:55,854 - ss_scraper - INFO - Added new listing: 56311761
+2025-05-13 00:34:55,874 - ss_scraper - INFO - Added new listing: 55837597
+2025-05-13 00:34:55,908 - ss_scraper - INFO - Added new listing: 56054830
+2025-05-13 00:34:55,931 - ss_scraper - INFO - Adding new region: Tukums un raj.
+2025-05-13 00:34:55,937 - ss_scraper - INFO - Added new listing: 56171198
+2025-05-13 00:34:55,951 - ss_scraper - INFO - Added new listing: 56189392
+2025-05-13 00:34:57,873 - ss_scraper - INFO - Processed 18 listings for Tesla Tesla Model Y
+2025-05-13 00:34:57,873 - ss_scraper - INFO - Results: {'new': 18, 'updated': 0, 'unchanged': 0, 'error': 0}
+2025-05-13 00:35:00,254 - ss_scraper - INFO - Starting to scrape model: Tesla Citi
+2025-05-13 00:35:00,254 - ss_scraper - INFO - Getting listings for Tesla Citi
+2025-05-13 00:35:00,255 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/another/
+2025-05-13 00:35:00,304 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:35:00,304 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:35:00,305 - ss_scraper - WARNING - Row 0, ID 56056422: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:35:00,306 - ss_scraper - INFO - Found 0 total listings for Tesla Citi after processing all pages.
+2025-05-13 00:35:00,306 - ss_scraper - WARNING - No listings found for Tesla Citi
+2025-05-13 00:35:02,140 - ss_scraper - INFO - Starting to scrape model: Tesla Vieglo auto maiņa
+2025-05-13 00:35:02,140 - ss_scraper - INFO - Getting listings for Tesla Vieglo auto maiņa
+2025-05-13 00:35:02,141 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/exchange/
+2025-05-13 00:35:02,181 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:35:02,181 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:35:02,182 - ss_scraper - INFO - Row 0, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 00:35:02,183 - ss_scraper - INFO - Found 0 total listings for Tesla Vieglo auto maiņa after processing all pages.
+2025-05-13 00:35:02,183 - ss_scraper - WARNING - No listings found for Tesla Vieglo auto maiņa
+2025-05-13 00:35:05,133 - ss_scraper - INFO - Finished scraping brand Tesla. Processed 78 listings.
+2025-05-13 00:35:07,987 - ss_scraper - INFO - No listings to mark as inactive
+2025-05-13 00:35:07,991 - ss_scraper - INFO - Scraping completed at 2025-05-13 00:35:07.991947
+2025-05-13 00:35:07,992 - ss_scraper - INFO - Total time: 120.01 seconds
+2025-05-13 00:35:07,992 - ss_scraper - INFO - Total listings processed: 196
+2025-05-13 00:35:07,992 - ss_scraper - INFO - New listings: 196
+2025-05-13 00:35:07,992 - ss_scraper - INFO - Updated listings: 0
+2025-05-13 00:35:07,992 - ss_scraper - INFO - Errors: 0
+2025-05-13 00:55:42,821 - ss_scraper - INFO - Using source_id 1 for SS.LV
+2025-05-13 00:55:42,822 - ss_scraper - INFO - Starting the scraper at 2025-05-13 00:55:42.822508
+2025-05-13 00:55:42,822 - ss_scraper - INFO - Getting car brands from SS.LV
+2025-05-13 00:55:42,878 - ss_scraper - INFO - Found 4 target car brands
+2025-05-13 00:55:42,878 - ss_scraper - INFO - Starting to scrape brand: Infiniti
+2025-05-13 00:55:42,878 - ss_scraper - INFO - Getting models for Infiniti
+2025-05-13 00:55:42,917 - ss_scraper - INFO - Found 5 models for Infiniti
+2025-05-13 00:55:42,917 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti FX
+2025-05-13 00:55:42,917 - ss_scraper - INFO - Getting listings for Infiniti Infiniti FX
+2025-05-13 00:55:42,917 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/fx/
+2025-05-13 00:55:42,947 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:55:42,947 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:55:42,957 - ss_scraper - INFO - Row 13, ID 56145562: Skipping exchange/buying listing.
+2025-05-13 00:55:42,962 - ss_scraper - INFO - Found 16 total listings for Infiniti Infiniti FX after processing all pages.
+2025-05-13 00:55:43,005 - ss_scraper - INFO - Updated engine type for listing 56249864: Benzīns
+2025-05-13 00:55:43,025 - ss_scraper - INFO - Updated engine type for listing 54746773: Dīzelis
+2025-05-13 00:55:43,042 - ss_scraper - INFO - Updated engine type for listing 56334335: Benzīns
+2025-05-13 00:55:43,064 - ss_scraper - INFO - Updated engine type for listing 56088036: Dīzelis
+2025-05-13 00:55:43,080 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56130732
+2025-05-13 00:55:43,080 - ss_scraper - INFO - Skipping listing as marked: 56130732
+2025-05-13 00:55:43,099 - ss_scraper - INFO - Updated engine type for listing 55953052: Dīzelis
+2025-05-13 00:55:43,113 - ss_scraper - INFO - Updated engine type for listing 56197335: Benzīns
+2025-05-13 00:55:43,131 - ss_scraper - INFO - Updated engine type for listing 55401515: Benzīns
+2025-05-13 00:55:43,148 - ss_scraper - INFO - Updated engine type for listing 56241552: Benzīns
+2025-05-13 00:55:43,183 - ss_scraper - INFO - Updated engine type for listing 55890011: Benzīns
+2025-05-13 00:55:43,201 - ss_scraper - INFO - Updated engine type for listing 55235422: Dīzelis
+2025-05-13 00:55:43,218 - ss_scraper - INFO - Updated engine type for listing 55566593: Dīzelis
+2025-05-13 00:55:43,238 - ss_scraper - INFO - Updated engine type for listing 55164933: Dīzelis
+2025-05-13 00:55:43,252 - ss_scraper - INFO - Updated engine type for listing 55075065: Dīzelis
+2025-05-13 00:55:43,270 - ss_scraper - INFO - Updated engine type for listing 55517237: Benzīns
+2025-05-13 00:55:43,291 - ss_scraper - INFO - Updated engine type for listing 56145559: Dīzelis
+2025-05-13 00:55:45,148 - ss_scraper - INFO - Processed 16 listings for Infiniti Infiniti FX
+2025-05-13 00:55:45,148 - ss_scraper - INFO - Results: {'new': 0, 'updated': 15, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:55:46,163 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti Q30
+2025-05-13 00:55:46,163 - ss_scraper - INFO - Getting listings for Infiniti Infiniti Q30
+2025-05-13 00:55:46,163 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/q30/
+2025-05-13 00:55:46,197 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:55:46,197 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:55:46,199 - ss_scraper - INFO - Row 2, ID 55963871: Skipping exchange/buying listing.
+2025-05-13 00:55:46,200 - ss_scraper - INFO - Found 2 total listings for Infiniti Infiniti Q30 after processing all pages.
+2025-05-13 00:55:46,237 - ss_scraper - INFO - Updated engine type for listing 55482795: Dīzelis
+2025-05-13 00:55:46,256 - ss_scraper - INFO - Updated engine type for listing 56332300: Dīzelis
+2025-05-13 00:55:48,237 - ss_scraper - INFO - Processed 2 listings for Infiniti Infiniti Q30
+2025-05-13 00:55:48,237 - ss_scraper - INFO - Results: {'new': 0, 'updated': 2, 'unchanged': 0, 'error': 0}
+2025-05-13 00:55:49,249 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti QX56
+2025-05-13 00:55:49,249 - ss_scraper - INFO - Getting listings for Infiniti Infiniti QX56
+2025-05-13 00:55:49,249 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/qx56/
+2025-05-13 00:55:49,274 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:55:49,275 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:55:49,279 - ss_scraper - INFO - Found 3 total listings for Infiniti Infiniti QX56 after processing all pages.
+2025-05-13 00:55:49,343 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55810705
+2025-05-13 00:55:49,343 - ss_scraper - INFO - Skipping listing as marked: 55810705
+2025-05-13 00:55:49,355 - ss_scraper - INFO - Updated engine type for listing 56330766: Benzīns
+2025-05-13 00:55:49,493 - ss_scraper - INFO - Updated engine type for listing 56263111: Benzīns
+2025-05-13 00:55:50,708 - ss_scraper - INFO - Processed 3 listings for Infiniti Infiniti QX56
+2025-05-13 00:55:50,709 - ss_scraper - INFO - Results: {'new': 0, 'updated': 2, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:55:53,580 - ss_scraper - INFO - Starting to scrape model: Infiniti Citi
+2025-05-13 00:55:53,581 - ss_scraper - INFO - Getting listings for Infiniti Citi
+2025-05-13 00:55:53,581 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/another/
+2025-05-13 00:55:53,633 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 00:55:53,634 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 00:55:53,642 - ss_scraper - INFO - Found 10 total listings for Infiniti Citi after processing all pages.
+2025-05-13 00:55:53,715 - ss_scraper - INFO - Updated engine type for listing 54727642: Dīzelis
+2025-05-13 00:55:53,732 - ss_scraper - INFO - Updated engine type for listing 54839212: Dīzelis
+2025-05-13 00:55:53,751 - ss_scraper - INFO - Updated engine type for listing 56063291: Benzīns
+2025-05-13 00:55:53,772 - ss_scraper - INFO - Updated engine type for listing 56328413: Dīzelis
+2025-05-13 00:55:53,811 - ss_scraper - INFO - Updated engine type for listing 55660414: Dīzelis
+2025-05-13 00:55:53,832 - ss_scraper - INFO - Updated engine type for listing 51250000: Dīzelis
+2025-05-13 00:55:53,861 - ss_scraper - INFO - Updated engine type for listing 54632479: Dīzelis
+2025-05-13 00:55:53,878 - ss_scraper - INFO - Updated engine type for listing 55430318: Benzīns
+2025-05-13 00:55:53,898 - ss_scraper - INFO - Updated engine type for listing 55089285: Dīzelis
+2025-05-13 00:55:53,938 - ss_scraper - INFO - Updated engine type for listing 56200691: Dīzelis
+2025-05-13 00:55:55,808 - ss_scraper - INFO - Processed 10 listings for Infiniti Citi
+2025-05-13 00:55:55,808 - ss_scraper - INFO - Results: {'new': 0, 'updated': 10, 'unchanged': 0, 'error': 0}
+2025-05-13 00:55:58,266 - ss_scraper - INFO - Starting to scrape model: Infiniti Vieglo auto maiņa
+2025-05-13 00:55:58,267 - ss_scraper - INFO - Getting listings for Infiniti Vieglo auto maiņa
+2025-05-13 00:55:58,267 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/exchange/
+2025-05-13 00:55:58,292 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:55:58,293 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:55:58,294 - ss_scraper - WARNING - Row 0, ID 56145562: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:55:58,294 - ss_scraper - WARNING - Row 1, ID 55963871: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:55:58,295 - ss_scraper - INFO - Found 0 total listings for Infiniti Vieglo auto maiņa after processing all pages.
+2025-05-13 00:55:58,296 - ss_scraper - WARNING - No listings found for Infiniti Vieglo auto maiņa
+2025-05-13 00:56:00,017 - ss_scraper - INFO - Finished scraping brand Infiniti. Processed 31 listings.
+2025-05-13 00:56:02,905 - ss_scraper - INFO - Starting to scrape brand: Smart
+2025-05-13 00:56:02,905 - ss_scraper - INFO - Getting models for Smart
+2025-05-13 00:56:02,945 - ss_scraper - INFO - Found 6 models for Smart
+2025-05-13 00:56:02,945 - ss_scraper - INFO - Starting to scrape model: Smart Smart Crossblade
+2025-05-13 00:56:02,945 - ss_scraper - INFO - Getting listings for Smart Smart Crossblade
+2025-05-13 00:56:02,945 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/crossblade/
+2025-05-13 00:56:02,968 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:56:02,968 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:56:02,969 - ss_scraper - INFO - Found 0 total listings for Smart Smart Crossblade after processing all pages.
+2025-05-13 00:56:02,970 - ss_scraper - WARNING - No listings found for Smart Smart Crossblade
+2025-05-13 00:56:05,360 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForFour
+2025-05-13 00:56:05,360 - ss_scraper - INFO - Getting listings for Smart Smart ForFour
+2025-05-13 00:56:05,360 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/forfour/
+2025-05-13 00:56:05,396 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 00:56:05,397 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 00:56:05,401 - ss_scraper - INFO - Found 5 total listings for Smart Smart ForFour after processing all pages.
+2025-05-13 00:56:05,464 - ss_scraper - INFO - Updated engine type for listing 56331643: Benzīns
+2025-05-13 00:56:05,481 - ss_scraper - INFO - Updated engine type for listing 56341084: Dīzelis
+2025-05-13 00:56:05,497 - ss_scraper - INFO - Updated engine type for listing 54390045: Dīzelis
+2025-05-13 00:56:05,509 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916765
+2025-05-13 00:56:05,537 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55767179
+2025-05-13 00:56:07,526 - ss_scraper - INFO - Processed 5 listings for Smart Smart ForFour
+2025-05-13 00:56:07,526 - ss_scraper - INFO - Results: {'new': 0, 'updated': 3, 'unchanged': 2, 'error': 0}
+2025-05-13 00:56:09,245 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForTwo
+2025-05-13 00:56:09,245 - ss_scraper - INFO - Getting listings for Smart Smart ForTwo
+2025-05-13 00:56:09,246 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/fortwo/
+2025-05-13 00:56:09,297 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 26 rows. Console level should be DEBUG.
+2025-05-13 00:56:09,298 - ss_scraper - INFO - Found 26 potential listing rows on this page
+2025-05-13 00:56:09,303 - ss_scraper - INFO - Row 8, ID 56337546: Skipping exchange/buying listing.
+2025-05-13 00:56:09,304 - ss_scraper - INFO - Row 10, ID 56329357: Skipping exchange/buying listing.
+2025-05-13 00:56:09,314 - ss_scraper - INFO - Found 23 total listings for Smart Smart ForTwo after processing all pages.
+2025-05-13 00:56:09,366 - ss_scraper - INFO - Updated engine type for listing 56277624: Benzīns
+2025-05-13 00:56:09,382 - ss_scraper - INFO - Updated engine type for listing 56178436: Benzīns
+2025-05-13 00:56:09,396 - ss_scraper - INFO - Updated engine type for listing 56179921: Benzīns
+2025-05-13 00:56:09,409 - ss_scraper - INFO - Updated engine type for listing 56135931: Benzīns
+2025-05-13 00:56:09,422 - ss_scraper - INFO - Updated engine type for listing 56349381: Benzīns
+2025-05-13 00:56:09,445 - ss_scraper - INFO - Updated engine type for listing 56344874: Dīzelis
+2025-05-13 00:56:09,471 - ss_scraper - INFO - Updated engine type for listing 56282945: Dīzelis
+2025-05-13 00:56:09,494 - ss_scraper - INFO - Updated engine type for listing 56221897: Benzīns
+2025-05-13 00:56:09,523 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55392965
+2025-05-13 00:56:09,550 - ss_scraper - INFO - Updated engine type for listing 55675450: Benzīns
+2025-05-13 00:56:09,574 - ss_scraper - INFO - Updated engine type for listing 56320991: Benzīns
+2025-05-13 00:56:09,601 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916671
+2025-05-13 00:56:09,634 - ss_scraper - INFO - Updated engine type for listing 56309534: Dīzelis
+2025-05-13 00:56:09,661 - ss_scraper - INFO - Updated engine type for listing 55554048: Dīzelis
+2025-05-13 00:56:09,685 - ss_scraper - INFO - Updated engine type for listing 56108973: Benzīns
+2025-05-13 00:56:09,709 - ss_scraper - INFO - Updated engine type for listing 56174123: Dīzelis
+2025-05-13 00:56:09,733 - ss_scraper - INFO - Updated engine type for listing 56284458: Benzīns
+2025-05-13 00:56:09,759 - ss_scraper - INFO - Updated engine type for listing 56286385: Benzīns
+2025-05-13 00:56:09,780 - ss_scraper - INFO - Updated engine type for listing 55866475: Benzīns
+2025-05-13 00:56:09,809 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 53558462
+2025-05-13 00:56:09,827 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 56039220
+2025-05-13 00:56:09,859 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 54341372
+2025-05-13 00:56:10,036 - ss_scraper - INFO - Updated engine type for listing 56135614: Dīzelis
+2025-05-13 00:56:11,812 - ss_scraper - INFO - Processed 23 listings for Smart Smart ForTwo
+2025-05-13 00:56:11,812 - ss_scraper - INFO - Results: {'new': 0, 'updated': 18, 'unchanged': 5, 'error': 0}
+2025-05-13 00:56:13,133 - ss_scraper - INFO - Starting to scrape model: Smart Smart Roadster
+2025-05-13 00:56:13,133 - ss_scraper - INFO - Getting listings for Smart Smart Roadster
+2025-05-13 00:56:13,133 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/roadster/
+2025-05-13 00:56:13,188 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 5 rows. Console level should be DEBUG.
+2025-05-13 00:56:13,188 - ss_scraper - INFO - Found 5 potential listing rows on this page
+2025-05-13 00:56:13,192 - ss_scraper - INFO - Found 4 total listings for Smart Smart Roadster after processing all pages.
+2025-05-13 00:56:13,223 - ss_scraper - INFO - Updated engine type for listing 56354795: Benzīns
+2025-05-13 00:56:13,236 - ss_scraper - INFO - Updated engine type for listing 56353946: Benzīns
+2025-05-13 00:56:13,255 - ss_scraper - INFO - Updated engine type for listing 56272014: Benzīns
+2025-05-13 00:56:13,273 - ss_scraper - INFO - Updated engine type for listing 55829114: Benzīns
+2025-05-13 00:56:15,128 - ss_scraper - INFO - Processed 4 listings for Smart Smart Roadster
+2025-05-13 00:56:15,128 - ss_scraper - INFO - Results: {'new': 0, 'updated': 4, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:17,341 - ss_scraper - INFO - Starting to scrape model: Smart Citi
+2025-05-13 00:56:17,341 - ss_scraper - INFO - Getting listings for Smart Citi
+2025-05-13 00:56:17,341 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/another/
+2025-05-13 00:56:17,375 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:56:17,375 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:56:17,376 - ss_scraper - INFO - Found 0 total listings for Smart Citi after processing all pages.
+2025-05-13 00:56:17,377 - ss_scraper - WARNING - No listings found for Smart Citi
+2025-05-13 00:56:18,846 - ss_scraper - INFO - Starting to scrape model: Smart Vieglo auto maiņa
+2025-05-13 00:56:18,846 - ss_scraper - INFO - Getting listings for Smart Vieglo auto maiņa
+2025-05-13 00:56:18,847 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/exchange/
+2025-05-13 00:56:18,872 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:56:18,873 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:56:18,874 - ss_scraper - WARNING - Row 0, ID 56337546: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:56:18,874 - ss_scraper - WARNING - Row 1, ID 56329357: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:56:18,876 - ss_scraper - INFO - Found 0 total listings for Smart Vieglo auto maiņa after processing all pages.
+2025-05-13 00:56:18,876 - ss_scraper - WARNING - No listings found for Smart Vieglo auto maiņa
+2025-05-13 00:56:20,720 - ss_scraper - INFO - Finished scraping brand Smart. Processed 32 listings.
+2025-05-13 00:56:25,451 - ss_scraper - INFO - Starting to scrape brand: Suzuki
+2025-05-13 00:56:25,451 - ss_scraper - INFO - Getting models for Suzuki
+2025-05-13 00:56:25,503 - ss_scraper - INFO - Found 14 models for Suzuki
+2025-05-13 00:56:25,503 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Alto
+2025-05-13 00:56:25,503 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Alto
+2025-05-13 00:56:25,504 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/alto/
+2025-05-13 00:56:25,550 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:56:25,550 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:56:25,553 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Alto after processing all pages.
+2025-05-13 00:56:25,618 - ss_scraper - INFO - Updated engine type for listing 55993457: Benzīns
+2025-05-13 00:56:27,294 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Alto
+2025-05-13 00:56:27,294 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:29,536 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Grand Vitara
+2025-05-13 00:56:29,536 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Grand Vitara
+2025-05-13 00:56:29,537 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/grand-vitara/
+2025-05-13 00:56:29,567 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 17 rows. Console level should be DEBUG.
+2025-05-13 00:56:29,567 - ss_scraper - INFO - Found 17 potential listing rows on this page
+2025-05-13 00:56:29,582 - ss_scraper - INFO - Found 15 total listings for Suzuki Suzuki Grand Vitara after processing all pages.
+2025-05-13 00:56:29,617 - ss_scraper - INFO - Updated engine type for listing 56326691: Benzīns
+2025-05-13 00:56:29,642 - ss_scraper - INFO - Updated engine type for listing 56350900: Benzīns
+2025-05-13 00:56:29,658 - ss_scraper - INFO - Updated engine type for listing 54965823: Dīzelis
+2025-05-13 00:56:29,693 - ss_scraper - INFO - Updated engine type for listing 56344964: Dīzelis
+2025-05-13 00:56:29,708 - ss_scraper - INFO - Updated engine type for listing 55857829: Benzīns
+2025-05-13 00:56:29,723 - ss_scraper - INFO - Updated engine type for listing 56339108: Dīzelis
+2025-05-13 00:56:29,744 - ss_scraper - INFO - Updated engine type for listing 55026363: Benzīns
+2025-05-13 00:56:29,764 - ss_scraper - INFO - Updated engine type for listing 55606679: Dīzelis
+2025-05-13 00:56:29,781 - ss_scraper - INFO - Updated engine type for listing 56320471: Dīzelis
+2025-05-13 00:56:29,807 - ss_scraper - INFO - Updated engine type for listing 56208270: Benzīns
+2025-05-13 00:56:29,830 - ss_scraper - INFO - Updated engine type for listing 56110071: Benzīns
+2025-05-13 00:56:29,851 - ss_scraper - INFO - Updated engine type for listing 55879537: Benzīns
+2025-05-13 00:56:29,873 - ss_scraper - INFO - Updated engine type for listing 56266339: Benzīns
+2025-05-13 00:56:29,892 - ss_scraper - INFO - Updated engine type for listing 56254700: Dīzelis
+2025-05-13 00:56:29,918 - ss_scraper - INFO - Updated engine type for listing 55965489: Benzīns
+2025-05-13 00:56:31,734 - ss_scraper - INFO - Processed 15 listings for Suzuki Suzuki Grand Vitara
+2025-05-13 00:56:31,734 - ss_scraper - INFO - Results: {'new': 0, 'updated': 15, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:34,744 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Ignis
+2025-05-13 00:56:34,744 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Ignis
+2025-05-13 00:56:34,745 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/ignis/
+2025-05-13 00:56:34,797 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:56:34,797 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:56:34,799 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Ignis after processing all pages.
+2025-05-13 00:56:34,862 - ss_scraper - INFO - Updated engine type for listing 54757255: Benzīns
+2025-05-13 00:56:35,943 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Ignis
+2025-05-13 00:56:35,944 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:38,449 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimni
+2025-05-13 00:56:38,449 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimni
+2025-05-13 00:56:38,449 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimni/
+2025-05-13 00:56:38,499 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:56:38,500 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:56:38,502 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Jimni after processing all pages.
+2025-05-13 00:56:38,571 - ss_scraper - INFO - Updated engine type for listing 56308801: Dīzelis
+2025-05-13 00:56:40,212 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Jimni
+2025-05-13 00:56:40,213 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:41,686 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimny
+2025-05-13 00:56:41,686 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimny
+2025-05-13 00:56:41,686 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimny/
+2025-05-13 00:56:41,723 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 00:56:41,724 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 00:56:41,730 - ss_scraper - INFO - Found 8 total listings for Suzuki Suzuki Jimny after processing all pages.
+2025-05-13 00:56:41,792 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55183582
+2025-05-13 00:56:41,793 - ss_scraper - INFO - Skipping listing as marked: 55183582
+2025-05-13 00:56:41,810 - ss_scraper - INFO - Updated engine type for listing 55994551: Benzīns
+2025-05-13 00:56:41,828 - ss_scraper - INFO - Updated engine type for listing 55255184: Dīzelis
+2025-05-13 00:56:41,843 - ss_scraper - INFO - Updated engine type for listing 56312234: Benzīns
+2025-05-13 00:56:41,873 - ss_scraper - INFO - Updated engine type for listing 55651363: Benzīns
+2025-05-13 00:56:41,911 - ss_scraper - INFO - Updated engine type for listing 55898463: Benzīns
+2025-05-13 00:56:41,928 - ss_scraper - INFO - Updated engine type for listing 56179973: Benzīns
+2025-05-13 00:56:41,954 - ss_scraper - INFO - Updated engine type for listing 55668230: Benzīns
+2025-05-13 00:56:43,835 - ss_scraper - INFO - Processed 8 listings for Suzuki Suzuki Jimny
+2025-05-13 00:56:43,836 - ss_scraper - INFO - Results: {'new': 0, 'updated': 7, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:56:46,000 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Liana
+2025-05-13 00:56:46,001 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Liana
+2025-05-13 00:56:46,001 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/liana/
+2025-05-13 00:56:46,026 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:56:46,026 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:56:46,030 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Liana after processing all pages.
+2025-05-13 00:56:46,093 - ss_scraper - INFO - Updated engine type for listing 55410083: Benzīns
+2025-05-13 00:56:46,108 - ss_scraper - INFO - Updated engine type for listing 56331076: Benzīns
+2025-05-13 00:56:46,124 - ss_scraper - INFO - Updated engine type for listing 56337010: Benzīns
+2025-05-13 00:56:47,862 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Liana
+2025-05-13 00:56:47,862 - ss_scraper - INFO - Results: {'new': 0, 'updated': 3, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:49,749 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Samurai
+2025-05-13 00:56:49,749 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Samurai
+2025-05-13 00:56:49,749 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/samurai/
+2025-05-13 00:56:49,777 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:56:49,777 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:56:49,778 - ss_scraper - INFO - Row 0, ID 54644471: Skipping exchange/buying listing.
+2025-05-13 00:56:49,781 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Samurai after processing all pages.
+2025-05-13 00:56:49,845 - ss_scraper - INFO - Updated engine type for listing 55859335: Benzīns
+2025-05-13 00:56:50,640 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Samurai
+2025-05-13 00:56:50,640 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:52,943 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SJ 410
+2025-05-13 00:56:52,943 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SJ 410
+2025-05-13 00:56:52,943 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sj-410/
+2025-05-13 00:56:52,977 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:56:52,978 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:56:52,980 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki SJ 410 after processing all pages.
+2025-05-13 00:56:53,039 - ss_scraper - INFO - Updated engine type for listing 56046803: Benzīns
+2025-05-13 00:56:53,988 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki SJ 410
+2025-05-13 00:56:53,989 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:55,819 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Swift
+2025-05-13 00:56:55,819 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Swift
+2025-05-13 00:56:55,819 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/swift/
+2025-05-13 00:56:55,847 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:56:55,848 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:56:55,851 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Swift after processing all pages.
+2025-05-13 00:56:55,920 - ss_scraper - INFO - Updated engine type for listing 56276311: Benzīns
+2025-05-13 00:56:55,937 - ss_scraper - INFO - Updated engine type for listing 56113138: Hibrīds
+2025-05-13 00:56:55,954 - ss_scraper - INFO - Updated engine type for listing 56351046: Dīzelis
+2025-05-13 00:56:57,862 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Swift
+2025-05-13 00:56:57,862 - ss_scraper - INFO - Results: {'new': 0, 'updated': 3, 'unchanged': 0, 'error': 0}
+2025-05-13 00:56:59,734 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SX4
+2025-05-13 00:56:59,734 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SX4
+2025-05-13 00:56:59,734 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sx4/
+2025-05-13 00:56:59,775 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 00:56:59,776 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 00:56:59,776 - ss_scraper - INFO - Row 0, ID 56199588: Skipping exchange/buying listing.
+2025-05-13 00:56:59,777 - ss_scraper - INFO - Row 1, ID 54834110: Skipping exchange/buying listing.
+2025-05-13 00:56:59,783 - ss_scraper - INFO - Row 8, ID 56034763: Skipping exchange/buying listing.
+2025-05-13 00:56:59,785 - ss_scraper - INFO - Found 7 total listings for Suzuki Suzuki SX4 after processing all pages.
+2025-05-13 00:56:59,843 - ss_scraper - INFO - Updated engine type for listing 56347442: Benzīns
+2025-05-13 00:56:59,861 - ss_scraper - INFO - Updated engine type for listing 55902865: Benzīns
+2025-05-13 00:56:59,897 - ss_scraper - INFO - Updated engine type for listing 56339455: Dīzelis
+2025-05-13 00:56:59,914 - ss_scraper - INFO - Updated engine type for listing 56131611: Dīzelis
+2025-05-13 00:56:59,935 - ss_scraper - INFO - Updated engine type for listing 55883238: Benzīns
+2025-05-13 00:56:59,946 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55618593
+2025-05-13 00:56:59,946 - ss_scraper - INFO - Skipping listing as marked: 55618593
+2025-05-13 00:56:59,981 - ss_scraper - INFO - Updated engine type for listing 56034761: Dīzelis
+2025-05-13 00:57:01,840 - ss_scraper - INFO - Processed 7 listings for Suzuki Suzuki SX4
+2025-05-13 00:57:01,841 - ss_scraper - INFO - Results: {'new': 0, 'updated': 6, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 00:57:03,761 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Vitara
+2025-05-13 00:57:03,761 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Vitara
+2025-05-13 00:57:03,762 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/vitara/
+2025-05-13 00:57:03,800 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:57:03,801 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:57:03,801 - ss_scraper - INFO - Row 0, ID 56354961: Skipping exchange/buying listing.
+2025-05-13 00:57:03,812 - ss_scraper - INFO - Found 16 total listings for Suzuki Suzuki Vitara after processing all pages.
+2025-05-13 00:57:03,849 - ss_scraper - INFO - Updated engine type for listing 56070812: Benzīns
+2025-05-13 00:57:03,865 - ss_scraper - INFO - Updated engine type for listing 56354055: Benzīns
+2025-05-13 00:57:03,885 - ss_scraper - INFO - Updated engine type for listing 54040917: Dīzelis
+2025-05-13 00:57:03,903 - ss_scraper - INFO - Updated engine type for listing 56064345: Dīzelis
+2025-05-13 00:57:03,921 - ss_scraper - INFO - Updated engine type for listing 56339371: Benzīns
+2025-05-13 00:57:03,942 - ss_scraper - INFO - Updated engine type for listing 56138185: Dīzelis
+2025-05-13 00:57:03,962 - ss_scraper - INFO - Updated engine type for listing 56162503: Benzīns
+2025-05-13 00:57:03,976 - ss_scraper - INFO - Updated engine type for listing 56062743: Dīzelis
+2025-05-13 00:57:03,993 - ss_scraper - INFO - Updated engine type for listing 56257606: Benzīns
+2025-05-13 00:57:04,015 - ss_scraper - INFO - Updated engine type for listing 56140084: Benzīns
+2025-05-13 00:57:04,031 - ss_scraper - INFO - Updated engine type for listing 56188082: Benzīns
+2025-05-13 00:57:04,049 - ss_scraper - INFO - Updated engine type for listing 56224574: Benzīns
+2025-05-13 00:57:04,068 - ss_scraper - INFO - Updated engine type for listing 56294699: Benzīns
+2025-05-13 00:57:04,098 - ss_scraper - INFO - Updated engine type for listing 56178887: Benzīns
+2025-05-13 00:57:04,123 - ss_scraper - INFO - Updated engine type for listing 56218877: Hibrīds
+2025-05-13 00:57:04,150 - ss_scraper - INFO - Updated engine type for listing 56218931: Benzīns
+2025-05-13 00:57:05,882 - ss_scraper - INFO - Processed 16 listings for Suzuki Suzuki Vitara
+2025-05-13 00:57:05,883 - ss_scraper - INFO - Results: {'new': 0, 'updated': 16, 'unchanged': 0, 'error': 0}
+2025-05-13 00:57:07,543 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki X-90
+2025-05-13 00:57:07,543 - ss_scraper - INFO - Getting listings for Suzuki Suzuki X-90
+2025-05-13 00:57:07,543 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/x-90/
+2025-05-13 00:57:07,567 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:57:07,568 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:57:07,571 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki X-90 after processing all pages.
+2025-05-13 00:57:07,637 - ss_scraper - INFO - Updated engine type for listing 55815289: Benzīns
+2025-05-13 00:57:07,652 - ss_scraper - INFO - Updated engine type for listing 56220373: Benzīns
+2025-05-13 00:57:09,140 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki X-90
+2025-05-13 00:57:09,141 - ss_scraper - INFO - Results: {'new': 0, 'updated': 2, 'unchanged': 0, 'error': 0}
+2025-05-13 00:57:10,521 - ss_scraper - INFO - Starting to scrape model: Suzuki Citi
+2025-05-13 00:57:10,521 - ss_scraper - INFO - Getting listings for Suzuki Citi
+2025-05-13 00:57:10,522 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/another/
+2025-05-13 00:57:10,574 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:57:10,574 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:57:10,578 - ss_scraper - INFO - Found 1 total listings for Suzuki Citi after processing all pages.
+2025-05-13 00:57:10,647 - ss_scraper - INFO - Updated engine type for listing 55066776: Hibrīds
+2025-05-13 00:57:11,811 - ss_scraper - INFO - Processed 1 listings for Suzuki Citi
+2025-05-13 00:57:11,812 - ss_scraper - INFO - Results: {'new': 0, 'updated': 1, 'unchanged': 0, 'error': 0}
+2025-05-13 00:57:13,334 - ss_scraper - INFO - Starting to scrape model: Suzuki Vieglo auto maiņa
+2025-05-13 00:57:13,334 - ss_scraper - INFO - Getting listings for Suzuki Vieglo auto maiņa
+2025-05-13 00:57:13,334 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/exchange/
+2025-05-13 00:57:13,372 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 00:57:13,372 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 00:57:13,373 - ss_scraper - WARNING - Row 0, ID 56354961: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:13,374 - ss_scraper - WARNING - Row 1, ID 56199588: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:13,375 - ss_scraper - WARNING - Row 2, ID 54834110: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:13,376 - ss_scraper - WARNING - Row 3, ID 54644471: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:13,376 - ss_scraper - WARNING - Row 4, ID 56034763: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:13,378 - ss_scraper - INFO - Found 0 total listings for Suzuki Vieglo auto maiņa after processing all pages.
+2025-05-13 00:57:13,378 - ss_scraper - WARNING - No listings found for Suzuki Vieglo auto maiņa
+2025-05-13 00:57:14,718 - ss_scraper - INFO - Finished scraping brand Suzuki. Processed 60 listings.
+2025-05-13 00:57:17,085 - ss_scraper - INFO - Starting to scrape brand: Tesla
+2025-05-13 00:57:17,085 - ss_scraper - INFO - Getting models for Tesla
+2025-05-13 00:57:17,146 - ss_scraper - INFO - Found 6 models for Tesla
+2025-05-13 00:57:17,146 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model 3
+2025-05-13 00:57:17,146 - ss_scraper - INFO - Getting listings for Tesla Tesla Model 3
+2025-05-13 00:57:17,147 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-3/
+2025-05-13 00:57:17,191 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 31 rows. Console level should be DEBUG.
+2025-05-13 00:57:17,192 - ss_scraper - INFO - Found 31 potential listing rows on this page
+2025-05-13 00:57:17,204 - ss_scraper - INFO - Row 17, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 00:57:17,206 - ss_scraper - WARNING - Row 20, ID 56132058: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:17,214 - ss_scraper - INFO - Found 28 total listings for Tesla Tesla Model 3 after processing all pages.
+2025-05-13 00:57:17,994 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56021507
+2025-05-13 00:57:17,994 - ss_scraper - INFO - Skipping listing as marked: 56021507
+2025-05-13 00:57:19,966 - ss_scraper - INFO - Processed 28 listings for Tesla Tesla Model 3
+2025-05-13 00:57:19,966 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 27, 'error': 0, 'skipped': 1}
+2025-05-13 00:57:22,455 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model S
+2025-05-13 00:57:22,455 - ss_scraper - INFO - Getting listings for Tesla Tesla Model S
+2025-05-13 00:57:22,456 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-s/
+2025-05-13 00:57:22,485 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 25 rows. Console level should be DEBUG.
+2025-05-13 00:57:22,486 - ss_scraper - INFO - Found 25 potential listing rows on this page
+2025-05-13 00:57:22,503 - ss_scraper - INFO - Found 24 total listings for Tesla Tesla Model S after processing all pages.
+2025-05-13 00:57:24,874 - ss_scraper - INFO - Processed 24 listings for Tesla Tesla Model S
+2025-05-13 00:57:24,874 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 24, 'error': 0}
+2025-05-13 00:57:27,775 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model X
+2025-05-13 00:57:27,775 - ss_scraper - INFO - Getting listings for Tesla Tesla Model X
+2025-05-13 00:57:27,776 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-x/
+2025-05-13 00:57:27,800 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 00:57:27,801 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 00:57:27,807 - ss_scraper - INFO - Found 8 total listings for Tesla Tesla Model X after processing all pages.
+2025-05-13 00:57:29,742 - ss_scraper - INFO - Processed 8 listings for Tesla Tesla Model X
+2025-05-13 00:57:29,743 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 8, 'error': 0}
+2025-05-13 00:57:32,029 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model Y
+2025-05-13 00:57:32,029 - ss_scraper - INFO - Getting listings for Tesla Tesla Model Y
+2025-05-13 00:57:32,029 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-y/
+2025-05-13 00:57:32,058 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:57:32,058 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:57:32,072 - ss_scraper - INFO - Found 18 total listings for Tesla Tesla Model Y after processing all pages.
+2025-05-13 00:57:34,088 - ss_scraper - INFO - Processed 18 listings for Tesla Tesla Model Y
+2025-05-13 00:57:34,088 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 18, 'error': 0}
+2025-05-13 00:57:35,809 - ss_scraper - INFO - Starting to scrape model: Tesla Citi
+2025-05-13 00:57:35,809 - ss_scraper - INFO - Getting listings for Tesla Citi
+2025-05-13 00:57:35,809 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/another/
+2025-05-13 00:57:35,834 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:57:35,835 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:57:35,836 - ss_scraper - WARNING - Row 0, ID 56056422: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:57:35,836 - ss_scraper - INFO - Found 0 total listings for Tesla Citi after processing all pages.
+2025-05-13 00:57:35,837 - ss_scraper - WARNING - No listings found for Tesla Citi
+2025-05-13 00:57:38,068 - ss_scraper - INFO - Starting to scrape model: Tesla Vieglo auto maiņa
+2025-05-13 00:57:38,068 - ss_scraper - INFO - Getting listings for Tesla Vieglo auto maiņa
+2025-05-13 00:57:38,069 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/exchange/
+2025-05-13 00:57:38,105 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:57:38,105 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:57:38,106 - ss_scraper - INFO - Row 0, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 00:57:38,107 - ss_scraper - INFO - Found 0 total listings for Tesla Vieglo auto maiņa after processing all pages.
+2025-05-13 00:57:38,107 - ss_scraper - WARNING - No listings found for Tesla Vieglo auto maiņa
+2025-05-13 00:57:40,109 - ss_scraper - INFO - Finished scraping brand Tesla. Processed 78 listings.
+2025-05-13 00:57:42,688 - ss_scraper - INFO - No listings to mark as inactive
+2025-05-13 00:57:42,692 - ss_scraper - INFO - Scraping completed at 2025-05-13 00:57:42.692228
+2025-05-13 00:57:42,692 - ss_scraper - INFO - Total time: 119.87 seconds
+2025-05-13 00:57:42,692 - ss_scraper - INFO - Total listings processed: 196
+2025-05-13 00:57:42,693 - ss_scraper - INFO - New listings: 0
+2025-05-13 00:57:42,693 - ss_scraper - INFO - Updated listings: 112
+2025-05-13 00:57:42,693 - ss_scraper - INFO - Errors: 0
+2025-05-13 00:59:17,248 - ss_scraper - INFO - Using source_id 1 for SS.LV
+2025-05-13 00:59:17,249 - ss_scraper - INFO - Starting the scraper at 2025-05-13 00:59:17.249282
+2025-05-13 00:59:17,249 - ss_scraper - INFO - Getting car brands from SS.LV
+2025-05-13 00:59:17,301 - ss_scraper - INFO - Found 4 target car brands
+2025-05-13 00:59:17,302 - ss_scraper - INFO - Starting to scrape brand: Infiniti
+2025-05-13 00:59:17,302 - ss_scraper - INFO - Getting models for Infiniti
+2025-05-13 00:59:17,341 - ss_scraper - INFO - Found 5 models for Infiniti
+2025-05-13 00:59:17,341 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti FX
+2025-05-13 00:59:17,341 - ss_scraper - INFO - Getting listings for Infiniti Infiniti FX
+2025-05-13 00:59:17,341 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/fx/
+2025-05-13 00:59:17,371 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 00:59:17,371 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 00:59:17,381 - ss_scraper - INFO - Row 13, ID 56145562: Skipping exchange/buying listing.
+2025-05-13 00:59:17,386 - ss_scraper - INFO - Found 16 total listings for Infiniti Infiniti FX after processing all pages.
+2025-05-13 00:59:17,512 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56130732
+2025-05-13 00:59:17,512 - ss_scraper - INFO - Skipping listing as marked: 56130732
+2025-05-13 00:59:19,349 - ss_scraper - INFO - Processed 16 listings for Infiniti Infiniti FX
+2025-05-13 00:59:19,349 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 15, 'error': 0, 'skipped': 1}
+2025-05-13 00:59:21,899 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti Q30
+2025-05-13 00:59:21,900 - ss_scraper - INFO - Getting listings for Infiniti Infiniti Q30
+2025-05-13 00:59:21,900 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/q30/
+2025-05-13 00:59:21,936 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:59:21,937 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:59:21,939 - ss_scraper - INFO - Row 2, ID 55963871: Skipping exchange/buying listing.
+2025-05-13 00:59:21,940 - ss_scraper - INFO - Found 2 total listings for Infiniti Infiniti Q30 after processing all pages.
+2025-05-13 00:59:23,359 - ss_scraper - INFO - Processed 2 listings for Infiniti Infiniti Q30
+2025-05-13 00:59:23,359 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 2, 'error': 0}
+2025-05-13 00:59:25,767 - ss_scraper - INFO - Starting to scrape model: Infiniti Infiniti QX56
+2025-05-13 00:59:25,767 - ss_scraper - INFO - Getting listings for Infiniti Infiniti QX56
+2025-05-13 00:59:25,767 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/qx56/
+2025-05-13 00:59:25,793 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 00:59:25,794 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 00:59:25,796 - ss_scraper - INFO - Found 3 total listings for Infiniti Infiniti QX56 after processing all pages.
+2025-05-13 00:59:25,855 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55810705
+2025-05-13 00:59:25,856 - ss_scraper - INFO - Skipping listing as marked: 55810705
+2025-05-13 00:59:27,703 - ss_scraper - INFO - Processed 3 listings for Infiniti Infiniti QX56
+2025-05-13 00:59:27,704 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 2, 'error': 0, 'skipped': 1}
+2025-05-13 00:59:29,964 - ss_scraper - INFO - Starting to scrape model: Infiniti Citi
+2025-05-13 00:59:29,964 - ss_scraper - INFO - Getting listings for Infiniti Citi
+2025-05-13 00:59:29,964 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/another/
+2025-05-13 00:59:30,018 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 00:59:30,018 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 00:59:30,027 - ss_scraper - INFO - Found 10 total listings for Infiniti Citi after processing all pages.
+2025-05-13 00:59:32,008 - ss_scraper - INFO - Processed 10 listings for Infiniti Citi
+2025-05-13 00:59:32,008 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 10, 'error': 0}
+2025-05-13 00:59:33,589 - ss_scraper - INFO - Starting to scrape model: Infiniti Vieglo auto maiņa
+2025-05-13 00:59:33,589 - ss_scraper - INFO - Getting listings for Infiniti Vieglo auto maiņa
+2025-05-13 00:59:33,589 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/infiniti/exchange/
+2025-05-13 00:59:33,641 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:59:33,642 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:59:33,642 - ss_scraper - WARNING - Row 0, ID 56145562: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:59:33,643 - ss_scraper - WARNING - Row 1, ID 55963871: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:59:33,644 - ss_scraper - INFO - Found 0 total listings for Infiniti Vieglo auto maiņa after processing all pages.
+2025-05-13 00:59:33,645 - ss_scraper - WARNING - No listings found for Infiniti Vieglo auto maiņa
+2025-05-13 00:59:36,328 - ss_scraper - INFO - Finished scraping brand Infiniti. Processed 31 listings.
+2025-05-13 00:59:39,583 - ss_scraper - INFO - Starting to scrape brand: Smart
+2025-05-13 00:59:39,583 - ss_scraper - INFO - Getting models for Smart
+2025-05-13 00:59:39,623 - ss_scraper - INFO - Found 6 models for Smart
+2025-05-13 00:59:39,624 - ss_scraper - INFO - Starting to scrape model: Smart Smart Crossblade
+2025-05-13 00:59:39,624 - ss_scraper - INFO - Getting listings for Smart Smart Crossblade
+2025-05-13 00:59:39,624 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/crossblade/
+2025-05-13 00:59:39,646 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:59:39,647 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:59:39,647 - ss_scraper - INFO - Found 0 total listings for Smart Smart Crossblade after processing all pages.
+2025-05-13 00:59:39,648 - ss_scraper - WARNING - No listings found for Smart Smart Crossblade
+2025-05-13 00:59:41,226 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForFour
+2025-05-13 00:59:41,226 - ss_scraper - INFO - Getting listings for Smart Smart ForFour
+2025-05-13 00:59:41,226 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/forfour/
+2025-05-13 00:59:41,252 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 00:59:41,253 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 00:59:41,259 - ss_scraper - INFO - Found 5 total listings for Smart Smart ForFour after processing all pages.
+2025-05-13 00:59:41,334 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916765
+2025-05-13 00:59:41,337 - ss_scraper - INFO - Updated engine type for listing 55916765: Elektrisks
+2025-05-13 00:59:41,360 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55767179
+2025-05-13 00:59:41,363 - ss_scraper - INFO - Updated engine type for listing 55767179: Elektrisks
+2025-05-13 00:59:42,993 - ss_scraper - INFO - Processed 5 listings for Smart Smart ForFour
+2025-05-13 00:59:42,994 - ss_scraper - INFO - Results: {'new': 0, 'updated': 2, 'unchanged': 3, 'error': 0}
+2025-05-13 00:59:44,605 - ss_scraper - INFO - Starting to scrape model: Smart Smart ForTwo
+2025-05-13 00:59:44,605 - ss_scraper - INFO - Getting listings for Smart Smart ForTwo
+2025-05-13 00:59:44,605 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/fortwo/
+2025-05-13 00:59:44,656 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 26 rows. Console level should be DEBUG.
+2025-05-13 00:59:44,657 - ss_scraper - INFO - Found 26 potential listing rows on this page
+2025-05-13 00:59:44,662 - ss_scraper - INFO - Row 8, ID 56337546: Skipping exchange/buying listing.
+2025-05-13 00:59:44,663 - ss_scraper - INFO - Row 10, ID 56329357: Skipping exchange/buying listing.
+2025-05-13 00:59:44,675 - ss_scraper - INFO - Found 23 total listings for Smart Smart ForTwo after processing all pages.
+2025-05-13 00:59:44,824 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55392965
+2025-05-13 00:59:44,828 - ss_scraper - INFO - Updated engine type for listing 55392965: Elektrisks
+2025-05-13 00:59:44,867 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 55916671
+2025-05-13 00:59:44,870 - ss_scraper - INFO - Updated engine type for listing 55916671: Elektrisks
+2025-05-13 00:59:45,007 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 53558462
+2025-05-13 00:59:45,013 - ss_scraper - INFO - Updated engine type for listing 53558462: Elektrisks
+2025-05-13 00:59:45,030 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 54341372
+2025-05-13 00:59:45,034 - ss_scraper - INFO - Updated engine type for listing 54341372: Elektrisks
+2025-05-13 00:59:45,045 - ss_scraper - INFO - Setting engine type to Electric for newer Smart: 56039220
+2025-05-13 00:59:45,048 - ss_scraper - INFO - Updated engine type for listing 56039220: Elektrisks
+2025-05-13 00:59:46,896 - ss_scraper - INFO - Processed 23 listings for Smart Smart ForTwo
+2025-05-13 00:59:46,897 - ss_scraper - INFO - Results: {'new': 0, 'updated': 5, 'unchanged': 18, 'error': 0}
+2025-05-13 00:59:48,539 - ss_scraper - INFO - Starting to scrape model: Smart Smart Roadster
+2025-05-13 00:59:48,540 - ss_scraper - INFO - Getting listings for Smart Smart Roadster
+2025-05-13 00:59:48,540 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/roadster/
+2025-05-13 00:59:48,565 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 5 rows. Console level should be DEBUG.
+2025-05-13 00:59:48,565 - ss_scraper - INFO - Found 5 potential listing rows on this page
+2025-05-13 00:59:48,570 - ss_scraper - INFO - Found 4 total listings for Smart Smart Roadster after processing all pages.
+2025-05-13 00:59:50,230 - ss_scraper - INFO - Processed 4 listings for Smart Smart Roadster
+2025-05-13 00:59:50,230 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 4, 'error': 0}
+2025-05-13 00:59:52,515 - ss_scraper - INFO - Starting to scrape model: Smart Citi
+2025-05-13 00:59:52,515 - ss_scraper - INFO - Getting listings for Smart Citi
+2025-05-13 00:59:52,515 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/another/
+2025-05-13 00:59:52,548 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 0 rows. Console level should be DEBUG.
+2025-05-13 00:59:52,548 - ss_scraper - INFO - Found 0 potential listing rows on this page
+2025-05-13 00:59:52,549 - ss_scraper - INFO - Found 0 total listings for Smart Citi after processing all pages.
+2025-05-13 00:59:52,549 - ss_scraper - WARNING - No listings found for Smart Citi
+2025-05-13 00:59:54,467 - ss_scraper - INFO - Starting to scrape model: Smart Vieglo auto maiņa
+2025-05-13 00:59:54,467 - ss_scraper - INFO - Getting listings for Smart Vieglo auto maiņa
+2025-05-13 00:59:54,467 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/smart/exchange/
+2025-05-13 00:59:54,495 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 00:59:54,496 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 00:59:54,496 - ss_scraper - WARNING - Row 0, ID 56337546: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:59:54,497 - ss_scraper - WARNING - Row 1, ID 56329357: Missing essential data - price:None, title:True, url:True
+2025-05-13 00:59:54,499 - ss_scraper - INFO - Found 0 total listings for Smart Vieglo auto maiņa after processing all pages.
+2025-05-13 00:59:54,499 - ss_scraper - WARNING - No listings found for Smart Vieglo auto maiņa
+2025-05-13 00:59:55,586 - ss_scraper - INFO - Finished scraping brand Smart. Processed 32 listings.
+2025-05-13 00:59:58,028 - ss_scraper - INFO - Starting to scrape brand: Suzuki
+2025-05-13 00:59:58,028 - ss_scraper - INFO - Getting models for Suzuki
+2025-05-13 00:59:58,080 - ss_scraper - INFO - Found 14 models for Suzuki
+2025-05-13 00:59:58,080 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Alto
+2025-05-13 00:59:58,080 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Alto
+2025-05-13 00:59:58,080 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/alto/
+2025-05-13 00:59:58,105 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 00:59:58,105 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 00:59:58,107 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Alto after processing all pages.
+2025-05-13 00:59:59,118 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Alto
+2025-05-13 00:59:59,118 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:01,252 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Grand Vitara
+2025-05-13 01:00:01,252 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Grand Vitara
+2025-05-13 01:00:01,253 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/grand-vitara/
+2025-05-13 01:00:01,284 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 17 rows. Console level should be DEBUG.
+2025-05-13 01:00:01,284 - ss_scraper - INFO - Found 17 potential listing rows on this page
+2025-05-13 01:00:01,295 - ss_scraper - INFO - Found 15 total listings for Suzuki Suzuki Grand Vitara after processing all pages.
+2025-05-13 01:00:03,418 - ss_scraper - INFO - Processed 15 listings for Suzuki Suzuki Grand Vitara
+2025-05-13 01:00:03,419 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 15, 'error': 0}
+2025-05-13 01:00:05,970 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Ignis
+2025-05-13 01:00:05,970 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Ignis
+2025-05-13 01:00:05,970 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/ignis/
+2025-05-13 01:00:05,994 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 01:00:05,995 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 01:00:05,996 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Ignis after processing all pages.
+2025-05-13 01:00:07,296 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Ignis
+2025-05-13 01:00:07,297 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:09,990 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimni
+2025-05-13 01:00:09,990 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimni
+2025-05-13 01:00:09,990 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimni/
+2025-05-13 01:00:10,025 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 01:00:10,026 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 01:00:10,027 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Jimni after processing all pages.
+2025-05-13 01:00:11,999 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Jimni
+2025-05-13 01:00:12,000 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:14,026 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Jimny
+2025-05-13 01:00:14,026 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Jimny
+2025-05-13 01:00:14,027 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/jimny/
+2025-05-13 01:00:14,054 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 01:00:14,055 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 01:00:14,062 - ss_scraper - INFO - Found 8 total listings for Suzuki Suzuki Jimny after processing all pages.
+2025-05-13 01:00:14,121 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55183582
+2025-05-13 01:00:14,121 - ss_scraper - INFO - Skipping listing as marked: 55183582
+2025-05-13 01:00:16,178 - ss_scraper - INFO - Processed 8 listings for Suzuki Suzuki Jimny
+2025-05-13 01:00:16,178 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 7, 'error': 0, 'skipped': 1}
+2025-05-13 01:00:18,543 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Liana
+2025-05-13 01:00:18,543 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Liana
+2025-05-13 01:00:18,543 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/liana/
+2025-05-13 01:00:18,570 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 01:00:18,570 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 01:00:18,574 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Liana after processing all pages.
+2025-05-13 01:00:19,863 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Liana
+2025-05-13 01:00:19,863 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 3, 'error': 0}
+2025-05-13 01:00:22,502 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Samurai
+2025-05-13 01:00:22,502 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Samurai
+2025-05-13 01:00:22,503 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/samurai/
+2025-05-13 01:00:22,553 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 01:00:22,553 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 01:00:22,554 - ss_scraper - INFO - Row 0, ID 54644471: Skipping exchange/buying listing.
+2025-05-13 01:00:22,555 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki Samurai after processing all pages.
+2025-05-13 01:00:24,533 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki Samurai
+2025-05-13 01:00:24,533 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:26,301 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SJ 410
+2025-05-13 01:00:26,301 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SJ 410
+2025-05-13 01:00:26,302 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sj-410/
+2025-05-13 01:00:26,336 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 01:00:26,337 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 01:00:26,338 - ss_scraper - INFO - Found 1 total listings for Suzuki Suzuki SJ 410 after processing all pages.
+2025-05-13 01:00:28,251 - ss_scraper - INFO - Processed 1 listings for Suzuki Suzuki SJ 410
+2025-05-13 01:00:28,252 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:30,970 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Swift
+2025-05-13 01:00:30,970 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Swift
+2025-05-13 01:00:30,970 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/swift/
+2025-05-13 01:00:30,995 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 01:00:30,996 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 01:00:30,999 - ss_scraper - INFO - Found 3 total listings for Suzuki Suzuki Swift after processing all pages.
+2025-05-13 01:00:32,585 - ss_scraper - INFO - Processed 3 listings for Suzuki Suzuki Swift
+2025-05-13 01:00:32,586 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 3, 'error': 0}
+2025-05-13 01:00:34,719 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki SX4
+2025-05-13 01:00:34,719 - ss_scraper - INFO - Getting listings for Suzuki Suzuki SX4
+2025-05-13 01:00:34,719 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/sx4/
+2025-05-13 01:00:34,772 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 11 rows. Console level should be DEBUG.
+2025-05-13 01:00:34,772 - ss_scraper - INFO - Found 11 potential listing rows on this page
+2025-05-13 01:00:34,773 - ss_scraper - INFO - Row 0, ID 56199588: Skipping exchange/buying listing.
+2025-05-13 01:00:34,774 - ss_scraper - INFO - Row 1, ID 54834110: Skipping exchange/buying listing.
+2025-05-13 01:00:34,779 - ss_scraper - INFO - Row 8, ID 56034763: Skipping exchange/buying listing.
+2025-05-13 01:00:34,782 - ss_scraper - INFO - Found 7 total listings for Suzuki Suzuki SX4 after processing all pages.
+2025-05-13 01:00:34,910 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 55618593
+2025-05-13 01:00:34,910 - ss_scraper - INFO - Skipping listing as marked: 55618593
+2025-05-13 01:00:36,565 - ss_scraper - INFO - Processed 7 listings for Suzuki Suzuki SX4
+2025-05-13 01:00:36,565 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 6, 'error': 0, 'skipped': 1}
+2025-05-13 01:00:37,732 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki Vitara
+2025-05-13 01:00:37,732 - ss_scraper - INFO - Getting listings for Suzuki Suzuki Vitara
+2025-05-13 01:00:37,732 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/vitara/
+2025-05-13 01:00:37,787 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 01:00:37,787 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 01:00:37,788 - ss_scraper - INFO - Row 0, ID 56354961: Skipping exchange/buying listing.
+2025-05-13 01:00:37,800 - ss_scraper - INFO - Found 16 total listings for Suzuki Suzuki Vitara after processing all pages.
+2025-05-13 01:00:39,978 - ss_scraper - INFO - Processed 16 listings for Suzuki Suzuki Vitara
+2025-05-13 01:00:39,978 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 16, 'error': 0}
+2025-05-13 01:00:41,588 - ss_scraper - INFO - Starting to scrape model: Suzuki Suzuki X-90
+2025-05-13 01:00:41,588 - ss_scraper - INFO - Getting listings for Suzuki Suzuki X-90
+2025-05-13 01:00:41,589 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/x-90/
+2025-05-13 01:00:41,613 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 3 rows. Console level should be DEBUG.
+2025-05-13 01:00:41,614 - ss_scraper - INFO - Found 3 potential listing rows on this page
+2025-05-13 01:00:41,616 - ss_scraper - INFO - Found 2 total listings for Suzuki Suzuki X-90 after processing all pages.
+2025-05-13 01:00:43,464 - ss_scraper - INFO - Processed 2 listings for Suzuki Suzuki X-90
+2025-05-13 01:00:43,464 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 2, 'error': 0}
+2025-05-13 01:00:45,381 - ss_scraper - INFO - Starting to scrape model: Suzuki Citi
+2025-05-13 01:00:45,381 - ss_scraper - INFO - Getting listings for Suzuki Citi
+2025-05-13 01:00:45,382 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/another/
+2025-05-13 01:00:45,433 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 4 rows. Console level should be DEBUG.
+2025-05-13 01:00:45,434 - ss_scraper - INFO - Found 4 potential listing rows on this page
+2025-05-13 01:00:45,436 - ss_scraper - INFO - Found 1 total listings for Suzuki Citi after processing all pages.
+2025-05-13 01:00:47,442 - ss_scraper - INFO - Processed 1 listings for Suzuki Citi
+2025-05-13 01:00:47,442 - ss_scraper - INFO - Results: {'new': 0, 'updated': 0, 'unchanged': 1, 'error': 0}
+2025-05-13 01:00:49,344 - ss_scraper - INFO - Starting to scrape model: Suzuki Vieglo auto maiņa
+2025-05-13 01:00:49,344 - ss_scraper - INFO - Getting listings for Suzuki Vieglo auto maiņa
+2025-05-13 01:00:49,344 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/suzuki/exchange/
+2025-05-13 01:00:49,380 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 6 rows. Console level should be DEBUG.
+2025-05-13 01:00:49,380 - ss_scraper - INFO - Found 6 potential listing rows on this page
+2025-05-13 01:00:49,381 - ss_scraper - WARNING - Row 0, ID 56354961: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:49,381 - ss_scraper - WARNING - Row 1, ID 56199588: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:49,382 - ss_scraper - WARNING - Row 2, ID 54834110: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:49,383 - ss_scraper - WARNING - Row 3, ID 54644471: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:49,383 - ss_scraper - WARNING - Row 4, ID 56034763: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:49,385 - ss_scraper - INFO - Found 0 total listings for Suzuki Vieglo auto maiņa after processing all pages.
+2025-05-13 01:00:49,385 - ss_scraper - WARNING - No listings found for Suzuki Vieglo auto maiņa
+2025-05-13 01:00:50,696 - ss_scraper - INFO - Finished scraping brand Suzuki. Processed 60 listings.
+2025-05-13 01:00:53,998 - ss_scraper - INFO - Starting to scrape brand: Tesla
+2025-05-13 01:00:53,998 - ss_scraper - INFO - Getting models for Tesla
+2025-05-13 01:00:54,045 - ss_scraper - INFO - Found 6 models for Tesla
+2025-05-13 01:00:54,045 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model 3
+2025-05-13 01:00:54,045 - ss_scraper - INFO - Getting listings for Tesla Tesla Model 3
+2025-05-13 01:00:54,045 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-3/
+2025-05-13 01:00:54,076 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 31 rows. Console level should be DEBUG.
+2025-05-13 01:00:54,076 - ss_scraper - INFO - Found 31 potential listing rows on this page
+2025-05-13 01:00:54,087 - ss_scraper - INFO - Row 17, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 01:00:54,088 - ss_scraper - WARNING - Row 20, ID 56132058: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:00:54,095 - ss_scraper - INFO - Found 28 total listings for Tesla Tesla Model 3 after processing all pages.
+2025-05-13 01:00:54,132 - ss_scraper - INFO - Updated engine type for listing 55854200: Elektrisks
+2025-05-13 01:00:54,153 - ss_scraper - INFO - Updated engine type for listing 56354235: Elektrisks
+2025-05-13 01:00:54,197 - ss_scraper - INFO - Updated engine type for listing 56353593: Elektrisks
+2025-05-13 01:00:54,218 - ss_scraper - INFO - Updated engine type for listing 56279176: Elektrisks
+2025-05-13 01:00:54,239 - ss_scraper - INFO - Updated engine type for listing 56279213: Elektrisks
+2025-05-13 01:00:54,260 - ss_scraper - INFO - Updated engine type for listing 56308441: Elektrisks
+2025-05-13 01:00:54,281 - ss_scraper - INFO - Updated engine type for listing 56350049: Elektrisks
+2025-05-13 01:00:54,301 - ss_scraper - INFO - Updated engine type for listing 56348493: Elektrisks
+2025-05-13 01:00:54,320 - ss_scraper - INFO - Updated engine type for listing 56262009: Elektrisks
+2025-05-13 01:00:54,342 - ss_scraper - INFO - Updated engine type for listing 55754730: Elektrisks
+2025-05-13 01:00:54,364 - ss_scraper - INFO - Updated engine type for listing 56344533: Elektrisks
+2025-05-13 01:00:54,385 - ss_scraper - INFO - Updated engine type for listing 56205466: Elektrisks
+2025-05-13 01:00:54,403 - ss_scraper - INFO - Updated engine type for listing 56032876: Elektrisks
+2025-05-13 01:00:54,426 - ss_scraper - INFO - Updated engine type for listing 56162234: Elektrisks
+2025-05-13 01:00:54,449 - ss_scraper - INFO - Updated engine type for listing 55758488: Elektrisks
+2025-05-13 01:00:54,467 - ss_scraper - INFO - Updated engine type for listing 56330989: Elektrisks
+2025-05-13 01:00:54,487 - ss_scraper - INFO - Updated engine type for listing 56133187: Elektrisks
+2025-05-13 01:00:54,509 - ss_scraper - INFO - Updated engine type for listing 56240770: Elektrisks
+2025-05-13 01:00:54,523 - ss_scraper - INFO - Updated engine type for listing 56227746: Elektrisks
+2025-05-13 01:00:54,537 - ss_scraper - INFO - Updated engine type for listing 55941718: Elektrisks
+2025-05-13 01:00:54,548 - ss_scraper - INFO - Skipping exchange/buying listing from details page: 56021507
+2025-05-13 01:00:54,549 - ss_scraper - INFO - Skipping listing as marked: 56021507
+2025-05-13 01:00:54,569 - ss_scraper - INFO - Updated engine type for listing 55750307: Elektrisks
+2025-05-13 01:00:54,592 - ss_scraper - INFO - Updated engine type for listing 55748649: Elektrisks
+2025-05-13 01:00:54,615 - ss_scraper - INFO - Updated engine type for listing 56315501: Elektrisks
+2025-05-13 01:00:54,629 - ss_scraper - INFO - Updated engine type for listing 56311160: Elektrisks
+2025-05-13 01:00:54,643 - ss_scraper - INFO - Updated engine type for listing 56273714: Elektrisks
+2025-05-13 01:00:54,656 - ss_scraper - INFO - Updated engine type for listing 56273736: Elektrisks
+2025-05-13 01:00:54,675 - ss_scraper - INFO - Updated engine type for listing 56221656: Elektrisks
+2025-05-13 01:00:56,503 - ss_scraper - INFO - Processed 28 listings for Tesla Tesla Model 3
+2025-05-13 01:00:56,504 - ss_scraper - INFO - Results: {'new': 0, 'updated': 27, 'unchanged': 0, 'error': 0, 'skipped': 1}
+2025-05-13 01:00:58,978 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model S
+2025-05-13 01:00:58,978 - ss_scraper - INFO - Getting listings for Tesla Tesla Model S
+2025-05-13 01:00:58,978 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-s/
+2025-05-13 01:00:59,007 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 25 rows. Console level should be DEBUG.
+2025-05-13 01:00:59,008 - ss_scraper - INFO - Found 25 potential listing rows on this page
+2025-05-13 01:00:59,023 - ss_scraper - INFO - Found 24 total listings for Tesla Tesla Model S after processing all pages.
+2025-05-13 01:00:59,055 - ss_scraper - INFO - Updated engine type for listing 56008706: Elektrisks
+2025-05-13 01:00:59,078 - ss_scraper - INFO - Updated engine type for listing 56284015: Elektrisks
+2025-05-13 01:00:59,098 - ss_scraper - INFO - Updated engine type for listing 56351063: Elektrisks
+2025-05-13 01:00:59,111 - ss_scraper - INFO - Updated engine type for listing 55823235: Elektrisks
+2025-05-13 01:00:59,125 - ss_scraper - INFO - Updated engine type for listing 56108045: Elektrisks
+2025-05-13 01:00:59,160 - ss_scraper - INFO - Updated engine type for listing 55826057: Elektrisks
+2025-05-13 01:00:59,173 - ss_scraper - INFO - Updated engine type for listing 55823224: Elektrisks
+2025-05-13 01:00:59,192 - ss_scraper - INFO - Updated engine type for listing 56132345: Elektrisks
+2025-05-13 01:00:59,213 - ss_scraper - INFO - Updated engine type for listing 56329160: Elektrisks
+2025-05-13 01:00:59,227 - ss_scraper - INFO - Updated engine type for listing 56256069: Elektrisks
+2025-05-13 01:00:59,244 - ss_scraper - INFO - Updated engine type for listing 56242524: Elektrisks
+2025-05-13 01:00:59,266 - ss_scraper - INFO - Updated engine type for listing 56214032: Elektrisks
+2025-05-13 01:00:59,290 - ss_scraper - INFO - Updated engine type for listing 56323864: Elektrisks
+2025-05-13 01:00:59,305 - ss_scraper - INFO - Updated engine type for listing 56092783: Elektrisks
+2025-05-13 01:00:59,325 - ss_scraper - INFO - Updated engine type for listing 56226091: Elektrisks
+2025-05-13 01:00:59,346 - ss_scraper - INFO - Updated engine type for listing 56287044: Elektrisks
+2025-05-13 01:00:59,368 - ss_scraper - INFO - Updated engine type for listing 55885579: Elektrisks
+2025-05-13 01:00:59,386 - ss_scraper - INFO - Updated engine type for listing 56052401: Elektrisks
+2025-05-13 01:00:59,400 - ss_scraper - INFO - Updated engine type for listing 56025024: Elektrisks
+2025-05-13 01:00:59,413 - ss_scraper - INFO - Updated engine type for listing 56079697: Elektrisks
+2025-05-13 01:00:59,428 - ss_scraper - INFO - Updated engine type for listing 56219138: Elektrisks
+2025-05-13 01:00:59,441 - ss_scraper - INFO - Updated engine type for listing 56101526: Elektrisks
+2025-05-13 01:00:59,454 - ss_scraper - INFO - Updated engine type for listing 55957038: Elektrisks
+2025-05-13 01:00:59,473 - ss_scraper - INFO - Updated engine type for listing 56278362: Elektrisks
+2025-05-13 01:01:01,406 - ss_scraper - INFO - Processed 24 listings for Tesla Tesla Model S
+2025-05-13 01:01:01,407 - ss_scraper - INFO - Results: {'new': 0, 'updated': 24, 'unchanged': 0, 'error': 0}
+2025-05-13 01:01:02,880 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model X
+2025-05-13 01:01:02,880 - ss_scraper - INFO - Getting listings for Tesla Tesla Model X
+2025-05-13 01:01:02,880 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-x/
+2025-05-13 01:01:02,908 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 9 rows. Console level should be DEBUG.
+2025-05-13 01:01:02,908 - ss_scraper - INFO - Found 9 potential listing rows on this page
+2025-05-13 01:01:02,915 - ss_scraper - INFO - Found 8 total listings for Tesla Tesla Model X after processing all pages.
+2025-05-13 01:01:02,953 - ss_scraper - INFO - Updated engine type for listing 56307453: Elektrisks
+2025-05-13 01:01:02,972 - ss_scraper - INFO - Updated engine type for listing 56352680: Elektrisks
+2025-05-13 01:01:02,987 - ss_scraper - INFO - Updated engine type for listing 56176897: Elektrisks
+2025-05-13 01:01:03,009 - ss_scraper - INFO - Updated engine type for listing 56024425: Elektrisks
+2025-05-13 01:01:03,030 - ss_scraper - INFO - Updated engine type for listing 56093641: Elektrisks
+2025-05-13 01:01:03,051 - ss_scraper - INFO - Updated engine type for listing 56261096: Elektrisks
+2025-05-13 01:01:03,066 - ss_scraper - INFO - Updated engine type for listing 56128172: Elektrisks
+2025-05-13 01:01:03,091 - ss_scraper - INFO - Updated engine type for listing 56100683: Elektrisks
+2025-05-13 01:01:04,879 - ss_scraper - INFO - Processed 8 listings for Tesla Tesla Model X
+2025-05-13 01:01:04,879 - ss_scraper - INFO - Results: {'new': 0, 'updated': 8, 'unchanged': 0, 'error': 0}
+2025-05-13 01:01:06,552 - ss_scraper - INFO - Starting to scrape model: Tesla Tesla Model Y
+2025-05-13 01:01:06,552 - ss_scraper - INFO - Getting listings for Tesla Tesla Model Y
+2025-05-13 01:01:06,552 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/model-y/
+2025-05-13 01:01:06,582 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 19 rows. Console level should be DEBUG.
+2025-05-13 01:01:06,582 - ss_scraper - INFO - Found 19 potential listing rows on this page
+2025-05-13 01:01:06,605 - ss_scraper - INFO - Found 18 total listings for Tesla Tesla Model Y after processing all pages.
+2025-05-13 01:01:06,639 - ss_scraper - INFO - Updated engine type for listing 56192663: Elektrisks
+2025-05-13 01:01:06,658 - ss_scraper - INFO - Updated engine type for listing 56164583: Elektrisks
+2025-05-13 01:01:06,679 - ss_scraper - INFO - Updated engine type for listing 56079196: Elektrisks
+2025-05-13 01:01:06,700 - ss_scraper - INFO - Updated engine type for listing 56260424: Elektrisks
+2025-05-13 01:01:06,744 - ss_scraper - INFO - Updated engine type for listing 56344595: Elektrisks
+2025-05-13 01:01:06,765 - ss_scraper - INFO - Updated engine type for listing 56262373: Elektrisks
+2025-05-13 01:01:06,785 - ss_scraper - INFO - Updated engine type for listing 56283344: Elektrisks
+2025-05-13 01:01:06,804 - ss_scraper - INFO - Updated engine type for listing 56338298: Elektrisks
+2025-05-13 01:01:06,823 - ss_scraper - INFO - Updated engine type for listing 55927936: Elektrisks
+2025-05-13 01:01:06,839 - ss_scraper - INFO - Updated engine type for listing 56236893: Elektrisks
+2025-05-13 01:01:06,856 - ss_scraper - INFO - Updated engine type for listing 55930680: Elektrisks
+2025-05-13 01:01:06,878 - ss_scraper - INFO - Updated engine type for listing 56192003: Elektrisks
+2025-05-13 01:01:06,902 - ss_scraper - INFO - Updated engine type for listing 56311761: Elektrisks
+2025-05-13 01:01:06,917 - ss_scraper - INFO - Updated engine type for listing 56187143: Elektrisks
+2025-05-13 01:01:06,933 - ss_scraper - INFO - Updated engine type for listing 55837597: Elektrisks
+2025-05-13 01:01:06,955 - ss_scraper - INFO - Updated engine type for listing 56054830: Elektrisks
+2025-05-13 01:01:06,968 - ss_scraper - INFO - Updated engine type for listing 56189392: Elektrisks
+2025-05-13 01:01:06,988 - ss_scraper - INFO - Updated engine type for listing 56171198: Elektrisks
+2025-05-13 01:01:08,769 - ss_scraper - INFO - Processed 18 listings for Tesla Tesla Model Y
+2025-05-13 01:01:08,769 - ss_scraper - INFO - Results: {'new': 0, 'updated': 18, 'unchanged': 0, 'error': 0}
+2025-05-13 01:01:09,981 - ss_scraper - INFO - Starting to scrape model: Tesla Citi
+2025-05-13 01:01:09,981 - ss_scraper - INFO - Getting listings for Tesla Citi
+2025-05-13 01:01:09,981 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/another/
+2025-05-13 01:01:10,006 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 01:01:10,006 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 01:01:10,007 - ss_scraper - WARNING - Row 0, ID 56056422: Missing essential data - price:None, title:True, url:True
+2025-05-13 01:01:10,009 - ss_scraper - INFO - Found 0 total listings for Tesla Citi after processing all pages.
+2025-05-13 01:01:10,009 - ss_scraper - WARNING - No listings found for Tesla Citi
+2025-05-13 01:01:11,023 - ss_scraper - INFO - Starting to scrape model: Tesla Vieglo auto maiņa
+2025-05-13 01:01:11,023 - ss_scraper - INFO - Getting listings for Tesla Vieglo auto maiņa
+2025-05-13 01:01:11,024 - ss_scraper - INFO - Checking page 1 at https://www.ss.lv/lv/transport/cars/tesla/exchange/
+2025-05-13 01:01:11,051 - ss_scraper - CRITICAL - TESTING DEBUG OUTPUT: About to loop through 2 rows. Console level should be DEBUG.
+2025-05-13 01:01:11,051 - ss_scraper - INFO - Found 2 potential listing rows on this page
+2025-05-13 01:01:11,052 - ss_scraper - INFO - Row 0, ID 55794532: Skipping exchange/buying listing.
+2025-05-13 01:01:11,053 - ss_scraper - INFO - Found 0 total listings for Tesla Vieglo auto maiņa after processing all pages.
+2025-05-13 01:01:11,053 - ss_scraper - WARNING - No listings found for Tesla Vieglo auto maiņa
+2025-05-13 01:01:12,974 - ss_scraper - INFO - Finished scraping brand Tesla. Processed 78 listings.
+2025-05-13 01:01:17,075 - ss_scraper - INFO - No listings to mark as inactive
+2025-05-13 01:01:17,081 - ss_scraper - INFO - Scraping completed at 2025-05-13 01:01:17.081401
+2025-05-13 01:01:17,081 - ss_scraper - INFO - Total time: 119.83 seconds
+2025-05-13 01:01:17,081 - ss_scraper - INFO - Total listings processed: 196
+2025-05-13 01:01:17,081 - ss_scraper - INFO - New listings: 0
+2025-05-13 01:01:17,081 - ss_scraper - INFO - Updated listings: 84
+2025-05-13 01:01:17,081 - ss_scraper - INFO - Errors: 0

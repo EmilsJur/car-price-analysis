@@ -164,6 +164,19 @@ const CarDetailsDialog = ({
     return value ? `€${Number(value).toLocaleString()}` : 'Nav norādīts';
   };
   
+  const formatEngineType = (type) => {
+    if (!type) return 'Nav norādīts';
+    
+    switch(type.toLowerCase()) {
+      case 'petrol': return 'Benzīns';
+      case 'diesel': return 'Dīzelis';
+      case 'hybrid': return 'Hibrīds';
+      case 'electric': return 'Elektriskais';
+      case 'gas': return 'Gāze/LPG';
+      default: return type;
+    }
+  };
+
   const formatMileage = (value) => {
     return value ? `${Number(value).toLocaleString()} km` : 'Nav norādīts';
   };
@@ -176,19 +189,27 @@ const CarDetailsDialog = ({
       return date;
     }
   };
+
   
   // Determine engine type details
   const getEngineInfo = () => {
-    if (details.engine) return details.engine;
-    
-    const volume = details.engine_volume ? `${details.engine_volume}L` : '';
-    const type = details.engine_type || '';
-    
-    if (volume && type) return `${volume} ${type}`;
-    if (type) return type;
-    if (volume) return volume;
-    return 'Nav norādīts';
-  };
+  if (details.engine) {
+    return details.engine
+      .replace(/Petrol/i, 'Benzīns')
+      .replace(/Diesel/i, 'Dīzelis')
+      .replace(/Hybrid/i, 'Hibrīds')
+      .replace(/Electric/i, 'Elektriskais')
+      .replace(/Gas/i, 'Gāze');
+  }
+
+  const volume = details.engine_volume ? `${details.engine_volume}L` : '';
+  const type = formatEngineType(details.engine_type);
+  
+  if (volume && type) return `${volume} ${type}`;
+  if (type) return type;
+  if (volume) return volume;
+  return 'Nav norādīts';
+};
   
   return (
     <Dialog 

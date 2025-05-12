@@ -426,7 +426,7 @@ class Scraper:
                                     price = int(price_digits)
                             
                             # For Tesla, set engine type to Electric
-                            engine_type = "Electric"
+                            engine_type = "Elektrisks"
                             
                             logger.debug(f"Row {i}, ID {listing_id}: Tesla layout (3 cells) - Year:{year}, Mileage:{mileage}, Price:{price}")
                         else:
@@ -635,15 +635,15 @@ class Scraper:
                 # Determine engine type
                 engine_text_lower = engine_text.lower()
                 if 'benzīn' in engine_text_lower:
-                    details['engine_type'] = 'Petrol'
+                    details['engine_type'] = 'Benzīns'
                 elif 'dīzel' in engine_text_lower:
-                    details['engine_type'] = 'Diesel'
+                    details['engine_type'] = 'Dīzelis'
                 elif 'hibrīd' in engine_text_lower:
-                    details['engine_type'] = 'Hybrid'
+                    details['engine_type'] = 'Hibrīds'
                 elif 'elektr' in engine_text_lower:
-                    details['engine_type'] = 'Electric'
+                    details['engine_type'] = 'Elektriskais'
                 elif 'gāz' in engine_text_lower:
-                    details['engine_type'] = 'Gas'
+                    details['engine_type'] = 'Gāze'
 
                 logger.debug(f"Found engine info via tdo_15 for {listing_basic['external_id']}: {engine_text}")
             
@@ -657,13 +657,13 @@ class Scraper:
                     # Determine engine type
                     engine_type_text_lower = engine_type_text.lower()
                     if 'benzīn' in engine_type_text_lower:
-                        details['engine_type'] = 'Petrol'
+                        details['engine_type'] = 'Benzīns'
                     elif 'dīzel' in engine_type_text_lower:
-                        details['engine_type'] = 'Diesel'
+                        details['engine_type'] = 'Dīzelis'
                     elif 'hibrīd' in engine_type_text_lower:
-                        details['engine_type'] = 'Hybrid'
+                        details['engine_type'] = 'Hibrīds'
                     elif 'elektr' in engine_type_text_lower:
-                        details['engine_type'] = 'Electric'
+                        details['engine_type'] = 'Elektriskais'
                         # For electric cars, set a default engine volume if needed
                         if 'engine_volume' not in details:
                             details['engine_volume'] = None  # Or some default value for electric
@@ -747,6 +747,12 @@ class Scraper:
             if 'tesla' in (details.get('brand', '') or '').lower() and not details.get('transmission'):
                 details['transmission'] = 'Automatic'
                 
+            if 'smart' in listing_basic.get('brand', '').lower() and not details.get('engine_type'):
+                # Check if it's a newer model (2018+)
+                if details.get('year') and details.get('year') >= 2018:
+                    logger.info(f"Setting engine type to Electric for newer Smart: {listing_basic['external_id']}")
+                    details['engine_type'] = 'Elektrisks'
+
             # Also check by specific IDs as mentioned in the guide
             for field_name, field_id in [
                 ("year", "tdo_18"),

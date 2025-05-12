@@ -141,17 +141,17 @@ const ResultsSection = ({
 
   // Format fuel type in Latvian
   const formatFuelType = (type) => {
-    if (!type) return null;
-    
-    switch(type.toLowerCase()) {
-      case 'petrol': return 'Benzīns';
-      case 'diesel': return 'Dīzelis';
-      case 'hybrid': return 'Hibrīds';
-      case 'electric': return 'Elektriskais';
-      case 'gas': return 'Gāze';
-      default: return type;
-    }
-  };
+  if (!type) return null;
+  
+  switch(type.toLowerCase()) {
+    case 'petrol': return 'Benzīns';
+    case 'diesel': return 'Dīzelis';
+    case 'hybrid': return 'Hibrīds';
+    case 'electric': return 'Elektriskais';
+    case 'gas': return 'Gāze';
+    default: return type;
+  }
+}
   
   // Format transmission in Latvian
   const formatTransmission = (transmission) => {

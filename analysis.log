@@ -1880,3 +1880,31 @@ werkzeug.exceptions.BadRequest: 400 Bad Request: The browser (or proxy) sent a r
 2025-05-13 00:23:14,272 - car_api - INFO - Price distribution chart request: Brand=Infiniti, Model=None, YearRange=2004-2025
 2025-05-13 00:23:14,359 - car_analysis - INFO - Created price distribution chart with 27 data points
 2025-05-13 00:23:14,359 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:23:14] "GET /api/charts/price-distribution?brand=Infiniti&yearFrom=2004&yearTo=2025 HTTP/1.1" 200 -
+2025-05-13 00:24:49,502 - car_app - INFO - Starting API server on port 5000
+2025-05-13 00:24:49,510 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-13 00:24:49,510 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-13 00:24:51,059 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:24:51] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-13 00:24:51,320 - car_api - INFO - Search request received: brand=Smart, model=, year=2004-2025, fuel=, transmission=, price=0-100000
+2025-05-13 00:24:51,372 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-13 00:24:51,375 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:24:51] "POST /api/search HTTP/1.1" 200 -
+2025-05-13 00:24:51,380 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2004-2025
+2025-05-13 00:24:51,483 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-13 00:24:51,483 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:24:51] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2004&yearTo=2025 HTTP/1.1" 200 -
+2025-05-13 00:32:50,561 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-13 00:32:50,810 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-13 00:32:50,869 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-13 00:32:50,869 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-13 00:32:50,870 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-13 00:32:50,870 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-13 00:32:52,241 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-13 00:32:52,242 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:52] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-13 00:32:52,485 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:52] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-13 00:32:52,763 - car_api - INFO - Search request received: brand=Suzuki, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-13 00:32:52,764 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-13 00:32:52,766 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:52] "POST /api/search HTTP/1.1" 200 -
+2025-05-13 00:32:52,790 - car_api - INFO - Price distribution chart request: Brand=Suzuki, Model=None, YearRange=2015-2025
+2025-05-13 00:32:52,859 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-13 00:32:52,859 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 00:32:52] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -

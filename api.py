@@ -109,19 +109,37 @@ def search_cars():
             
             # Formatting the listings for the API response
             for row in results:
+                # Translate engine type to Latvian
+                engine_type_latvian = "Nav norādīts"
+                if row.engine_type:
+                    engine_type_lower = row.engine_type.lower()
+                    if 'petrol' in engine_type_lower:
+                        engine_type_latvian = 'Benzīns'
+                    elif 'diesel' in engine_type_lower:
+                        engine_type_latvian = 'Dīzelis'
+                    elif 'hybrid' in engine_type_lower:
+                        engine_type_latvian = 'Hibrīds'
+                    elif 'electric' in engine_type_lower:
+                        engine_type_latvian = 'Elektriskais'
+                    elif 'gas' in engine_type_lower:
+                        engine_type_latvian = 'Gāze'
+                    else:
+                        engine_type_latvian = row.engine_type
+                
                 engine_display = "Nav norādīts"
                 if row.engine_volume and row.engine_type:
-                    engine_display = f"{row.engine_volume}L {row.engine_type}"
+                    engine_display = f"{row.engine_volume}L {engine_type_latvian}"
                 elif row.engine_type:
-                    engine_display = row.engine_type
-                
+                    engine_display = engine_type_latvian
+
                 listings.append({
                     'brand': row.brand,
                     'model': row.model,
                     'year': row.year,
                     'year_display': str(row.year),
                     'engine': engine_display,
-                    'engine_type': row.engine_type or "Nav norādīts",
+                    'engine_type': row.engine_type or "Nav norādīts", 
+                    'engine_type_latvian': engine_type_latvian, 
                     'engine_volume': row.engine_volume,
                     'transmission': row.transmission or "Nav norādīts",
                     'mileage': row.mileage or 0,
