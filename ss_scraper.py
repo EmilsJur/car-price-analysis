@@ -14,20 +14,36 @@ from sqlalchemy import func
 from models import init_db, Brand, Model, Car, Listing, Region, Source
 
 logger = logging.getLogger('ss_scraper')
-logger.setLevel(logging.DEBUG)  # Set the logger itself to DEBUG to ensure it processes debug messages
+logger.setLevel(logging.DEBUG)  # Set the logger level to DEBUG
 
-# Create file handler and set its level and formatter
-file_handler = logging.FileHandler('ss_scraper.log')
-file_handler.setLevel(logging.INFO) # File can stay at INFO
+# Create file handler with UTF-8 encoding
+file_handler = logging.FileHandler('ss_scraper.log', encoding='utf-8')
+file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 logger.addHandler(file_handler)
 
-# Create console handler and set its level and formatter
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG) # Explicitly DEBUG for console
+# Fix console output for Windows
+if sys.platform == 'win32':
+    try:
+        # Try to use the utf-8 codec for console output
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        # For older Python versions
+        if sys.version_info >= (3, 7):
+            # Python 3.7+ approach
+            sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+        else:
+            # Python 3.6 approach
+            sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
+
+# Create console handler with appropriate settings
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 logger.addHandler(console_handler)
 
+# Prevent messages from being passed to the root logger
+logger.propagate = False
 # Prevent messages from being passed to the root logger's handlers if basicConfig was also used
 # logger.propagate = False # Try with and without this if issues persist
 
@@ -601,7 +617,80 @@ class Scraper:
             if 'region' not in details or not details['region']:
                 details['region'] = 'Nav norādīts'
             
-            # Get specs from the options table
+            # Look for specific IDs for engine and transmission
+            engine_elem = soup.select_one("td.ads_opt#tdo_15")
+            if engine_elem:
+                engine_text = engine_elem.text.strip()
+                details['engine'] = engine_text
+                
+                # Extract engine volume (e.g., 0.7)
+                volume_match = re.search(r'(\d+[\.,]\d+|\d+)', engine_text)
+                if volume_match:
+                    volume_str = volume_match.group(1).replace(',', '.')
+                    try:
+                        details['engine_volume'] = float(volume_str)
+                    except ValueError:
+                        pass
+                
+                # Determine engine type
+                engine_text_lower = engine_text.lower()
+                if 'benzīn' in engine_text_lower:
+                    details['engine_type'] = 'Petrol'
+                elif 'dīzel' in engine_text_lower:
+                    details['engine_type'] = 'Diesel'
+                elif 'hibrīd' in engine_text_lower:
+                    details['engine_type'] = 'Hybrid'
+                elif 'elektr' in engine_text_lower:
+                    details['engine_type'] = 'Electric'
+                elif 'gāz' in engine_text_lower:
+                    details['engine_type'] = 'Gas'
+
+                logger.debug(f"Found engine info via tdo_15 for {listing_basic['external_id']}: {engine_text}")
+            
+            # Look for "Dzinēja tips" for Smart cars
+            if 'engine_type' not in details:
+                engine_type_elem = soup.select_one("td.ads_opt#tdo_34")
+                if engine_type_elem:
+                    engine_type_text = engine_type_elem.text.strip()
+                    details['engine'] = engine_type_text  # Use this as the full engine description too
+                    
+                    # Determine engine type
+                    engine_type_text_lower = engine_type_text.lower()
+                    if 'benzīn' in engine_type_text_lower:
+                        details['engine_type'] = 'Petrol'
+                    elif 'dīzel' in engine_type_text_lower:
+                        details['engine_type'] = 'Diesel'
+                    elif 'hibrīd' in engine_type_text_lower:
+                        details['engine_type'] = 'Hybrid'
+                    elif 'elektr' in engine_type_text_lower:
+                        details['engine_type'] = 'Electric'
+                        # For electric cars, set a default engine volume if needed
+                        if 'engine_volume' not in details:
+                            details['engine_volume'] = None  # Or some default value for electric
+                    elif 'gāz' in engine_type_text_lower:
+                        details['engine_type'] = 'Gas'
+
+                    logger.debug(f"Found engine info via tdo_34 for {listing_basic['external_id']}: {engine_type_text}")
+
+            # Check transmission - using ID tdo_35
+            transmission_elem = soup.select_one("td.ads_opt#tdo_35")
+            if transmission_elem:
+                trans_text = transmission_elem.text.strip()
+                
+                # Extract just the first part of transmission text
+                # Example: "Automāts 6 ātrumi" -> "Automāts"
+                trans_text_lower = trans_text.lower()
+                
+                if 'automāt' in trans_text_lower:
+                    details['transmission'] = 'Automatic'
+                elif 'manuāl' in trans_text_lower:
+                    details['transmission'] = 'Manual'
+                elif 'pusautomāt' in trans_text_lower:
+                    details['transmission'] = 'Semi-Automatic'
+                else:
+                    details['transmission'] = trans_text  # keep original if no match
+            
+            # Get specs from the options table (keep this as a fallback)
             options_table = soup.select_one('table.options_list')
             if options_table:
                 rows = options_table.select('tr')
@@ -611,8 +700,8 @@ class Scraper:
                         label = cells[0].text.strip().lower()
                         value = cells[1].text.strip()
                         
-                        # Extract engine info
-                        if any(eng_text in label for eng_text in ['dzinējs', 'engine', 'двигатель']):
+                        # Only set these if they weren't already found by ID
+                        if 'engine' not in details and any(eng_text in label for eng_text in ['dzinējs', 'engine', 'двигатель']):
                             details['engine'] = value
                             
                             # Get engine volume (e.g., 2.0)
@@ -634,8 +723,8 @@ class Scraper:
                             elif any(fuel in lower_value for fuel in ['gas', 'gāze']):
                                 details['engine_type'] = 'Gas'
                         
-                        # Extract transmission type - enhanced version
-                        if any(trans_text in label for trans_text in ['ātrumkārba', 'transmission', 'коробка']):
+                        # Only set transmission if not found by ID
+                        if 'transmission' not in details and any(trans_text in label for trans_text in ['ātrumkārba', 'transmission', 'коробка']):
                             lower_value = value.lower()
                             if any(t in lower_value for t in ['manuāl', 'manual', 'механика']):
                                 details['transmission'] = 'Manual'
@@ -647,11 +736,11 @@ class Scraper:
                                 details['transmission'] = value
                         
                         # Extract body type
-                        if any(body_text in label for body_text in ['virsbūve', 'body', 'кузов']):
+                        if 'body_type' not in details and any(body_text in label for body_text in ['virsbūve', 'body', 'кузов']):
                             details['body_type'] = value
                         
                         # Extract color
-                        if any(color_text in label for color_text in ['krāsa', 'color', 'цвет']):
+                        if 'color' not in details and any(color_text in label for color_text in ['krāsa', 'color', 'цвет']):
                             details['color'] = value
             
             # For Tesla models, default to Automatic if not specified
@@ -698,26 +787,6 @@ class Scraper:
                 details['skip_listing'] = True
                 return details
                 
-            # Also check by specific IDs as mentioned in the guide
-            for field_name, field_id in [
-                ("year", "tdo_18"),
-                ("body_type", "tdo_32"),
-                ("color", "tdo_17"),
-                ("tech_inspection", "tdo_223"),
-            ]:
-                field_elem = soup.select_one(f"td.ads_opt#{field_id}")
-                if field_elem:
-                    if field_name == "year":
-                        # Extract only the numeric year part from strings like "2019 decembris"
-                        year_text = field_elem.text.strip()
-                        try:
-                            details[field_name] = int(year_text.split()[0])  # Take just the first part
-                        except (ValueError, IndexError):
-                            # Fall back to the original text if conversion fails
-                            details[field_name] = year_text
-                    else:
-                        details[field_name] = field_elem.text.strip()
-            
             # Check if we have a year
             if 'year' not in details or details['year'] is None:
                 logger.info(f"Skipping listing without year: {listing_basic['external_id']}")
@@ -786,6 +855,7 @@ class Scraper:
                 if listing_data.get('engine_type') and car.engine_type != listing_data['engine_type']:
                     car.engine_type = listing_data['engine_type']
                     updated = True
+                    logger.info(f"Updated engine type for listing {listing_data['external_id']}: {listing_data['engine_type']}")
                 if listing_data.get('transmission') and car.transmission != listing_data['transmission']:
                     car.transmission = listing_data['transmission']
                     updated = True
