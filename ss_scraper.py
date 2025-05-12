@@ -536,7 +536,7 @@ class Scraper:
         # Skip if no URL
         if not listing_basic.get('url'):
             return listing_basic
-                
+                    
         listing_url = listing_basic['url']
         logger.debug(f"Getting details for listing {listing_basic['external_id']}")
         
@@ -580,15 +580,25 @@ class Scraper:
             if 'listing_date' not in details:
                 details['listing_date'] = datetime.now().strftime('%Y-%m-%d')
             
-            # Get region/location
+            # Get region/location - enhanced version
+            # First check in various text labels
             for cell in date_cells:
-                if any(loc_text in cell.text.lower() for loc_text in ['region', 'reģions', 'pilsēta']):
+                if any(loc_text in cell.text.lower() for loc_text in ['region', 'reģions', 'pilsēta', 'vieta']):
                     location_value = cell.find_next('td')
                     if location_value:
                         details['region'] = location_value.text.strip()
             
+            # Also check contacts table for location
+            contacts_table = soup.select_one('table.contacts_table')
+            if contacts_table:
+                for row in contacts_table.select('tr'):
+                    if 'Vieta:' in row.text:
+                        location_cell = row.select_one('td.ads_contacts')
+                        if location_cell:
+                            details['region'] = location_cell.text.strip()
+            
             # Default region if not found
-            if 'region' not in details:
+            if 'region' not in details or not details['region']:
                 details['region'] = 'Nav norādīts'
             
             # Get specs from the options table
@@ -624,13 +634,15 @@ class Scraper:
                             elif any(fuel in lower_value for fuel in ['gas', 'gāze']):
                                 details['engine_type'] = 'Gas'
                         
-                        # Extract transmission type
+                        # Extract transmission type - enhanced version
                         if any(trans_text in label for trans_text in ['ātrumkārba', 'transmission', 'коробка']):
                             lower_value = value.lower()
                             if any(t in lower_value for t in ['manuāl', 'manual', 'механика']):
                                 details['transmission'] = 'Manual'
                             elif any(t in lower_value for t in ['automāt', 'automatic', 'автомат']):
                                 details['transmission'] = 'Automatic'
+                            elif any(t in lower_value for t in ['pusautomāt', 'semi-automatic', 'полуавтомат']):
+                                details['transmission'] = 'Semi-Automatic'
                             else:
                                 details['transmission'] = value
                         
@@ -642,6 +654,10 @@ class Scraper:
                         if any(color_text in label for color_text in ['krāsa', 'color', 'цвет']):
                             details['color'] = value
             
+            # For Tesla models, default to Automatic if not specified
+            if 'tesla' in (details.get('brand', '') or '').lower() and not details.get('transmission'):
+                details['transmission'] = 'Automatic'
+                
             # Also check by specific IDs as mentioned in the guide
             for field_name, field_id in [
                 ("year", "tdo_18"),
@@ -863,7 +879,6 @@ class Scraper:
             return "error"
     
     async def process_listing_async(self, listing_basic, session):
-        """Process a single car listing"""
         try:
             # Get all the details from the listing page
             listing_details = await self.get_listing_details_async(listing_basic, session)

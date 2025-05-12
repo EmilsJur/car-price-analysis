@@ -1256,3 +1256,202 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(NULL) AND lis
 2025-05-11 22:32:53,783 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 22:32:53] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
 2025-05-11 22:32:54,043 - car_analysis - INFO - Retrieved 4 popular brands
 2025-05-11 22:32:54,044 - werkzeug - INFO - 127.0.0.1 - - [11/May/2025 22:32:54] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:22:38,702 - car_app - INFO - Starting API server on port 5000
+2025-05-12 20:22:38,712 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-12 20:22:38,712 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-12 20:22:47,355 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:47] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:22:47,537 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:47] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:22:47,661 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:22:47,661 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:47] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:22:47,662 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:22:47,663 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:47] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:22:48,635 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:22:48,635 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:48] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:22:49,186 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:22:49,498 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:22:49,501 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-12 20:22:49,506 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:49] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:22:49,761 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:22:49,961 - car_analysis - INFO - Created price distribution chart with 64 data points
+2025-05-12 20:22:49,961 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:49] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:22:51,782 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-12 20:22:51,783 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:51] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:22:52,683 - car_api - INFO - Search request received: brand=Suzuki, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:22:52,685 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-12 20:22:52,688 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:52] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:22:52,946 - car_api - INFO - Price distribution chart request: Brand=Suzuki, Model=None, YearRange=2015-2025
+2025-05-12 20:22:53,186 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-12 20:22:53,186 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:22:53] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:25:07,016 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:07] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:25:07,278 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:07] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:25:07,324 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:25:07,324 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:07] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:25:07,326 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:25:07,326 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:07] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:25:08,097 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:25:08,097 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:08] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:25:08,740 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:08] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:25:09,054 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:25:09,055 - car_analysis - INFO - Statistics calculated for 64 listings
+2025-05-12 20:25:09,057 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:09] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:25:09,316 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:25:09,395 - car_analysis - INFO - Created price distribution chart with 64 data points
+2025-05-12 20:25:09,395 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:09] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:25:10,995 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:25:10,995 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:10] "GET /api/popular/models?brand=Infiniti&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:25:11,895 - car_api - INFO - Search request received: brand=Infiniti, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:25:11,897 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:25:11,898 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:11] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:25:12,159 - car_api - INFO - Price distribution chart request: Brand=Infiniti, Model=None, YearRange=2015-2025
+2025-05-12 20:25:12,235 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:25:12,235 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:12] "GET /api/charts/price-distribution?brand=Infiniti&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:25:13,281 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-12 20:25:13,282 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:13] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:25:14,154 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:14] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:25:14,416 - car_api - INFO - Search request received: brand=Suzuki, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:25:14,417 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-12 20:25:14,418 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:14] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:25:14,462 - car_api - INFO - Price distribution chart request: Brand=Suzuki, Model=None, YearRange=2015-2025
+2025-05-12 20:25:14,543 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-12 20:25:14,544 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:14] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:25:16,417 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:25:16,418 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:25:16] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:31:13,505 - car_app - INFO - Starting API server on port 5000
+2025-05-12 20:31:13,515 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-12 20:31:13,515 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-12 20:31:16,141 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:31:16,342 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:31:16,450 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:31:16,450 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:16] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:31:16,452 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:31:16,452 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:16] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:31:17,471 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:31:17,472 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:17] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:31:18,168 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:18] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:31:18,476 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:31:18,478 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-12 20:31:18,481 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:18] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:31:18,739 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:31:18,833 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-12 20:31:18,833 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:18] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:31:21,654 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-12 20:31:21,696 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-12 20:31:21,699 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-12 20:31:21,699 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html complete. Desc: True, Img: False, PubDate: 11.05.2025 10:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-12 20:31:21,700 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:31:21] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html HTTP/1.1" 200 -
+2025-05-12 20:37:10,501 - car_app - INFO - Starting API server on port 5000
+2025-05-12 20:37:10,511 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-12 20:37:10,511 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-12 20:37:12,597 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:12] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:37:12,800 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:12] "GET /api/status HTTP/1.1" 200 -
+2025-05-12 20:37:12,908 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:37:12,908 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:12] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:37:12,911 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-12 20:37:12,913 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:12] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-12 20:37:13,790 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:37:13,790 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:13] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:37:14,052 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:14] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:14,345 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:37:14,347 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-12 20:37:14,350 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:14] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:14,361 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:37:14,452 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-12 20:37:14,452 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:14] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:37:18,556 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-12 20:37:18,556 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:18] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:37:19,377 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:19] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:19,639 - car_api - INFO - Search request received: brand=Suzuki, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:37:19,641 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-12 20:37:19,644 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:19] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:19,679 - car_api - INFO - Price distribution chart request: Brand=Suzuki, Model=None, YearRange=2015-2025
+2025-05-12 20:37:20,021 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-12 20:37:20,021 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:20] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:37:24,360 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:37:24,361 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:24] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:37:25,486 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:25] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:25,734 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:37:25,736 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-12 20:37:25,739 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:25] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:25,796 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:37:26,115 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-12 20:37:26,115 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:26] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:37:27,268 - car_analysis - INFO - Retrieved 3 popular models
+2025-05-12 20:37:27,268 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:27] "GET /api/popular/models?brand=Smart&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:37:28,334 - car_api - INFO - Search request received: brand=Smart, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:37:28,336 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:37:28,338 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:28] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:37:28,596 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2015-2025
+2025-05-12 20:37:29,092 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:37:29,092 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:29] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:37:30,421 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/amnke.html
+2025-05-12 20:37:30,474 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/amnke.html
+2025-05-12 20:37:30,479 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-12 20:37:30,479 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/amnke.html complete. Desc: True, Img: False, PubDate: 22.04.2025 17:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-12 20:37:30,480 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:37:30] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/smart/fortwo/amnke.html HTTP/1.1" 200 -
+2025-05-12 20:40:49,843 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:40:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:40:50,105 - car_api - INFO - Search request received: brand=Smart, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:40:50,107 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:40:50,109 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:40:50] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:40:50,152 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2015-2025
+2025-05-12 20:40:50,301 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:40:50,302 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:40:50] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:41:21,953 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:41:21,954 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:41:21] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:41:23,158 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:41:23] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:41:23,424 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:41:23,426 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-12 20:41:23,429 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:41:23] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:41:23,468 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:41:23,650 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-12 20:41:23,650 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:41:23] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:42:47,997 - car_analysis - INFO - Retrieved 13 popular models
+2025-05-12 20:42:47,997 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:47] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:42:48,452 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:48] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:42:48,769 - car_api - INFO - Search request received: brand=Suzuki, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:42:48,770 - car_analysis - INFO - Statistics calculated for 17 listings
+2025-05-12 20:42:48,771 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:48] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:42:49,016 - car_api - INFO - Price distribution chart request: Brand=Suzuki, Model=None, YearRange=2015-2025
+2025-05-12 20:42:49,114 - car_analysis - INFO - Created price distribution chart with 17 data points
+2025-05-12 20:42:49,115 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:49] "GET /api/charts/price-distribution?brand=Suzuki&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:42:50,937 - car_analysis - INFO - Retrieved 3 popular models
+2025-05-12 20:42:50,937 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:50] "GET /api/popular/models?brand=Smart&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:42:51,894 - car_api - INFO - Search request received: brand=Smart, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:42:51,895 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:42:51,897 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:51] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:42:52,142 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2015-2025
+2025-05-12 20:42:52,217 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:42:52,218 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:42:52] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:43:03,882 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-12 20:43:03,882 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:03] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:43:05,003 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:05] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:43:05,265 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:43:05,266 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-12 20:43:05,268 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:05] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:43:05,311 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-12 20:43:05,405 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-12 20:43:05,405 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:05] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:43:43,884 - car_analysis - INFO - Retrieved 3 popular models
+2025-05-12 20:43:43,884 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:43] "GET /api/popular/models?brand=Smart&limit=30 HTTP/1.1" 200 -
+2025-05-12 20:43:45,417 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:45] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:43:45,679 - car_api - INFO - Search request received: brand=Smart, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:43:45,680 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:43:45,681 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:45] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:43:45,725 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2015-2025
+2025-05-12 20:43:45,804 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:43:45,804 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:43:45] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-12 20:44:51,080 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:44:51] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-12 20:44:51,343 - car_api - INFO - Search request received: brand=Smart, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-12 20:44:51,344 - car_analysis - INFO - Statistics calculated for 7 listings
+2025-05-12 20:44:51,345 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:44:51] "POST /api/search HTTP/1.1" 200 -
+2025-05-12 20:44:51,390 - car_api - INFO - Price distribution chart request: Brand=Smart, Model=None, YearRange=2015-2025
+2025-05-12 20:44:51,471 - car_analysis - INFO - Created price distribution chart with 7 data points
+2025-05-12 20:44:51,472 - werkzeug - INFO - 127.0.0.1 - - [12/May/2025 20:44:51] "GET /api/charts/price-distribution?brand=Smart&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -

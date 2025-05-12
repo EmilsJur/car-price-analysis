@@ -116,8 +116,9 @@ const ResultsSection = ({
 
   // Check if car is in favorites
   const isFavorite = (car) => {
-    return favorites.some(fav => fav.id === car.id);
-  };
+  if (!car || !favorites) return false;
+  return favorites.some(fav => fav && car && fav.id === car.id);
+};
 
   // Export to CSV function
   const handleExportCSV = () => {
@@ -382,19 +383,6 @@ const ResultsSection = ({
                       <TableCell>{car.year || 'Nav norādīts'}</TableCell>
                       <TableCell>
                         {engineText}
-                        {car.engine_type && (
-                          <Chip 
-                            label={formatFuelType(car.engine_type) || car.engine_type} 
-                            size="small" 
-                            sx={{ ml: 1 }} 
-                            color={
-                              car.engine_type.toLowerCase() === 'diesel' ? 'primary' :
-                              car.engine_type.toLowerCase() === 'petrol' ? 'secondary' :
-                              car.engine_type.toLowerCase() === 'electric' ? 'success' :
-                              car.engine_type.toLowerCase() === 'hybrid' ? 'info' : 'default'
-                            }
-                          />
-                        )}
                       </TableCell>
                       <TableCell>
                         {transmissionText}
