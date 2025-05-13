@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box,
+  Box, 
   Typography,
   FormControl,
   InputLabel,
@@ -21,6 +21,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SaveIcon from '@mui/icons-material/Save';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { getRegions } from '../services/apiService';
 
 const SearchForm = ({ 
   brands = [], 
@@ -52,6 +53,23 @@ const SearchForm = ({
   const [errors, setErrors] = useState({});
   const [searchName, setSearchName] = useState('');
   const [showSavedSearches, setShowSavedSearches] = useState(false);
+  const [regions, setRegions] = useState([]);
+
+  // Fetch regions on component mount
+  useEffect(() => {
+    const fetchRegions = async () => {
+      try {
+        const response = await getRegions();
+        if (response && response.regions) {
+          setRegions(response.regions);
+        }
+      } catch (err) {
+        console.error('Error fetching regions:', err);
+      }
+    };
+    
+    fetchRegions();
+  }, []);
 
   // Sync local params with parent state
   useEffect(() => {
@@ -167,7 +185,7 @@ const SearchForm = ({
     return `€${value.toLocaleString()}`;
   };
 
-  // Fuel type options
+  // Fuel type options - updated to match backend expectations
   const fuelTypes = [
     { value: 'Petrol', label: 'Benzīns' },
     { value: 'Diesel', label: 'Dīzelis' },
@@ -181,15 +199,6 @@ const SearchForm = ({
     { value: 'Manual', label: 'Manuālā' },
     { value: 'Automatic', label: 'Automātiskā' },
     { value: 'Semi-Automatic', label: 'Pusautomātiskā' }
-  ];
-
-  // Region options (example - replace with actual data)
-  const regions = [
-    { value: 'Riga', label: 'Rīga' },
-    { value: 'Kurzeme', label: 'Kurzeme' },
-    { value: 'Vidzeme', label: 'Vidzeme' },
-    { value: 'Latgale', label: 'Latgale' },
-    { value: 'Zemgale', label: 'Zemgale' }
   ];
 
   return (
@@ -430,8 +439,8 @@ const SearchForm = ({
                   >
                     <MenuItem value="">Jebkurš</MenuItem>
                     {regions.map((region) => (
-                      <MenuItem key={region.value} value={region.value}>
-                        {region.label}
+                      <MenuItem key={region.id || region.name} value={region.name}>
+                        {region.name}
                       </MenuItem>
                     ))}
                   </Select>
@@ -539,7 +548,7 @@ const SearchForm = ({
           )}
           {localParams.region && (
             <Chip 
-              label={`Reģions: ${regions.find(r => r.value === localParams.region)?.label || localParams.region}`} 
+              label={`Reģions: ${localParams.region}`} 
               size="small" 
               onDelete={() => handleLocalChange('region', '')}
               disabled={loading}

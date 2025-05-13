@@ -9,9 +9,8 @@ import Footer from './components/Footer';
 import SearchForm from './components/SearchForm';
 import ResultsSection from './components/ResultsSection';
 import PriceAnalysisChart from './components/PriceAnalysisChart';
-import SimilarListings from './components/SimilarListings';
 import CarComparisonTable from './components/CarComparisonTable';
-
+import RegionalPriceMap from './components/RegionalPriceMap';
 // Import pages
 import UserProfilePage from './components/UserProfilePage';
 import NotificationsPage from './components/NotificationsPage';
@@ -24,7 +23,8 @@ import {
   getPriceDistributionChart, 
   getPriceTrendChart, 
   getPopularBrands,
-  getPopularModels 
+  getPopularModels,
+  getRegionStatistics
 } from './services/apiService';
 
 // Import MUI components
@@ -141,6 +141,9 @@ function App() {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [tabValue, setTabValue] = useState(0);
+  const [regionStatistics, setRegionStatistics] = useState(null);
+  const [regionStatsLoading, setRegionStatsLoading] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [chartType, setChartType] = useState('distribution');
   const [chartLoading, setChartLoading] = useState(false);
@@ -198,6 +201,9 @@ function App() {
             console.error('Failed to load comparison:', err);
           }
         }
+        
+        // Fetch initial region statistics
+        fetchRegionStatistics();
       } catch (error) {
         console.error("Error fetching initial data:", error);
       }
@@ -205,7 +211,7 @@ function App() {
     
     fetchInitialData();
   }, []);
-  
+       
   // Fetch models when brand changes
   useEffect(() => {
     if (!searchParams.brand) {
@@ -234,6 +240,24 @@ function App() {
   useEffect(() => {
     localStorage.setItem('carsToCompare', JSON.stringify(carsToCompare));
   }, [carsToCompare]);
+
+  // Function to fetch region statistics
+  const fetchRegionStatistics = async (brand = '', model = '') => {
+    setRegionStatsLoading(true);
+    try {
+      const response = await getRegionStatistics(brand, model);
+      setRegionStatistics(response);
+    } catch (err) {
+      console.error('Error fetching region statistics:', err);
+      setNotification({
+        open: true,
+        message: 'Neizdevās ielādēt reģionu statistiku',
+        severity: 'warning'
+      });
+    } finally {
+      setRegionStatsLoading(false);
+    }
+  };
 
   // Function to handle search submission
   const handleSearch = async () => {
@@ -267,6 +291,9 @@ function App() {
       if (searchParams.brand) {
         handleFetchChart(chartType);
       }
+      
+      // Update region statistics based on search params
+      fetchRegionStatistics(searchParams.brand, searchParams.model);
       
     } catch (err) {
       console.error('Search error:', err);
@@ -347,8 +374,10 @@ function App() {
   const handleToggleFavorite = (car) => {
     const isFavorite = favorites.some(fav => fav.id === car.id);
     
+    let updatedFavorites;
     if (isFavorite) {
-      setFavorites(prev => prev.filter(fav => fav.id !== car.id));
+      updatedFavorites = favorites.filter(fav => fav.id !== car.id);
+      setFavorites(updatedFavorites);
       
       setNotification({
         open: true,
@@ -356,7 +385,19 @@ function App() {
         severity: 'info'
       });
     } else {
-      setFavorites(prev => [...prev, car]);
+      // Ensure the car has all necessary fields
+      const carForFavorite = {
+        ...car,
+        id: car.id || car.external_id || `car-${Date.now()}`,
+        brand: car.brand || 'Nav norādīts',
+        model: car.model || 'Nav norādīts',
+        year: car.year || 'Nav norādīts',
+        price: car.price || 0,
+        mileage: car.mileage || 0
+      };
+      
+      updatedFavorites = [...favorites, carForFavorite];
+      setFavorites(updatedFavorites);
       
       setNotification({
         open: true,
@@ -475,6 +516,31 @@ function App() {
         message: 'Neizdevās lejupielādēt grafiku',
         severity: 'error'
       });
+    }
+  };
+
+  // Handle region click on map
+  const handleRegionClick = (regionId) => {
+    // Toggle region selection
+    setSelectedRegion(prevRegion => prevRegion === regionId ? null : regionId);
+    
+    // Update search params if region is selected
+    if (regionId && regionId !== selectedRegion) {
+      const regionName = regionStatistics?.regions?.find(r => 
+        r.id === regionId || r.name.toLowerCase() === regionId.toLowerCase()
+      )?.name;
+      
+      if (regionName) {
+        handleParamChange('region', regionName);
+        setNotification({
+          open: true,
+          message: `Atlasīti sludinājumi no reģiona: ${regionName}`,
+          severity: 'info'
+        });
+      }
+    } else if (selectedRegion) {
+      // Clear region filter if deselecting
+      handleParamChange('region', '');
     }
   };
 
@@ -599,6 +665,15 @@ function App() {
               )}
               
               <Grid item xs={12}>
+                <RegionalPriceMap 
+                  regionData={regionStatistics?.regions || []} 
+                  loading={regionStatsLoading}
+                  onRegionClick={handleRegionClick}
+                  selectedRegion={selectedRegion}
+                />
+              </Grid>
+              
+              <Grid item xs={12}>
                 <PriceAnalysisChart 
                   brandName={searchParams.brand}
                   modelName={searchParams.model}
@@ -608,18 +683,6 @@ function App() {
                   onChartTypeChange={handleChartTypeChange}
                   onRefresh={() => handleFetchChart(chartType)}
                   onDownload={handleChartDownload}
-                />
-              </Grid>
-              
-              <Grid item xs={12}>
-                <SimilarListings 
-                  listings={results?.listings?.slice(0, 6) || []}
-                  title="Sludinājumu piemēri"
-                  onToggleFavorite={handleToggleFavorite}
-                  onAddToCompare={handleAddToCompare}
-                  onShowDetails={() => {}} // Implement as needed
-                  favorites={favorites}
-                  viewMode="card"
                 />
               </Grid>
             </Grid>

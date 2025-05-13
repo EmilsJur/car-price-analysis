@@ -44,7 +44,9 @@ def search_cars():
         transmission = data.get('transmission')
         price_from = data.get('priceFrom')
         price_to = data.get('priceTo')
+        region = data.get('region')
         
+        logger.info(f"Search request with filters - region: {region}, fuel_type: {fuel_type}")
         logger.info(f"Search request received: brand={brand}, model={model}, year={year_from}-{year_to}, fuel={fuel_type}, transmission={transmission}, price={price_from}-{price_to}")
         
         # Fetching price statistics using the analyzer
@@ -100,6 +102,8 @@ def search_cars():
                 query = query.filter(Listing.price >= price_from)
             if price_to:
                 query = query.filter(Listing.price <= price_to)
+            if region:
+                query = query.filter(func.lower(Region.name) == func.lower(region))
             
             query = query.filter(Listing.is_active == True) # Only active listings
             query = query.order_by(Listing.listing_date.desc()) # Newest first
@@ -165,6 +169,176 @@ def search_cars():
         logger.error(f"Error during car search: {str(e)}", exc_info=True)
         return jsonify({"error": "An error occurred while searching for cars."}), 500
 
+def map_location_to_region(location_name):
+    """Maps a location (city, district) name to its proper region in Latvia"""
+    if not location_name:
+        return "Nav norādīts"
+    
+    # Normalize input - lowercase, remove "raj." suffix, and strip whitespace
+    location = location_name.lower().replace("raj.", "").replace("raj.", "").strip()
+    
+    # Rīgas reģions
+    riga_region = [
+        "rīga", "riga", "rīgas", "rigas", "jūrmala", "jurmala", "olaine", "salaspils", 
+        "baldone", "ikšķile", "ikskile", "ķekava", "kekava", "baloži", "balozi", 
+        "sigulda", "saulkrasti", "ogre", "lielvārde", "lielvarde", "mārupe", "marupe", 
+        "ādaži", "adazi", "carnikava", "rīgas rajons", "rigas rajons"
+    ]
+    
+    # Vidzemes reģions
+    vidzeme_region = [
+        "vidzeme", "cēsis", "cesis", "valmiera", "limbaži", "limbazi", "smiltene", 
+        "madona", "gulbene", "alūksne", "aluksne", "cesvaine", "valka", "valkas"
+    ]
+    
+    # Zemgales reģions
+    zemgale_region = [
+        "zemgale", "jelgava", "jēkabpils", "jekabpils", "bauska", "dobele", 
+        "aizkraukle", "pļaviņas", "plavinas", "viesīte", "viesite", "bauskas"
+    ]
+    
+    # Latgales reģions
+    latgale_region = [
+        "latgale", "daugavpils", "rēzekne", "rezekne", "ludza", "preiļi", "preili", 
+        "krāslava", "kraslava", "zilupe", "viļaka", "vilaka", "dagda", "balvi",
+        "līvāni", "livani", "ludzas", "rēzeknes", "rezeknes", "daugavpils"
+    ]
+    
+    # Kurzemes reģions
+    kurzeme_region = [
+        "kurzeme", "liepāja", "liepaja", "ventspils", "talsi", "kuldīga", "kuldiga", 
+        "saldus", "tukums", "aizpute", "grobiņa", "grobina", "skrunda", "durbe",
+        "talsu", "kurzeme", "kuldīgas", "kuldigas", "tukuma"
+    ]
+    
+    # Handle complex cases with shared cities or alternative spellings
+    # Some cities could belong to multiple regions depending on the source
+    if any(city in location for city in riga_region):
+        return "Rīga"
+    elif any(city in location for city in vidzeme_region):
+        return "Vidzeme"
+    elif any(city in location for city in zemgale_region):
+        return "Zemgale"
+    elif any(city in location for city in latgale_region):
+        return "Latgale"
+    elif any(city in location for city in kurzeme_region):
+        return "Kurzeme"
+    else:
+        # If we can't determine the region, return a default
+        return "Nav norādīts"
+
+@app.route('/api/regions', methods=['GET'])
+def get_regions():
+    """Returns available regions."""
+    try:
+        # Query distinct regions from the database
+        regions = session.query(Region.name).distinct().all()
+        
+        # Format the results
+        formatted_regions = [{"name": region[0]} for region in regions]
+        
+        return jsonify({"regions": formatted_regions})
+    except Exception as e:
+        logger.error(f"Error fetching regions: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while fetching regions."}), 500
+
+
+@app.route('/api/region-stats', methods=['GET'])
+def region_statistics():
+    """Provides car price statistics grouped by region"""
+    try:
+        brand = request.args.get('brand')
+        model = request.args.get('model')
+        year_from = request.args.get('yearFrom', type=int)
+        year_to = request.args.get('yearTo', type=int)
+        
+        logger.info(f"Region statistics request for: Brand={brand}, Model={model}, YearRange={year_from}-{year_to}")
+        
+        from sqlalchemy import func, case
+        from models import Brand, Model, Car, Listing, Region
+        
+        # We'll need to map the region names from the database to our standard regions
+        region_mapping = case(
+            # Map each region name to one of our standard regions
+            [
+                # For each region in the database, map it to one of our standard regions
+                (func.lower(Region.name).like('%' + city.lower() + '%'), standard_region)
+                for standard_region, cities in {
+                    'Rīga': ['rīga', 'riga', 'jūrmala', 'jurmala', 'ogre', 'salaspils', 'sigulda'],
+                    'Vidzeme': ['cēsis', 'cesis', 'valmiera', 'gulbene', 'alūksne', 'aluksne'],
+                    'Zemgale': ['jelgava', 'bauska', 'jēkabpils', 'jekabpils', 'dobele'],
+                    'Latgale': ['daugavpils', 'rēzekne', 'rezekne', 'ludza', 'preiļi', 'preili', 'krāslava', 'kraslava'],
+                    'Kurzeme': ['liepāja', 'liepaja', 'ventspils', 'talsi', 'kuldīga', 'kuldiga', 'saldus', 'tukums']
+                }.items()
+                for city in cities
+            ],
+            else_='Nav norādīts'
+        ).label('mapped_region')
+        
+        # Base query to get listings with needed joins and region mapping
+        query = analyzer.session.query(
+            Region.name.label('original_region'),
+            # Use the region mapping instead of the original region name
+            func.coalesce(
+                map_location_to_region(Region.name),
+                'Nav norādīts'
+            ).label('region_name'),
+            func.avg(Listing.price).label('avg_price'),
+            func.min(Listing.price).label('min_price'),
+            func.max(Listing.price).label('max_price'),
+            func.count(Listing.listing_id).label('count')
+        ).join(
+            Car, Listing.car_id == Car.car_id
+        ).join(
+            Region, Car.region_id == Region.region_id
+        ).join(
+            Model, Car.model_id == Model.model_id
+        ).join(
+            Brand, Model.brand_id == Brand.brand_id
+        ).filter(
+            Listing.is_active == True
+        )
+        
+        # Apply filters
+        if brand:
+            query = query.filter(func.lower(Brand.name) == func.lower(brand))
+        
+        if model:
+            query = query.filter(func.lower(Model.name) == func.lower(model))
+            
+        if year_from:
+            query = query.filter(Car.year >= year_from)
+            
+        if year_to:
+            query = query.filter(Car.year <= year_to)
+        
+        # Group by mapped region and execute
+        query = query.group_by('region_name')
+        results = query.all()
+        
+        # Format results
+        regions_data = []
+        for row in results:
+            avg_price = int(row.avg_price) if row.avg_price else 0
+            
+            # Skip regions with no name or no data
+            if not row.region_name or row.region_name == 'Nav norādīts':
+                continue
+                
+            regions_data.append({
+                'name': row.region_name,
+                'avgPrice': avg_price,
+                'minPrice': int(row.min_price) if row.min_price else 0,
+                'maxPrice': int(row.max_price) if row.max_price else 0,
+                'count': row.count
+            })
+        
+        logger.info(f"Found statistics for {len(regions_data)} regions")
+        return jsonify({"regions": regions_data})
+        
+    except Exception as e:
+        logger.error(f"Error getting region statistics: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred while fetching region statistics."}), 500
 
 @app.route('/api/listing-details', methods=['GET'])
 def listing_details():
