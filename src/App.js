@@ -10,7 +10,7 @@ import SearchForm from './components/SearchForm';
 import ResultsSection from './components/ResultsSection';
 import PriceAnalysisChart from './components/PriceAnalysisChart';
 import CarComparisonTable from './components/CarComparisonTable';
-import RegionalPriceMap from './components/RegionalPriceMap';
+import RegionalPriceComparison from './components/RegionalPriceComparison';
 // Import pages
 import UserProfilePage from './components/UserProfilePage';
 import NotificationsPage from './components/NotificationsPage';
@@ -674,14 +674,13 @@ function App() {
               )}
               
               <Grid item xs={12}>
-                <RegionalPriceMap 
-                  regionData={regionStatistics?.regions || []} 
-                  loading={regionStatsLoading}
-                  onRegionClick={handleRegionClick}
-                  selectedRegion={selectedRegion}
-                  brandName={searchParams.brand}
-                  modelName={searchParams.model}
-                />
+                <RegionalPriceComparison 
+              regionData={regionStatistics?.regions || []} 
+              loading={regionStatsLoading}
+              selectedRegion={selectedRegion}
+              brandName={searchParams.brand}
+              modelName={searchParams.model}
+            />
               </Grid>
               
               <Grid item xs={12}>

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api'; // make sure this is configurable for different envs
+const API_BASE_URL = 'http://localhost:5000/api'; // adresi vajag izmainit production vide
 
 /**
  * Searches for cars based on given criteria.
@@ -7,6 +7,7 @@ const API_BASE_URL = 'http://localhost:5000/api'; // make sure this is configura
  */
 export const searchCars = async (params) => {
   try {
+    // izveidojam POST request ar visiem meklesanas parametriem
     const response = await fetch(`${API_BASE_URL}/search`, {
       method: 'POST',
       headers: {
@@ -16,14 +17,14 @@ export const searchCars = async (params) => {
     });
 
     if (!response.ok) {
-      // Basic error handling, could be expanded with a global error interceptor.
+      // ja serveris atmet kludu, metam to talak
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     return await response.json();
   } catch (error) {
     console.error('API Error: Failed to search cars:', error);
-    throw error; // Re-throw for the component to handle UI updates
+    throw error; // nodod kludu talak lai komponente zinat ka ir bijusi problema
   }
 };
 
@@ -34,6 +35,7 @@ export const searchCars = async (params) => {
  */
 export const estimateCarValue = async (params) => {
   try {
+    // sut auto datus serverim lai apreikinatu vertibu
     const response = await fetch(`${API_BASE_URL}/estimate`, {
       method: 'POST',
       headers: {
@@ -61,12 +63,12 @@ export const estimateCarValue = async (params) => {
  * @returns {Promise<Array>} Price history data points.
  */
 export const getPriceHistory = async (brand, model, months = 6) => {
-  // TODO: pārbaudīt if backend handles large 'months' values gracefully.
+  // vajadzetu parlabot API lai tikskotr ar lielam months vertibam
   try {
     const url = new URL(`${API_BASE_URL}/price-history`);
     url.searchParams.append('brand', brand);
     url.searchParams.append('model', model);
-    url.searchParams.append('months', String(months)); // Ensure months is a string
+    url.searchParams.append('months', String(months)); // jabut string formatam
 
     const response = await fetch(url);
 
@@ -92,6 +94,7 @@ export const getPriceHistory = async (brand, model, months = 6) => {
  */
 export const getPriceDistributionChart = async (brand, model, yearFrom, yearTo) => {
   try {
+    // izveidojam URL ar visiem filtracijas parametriem
     const url = new URL(`${API_BASE_URL}/charts/price-distribution`);
     if (brand) url.searchParams.append('brand', brand);
     if (model) url.searchParams.append('model', model);
@@ -104,11 +107,7 @@ export const getPriceDistributionChart = async (brand, model, yearFrom, yearTo) 
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    // console.log('Chart response (price-distribution):', data); // temp log for debugging, remove for prod
-
-    return data;
+    return await response.json();
   } catch (error) {
     console.error('API Error: Failed to get price distribution chart:', error);
     throw error;
@@ -121,10 +120,10 @@ export const getPriceDistributionChart = async (brand, model, yearFrom, yearTo) 
  * @returns {Promise<Object>} Listing details.
  */
 export const getListingDetails = async (listingUrl) => {
-  // this one seems a bit off sometimes, maybe check backend?
+  // reizem šis darbojas diezgan leni, drusku jauzlabo
   try {
     const apiUrl = new URL(`${API_BASE_URL}/listing-details`);
-    // Backend expects 'url' as the query param name
+    // servers gaida url ka query param
     apiUrl.searchParams.append('url', listingUrl);
 
     const response = await fetch(apiUrl);
@@ -149,6 +148,7 @@ export const getListingDetails = async (listingUrl) => {
  */
 export const getPriceTrendChart = async (brand, model, months = 12) => {
   try {
+    // pieprasa cenu tendences grafiku no servera
     const url = new URL(`${API_BASE_URL}/charts/price-trend`);
     url.searchParams.append('brand', brand);
     url.searchParams.append('model', model);
@@ -173,6 +173,7 @@ export const getPriceTrendChart = async (brand, model, months = 12) => {
  */
 export const getRegions = async () => {
   try {
+    // dabu visus pieejamos regionus no servera
     const response = await fetch(`${API_BASE_URL}/regions`);
 
     if (!response.ok) {
@@ -198,7 +199,7 @@ export const getRegionStatistics = async (brand, model, yearFrom, yearTo) => {
   try {
     const url = new URL(`${API_BASE_URL}/region-stats`);
     
-    // Add parameters if they exist
+    // pievieno parametrus ja tie eksiste
     if (brand) url.searchParams.append('brand', brand);
     if (model) url.searchParams.append('model', model);
     if (yearFrom) url.searchParams.append('yearFrom', yearFrom);
@@ -208,49 +209,23 @@ export const getRegionStatistics = async (brand, model, yearFrom, yearTo) => {
     
     const response = await fetch(url);
     
-    // Handle different error cases
-    if (response.status === 500) {
-      console.error('Server error while fetching region statistics');
-      
-      // Return empty data to allow the application to continue working
-      return {
-        regions: [
-          { name: 'Rīga', avgPrice: 15000, count: 0, minPrice: 0, maxPrice: 0 },
-          { name: 'Vidzeme', avgPrice: 10000, count: 0, minPrice: 0, maxPrice: 0 },
-          { name: 'Kurzeme', avgPrice: 12000, count: 0, minPrice: 0, maxPrice: 0 },
-          { name: 'Latgale', avgPrice: 8000, count: 0, minPrice: 0, maxPrice: 0 },
-          { name: 'Zemgale', avgPrice: 11000, count: 0, minPrice: 0, maxPrice: 0 }
-        ]
-      };
-    }
-    
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     
     const data = await response.json();
     
-    // Handle empty or invalid data
+    // parbaudi vai sanemtie dati ir derigi
     if (!data.regions || !Array.isArray(data.regions)) {
       console.warn('Invalid region statistics data received:', data);
       throw new Error('Invalid data format received from server');
     }
     
     return data;
+    
   } catch (error) {
     console.error('Error fetching region statistics:', error);
-    
-    // Return mock data when API fails - this makes development easier
-    // until the backend endpoint is fully implemented
-    return {
-      regions: [
-        { name: 'Rīga', avgPrice: 25000, count: 0, minPrice: 12000, maxPrice: 45000 },
-        { name: 'Vidzeme', avgPrice: 18000, count: 0, minPrice: 8000, maxPrice: 32000 },
-        { name: 'Kurzeme', avgPrice: 15000, count: 0, minPrice: 6500, maxPrice: 28000 },
-        { name: 'Latgale', avgPrice: 12000, count: 0, minPrice: 5000, maxPrice: 25000 },
-        { name: 'Zemgale', avgPrice: 16500, count: 0, minPrice: 7500, maxPrice: 30000 }
-      ]
-    };
+    throw error;
   }
 };
 
@@ -261,6 +236,7 @@ export const getRegionStatistics = async (brand, model, yearFrom, yearTo) => {
  */
 export const getPopularBrands = async (limit = 10) => {
   try {
+    // dabu popularakas auto markas no servera
     const url = new URL(`${API_BASE_URL}/popular/brands`);
     url.searchParams.append('limit', String(limit));
 
@@ -285,6 +261,7 @@ export const getPopularBrands = async (limit = 10) => {
  */
 export const getPopularModels = async (brand, limit = 10) => {
   try {
+    // dabu popularakos modelus priekš konkretas markas
     const url = new URL(`${API_BASE_URL}/popular/models`);
     if (brand) url.searchParams.append('brand', brand);
     url.searchParams.append('limit', String(limit));
@@ -308,7 +285,7 @@ export const getPopularModels = async (brand, limit = 10) => {
  * @returns {Promise<Object>} System status data.
  */
 export const getSystemStatus = async () => {
-  // vajag so regulari pārbaudīt
+  // labi butu šito parbadit regulari lai redz vai sistema strada
   try {
     const response = await fetch(`${API_BASE_URL}/status`);
 
@@ -330,10 +307,10 @@ export const getSystemStatus = async () => {
  */
 export const triggerScraping = async () => {
   try {
+    // šito vajag aizsargat ar kaut kadu autentifikaciju
     const response = await fetch(`${API_BASE_URL}/scrape`, {
       method: 'POST',
       headers: {
-        // No body needed if it's just a trigger
         'Content-Type': 'application/json',
       }
     });

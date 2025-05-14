@@ -19,15 +19,17 @@ import SearchForm from '../components/SearchForm';
 import PriceAnalysisChart from '../components/PriceAnalysisChart';
 import CarEstimationForm from '../components/CarEstimationForm';
 import MarketInsights from '../components/MarketInsights';
-import RegionalPriceMap from '../components/RegionalPriceMap';
+import RegionalPriceComparison from '../components/RegionalPriceComparison';
 import SimilarListings from '../components/SimilarListings';
 import CarComparisonTable from '../components/CarComparisonTable';
+import PriceByFuelTypeChart from '../components/PriceByFuelTypeChart';
+import PriceYearTrendChart from '../components/PriceYearTrendChart';
 import ReportIcon from '@mui/icons-material/Report';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import TuneIcon from '@mui/icons-material/Tune';
 
-// Import API service
+// Import API
 import { 
   searchCars, 
   estimateCarValue, 
@@ -41,10 +43,10 @@ import {
 const DashboardPage = () => {
   const theme = useTheme();
   
-  // State for tabs
+  // Stāvoklis cilnēm
   const [tabValue, setTabValue] = useState(0);
   
-  // State for API data
+  // Stāvoklis API datiem
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [searchResults, setSearchResults] = useState(null);
@@ -53,16 +55,16 @@ const DashboardPage = () => {
   const [chartType, setChartType] = useState('distribution');
   const [marketInsights, setMarketInsights] = useState({});
   
-  // State for region map
+  // Stāvoklis reģionu datiem
   const [regionStatistics, setRegionStatistics] = useState(null);
   const [regionStatsLoading, setRegionStatsLoading] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(null);
   
-  // State for comparison
+  // Stāvoklis salīdzināšanai
   const [compareMode, setCompareMode] = useState(false);
   const [carsToCompare, setCarsToCompare] = useState([]);
   
-  // State for loading and errors
+  // Stāvoklis ielādei un kļūdām
   const [loading, setLoading] = useState({
     search: false,
     estimation: false,
@@ -78,17 +80,17 @@ const DashboardPage = () => {
     regions: null
   });
   
-  // State for notifications
+  // Stāvoklis paziņojumiem
   const [notification, setNotification] = useState({
     open: false,
     message: '',
     severity: 'info'
   });
   
-  // State for favorites
+  // Stāvoklis izlasei
   const [favorites, setFavorites] = useState([]);
   
-  // State for search parameters
+  // Stāvoklis meklēšanas parametriem
   const [searchParams, setSearchParams] = useState({
     brand: '',
     model: '',
@@ -101,7 +103,7 @@ const DashboardPage = () => {
     region: ''
   });
   
-  // Fetch brands on component mount
+  // Iegūt markas, kad komponente ielādējas
   useEffect(() => {
     const fetchBrands = async () => {
       setLoading(prev => ({ ...prev, brands: true }));
@@ -122,9 +124,9 @@ const DashboardPage = () => {
     };
 
     fetchBrands();
-    fetchRegionStatistics(); // Fetch initial region data
+    fetchRegionStatistics(); // Iegūt start reģionu datus
 
-    // Load saved favorites from localStorage
+    // Ielādēt saglabāto izlasi no localStorage
     const savedFavorites = localStorage.getItem('carFavorites');
     if (savedFavorites) {
       try {
@@ -133,9 +135,19 @@ const DashboardPage = () => {
         console.error('Failed to load favorites:', err);
       }
     }
+
+    // Ielādēt saglabātos salīdzināmos auto no localStorage
+    const savedComparison = localStorage.getItem('carsToCompare');
+    if (savedComparison) {
+      try {
+        setCarsToCompare(JSON.parse(savedComparison));
+      } catch (err) {
+        console.error('Failed to load comparison:', err);
+      }
+    }
   }, []);
 
-  // Fetch models when brand changes
+  // Iegūt modeļus, kad marka mainās
   useEffect(() => {
     if (!searchParams.brand) {
       setModels([]);
@@ -148,90 +160,82 @@ const DashboardPage = () => {
         setModels(response.models || []);
       } catch (err) {
         console.error('Error fetching models:', err);
-        // Not setting error state for this as it's not critical
+        // Nav kritiska kļūda, tāpēc nev error stāvoklii
       }
     };
 
     fetchModels();
   }, [searchParams.brand]);
 
-  // Save favorites to localStorage when they change
+  //Saglabāt izlasi localStorage kad mainās
   useEffect(() => {
     localStorage.setItem('carFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // Fetch region statistics
+  // Saglabāt salīdzināmos auto localStorage kad mainās
+  useEffect(() => {
+    localStorage.setItem('carsToCompare', JSON.stringify(carsToCompare));
+  }, [carsToCompare]);
+
+  // reģiona statistika no API
   const fetchRegionStatistics = async (brand = '', model = '') => {
-    setLoading(prev => ({ ...prev, regions: true }));
+    setRegionStatsLoading(true);
     setError(prev => ({ ...prev, regions: null }));
     
     try {
-      // Mock data for demo - replace with actual API call when available
-      const mockData = {
-        regions: [
-          { name: 'Rīga', avgPrice: 25000, count: 120, minPrice: 12000, maxPrice: 45000 },
-          { name: 'Vidzeme', avgPrice: 18000, count: 80, minPrice: 8000, maxPrice: 32000 },
-          { name: 'Kurzeme', avgPrice: 15000, count: 65, minPrice: 6500, maxPrice: 28000 },
-          { name: 'Latgale', avgPrice: 12000, count: 40, minPrice: 5000, maxPrice: 25000 },
-          { name: 'Zemgale', avgPrice: 16500, count: 55, minPrice: 7500, maxPrice: 30000 },
-          { name: 'Jūrmala', avgPrice: 30000, count: 35, minPrice: 15000, maxPrice: 55000 }
-        ]
-      };
+      // Izsaucam API
+      const response = await getRegionStatistics(
+        brand, 
+        model,
+        searchParams.yearFrom,
+        searchParams.yearTo
+      );
       
-      // Filter by brand if provided
-      if (brand) {
-        mockData.regions = mockData.regions.map(region => ({
-          ...region,
-          avgPrice: Math.floor(region.avgPrice * (0.8 + Math.random() * 0.4)), // Randomize a bit
-          count: Math.floor(region.count * (0.5 + Math.random() * 0.7))
-        }));
-      }
-      
-      // In a real implementation, you would call the API:
-      // const response = await getRegionStatistics(brand, model);
-      
-      setRegionStatistics(mockData);
+      setRegionStatistics(response);
     } catch (err) {
       console.error('Error fetching region statistics:', err);
       setError(prev => ({ 
         ...prev, 
         regions: 'Neizdevās ielādēt reģionu statistiku.'
       }));
+      
+      setNotification({
+        open: true,
+        message: 'Neizdevās ielādēt reģionu statistiku',
+        severity: 'warning'
+      });
     } finally {
-      setLoading(prev => ({ ...prev, regions: false }));
+      setRegionStatsLoading(false);
     }
   };
 
-  // Handle tab change
+  // Apstrādāt tab maiņu
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+    
+    // Atjauninām reģionu statistiku, kad pārejam uz analīzes tab
+    if (newValue === 1 && searchParams.brand) {
+      fetchRegionStatistics(searchParams.brand, searchParams.model);
+      handleFetchChart(chartType);
+    }
   };
 
-  // Handle parameter change
+  // Apstrādāt parametru maiņu
   const handleParamChange = (param, value) => {
     setSearchParams(prev => ({
       ...prev,
       [param]: value
     }));
     
-    // If region is changed, update the selected region on the map
+    // Ja reģions mainās, atjauninām atlasīto reģionu
     if (param === 'region' && value) {
-      const region = LATVIA_REGIONS.find(r => 
-        r.name.toLowerCase() === value.toLowerCase() ||
-        value.toLowerCase().includes(r.name.toLowerCase())
-      );
-      
-      if (region) {
-        setSelectedRegion(region.id);
-      } else {
-        setSelectedRegion(null);
-      }
+      setSelectedRegion(value);
     } else if (param === 'region' && !value) {
       setSelectedRegion(null);
     }
   };
 
-  // Handle search
+  // Apstrādāt meklēšanu
   const handleSearch = async () => {
     setLoading(prev => ({ ...prev, search: true }));
     setError(prev => ({ ...prev, search: null }));
@@ -240,20 +244,22 @@ const DashboardPage = () => {
       const response = await searchCars(searchParams);
       setSearchResults(response);
       
-      // Show notification
+      // show notif
       setNotification({
         open: true,
         message: `Atrasti ${response.listings?.length || 0} sludinājumi`,
         severity: response.listings?.length > 0 ? 'success' : 'info'
       });
       
-      // Fetch chart if brand is selected
+      // Iegūt grafiku, ja marka izvēlēta
       if (searchParams.brand) {
         handleFetchChart(chartType);
       }
       
-      // Update region statistics based on search parameters
-      fetchRegionStatistics(searchParams.brand, searchParams.model);
+      // Atjaunināt reģionu statistiku, balstoties uz meklēšanas parametriem
+      if (searchParams.brand) {
+        await fetchRegionStatistics(searchParams.brand, searchParams.model);
+      }
       
     } catch (err) {
       console.error('Error searching cars:', err);
@@ -272,7 +278,7 @@ const DashboardPage = () => {
     }
   };
 
-  // Handle car estimation
+  // Apstrādāt auto vērtējumu
   const handleEstimateCar = async (carData) => {
     setLoading(prev => ({ ...prev, estimation: true }));
     setError(prev => ({ ...prev, estimation: null }));
@@ -281,7 +287,7 @@ const DashboardPage = () => {
       const response = await estimateCarValue(carData);
       setEstimationResult(response.estimation);
       
-      // Show notification
+      // Parādīt paziņojumu
       setNotification({
         open: true,
         message: 'Automašīnas vērtība aprēķināta',
@@ -305,13 +311,13 @@ const DashboardPage = () => {
     }
   };
 
-  // Handle chart type change
+  // Apstrādāt grafika tipa maiņu
   const handleChartTypeChange = (type) => {
     setChartType(type);
     handleFetchChart(type);
   };
 
-  // Fetch chart
+  // Iegūt grafiku
   const handleFetchChart = async (type) => {
     if (!searchParams.brand) return;
 
@@ -332,10 +338,9 @@ const DashboardPage = () => {
         response = await getPriceTrendChart(
           searchParams.brand,
           searchParams.model,
-          12 // Last 12 months
+          12 // last 12 mont
         );
       } else {
-        // Other chart types can be implemented similarly
         response = { chart: null };
       }
       
@@ -358,7 +363,7 @@ const DashboardPage = () => {
     }
   };
 
-  // Toggle favorite car
+  // auto izlase
   const handleToggleFavorite = (car) => {
     const isFavorite = favorites.some(fav => fav.id === car.id);
 
@@ -371,7 +376,17 @@ const DashboardPage = () => {
         severity: 'info'
       });
     } else {
-      setFavorites(prev => [...prev, car]);
+      // parliecamies ka tam ir visi nepieciešamie lauki
+      const enhancedCar = {
+        ...car,
+        id: car.id || car.external_id || `car-${Date.now()}`,
+        brand: car.brand || 'Nav norādīts',
+        model: car.model || 'Nav norādīts',
+        year: car.year || 'Nav norādīts',
+        price: car.price || 0
+      };
+      
+      setFavorites(prev => [...prev, enhancedCar]);
       
       setNotification({
         open: true,
@@ -381,12 +396,12 @@ const DashboardPage = () => {
     }
   };
 
-  // Add car to comparison
+  // Pievienot auto salīdzināšanai
   const handleAddToCompare = (car) => {
     const isAlreadyAdded = carsToCompare.some(c => c.id === car.id);
 
     if (isAlreadyAdded) {
-      // Remove if already added
+      // Nonemt, ja jau pievienots
       setCarsToCompare(prev => prev.filter(c => c.id !== car.id));
       
       setNotification({
@@ -395,7 +410,7 @@ const DashboardPage = () => {
         severity: 'info'
       });
     } else {
-      // Add if not yet added and limit to 3 cars
+      // Pievienot ja vel
       if (carsToCompare.length >= 3) {
         setNotification({
           open: true,
@@ -405,7 +420,21 @@ const DashboardPage = () => {
         return;
       }
       
-      setCarsToCompare(prev => [...prev, car]);
+      // objektu salidzinasana
+      const carForComparison = {
+        ...car,
+        id: car.id || car.external_id || `car-${Date.now()}`,
+        brand: car.brand || 'Nav norādīts',
+        model: car.model || 'Nav norādīts',
+        year: car.year || 'Nav norādīts',
+        price: car.price || 0,
+        engine: car.engine || `${car.engine_volume || ''}L ${car.engine_type || ''}`,
+        transmission: car.transmission || 'Nav norādīts',
+        mileage: car.mileage || 0,
+        region: car.region || 'Nav norādīts'
+      };
+      
+      setCarsToCompare(prev => [...prev, carForComparison]);
       
       setNotification({
         open: true,
@@ -413,14 +442,14 @@ const DashboardPage = () => {
         severity: 'success'
       });
       
-      // Switch to comparison tab if not already there
+      // Parsledzamies uz salidz tab
       if (tabValue !== 3) {
         setTabValue(3);
       }
     }
   };
 
-  // Remove car from comparison
+  // Nonemt auto no salidz
   const handleRemoveFromCompare = (car) => {
     setCarsToCompare(prev => prev.filter(c => c.id !== car.id));
 
@@ -431,35 +460,26 @@ const DashboardPage = () => {
     });
   };
 
-  // Handle region click on map
-  const handleRegionClick = (regionId) => {
-    // Toggle selection if clicking the same region
-    if (selectedRegion === regionId) {
+  // regiona atlase
+  const handleRegionSelect = (regionName) => {
+    // Ja tas pats reģiona, notiram
+    if (selectedRegion === regionName) {
       setSelectedRegion(null);
       handleParamChange('region', '');
       return;
     }
     
-    setSelectedRegion(regionId);
+    setSelectedRegion(regionName);
+    handleParamChange('region', regionName);
     
-    // Find the region name from the region data
-    const regionInfo = regionStatistics?.regions?.find(r => 
-      r.name.toLowerCase().includes(regionId) || 
-      regionId.includes(r.name.toLowerCase())
-    );
-    
-    if (regionInfo) {
-      handleParamChange('region', regionInfo.name);
-      
-      setNotification({
-        open: true,
-        message: `Atlasīti sludinājumi no reģiona: ${regionInfo.name}`,
-        severity: 'info'
-      });
-    }
+    setNotification({
+      open: true,
+      message: `Atlasīti sludinājumi no reģiona: ${regionName}`,
+      severity: 'info'
+    });
   };
 
-  // Export comparison data
+  // Export salidzinasanas dati
   const handleExportComparison = () => {
     if (carsToCompare.length === 0) return;
 
@@ -512,17 +532,17 @@ const DashboardPage = () => {
     }
   };
 
-  // Close notification
+  // close notif
   const handleCloseNotification = () => {
     setNotification(prev => ({ ...prev, open: false }));
   };
 
-  // Handle chart download
+  // grafiks
   const handleChartDownload = () => {
     if (!chartData) return;
 
     try {
-      // Convert base64 to blob
+      // Konvert base64 uz blob
       const byteString = atob(chartData);
       const mimeString = 'image/png';
       const ab = new ArrayBuffer(byteString.length);
@@ -593,11 +613,11 @@ const DashboardPage = () => {
           </Tabs>
         </Box>
         
-        {/* Search Tab */}
+        {/* Meklesanas tab */}
         <Box role="tabpanel" hidden={tabValue !== 0}>
           {tabValue === 0 && (
             <Grid container spacing={3}>
-              {/* Search Form */}
+              {/* serach form */}
               <Grid item xs={12} md={4}>
                 <Paper elevation={3} sx={{ p: 2, height: '100%' }}>
                   <Typography variant="h6" gutterBottom>
@@ -616,13 +636,15 @@ const DashboardPage = () => {
                 </Paper>
               </Grid>
               
-              {/* Search Results */}
+              {/* search results */}
               <Grid item xs={12} md={8}>
-                <RegionalPriceMap 
+                <RegionalPriceComparison 
                   regionData={regionStatistics?.regions || []} 
                   loading={loading.regions}
-                  onRegionClick={handleRegionClick}
+                  onRegionSelect={handleRegionSelect}
                   selectedRegion={selectedRegion}
+                  brandName={searchParams.brand}
+                  modelName={searchParams.model}
                 />
                 
                 {searchResults?.statistics && (
@@ -638,12 +660,33 @@ const DashboardPage = () => {
                   />
                 )}
                 
+                {searchResults?.listings && searchResults.listings.length > 0 && (
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <PriceByFuelTypeChart 
+                        data={searchResults.listings} 
+                        loading={loading.search}
+                        brandName={searchParams.brand}
+                        modelName={searchParams.model}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <PriceYearTrendChart 
+                        data={searchResults.listings} 
+                        loading={loading.search}
+                        brandName={searchParams.brand}
+                        modelName={searchParams.model}
+                      />
+                    </Grid>
+                  </Grid>
+                )}
+                
                 <SimilarListings
                   listings={searchResults?.listings || []}
                   title="Meklēšanas rezultāti"
                   onToggleFavorite={handleToggleFavorite}
                   onAddToCompare={handleAddToCompare}
-                  onShowDetails={() => {}} // Implement as needed
+                  onShowDetails={() => {}}
                   favorites={favorites}
                   viewMode="table"
                 />
@@ -652,7 +695,7 @@ const DashboardPage = () => {
           )}
         </Box>
         
-        {/* Market Analysis Tab */}
+        {/* Tirgus analize tab */}
         <Box role="tabpanel" hidden={tabValue !== 1}>
           {tabValue === 1 && (
             <Grid container spacing={3}>
@@ -661,11 +704,13 @@ const DashboardPage = () => {
               </Grid>
               
               <Grid item xs={12}>
-                <RegionalPriceMap 
+                <RegionalPriceComparison 
                   regionData={regionStatistics?.regions || []} 
                   loading={loading.regions}
-                  onRegionClick={handleRegionClick}
+                  onRegionSelect={handleRegionSelect}
                   selectedRegion={selectedRegion}
+                  brandName={searchParams.brand}
+                  modelName={searchParams.model}
                 />
               </Grid>
               
@@ -689,8 +734,26 @@ const DashboardPage = () => {
                   </Typography>
                   
                   <Typography variant="body1" paragraph>
-                    Šeit tiks parādīta detalizēta tirgus informācija par izvēlēto marku un modeli.
+                    Tirgus datu priekšrocības, salīdzinot ar citiem avotiem:
                   </Typography>
+                  
+                  <ul>
+                    <li>
+                      <Typography variant="body2" paragraph>
+                        Reāllaika dati no SS.lv - svaigākā informācija par Latvijas tirgu
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="body2" paragraph>
+                        Detalizēta cenu salīdzināšana visā Latvijā - atrodi, kur auto ir lētāki
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="body2" paragraph>
+                        Vēsturiskie dati ļauj noteikt labāko laiku auto iegādei
+                      </Typography>
+                    </li>
+                  </ul>
                   
                   <Button 
                     variant="contained" 
@@ -700,11 +763,32 @@ const DashboardPage = () => {
                   </Button>
                 </Paper>
               </Grid>
+              
+              {searchResults?.listings && searchResults.listings.length > 0 && (
+                <>
+                  <Grid item xs={12} md={6}>
+                    <PriceByFuelTypeChart 
+                      data={searchResults.listings} 
+                      loading={loading.search}
+                      brandName={searchParams.brand}
+                      modelName={searchParams.model}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <PriceYearTrendChart 
+                      data={searchResults.listings} 
+                      loading={loading.search}
+                      brandName={searchParams.brand}
+                      modelName={searchParams.model}
+                    />
+                  </Grid>
+                </>
+              )}
             </Grid>
           )}
         </Box>
         
-        {/* Estimation Tab */}
+        {/* vertejumu tab */}
         <Box role="tabpanel" hidden={tabValue !== 2}>
           {tabValue === 2 && (
             <Grid container spacing={3}>
@@ -725,7 +809,7 @@ const DashboardPage = () => {
                   title="Līdzīgi sludinājumi"
                   onToggleFavorite={handleToggleFavorite}
                   onAddToCompare={handleAddToCompare}
-                  onShowDetails={() => {}} // Implement as needed
+                  onShowDetails={() => {}}
                   favorites={favorites}
                   viewMode="card"
                 />
@@ -734,7 +818,7 @@ const DashboardPage = () => {
           )}
         </Box>
         
-        {/* Comparison Tab */}
+        {/* Salidzinasana tab */}
         <Box role="tabpanel" hidden={tabValue !== 3}>
           {tabValue === 3 && (
             <Grid container spacing={3}>
@@ -747,50 +831,50 @@ const DashboardPage = () => {
               </Grid>
               
               {carsToCompare.length < 3 && (
-                <Grid item xs={12}>
-                  <Paper elevation={3} sx={{ p: 2 }}>
-                    <Box sx={{ p: 2, textAlign: 'center' }}>
-                      <Typography variant="body1" gutterBottom>
-                        {carsToCompare.length === 0 
-                          ? 'Nav izvēlēta neviena automašīna salīdzināšanai' 
-                          : `Varat pievienot vēl ${3 - carsToCompare.length} automašīnas salīdzināšanai`}
-                      </Typography>
-                      
-                      <Button 
-                        variant="contained" 
-                        onClick={() => setTabValue(0)}
-                        sx={{ mt: 1 }}
-                      >
-                        Meklēt automašīnas
-                      </Button>
-                    </Box>
-                  </Paper>
-                </Grid>
-              )}
-            </Grid>
-          )}
-        </Box>
-        
-        {/* Notification */}
-        <Snackbar
-          open={notification.open}
-          autoHideDuration={6000}
-          onClose={handleCloseNotification}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        >
-          <Alert 
-            onClose={handleCloseNotification} 
-            severity={notification.severity}
-            variant="filled"
-          >
-            {notification.message}
-          </Alert>
-        </Snackbar>
-      </Container>
-      
-      <Footer />
-    </Box>
-  );
+               <Grid item xs={12}>
+                 <Paper elevation={3} sx={{ p: 2 }}>
+                   <Box sx={{ p: 2, textAlign: 'center' }}>
+                     <Typography variant="body1" gutterBottom>
+                       {carsToCompare.length === 0 
+                         ? 'Nav izvēlēta neviena automašīna salīdzināšanai' 
+                         : `Varat pievienot vēl ${3 - carsToCompare.length} automašīnas salīdzināšanai`}
+                     </Typography>
+                     
+                     <Button 
+                       variant="contained" 
+                       onClick={() => setTabValue(0)}
+                       sx={{ mt: 1 }}
+                     >
+                       Meklēt automašīnas
+                     </Button>
+                   </Box>
+                 </Paper>
+               </Grid>
+             )}
+           </Grid>
+         )}
+       </Box>
+       
+       {/* notif */}
+       <Snackbar
+         open={notification.open}
+         autoHideDuration={6000}
+         onClose={handleCloseNotification}
+         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+       >
+         <Alert 
+           onClose={handleCloseNotification} 
+           severity={notification.severity}
+           variant="filled"
+         >
+           {notification.message}
+         </Alert>
+       </Snackbar>
+     </Container>
+     
+     <Footer />
+   </Box>
+ );
 };
 
 export default DashboardPage;
