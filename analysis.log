@@ -3634,3 +3634,9 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listin
 2025-05-14 20:08:28,713 - car_analysis - INFO - Insufficient price history data for chart
 2025-05-14 20:08:28,713 - car_api - WARNING - Insufficient data to generate price trend chart for Brand=Suzuki, Model=.
 2025-05-14 20:08:28,713 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 20:08:28] "[33mGET /api/charts/price-trend?brand=Suzuki&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-15 01:05:02,770 - car_app - INFO - Starting API server on port 5000
+2025-05-15 01:05:02,779 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-15 01:05:02,779 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

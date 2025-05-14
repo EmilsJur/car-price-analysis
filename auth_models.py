@@ -15,10 +15,9 @@ class AuthDB:
         """Initialize the authentication database"""
         self.db_path = db_path
         self._ensure_db_exists()
-    
+    # Vispirms pārbaudām vai datubāze eksistē, ja nē - izveidojam
     def _ensure_db_exists(self):
         """Create the database and tables if they don't exist"""
-        # Vispirms pārbaudām vai datubāze eksistē, ja nē - izveidojam
         db_exists = os.path.exists(self.db_path)
         
         conn = sqlite3.connect(self.db_path)
@@ -55,7 +54,7 @@ class AuthDB:
         CREATE TABLE IF NOT EXISTS favorites (
             favorite_id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            car_data TEXT NOT NULL,  # JSON of car object
+            car_data TEXT NOT NULL,  -- JSON of car object
             added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
         )
@@ -66,7 +65,7 @@ class AuthDB:
         CREATE TABLE IF NOT EXISTS search_history (
             history_id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            search_query TEXT NOT NULL,  # JSON of search parameters
+            search_query TEXT NOT NULL,  -- JSON of search parameters
             executed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
         )
