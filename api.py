@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from models import init_db, Brand, Model, Car, Listing, Region, Source # include Source
 from ss_scraper import run_ss_scraper
 from analysis import CarDataAnalyzer
+from sqlalchemy import func, and_, or_, desc, asc, case, distinct
 
 
 logging.basicConfig(
@@ -254,52 +255,28 @@ def region_statistics():
         
         logger.info(f"Region statistics request for: Brand={brand}, Model={model}, YearRange={year_from}-{year_to}")
         
-        from sqlalchemy import func, case
-        from models import Brand, Model, Car, Listing, Region
-        
-        # We'll need to map the region names from the database to our standard regions
-        region_mapping = case(
-            # Map each region name to one of our standard regions
-            [
-                # For each region in the database, map it to one of our standard regions
-                (func.lower(Region.name).like('%' + city.lower() + '%'), standard_region)
-                for standard_region, cities in {
-                    'Rīga': ['rīga', 'riga', 'jūrmala', 'jurmala', 'ogre', 'salaspils', 'sigulda'],
-                    'Vidzeme': ['cēsis', 'cesis', 'valmiera', 'gulbene', 'alūksne', 'aluksne'],
-                    'Zemgale': ['jelgava', 'bauska', 'jēkabpils', 'jekabpils', 'dobele'],
-                    'Latgale': ['daugavpils', 'rēzekne', 'rezekne', 'ludza', 'preiļi', 'preili', 'krāslava', 'kraslava'],
-                    'Kurzeme': ['liepāja', 'liepaja', 'ventspils', 'talsi', 'kuldīga', 'kuldiga', 'saldus', 'tukums']
-                }.items()
-                for city in cities
-            ],
-            else_='Nav norādīts'
-        ).label('mapped_region')
-        
-        # Base query to get listings with needed joins and region mapping
-        query = analyzer.session.query(
-            Region.name.label('original_region'),
-            # Use the region mapping instead of the original region name
-            func.coalesce(
-                map_location_to_region(Region.name),
-                'Nav norādīts'
-            ).label('region_name'),
+        # Create a simple query that's less likely to fail
+        query = session.query(
+            Region.name.label('region_name'),
             func.avg(Listing.price).label('avg_price'),
             func.min(Listing.price).label('min_price'),
             func.max(Listing.price).label('max_price'),
             func.count(Listing.listing_id).label('count')
-        ).join(
-            Car, Listing.car_id == Car.car_id
-        ).join(
-            Region, Car.region_id == Region.region_id
-        ).join(
-            Model, Car.model_id == Model.model_id
-        ).join(
-            Brand, Model.brand_id == Brand.brand_id
-        ).filter(
-            Listing.is_active == True
         )
         
-        # Apply filters
+        # Build necessary joins
+        query = query.join(Car, Listing.car_id == Car.car_id)
+        query = query.join(Region, Car.region_id == Region.region_id)
+        
+        # Only add Model and Brand joins if needed
+        if brand or model:
+            query = query.join(Model, Car.model_id == Model.model_id)
+            query = query.join(Brand, Model.brand_id == Brand.brand_id)
+        
+        # Filter for active listings
+        query = query.filter(Listing.is_active == True)
+        
+        # Apply filters if provided
         if brand:
             query = query.filter(func.lower(Brand.name) == func.lower(brand))
         
@@ -312,24 +289,29 @@ def region_statistics():
         if year_to:
             query = query.filter(Car.year <= year_to)
         
-        # Group by mapped region and execute
-        query = query.group_by('region_name')
+        # Group by region name
+        query = query.group_by(Region.name)
+        
+        # Execute query
         results = query.all()
         
-        # Format results
+        # Format the response
         regions_data = []
         for row in results:
-            avg_price = int(row.avg_price) if row.avg_price else 0
-            
-            # Skip regions with no name or no data
-            if not row.region_name or row.region_name == 'Nav norādīts':
+            # Skip regions with no name
+            if not row.region_name:
                 continue
                 
+            # Format values as integers to avoid JSON issues
+            avg_price = int(row.avg_price) if row.avg_price else 0
+            min_price = int(row.min_price) if row.min_price else 0
+            max_price = int(row.max_price) if row.max_price else 0
+            
             regions_data.append({
                 'name': row.region_name,
                 'avgPrice': avg_price,
-                'minPrice': int(row.min_price) if row.min_price else 0,
-                'maxPrice': int(row.max_price) if row.max_price else 0,
+                'minPrice': min_price,
+                'maxPrice': max_price,
                 'count': row.count
             })
         
@@ -337,9 +319,64 @@ def region_statistics():
         return jsonify({"regions": regions_data})
         
     except Exception as e:
-        logger.error(f"Error getting region statistics: {str(e)}", exc_info=True)
-        return jsonify({"error": "An error occurred while fetching region statistics."}), 500
+        # Log the full error for debugging
+        logger.error(f"Error in region_statistics endpoint: {str(e)}", exc_info=True)
+        
+        # Return an empty result to prevent frontend crashes
+        return jsonify({"regions": [], "error": str(e)}), 500
 
+
+#test debug for db map
+@app.route('/api/debug/database', methods=['GET'])
+def debug_database():
+    """Diagnostic endpoint to check database connections and key tables"""
+    results = {}
+    
+    try:
+        # Test Region table
+        region_count = session.query(func.count(Region.region_id)).scalar()
+        results["region_count"] = region_count
+        
+        # List some regions
+        regions = session.query(Region.region_id, Region.name).limit(10).all()
+        results["regions"] = [{"id": r.region_id, "name": r.name} for r in regions]
+        
+        # Test Car table
+        car_count = session.query(func.count(Car.car_id)).scalar()
+        results["car_count"] = car_count
+        
+        # Test Listing table
+        listing_count = session.query(func.count(Listing.listing_id)).scalar()
+        results["listing_count"] = listing_count
+        
+        # Test Brand table
+        brand_count = session.query(func.count(Brand.brand_id)).scalar()
+        results["brand_count"] = brand_count
+        
+        # List some brands
+        brands = session.query(Brand.brand_id, Brand.name).limit(10).all()
+        results["brands"] = [{"id": b.brand_id, "name": b.name} for b in brands]
+        
+        # Test join between Car and Region
+        car_region_join = session.query(
+            Car.car_id, Region.name
+        ).join(
+            Region, Car.region_id == Region.region_id
+        ).limit(5).all()
+        
+        results["car_region_join"] = [{"car_id": c.car_id, "region": r} for c, r in car_region_join]
+        
+        return jsonify({"status": "success", "results": results})
+    
+    except Exception as e:
+        logger.error(f"Database debug error: {str(e)}", exc_info=True)
+        return jsonify({
+            "status": "error", 
+            "error": str(e),
+            "type": str(type(e).__name__),
+            "partial_results": results
+        }), 500
+    
 @app.route('/api/listing-details', methods=['GET'])
 def listing_details():
     """Fetches and scrapes full details for a single listing URL."""

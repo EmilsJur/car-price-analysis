@@ -201,9 +201,6 @@ function App() {
             console.error('Failed to load comparison:', err);
           }
         }
-        
-        // Fetch initial region statistics
-        fetchRegionStatistics();
       } catch (error) {
         console.error("Error fetching initial data:", error);
       }
@@ -245,7 +242,14 @@ function App() {
   const fetchRegionStatistics = async (brand = '', model = '') => {
     setRegionStatsLoading(true);
     try {
-      const response = await getRegionStatistics(brand, model);
+      const response = await getRegionStatistics(
+        brand, 
+        model,
+        searchParams.yearFrom,
+        searchParams.yearTo
+      );
+      
+      console.log('Region statistics loaded:', response);
       setRegionStatistics(response);
     } catch (err) {
       console.error('Error fetching region statistics:', err);
@@ -293,7 +297,9 @@ function App() {
       }
       
       // Update region statistics based on search params
-      fetchRegionStatistics(searchParams.brand, searchParams.model);
+      if (searchParams.brand) {
+        await fetchRegionStatistics(searchParams.brand, searchParams.model);
+      }
       
     } catch (err) {
       console.error('Search error:', err);
@@ -320,6 +326,12 @@ function App() {
   // Handle tab change
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+    
+    // When switching to the Analysis tab, update region statistics with current search params
+    if (newValue === 1 && searchParams.brand) {
+      fetchRegionStatistics(searchParams.brand, searchParams.model);
+      handleFetchChart(chartType);
+    }
   };
   
   // Handle chart type change
@@ -526,18 +538,15 @@ function App() {
     
     // Update search params if region is selected
     if (regionId && regionId !== selectedRegion) {
-      const regionName = regionStatistics?.regions?.find(r => 
-        r.id === regionId || r.name.toLowerCase() === regionId.toLowerCase()
-      )?.name;
+      // Find real name for the region - uppercase first letter
+      const regionName = regionId.charAt(0).toUpperCase() + regionId.slice(1);
+      handleParamChange('region', regionName);
       
-      if (regionName) {
-        handleParamChange('region', regionName);
-        setNotification({
-          open: true,
-          message: `Atlasīti sludinājumi no reģiona: ${regionName}`,
-          severity: 'info'
-        });
-      }
+      setNotification({
+        open: true,
+        message: `Atlasīti sludinājumi no reģiona: ${regionName}`,
+        severity: 'info'
+      });
     } else if (selectedRegion) {
       // Clear region filter if deselecting
       handleParamChange('region', '');
@@ -670,6 +679,8 @@ function App() {
                   loading={regionStatsLoading}
                   onRegionClick={handleRegionClick}
                   selectedRegion={selectedRegion}
+                  brandName={searchParams.brand}
+                  modelName={searchParams.model}
                 />
               </Grid>
               
