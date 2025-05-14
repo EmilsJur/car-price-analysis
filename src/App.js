@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -27,6 +28,17 @@ import {
   getRegionStatistics
 } from './services/apiService';
 
+// Import authentication services
+import { 
+  isAuthenticated as checkAuthStatus, 
+  logout as logoutUser, 
+  getUserProfile, 
+  getFavorites,
+  addFavorite,
+  removeFavorite,
+  addSearchHistory
+} from './services/authService';
+
 // Import MUI components
 import { Box, Container, Grid, Paper, Typography, Tabs, Tab, Snackbar, Alert } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -40,22 +52,34 @@ function App() {
   
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const user = localStorage.getItem('user');
-    return !!user;
+    return checkAuthStatus(); // Check if user is authenticated on component mount
   });
+  
+  const [currentUser, setCurrentUser] = useState(null);
   
   // Theme state
   const [darkMode, setDarkMode] = useState(() => {
-    const userPrefs = localStorage.getItem('userProfile');
-    if (userPrefs) {
+    // First check if user is authenticated and has preference
+    if (checkAuthStatus()) {
       try {
-        const { preferences } = JSON.parse(userPrefs);
-        return preferences?.darkMode || false;
+        // This will be replaced by actual user preference once loaded
+        return false;
       } catch (e) {
         return false;
       }
+    } else {
+      // Fallback to checking localStorage
+      const userPrefs = localStorage.getItem('userProfile');
+      if (userPrefs) {
+        try {
+          const { preferences } = JSON.parse(userPrefs);
+          return preferences?.darkMode || false;
+        } catch (e) {
+          return false;
+        }
+      }
+      return false;
     }
-    return false;
   });
   
   // Create MUI theme
@@ -92,31 +116,106 @@ function App() {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
     
-    // Update user preferences in localStorage
-    const userPrefs = localStorage.getItem('userProfile');
-    if (userPrefs) {
+    // Update user preferences if authenticated
+    if (isAuthenticated && currentUser) {
       try {
-        const userData = JSON.parse(userPrefs);
-        userData.preferences.darkMode = newDarkMode;
-        localStorage.setItem('userProfile', JSON.stringify(userData));
+        // In a full implementation, you would update user preferences in the database
+        // For now, we just update the local state
+        const updatedPreferences = {
+          ...currentUser.preferences,
+          darkMode: newDarkMode
+        };
+        
+        // This would be an API call in the full implementation
+        setCurrentUser({
+          ...currentUser,
+          preferences: updatedPreferences
+        });
       } catch (e) {
         console.error('Error updating dark mode preference:', e);
+      }
+    } else {
+      // Fallback to localStorage for non-authenticated users
+      const userPrefs = localStorage.getItem('userProfile');
+      if (userPrefs) {
+        try {
+          const userData = JSON.parse(userPrefs);
+          userData.preferences.darkMode = newDarkMode;
+          localStorage.setItem('userProfile', JSON.stringify(userData));
+        } catch (e) {
+          console.error('Error updating dark mode preference:', e);
+        }
       }
     }
   };
   
+  // Load user data when authenticated
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (isAuthenticated) {
+        try {
+          const userData = await getUserProfile();
+          setCurrentUser(userData);
+          
+          // Update dark mode based on user preference
+          if (userData.preferences?.darkMode !== undefined) {
+            setDarkMode(userData.preferences.darkMode);
+          }
+          
+          // Load user favorites from the server
+          try {
+            const userFavorites = await getFavorites();
+            if (userFavorites && userFavorites.length > 0) {
+              setFavorites(userFavorites);
+            }
+          } catch (favError) {
+            console.error('Failed to fetch favorites:', favError);
+          }
+        } catch (error) {
+          console.error('Failed to fetch user data:', error);
+          
+          // If token is invalid, log out
+          if (error.message && (error.message.includes('token') || error.message.includes('authentication'))) {
+            handleLogout();
+          }
+        }
+      }
+    };
+    
+    fetchUserData();
+  }, [isAuthenticated]);
+  
   // Handle user login
   const handleLogin = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
     setIsAuthenticated(true);
+    setCurrentUser(userData);
+    
+    // Apply user preferences
+    if (userData.preferences?.darkMode !== undefined) {
+      setDarkMode(userData.preferences.darkMode);
+    }
+    
     setCurrentPage('home');
+    
+    setNotification({
+      open: true,
+      message: 'Pieslēgšanās veiksmīga',
+      severity: 'success'
+    });
   };
   
   // Handle user logout
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    logoutUser(); // This clears the token
     setIsAuthenticated(false);
+    setCurrentUser(null);
     setCurrentPage('home');
+    
+    setNotification({
+      open: true,
+      message: 'Jūs esat atteicies no sistēmas',
+      severity: 'info'
+    });
   };
   
   // Handle navigation to protected pages
@@ -182,23 +281,26 @@ function App() {
         const brandsResponse = await getPopularBrands(20);
         setBrands(brandsResponse.brands || []);
         
-        // Load saved favorites from localStorage
-        const savedFavorites = localStorage.getItem('carFavorites');
-        if (savedFavorites) {
-          try {
-            setFavorites(JSON.parse(savedFavorites));
-          } catch (err) {
-            console.error('Failed to load favorites:', err);
+        // For non-authenticated users, load saved data from localStorage
+        if (!isAuthenticated) {
+          // Load saved favorites from localStorage
+          const savedFavorites = localStorage.getItem('carFavorites');
+          if (savedFavorites) {
+            try {
+              setFavorites(JSON.parse(savedFavorites));
+            } catch (err) {
+              console.error('Failed to load favorites:', err);
+            }
           }
-        }
-        
-        // Load saved comparison cars from localStorage
-        const savedComparison = localStorage.getItem('carsToCompare');
-        if (savedComparison) {
-          try {
-            setCarsToCompare(JSON.parse(savedComparison));
-          } catch (err) {
-            console.error('Failed to load comparison:', err);
+          
+          // Load saved comparison cars from localStorage
+          const savedComparison = localStorage.getItem('carsToCompare');
+          if (savedComparison) {
+            try {
+              setCarsToCompare(JSON.parse(savedComparison));
+            } catch (err) {
+              console.error('Failed to load comparison:', err);
+            }
           }
         }
       } catch (error) {
@@ -207,7 +309,7 @@ function App() {
     };
     
     fetchInitialData();
-  }, []);
+  }, [isAuthenticated]);
        
   // Fetch models when brand changes
   useEffect(() => {
@@ -228,10 +330,12 @@ function App() {
     fetchModels();
   }, [searchParams.brand]);
   
-  // Save favorites to localStorage when they change
+  // Save favorites to localStorage when they change (for non-authenticated users)
   useEffect(() => {
-    localStorage.setItem('carFavorites', JSON.stringify(favorites));
-  }, [favorites]);
+    if (!isAuthenticated) {
+      localStorage.setItem('carFavorites', JSON.stringify(favorites));
+    }
+  }, [favorites, isAuthenticated]);
   
   // Save comparison cars to localStorage when they change
   useEffect(() => {
@@ -270,6 +374,16 @@ function App() {
 
     try {
       const response = await searchCars(searchParams);
+      
+      // Save search to history if user is authenticated
+      if (isAuthenticated) {
+        try {
+          await addSearchHistory(searchParams);
+        } catch (err) {
+          // Non-critical error, just log it
+          console.error('Error saving search history:', err);
+        }
+      }
       
       // Ensure listings have proper IDs
       const processedListings = (response.listings || []).map((car, index) => ({
@@ -383,39 +497,84 @@ function App() {
   };
   
   // Toggle favorite car
-  const handleToggleFavorite = (car) => {
+  const handleToggleFavorite = async (car) => {
     const isFavorite = favorites.some(fav => fav.id === car.id);
     
-    let updatedFavorites;
-    if (isFavorite) {
-      updatedFavorites = favorites.filter(fav => fav.id !== car.id);
-      setFavorites(updatedFavorites);
-      
-      setNotification({
-        open: true,
-        message: `${car.brand} ${car.model} noņemts no izlases`,
-        severity: 'info'
-      });
+    if (isAuthenticated) {
+      // User is authenticated, use the backend services
+      try {
+        if (isFavorite) {
+          await removeFavorite(car.id);
+          setFavorites(prev => prev.filter(fav => fav.id !== car.id));
+          
+          setNotification({
+            open: true,
+            message: `${car.brand} ${car.model} noņemts no izlases`,
+            severity: 'info'
+          });
+        } else {
+          await addFavorite(car);
+          setFavorites(prev => [...prev, car]);
+          
+          setNotification({
+            open: true,
+            message: `${car.brand} ${car.model} pievienots izlasei`,
+            severity: 'success'
+          });
+        }
+      } catch (error) {
+        console.error('Error updating favorites:', error);
+        
+        setNotification({
+          open: true,
+          message: 'Neizdevās atjaunināt izlasi',
+          severity: 'error'
+        });
+        
+        // If unauthorized, prompt to login
+        if (error.message && (error.message.includes('token') || error.message.includes('authentication'))) {
+          setNotification({
+            open: true,
+            message: 'Lūdzu, pieslēdzieties, lai izmantotu izlasi',
+            severity: 'warning'
+          });
+          
+          setCurrentPage('login');
+        }
+      }
     } else {
-      // Ensure the car has all necessary fields
-      const carForFavorite = {
-        ...car,
-        id: car.id || car.external_id || `car-${Date.now()}`,
-        brand: car.brand || 'Nav norādīts',
-        model: car.model || 'Nav norādīts',
-        year: car.year || 'Nav norādīts',
-        price: car.price || 0,
-        mileage: car.mileage || 0
-      };
-      
-      updatedFavorites = [...favorites, carForFavorite];
-      setFavorites(updatedFavorites);
-      
-      setNotification({
-        open: true,
-        message: `${car.brand} ${car.model} pievienots izlasei`,
-        severity: 'success'
-      });
+      // User is not authenticated, use localStorage
+      let updatedFavorites;
+      if (isFavorite) {
+        updatedFavorites = favorites.filter(fav => fav.id !== car.id);
+        setFavorites(updatedFavorites);
+        
+        setNotification({
+          open: true,
+          message: `${car.brand} ${car.model} noņemts no izlases`,
+          severity: 'info'
+        });
+      } else {
+        // Ensure the car has all necessary fields
+        const carForFavorite = {
+          ...car,
+          id: car.id || car.external_id || `car-${Date.now()}`,
+          brand: car.brand || 'Nav norādīts',
+          model: car.model || 'Nav norādīts',
+          year: car.year || 'Nav norādīts',
+          price: car.price || 0,
+          mileage: car.mileage || 0
+        };
+        
+        updatedFavorites = [...favorites, carForFavorite];
+        setFavorites(updatedFavorites);
+        
+        setNotification({
+          open: true,
+          message: `${car.brand} ${car.model} pievienots izlasei`,
+          severity: 'success'
+        });
+      }
     }
   };
   
@@ -675,12 +834,12 @@ function App() {
               
               <Grid item xs={12}>
                 <RegionalPriceComparison 
-              regionData={regionStatistics?.regions || []} 
-              loading={regionStatsLoading}
-              selectedRegion={selectedRegion}
-              brandName={searchParams.brand}
-              modelName={searchParams.model}
-            />
+                  regionData={regionStatistics?.regions || []} 
+                  loading={regionStatsLoading}
+                  selectedRegion={selectedRegion}
+                  brandName={searchParams.brand}
+                  modelName={searchParams.model}
+                />
               </Grid>
               
               <Grid item xs={12}>
@@ -742,6 +901,7 @@ function App() {
             darkMode={darkMode} 
             onToggleTheme={handleToggleTheme} 
             navigateTo={navigateTo}
+            onLogout={handleLogout}
             showHeader={false}
             showFooter={false}
           />
@@ -786,13 +946,13 @@ function App() {
       <CssBaseline />
       <div className="app">
         <Header 
-          systemStatus={systemStatus} 
           darkMode={darkMode} 
           onToggleTheme={handleToggleTheme}
           isAuthenticated={isAuthenticated}
           onLogout={handleLogout}
           navigateTo={navigateTo}
           currentPage={currentPage}
+          user={currentUser}
         />
         
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>

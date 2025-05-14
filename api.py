@@ -9,7 +9,13 @@ from models import init_db, Brand, Model, Car, Listing, Region, Source # include
 from ss_scraper import run_ss_scraper
 from analysis import CarDataAnalyzer
 from sqlalchemy import func, and_, or_, desc, asc, case, distinct
+import jwt
+from functools import wraps
+from auth_models import AuthDB
+import re
 
+#init auth db
+auth_db = AuthDB()
 
 logging.basicConfig(
     level=logging.INFO, # You can change to logging.DEBUG for more verbosity
@@ -819,6 +825,223 @@ def price_trend_chart():
         logger.error(f"Error generating price trend chart: {str(e)}", exc_info=True)
         return jsonify({"error": "An error occurred while generating the price trend chart."}), 500
 
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        auth_header = request.headers.get('Authorization')
+        
+        # Get token from header
+        if auth_header and auth_header.startswith('Bearer '):
+            token = auth_header.split(' ')[1]
+        
+        if not token:
+            return jsonify({"error": "Authentication token is missing"}), 401
+        
+        try:
+            # Decode the token
+            secret_key = "car_prices_app_secret_key"  # Should match the key in AuthDB
+            payload = jwt.decode(token, secret_key, algorithms=['HS256'])
+            user_id = payload['user_id']
+            
+            # Get user data
+            current_user = auth_db.get_user_by_id(user_id)
+            if 'error' in current_user:
+                return jsonify({"error": "Invalid token"}), 401
+            
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token has expired"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Invalid token"}), 401
+        
+        # Add user to request context
+        kwargs['current_user'] = current_user
+        return f(*args, **kwargs)
+    
+    return decorated
+
+# New authentication endpoints
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    """Register a new user"""
+    try:
+        data = request.json
+        
+        # Basic validation
+        required_fields = ['email', 'username', 'password']
+        for field in required_fields:
+            if field not in data or not data[field]:
+                return jsonify({"error": f"Missing required field: {field}"}), 400
+        
+        # Validate email format
+        email = data['email']
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"error": "Invalid email format"}), 400
+        
+        # Validate password strength
+        password = data['password']
+        if len(password) < 8:
+            return jsonify({"error": "Password must be at least 8 characters long"}), 400
+        
+        # Create the user
+        result = auth_db.create_user(email, data['username'], password)
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        # Generate token for immediate login
+        user_id = result['user_id']
+        token = auth_db._generate_token(user_id)
+        result['token'] = token
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Registration error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Registration failed"}), 500
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    """Authenticate a user"""
+    try:
+        data = request.json
+        
+        # Validate input
+        if not data or not data.get('email') or not data.get('password'):
+            return jsonify({"error": "Email and password are required"}), 400
+        
+        # Authenticate user
+        result = auth_db.authenticate_user(data['email'], data['password'])
+        
+        if 'error' in result:
+            return jsonify(result), 401
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Login error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Login failed"}), 500
+
+@app.route('/api/user/profile', methods=['GET'])
+@token_required
+def get_profile(current_user):
+    """Get the user's profile information"""
+    return jsonify(current_user)
+
+@app.route('/api/user/preferences', methods=['PUT'])
+@token_required
+def update_preferences(current_user):
+    """Update user preferences"""
+    try:
+        data = request.json
+        user_id = current_user['user_id']
+        
+        result = auth_db.update_preferences(user_id, data)
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        # Get updated user profile
+        updated_user = auth_db.get_user_by_id(user_id)
+        return jsonify(updated_user)
+        
+    except Exception as e:
+        logger.error(f"Update preferences error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to update preferences"}), 500
+
+@app.route('/api/user/favorites', methods=['GET'])
+@token_required
+def get_favorites(current_user):
+    """Get user's favorite cars"""
+    user_id = current_user['user_id']
+    favorites = auth_db.get_user_favorites(user_id)
+    
+    if isinstance(favorites, dict) and 'error' in favorites:
+        return jsonify(favorites), 400
+    
+    return jsonify({"favorites": favorites})
+
+@app.route('/api/user/favorites', methods=['POST'])
+@token_required
+def add_favorite(current_user):
+    """Add a car to favorites"""
+    try:
+        data = request.json
+        user_id = current_user['user_id']
+        
+        if not data or not data.get('car'):
+            return jsonify({"error": "Car data is required"}), 400
+        
+        result = auth_db.add_favorite(user_id, data['car'])
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        return jsonify({"message": "Car added to favorites"})
+        
+    except Exception as e:
+        logger.error(f"Add favorite error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to add favorite"}), 500
+
+@app.route('/api/user/favorites/<car_id>', methods=['DELETE'])
+@token_required
+def remove_favorite(current_user, car_id):
+    """Remove a car from favorites"""
+    try:
+        user_id = current_user['user_id']
+        
+        result = auth_db.remove_favorite(user_id, car_id)
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        return jsonify({"message": "Car removed from favorites"})
+        
+    except Exception as e:
+        logger.error(f"Remove favorite error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to remove favorite"}), 500
+
+@app.route('/api/user/search-history', methods=['GET'])
+@token_required
+def get_search_history(current_user):
+    """Get user's search history"""
+    try:
+        user_id = current_user['user_id']
+        limit = request.args.get('limit', 10, type=int)
+        
+        history = auth_db.get_search_history(user_id, limit)
+        
+        if isinstance(history, dict) and 'error' in history:
+            return jsonify(history), 400
+        
+        return jsonify({"history": history})
+        
+    except Exception as e:
+        logger.error(f"Get search history error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to get search history"}), 500
+
+@app.route('/api/user/search-history', methods=['POST'])
+@token_required
+def add_search_history(current_user):
+    """Add a search to history"""
+    try:
+        data = request.json
+        user_id = current_user['user_id']
+        
+        if not data or not data.get('params'):
+            return jsonify({"error": "Search parameters are required"}), 400
+        
+        result = auth_db.add_search_history(user_id, data['params'])
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        return jsonify({"message": "Search added to history"})
+        
+    except Exception as e:
+        logger.error(f"Add search history error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to add search to history"}), 500
 
 @app.route('/api/popular/brands', methods=['GET'])
 def popular_brands():

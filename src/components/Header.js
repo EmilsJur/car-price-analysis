@@ -24,15 +24,12 @@ import {
 } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import MenuIcon from '@mui/icons-material/Menu';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import HistoryIcon from '@mui/icons-material/History';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import HelpIcon from '@mui/icons-material/Help';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Header = ({ 
   darkMode = false, 
@@ -41,12 +38,8 @@ const Header = ({
   onLogout = () => {},
   navigateTo = () => {},
   currentPage = 'home',
-  favouriteCount = 0,
-  notificationCount = 0,
-  userName = '',
-  onTabChange = () => {},
-  currentTab = 0, 
-  systemStatus = null
+  user = null,
+  notificationCount = 0
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -80,22 +73,8 @@ const Header = ({
     setMobileMenuOpen(!mobileMenuOpen);
   };
   
-  // Get user data
-  const user = isAuthenticated ? 
-    (localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null) : 
-    null;
-  
-  // Get unread notifications count
-  const getUnreadNotificationsCount = () => {
-    try {
-      const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
-      return notifications.filter(n => !n.read).length;
-    } catch (e) {
-      return 0;
-    }
-  };
-  
-  const unreadNotifications = getUnreadNotificationsCount();
+  // Get unread notification count
+  const unreadNotifications = notificationCount || 0;
   
   // Mobile drawer
   const mobileDrawer = (
@@ -110,31 +89,47 @@ const Header = ({
         onClick={toggleMobileMenu}
         onKeyDown={toggleMobileMenu}
       >
-        <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ p: 2, display: 'flex', alignItems: 'center', borderBottom: `1px solid ${theme.palette.divider}` }}>
           <DirectionsCarIcon sx={{ mr: 1 }} />
           <Typography variant="h6" component="div">
             Auto Tirgus Analīze
           </Typography>
         </Box>
+        
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigateTo('profile')}>
+            <ListItemButton onClick={() => navigateTo('home')}>
               <ListItemIcon>
-                <AccountCircleIcon />
+                <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Profils" />
+              <ListItemText primary="Sākums" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => navigateTo('notifications')}>
-              <ListItemIcon>
-                <Badge badgeContent={unreadNotifications} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </ListItemIcon>
-              <ListItemText primary="Paziņojumi" />
-            </ListItemButton>
-          </ListItem>
+          
+          {isAuthenticated && (
+            <>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => navigateTo('profile')}>
+                  <ListItemIcon>
+                    <AccountCircleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Profils" />
+                </ListItemButton>
+              </ListItem>
+              
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => navigateTo('notifications')}>
+                  <ListItemIcon>
+                    <Badge badgeContent={unreadNotifications} color="error">
+                      <NotificationsIcon />
+                    </Badge>
+                  </ListItemIcon>
+                  <ListItemText primary="Paziņojumi" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
+          
           <ListItem disablePadding>
             <ListItemButton onClick={onToggleTheme}>
               <ListItemIcon>
@@ -143,13 +138,23 @@ const Header = ({
               <ListItemText primary={darkMode ? "Gaišais režīms" : "Tumšais režīms"} />
             </ListItemButton>
           </ListItem>
-          {isAuthenticated && (
+          
+          {isAuthenticated ? (
             <ListItem disablePadding>
               <ListItemButton onClick={onLogout}>
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText primary="Iziet" />
+              </ListItemButton>
+            </ListItem>
+          ) : (
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => navigateTo('login')}>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Pieslēgties" />
               </ListItemButton>
             </ListItem>
           )}
@@ -217,7 +222,15 @@ const Header = ({
             Auto Tirgus
           </Typography>
           
-          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Button 
+              color="inherit" 
+              onClick={() => navigateTo('home')}
+              sx={{ my: 2, display: 'block' }}
+            >
+              Sākums
+            </Button>
+          </Box>
           
           {/* Right side icons */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -229,16 +242,18 @@ const Header = ({
             </Tooltip>
             
             {/* Notifications */}
-            <Tooltip title="Paziņojumi">
-              <IconButton 
-                color="inherit" 
-                onClick={() => navigateTo('notifications')}
-              >
-                <Badge badgeContent={unreadNotifications} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
+            {isAuthenticated && (
+              <Tooltip title="Paziņojumi">
+                <IconButton 
+                  color="inherit" 
+                  onClick={() => navigateTo('notifications')}
+                >
+                  <Badge badgeContent={unreadNotifications} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+            )}
             
             {/* User menu */}
             {isAuthenticated ? (
@@ -248,10 +263,11 @@ const Header = ({
                   sx={{ ml: 1 }}
                 >
                   <Avatar 
-                    alt={user?.name || 'Lietotājs'} 
-                    src="/static/images/avatar/1.jpg" 
-                    sx={{ width: 32, height: 32 }}
-                  />
+                    alt={user?.username || 'Lietotājs'} 
+                    sx={{ width: 32, height: 32, bgcolor: 'primary.main' }}
+                  >
+                    {user?.username ? user.username.charAt(0).toUpperCase() : 'U'}
+                  </Avatar>
                 </IconButton>
               </Tooltip>
             ) : (
@@ -273,9 +289,9 @@ const Header = ({
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
               <Box sx={{ px: 2, py: 1 }}>
-                <Typography variant="subtitle1">{user?.name || 'Lietotājs'}</Typography>
+                <Typography variant="subtitle1">{user?.username || 'Lietotājs'}</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Lietotāja Konts
+                  {user?.email || 'Lietotāja Konts'}
                 </Typography>
               </Box>
               
@@ -291,18 +307,14 @@ const Header = ({
                 <ListItemText primary="Profils" />
               </MenuItem>
               
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={() => {
+                handleCloseUserMenu();
+                navigateTo('notifications');
+              }}>
                 <ListItemIcon>
-                  <SettingsIcon fontSize="small" />
+                  <NotificationsIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Iestatījumi" />
-              </MenuItem>
-              
-              <MenuItem onClick={handleCloseUserMenu}>
-                <ListItemIcon>
-                  <HelpIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Palīdzība" />
+                <ListItemText primary="Paziņojumi" />
               </MenuItem>
               
               <Divider />

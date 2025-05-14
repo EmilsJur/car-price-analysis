@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -15,7 +14,8 @@ import {
   IconButton,
   Checkbox,
   FormControlLabel,
-  Avatar
+  Avatar,
+  CircularProgress
 } from '@mui/material';
 import {
   Login as LoginIcon,
@@ -28,6 +28,9 @@ import {
   Facebook as FacebookIcon,
   ArrowBack as ArrowBackIcon
 } from '@mui/icons-material';
+
+// Import authentication services
+import { login, register } from '../services/authService';
 
 const AuthenticationPage = ({ 
   onLogin = () => {}, 
@@ -96,8 +99,8 @@ const AuthenticationPage = ({
       
       if (!formData.password) {
         errors.password = 'Parole ir obligāta';
-      } else if (formData.password.length < 6) {
-        errors.password = 'Parolei jābūt vismaz 6 simbolus garai';
+      } else if (formData.password.length < 8) {
+        errors.password = 'Parolei jābūt vismaz 8 simbolus garai';
       }
       
       if (formData.password !== formData.confirmPassword) {
@@ -117,7 +120,7 @@ const AuthenticationPage = ({
   };
   
   // Handle login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     
     // Validate form
@@ -127,23 +130,14 @@ const AuthenticationPage = ({
       return;
     }
     
-    // Simulate API call
+    // API call
     setLoading(true);
     
-    setTimeout(() => {
-      // Simulate successful login
-      const user = {
-        name: 'Lietotājs',
+    try {
+      const userData = await login({
         email: formData.email,
-        token: 'sample-jwt-token',
-        preferences: {
-          darkMode: false,
-          language: 'lv'
-        }
-      };
-      
-      // Store in localStorage
-      localStorage.setItem('user', JSON.stringify(user));
+        password: formData.password
+      });
       
       // Show success message
       setNotification({
@@ -153,18 +147,25 @@ const AuthenticationPage = ({
       });
       
       // Call the login callback
-      onLogin(user);
+      onLogin(userData);
       
       // Navigate to homepage after a delay
       setTimeout(() => {
         navigateTo('home');
       }, 1000);
       
+    } catch (error) {
+      setNotification({
+        open: true,
+        message: error.message || 'Pieslēgšanās neizdevās. Pārbaudiet e-pastu un paroli.',
+        severity: 'error'
+      });
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
   
-  // Handle registration with proper user creation
+  // Handle registration
   const handleRegister = async (e) => {
     e.preventDefault();
     
@@ -177,21 +178,11 @@ const AuthenticationPage = ({
     setLoading(true);
     
     try {
-      // Create user object
-      const newUser = {
-        name: formData.name,
+      const userData = await register({
         email: formData.email,
-        id: Date.now(), // Simple ID generation
-        createdAt: new Date().toISOString(),
-        preferences: {
-          darkMode: false,
-          language: 'lv',
-          notifications: true
-        }
-      };
-      
-      // Save to localStorage
-      localStorage.setItem('user', JSON.stringify(newUser));
+        username: formData.name,
+        password: formData.password
+      });
       
       // Show success
       setNotification({
@@ -201,7 +192,7 @@ const AuthenticationPage = ({
       });
       
       // Login user
-      onLogin(newUser);
+      onLogin(userData);
       
       // Redirect to home
       setTimeout(() => {
@@ -211,7 +202,7 @@ const AuthenticationPage = ({
     } catch (error) {
       setNotification({
         open: true,
-        message: 'Reģistrācija neizdevās. Mēģiniet vēlreiz.',
+        message: error.message || 'Reģistrācija neizdevās. Mēģiniet vēlreiz.',
         severity: 'error'
       });
     } finally {
@@ -235,8 +226,8 @@ const AuthenticationPage = ({
     // Simulate API call
     setLoading(true);
     
+    // In a real app, you would call a password reset API here
     setTimeout(() => {
-      // Simulate successful password reset request
       setLoading(false);
       
       // Show success message
@@ -365,7 +356,7 @@ const AuthenticationPage = ({
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
         disabled={loading}
-        startIcon={<LoginIcon />}
+        startIcon={loading ? <CircularProgress size={20} /> : <LoginIcon />}
       >
         {loading ? 'Notiek pieslēgšanās...' : 'Pieslēgties'}
       </Button>
@@ -379,6 +370,7 @@ const AuthenticationPage = ({
             variant="outlined"
             startIcon={<GoogleIcon />}
             onClick={() => alert('Google pieslēgšanās pagaidām nav pieejama')}
+            disabled={loading}
           >
             Google
           </Button>
@@ -389,6 +381,7 @@ const AuthenticationPage = ({
             variant="outlined"
             startIcon={<FacebookIcon />}
             onClick={() => alert('Facebook pieslēgšanās pagaidām nav pieejama')}
+            disabled={loading}
           >
             Facebook
           </Button>
@@ -520,6 +513,7 @@ const AuthenticationPage = ({
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
         disabled={loading}
+        startIcon={loading ? <CircularProgress size={20} /> : <PersonIcon />}
       >
         {loading ? 'Notiek reģistrācija...' : 'Reģistrēties'}
       </Button>
@@ -533,6 +527,7 @@ const AuthenticationPage = ({
             variant="outlined"
             startIcon={<GoogleIcon />}
             onClick={() => alert('Google reģistrācija pagaidām nav pieejama')}
+            disabled={loading}
           >
             Google
           </Button>
@@ -543,6 +538,7 @@ const AuthenticationPage = ({
             variant="outlined"
             startIcon={<FacebookIcon />}
             onClick={() => alert('Facebook reģistrācija pagaidām nav pieejama')}
+            disabled={loading}
           >
             Facebook
           </Button>
@@ -602,6 +598,7 @@ const AuthenticationPage = ({
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
         disabled={loading}
+        startIcon={loading ? <CircularProgress size={20} /> : <EmailIcon />}
       >
         {loading ? 'Notiek nosūtīšana...' : 'Nosūtīt atjaunošanas saiti'}
       </Button>

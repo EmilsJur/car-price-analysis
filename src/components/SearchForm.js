@@ -18,7 +18,6 @@ import {
   useTheme
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import SaveIcon from '@mui/icons-material/Save';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { getRegions } from '../services/apiService';
@@ -41,9 +40,7 @@ const SearchForm = ({
   }, 
   onParamChange = () => {}, 
   onSearch = () => {}, 
-  loading = false,
-  savedSearches = [],
-  onSaveSearch = () => {}
+  loading = false
 }) => {
   const theme = useTheme();
 
@@ -51,8 +48,6 @@ const SearchForm = ({
   const [localParams, setLocalParams] = useState({...params});
   const [advanced, setAdvanced] = useState(false);
   const [errors, setErrors] = useState({});
-  const [searchName, setSearchName] = useState('');
-  const [showSavedSearches, setShowSavedSearches] = useState(false);
   const [regions, setRegions] = useState([]);
 
   // Fetch regions on component mount
@@ -139,32 +134,6 @@ const SearchForm = ({
     });
     
     setAdvanced(false);
-  };
-
-  // Save current search
-  const handleSaveSearch = () => {
-    if (!searchName.trim()) {
-      alert('Lūdzu, ievadiet meklēšanas nosaukumu');
-      return;
-    }
-    
-    onSaveSearch({
-      name: searchName,
-      params: { ...localParams },
-      date: new Date().toISOString()
-    });
-    
-    setSearchName('');
-  };
-
-  // Apply saved search
-  const handleApplySavedSearch = (savedSearch) => {
-    // Update parent state for each param
-    Object.entries(savedSearch.params).forEach(([key, value]) => {
-      onParamChange(key, value);
-    });
-    
-    setShowSavedSearches(false);
   };
 
   // Active filters count for chip display
@@ -557,47 +526,8 @@ const SearchForm = ({
         </Box>
       </Box>
       
-      {/* Saved searches section */}
-      {savedSearches.length > 0 && (
-        <Box sx={{ mt: 2, mb: 2 }}>
-          <Button
-            variant="text"
-            fullWidth
-            onClick={() => setShowSavedSearches(!showSavedSearches)}
-            startIcon={showSavedSearches ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            disabled={loading}
-          >
-            {showSavedSearches ? "Slēpt saglabātos meklējumus" : "Parādīt saglabātos meklējumus"}
-          </Button>
-          
-          <Collapse in={showSavedSearches}>
-            <Paper variant="outlined" sx={{ mt: 1, p: 1 }}>
-              {savedSearches.map((search, index) => (
-                <Box key={index} sx={{ mb: 1, p: 1, border: '1px solid #eee', borderRadius: 1 }}>
-                  <Typography variant="body2" fontWeight="medium">
-                    {search.name}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {new Date(search.date).toLocaleDateString()}
-                  </Typography>
-                  <Button 
-                    size="small" 
-                    variant="outlined" 
-                    sx={{ mt: 1 }}
-                    onClick={() => handleApplySavedSearch(search)}
-                    disabled={loading}
-                  >
-                    Lietot
-                  </Button>
-                </Box>
-              ))}
-            </Paper>
-          </Collapse>
-        </Box>
-      )}
-      
-      {/* Form actions */}
-      <Box sx={{ mt: 3, display: 'flex', gap: 1, flexDirection: 'column' }}>
+      {/* Form actions*/}
+      <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Button
           variant="contained"
           fullWidth
@@ -609,52 +539,14 @@ const SearchForm = ({
           {loading ? "Meklē..." : "Meklēt"}
         </Button>
         
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button
-            variant="outlined"
-            fullWidth
-            onClick={handleReset}
-            disabled={loading}
-          >
-            Atiestatīt
-          </Button>
-          
-          <Button
-            variant="outlined"
-            fullWidth
-            startIcon={<SaveIcon />}
-            onClick={() => document.getElementById('search-name-input')?.focus()}
-            disabled={loading}
-          >
-            Saglabāt
-          </Button>
-        </Box>
-      </Box>
-      
-      {/* Save search form */}
-      <Box sx={{ mt: 2 }}>
-        <TextField
-          id="search-name-input"
-          label="Meklēšanas nosaukums"
-          size="small"
+        <Button
+          variant="outlined"
           fullWidth
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
+          onClick={handleReset}
           disabled={loading}
-          placeholder="Ievadiet nosaukumu, lai saglabātu šo meklēšanu"
-          InputProps={{
-            endAdornment: (
-              <IconButton 
-                edge="end"
-                onClick={handleSaveSearch}
-                disabled={!searchName.trim() || loading}
-                size="small"
-              >
-                <SaveIcon />
-              </IconButton>
-            )
-          }}
-        />
+        >
+          Atiestatīt
+        </Button>
       </Box>
     </Box>
   );
