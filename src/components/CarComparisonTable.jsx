@@ -18,7 +18,6 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

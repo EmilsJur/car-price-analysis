@@ -7,7 +7,6 @@ import {
   Paper,
   Tabs,
   Tab,
-  CircularProgress,
   Button,
   Snackbar,
   Alert,

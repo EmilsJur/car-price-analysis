@@ -102,7 +102,32 @@ def search_cars():
             if year_to:
                 query = query.filter(Car.year <= year_to)
             if fuel_type:
-                query = query.filter(func.lower(Car.engine_type) == func.lower(fuel_type))
+                logger.info(f"Applying fuel type filter: {fuel_type}")
+                
+                # First, let's handle the standard fuel types with proper pattern matching
+                if fuel_type.lower() in ['petrol', 'benzīns', 'benzins']:
+                    query = query.filter(func.lower(Car.engine_type).like('%benzīn%') | 
+                                        func.lower(Car.engine_type).like('%petrol%'))
+                    logger.info("Applied petrol/benzins filter")
+                elif fuel_type.lower() in ['diesel', 'dīzelis', 'dizelis']:
+                    query = query.filter(func.lower(Car.engine_type).like('%dīzel%') | 
+                                        func.lower(Car.engine_type).like('%diesel%'))
+                    logger.info("Applied diesel/dizelis filter")
+                elif fuel_type.lower() in ['hybrid', 'hibrīds', 'hibrids']:
+                    query = query.filter(func.lower(Car.engine_type).like('%hibrīd%') | 
+                                        func.lower(Car.engine_type).like('%hybrid%'))
+                    logger.info("Applied hybrid filter")
+                elif fuel_type.lower() in ['electric', 'elektriskais', 'elektrisks']:
+                    query = query.filter(func.lower(Car.engine_type).like('%elektr%'))
+                    logger.info("Applied electric filter")
+                elif fuel_type.lower() in ['gas', 'gāze', 'gaze']:
+                    query = query.filter(func.lower(Car.engine_type).like('%gāz%') | 
+                                        func.lower(Car.engine_type).like('%gas%'))
+                    logger.info("Applied gas filter")
+                else:
+                    # Fallback to a partial match
+                    query = query.filter(func.lower(Car.engine_type).like(f'%{fuel_type.lower()}%'))
+                    logger.info(f"Applied generic filter: %{fuel_type.lower()}%")
             if transmission:
                 query = query.filter(func.lower(Car.transmission) == func.lower(transmission))
             if price_from:
@@ -673,7 +698,7 @@ def estimate_value():
         model = data.get('model')
         year = data.get('year')
         mileage = data.get('mileage')
-        fuel_type = data.get('fuelType') # Note: frontend sends 'fuelType'
+        fuel_type = data.get('fuelType')  #frontend sends 'fuelType'
         transmission = data.get('transmission')
         
         if not all([brand, model, year, mileage]): # Basic validation

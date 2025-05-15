@@ -14,7 +14,6 @@ import {
 import DownloadIcon from '@mui/icons-material/Download';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import InfoIcon from '@mui/icons-material/Info';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 
 // Import chart component (used conditionally)
 const PriceAnalysisChart = ({ 
@@ -34,9 +33,7 @@ const PriceAnalysisChart = ({
   useEffect(() => {
     const typeToIndex = {
       'distribution': 0,
-      'trend': 1,
-      'comparison': 2,
-      'scatter': 3
+      'trend': 1
     };
     
     setTabValue(typeToIndex[chartType] || 0);
@@ -49,9 +46,7 @@ const PriceAnalysisChart = ({
     // Map tab index to chart type
     const indexToType = {
       0: 'distribution',
-      1: 'trend',
-      2: 'comparison',
-      3: 'scatter'
+      1: 'trend'
     };
     
     onChartTypeChange(indexToType[newValue]);
@@ -60,17 +55,13 @@ const PriceAnalysisChart = ({
   // Chart titles in Latvian
   const chartTitles = {
     'distribution': 'Cenu sadalījums',
-    'trend': 'Cenu tendences',
-    'comparison': 'Marku salīdzinājums',
-    'scatter': 'Cena vs. Gads'
+    'trend': 'Cenu tendences'
   };
   
   // Chart descriptions in Latvian
   const chartDescriptions = {
     'distribution': 'Histogramma, kas parāda, cik bieži sastopamas dažādas automašīnu cenas.',
-    'trend': 'Līnijas grafiks, kas parāda, kā mainās vidējās cenas laika gaitā.',
-    'comparison': 'Stabiņu diagramma, kas salīdzina cenas starp dažādām automašīnu markām.',
-    'scatter': 'Izkliedes diagramma, kas parāda sakarību starp automašīnas gadu un cenu.'
+    'trend': 'Līnijas grafiks, kas parāda, kā mainās vidējās cenas laika gaitā.'
   };
   
   // Handle chart download
@@ -111,8 +102,6 @@ const PriceAnalysisChart = ({
         >
           <Tab label="Cenu sadalījums" />
           <Tab label="Tendences" />
-          <Tab label="Salīdzinājums" />
-          <Tab label="Izkliede" />
         </Tabs>
       </Box>
       
@@ -165,8 +154,6 @@ const PriceAnalysisChart = ({
           <Typography variant="body2" color="text.secondary">
             {chartType === 'distribution' && 'Grafiks parāda automašīnu cenu sadalījumu. Augstāki stabiņi norāda uz biežāk sastopamām cenām.'}
             {chartType === 'trend' && 'Grafiks parāda, kā automašīnu cenas mainījušās laika gaitā. Var palīdzēt identificēt sezonalitāti vai ilgtermiņa tendences.'}
-            {chartType === 'comparison' && 'Grafiks salīdzina dažādu marku un modeļu vidējās cenas, ļaujot identificēt labākās vērtības.'}
-            {chartType === 'scatter' && 'Grafiks parāda sakarību starp automašīnas vecumu un cenu. Katrs punkts ir atsevišķs sludinājums.'}
           </Typography>
         </Box>
       )}
