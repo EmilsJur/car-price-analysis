@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 // Import components
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -688,14 +688,6 @@ function App() {
   const renderDashboardContent = () => {
     return (
       <>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Auto Tirgus Analīzes Sistēma
-        </Typography>
-        
-        <Typography variant="body1" paragraph color="text.secondary">
-          Pētiet automašīnu cenas, tendences un veiciet salīdzinājumus, izmantojot aktuālus tirgus datus
-        </Typography>
-        
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
           <Tabs 
             value={tabValue} 
@@ -717,9 +709,24 @@ function App() {
         <Box role="tabpanel" hidden={tabValue !== 0}>
           {tabValue === 0 && (
             <Grid container spacing={3}>
-              {/* Search Form */}
+              {/* Search Form - left side */}
               <Grid item xs={12} md={4}>
-                <Paper elevation={3} sx={{ p: 2 }}>
+                <Paper elevation={3} sx={{ 
+                  p: 3, 
+                  background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                  border: '1px solid',
+                  borderColor: 'divider'
+                }}>
+                  <Typography variant="h6" gutterBottom sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    color: 'primary.main',
+                    mb: 2
+                  }}>
+                    <TuneIcon sx={{ mr: 1 }} />
+                    Meklēšanas filtri
+                  </Typography>
+                  
                   <SearchForm 
                     params={searchParams}
                     onParamChange={handleParamChange}
@@ -731,7 +738,7 @@ function App() {
                 </Paper>
               </Grid>
               
-              {/* Search Results */}
+              {/* Search Results - right side */}
               <Grid item xs={12} md={8}>
                 {error && (
                   <Alert severity="error" sx={{ mb: 2 }}>
@@ -988,34 +995,93 @@ const handleExportComparison = () => {
           currentPage={currentPage}
           user={currentUser}
         />
-        <Box 
-    component="div" 
-    sx={{ 
-      width: '100%', 
-      overflow: 'hidden',
-      display: 'flex',
-      justifyContent: 'center',
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-    }}
-  >
-    <Box
-      component="img"
-      src="/car_banner.jpg"
-      alt="Auto tirgus analīze"
-      sx={{
-        width: '100%',
-        maxWidth: '1920px',
-        height: 'auto',
-        maxHeight: '300px',
-        objectFit: 'cover',
-      }}
-    />
-  </Box>
+        
+        {/* Hero section - only show on home page */}
+        {currentPage === 'home' && (
+          <Box 
+            sx={{ 
+              background: `linear-gradient(135deg, 
+                ${theme.palette.background.paper} 0%, 
+                rgba(25, 118, 210, 0.02) 100%)`,
+              borderTop: `4px solid ${theme.palette.primary.main}`,
+              borderBottom: `1px solid ${theme.palette.divider}`,
+              py: 2.5,
+              position: 'relative',
+              textAlign: 'center'
+            }}
+          >
+            {/* Subtle side accent */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '3px',
+                background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+              }}
+            />
+            
+            <Container maxWidth="xl">
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  fontWeight: 600,
+                  color: theme.palette.primary.dark,
+                  mb: 1
+                }}
+              >
+                Pareizā automašīnas izvēle
+              </Typography>
+              
+              {/* Cool styled subtitle */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ 
+                    width: 8, 
+                    height: 8, 
+                    borderRadius: '50%', 
+                    backgroundColor: theme.palette.primary.main,
+                    mr: 1 
+                  }} />
+                  <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>
+                    Pētiet cenas
+                  </Typography>
+                </Box>
+                
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ 
+                    width: 8, 
+                    height: 8, 
+                    borderRadius: '50%', 
+                    backgroundColor: theme.palette.secondary.main,
+                    mr: 1 
+                  }} />
+                  <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>
+                    Analizējiet tendences
+                  </Typography>
+                </Box>
+                
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ 
+                    width: 8, 
+                    height: 8, 
+                    borderRadius: '50%', 
+                    backgroundColor: theme.palette.success.main,
+                    mr: 1 
+                  }} />
+                  <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>
+                    Pieņemiet lēmumus ar datiem
+                  </Typography>
+                </Box>
+              </Box>
+            </Container>
+          </Box>
+        )}
   
-  <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-    {renderCurrentPage()}
-  </Container>
+        <Container maxWidth="xl" sx={{ mt: currentPage === 'home' ? 3 : 4, mb: 4 }}>
+          {renderCurrentPage()}
+        </Container>
         
         {/* Notification */}
         <Snackbar

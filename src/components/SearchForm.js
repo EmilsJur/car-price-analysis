@@ -19,6 +19,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { getRegions } from '../services/apiService';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import { Paper } from '@mui/material';
 
 const SearchForm = ({ 
   brands = [], 
@@ -212,9 +215,10 @@ const SearchForm = ({
         />
       </FormControl>
       
-      <Box sx={{ mt: 3, mb: 2 }}>
+      <Paper variant="outlined" sx={{ p: 2, mt: 2, mb: 2, bgcolor: 'rgba(25, 118, 210, 0.02)' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-          <Typography id="year-range-slider" gutterBottom>
+          <Typography id="year-range-slider" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
+            <CalendarMonthIcon sx={{ mr: 1, color: 'primary.main' }} />
             Izlaiduma gads {localParams.yearFrom} - {localParams.yearTo}
           </Typography>
           {errors.year && (
@@ -263,11 +267,12 @@ const SearchForm = ({
             />
           </Grid>
         </Grid>
-      </Box>
+      </Paper>
       
-      <Box sx={{ mt: 3, mb: 2 }}>
+      <Paper variant="outlined" sx={{ p: 2, mt: 2, mb: 2, bgcolor: 'rgba(76, 175, 80, 0.02)' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-          <Typography id="price-range-slider" gutterBottom>
+          <Typography id="price-range-slider" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
+            <MonetizationOnIcon sx={{ mr: 1, color: 'success.main' }} />
             Cena {formatCurrency(localParams.priceFrom)} - {formatCurrency(localParams.priceTo)}
           </Typography>
           {errors.price && (
@@ -323,7 +328,7 @@ const SearchForm = ({
             />
           </Grid>
         </Grid>
-      </Box>
+      </Paper>
       
       {/* Advanced filters section */}
       <Box sx={{ mt: 2 }}>
