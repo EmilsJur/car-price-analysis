@@ -6717,3 +6717,153 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listin
 2025-05-18 19:54:32,596 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 19:54:32] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
 2025-05-18 19:54:41,323 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 19:54:41] "[33mOPTIONS /api/auth/reset-password HTTP/1.1[0m" 404 -
 2025-05-18 19:54:43,199 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 19:54:43] "[33mOPTIONS /api/auth/reset-password HTTP/1.1[0m" 404 -
+2025-05-18 19:59:56,859 - car_app - INFO - Starting API server on port 5000
+2025-05-18 19:59:56,868 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-18 19:59:56,868 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-18 20:00:04,340 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:04,349 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:00:04,550 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:04,647 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:00:04,659 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:00:04,660 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:00:04,674 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:00:04,674 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:04] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:00:10,863 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:10] "OPTIONS /api/auth/reset-password HTTP/1.1" 200 -
+2025-05-18 20:00:11,178 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:11] "POST /api/auth/reset-password HTTP/1.1" 200 -
+2025-05-18 20:00:19,999 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:19] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:00:20,324 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:00:20,572 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:20,678 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:20,680 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:20,685 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:20,686 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:00:20,879 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:20,987 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:00:20,988 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:00:20,989 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:21,018 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:21] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:22,816 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:22] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:00:23,126 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:00:23,126 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:23] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:00:30,344 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:30] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:00:30,660 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:30] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+2025-05-18 20:00:33,770 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:33] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:00:34,116 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:34,116 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:34,118 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:34,123 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:00:34,378 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:34,424 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:34,425 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:00:34,425 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:00:34,426 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:34,439 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:34] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:37,529 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:37] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:37,838 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:37] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:37,839 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:37] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:38,146 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:38] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:00:38,147 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:38] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:38,454 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:38] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:00:38,760 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:38] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:00:44,064 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:44] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:44,066 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:44] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:44,327 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:44,371 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:44] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:00:46,658 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:46] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:46,973 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:46] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:46,975 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:46] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:47,281 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:47] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:00:47,282 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:47] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:47,588 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:47] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:00:47,589 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:47] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:00:47,895 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:47] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:00:48,202 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:00:48] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:03:52,597 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:52] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:03:52,599 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:52] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:03:52,843 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:52] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:03:52,904 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:52] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:03:53,872 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:53] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:03:54,178 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:03:54,179 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:03:54,487 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:03:54,488 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:03:54,794 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:03:54,795 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:54] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:03:55,101 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:55] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:03:55,408 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:03:55] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:03:59,640 - car_app - INFO - Starting API server on port 5000
+2025-05-18 20:03:59,648 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-18 20:03:59,648 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-18 20:04:22,363 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:04:22,419 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:22,419 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:04:22,423 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:04:22,426 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:22,429 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:04:22,670 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 405 -
+2025-05-18 20:04:22,732 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:04:22,734 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:22,736 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:04:22,748 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:04:22,748 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:04:22,978 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:22] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 405 -
+2025-05-18 20:04:23,042 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:23] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:23,043 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:23] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:04:23,055 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:04:23,055 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:23] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:04:23,371 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:04:23,371 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:23] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:04:43,788 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:43] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:04:44,106 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:04:44,352 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:04:44,451 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:44,453 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 405 -
+2025-05-18 20:04:44,455 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:04:44,456 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:04:44,666 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:04:44,758 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:04:44,761 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:04:44,788 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:04:44,789 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:04:44,790 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:04:44,791 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:04:44] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:06:10,890 - car_app - INFO - Starting API server on port 5000
+2025-05-18 20:06:10,900 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-18 20:06:10,900 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-18 20:06:15,131 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:06:15,131 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:06:15,331 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:06:15,441 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:06:15,441 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:06:15,442 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:06:15,469 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:06:15,469 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:15] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:06:28,459 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:28] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:06:28,727 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:28] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-18 20:06:28,767 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:28] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:06:29,075 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:06:29,075 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:06:29,080 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:06:29,082 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 20:06:29,383 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 20:06:29,384 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:06:29,398 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 20:06:29,398 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 20:06:29,692 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:29] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:06:31,013 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:06:31,273 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 20:06:31,319 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:06:31,321 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 20:06:31,625 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:06:31,626 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:06:31,932 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:31] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 20:06:32,241 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 20:06:32] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -

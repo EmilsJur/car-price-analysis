@@ -13,7 +13,7 @@ import jwt
 from functools import wraps
 from auth_models import AuthDB
 import re
-
+import sqlite3
 #init auth db
 auth_db = AuthDB()
 
@@ -28,7 +28,7 @@ logger_listing_details = logging.getLogger('car_api.listing_details') # Specific
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes
+CORS(app, origins=['http://localhost:3000'])
 
 # Initialize database session and analyzer
 # This should be how your project sets them up
@@ -947,12 +947,82 @@ def login():
     except Exception as e:
         logger.error(f"Login error: {str(e)}", exc_info=True)
         return jsonify({"error": "Login failed"}), 500
-
+    
 @app.route('/api/user/profile', methods=['GET'])
 @token_required
 def get_profile(current_user):
     """Get the user's profile information"""
     return jsonify(current_user)
+
+@app.route('/api/user/profile', methods=['PUT'])
+@token_required
+def update_profile(current_user):
+    """Update user profile information"""
+    try:
+        data = request.json
+        user_id = current_user['user_id']
+        
+        # Validate the input data
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+        
+        # Get allowed fields to update
+        username = data.get('username')
+        email = data.get('email')
+        
+        # Basic validation
+        if username and not username.strip():
+            return jsonify({"error": "Username cannot be empty"}), 400
+        
+        if email and not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"error": "Invalid email format"}), 400
+        
+        # Update user in database using auth_db
+        try:
+            conn = sqlite3.connect(auth_db.db_path)
+            cursor = conn.cursor()
+            
+            # Build update query dynamically
+            update_fields = []
+            update_values = []
+            
+            if username:
+                update_fields.append("username = ?")
+                update_values.append(username.strip())
+            
+            if email:
+                # Check if email already exists for another user
+                cursor.execute("SELECT user_id FROM users WHERE email = ? AND user_id != ?", 
+                             (email.lower(), user_id))
+                if cursor.fetchone():
+                    return jsonify({"error": "Email already exists"}), 400
+                
+                update_fields.append("email = ?")
+                update_values.append(email.lower())
+            
+            if update_fields:
+                # Add user_id for WHERE clause
+                update_values.append(user_id)
+                
+                query = f"UPDATE users SET {', '.join(update_fields)} WHERE user_id = ?"
+                cursor.execute(query, update_values)
+                conn.commit()
+            
+            conn.close()
+            
+            # Return updated user profile
+            updated_user = auth_db.get_user_by_id(user_id)
+            return jsonify(updated_user)
+            
+        except sqlite3.IntegrityError as e:
+            return jsonify({"error": "Email already exists"}), 400
+        except Exception as e:
+            logger.error(f"Database error updating profile: {str(e)}")
+            return jsonify({"error": "Failed to update profile"}), 500
+        
+    except Exception as e:
+        logger.error(f"Profile update error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Failed to update profile"}), 500
 
 
 @app.route('/api/user/preferences', methods=['PUT'])
