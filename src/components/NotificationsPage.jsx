@@ -122,15 +122,6 @@ const NotificationsPage = ({
     setTabValue(newValue);
   };
   
-  // Mark notification as read
-  const handleMarkAsRead = (id) => {
-    setNotifications(prev => 
-      prev.map(notification => 
-        notification.id === id ? { ...notification, read: true } : notification
-      )
-    );
-  };
-  
   // Mark all notifications as read
   const handleMarkAllAsRead = () => {
     setNotifications(prev => 

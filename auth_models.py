@@ -279,6 +279,7 @@ class AuthDB:
         except Exception as e:
             return {"error": str(e)}
     
+
     def add_search_history(self, user_id, search_params):
         """Add a search to user's history"""
         try:
@@ -291,6 +292,36 @@ class AuthDB:
             cursor.execute(
                 "INSERT INTO search_history (user_id, search_query) VALUES (?, ?)",
                 (user_id, search_json)
+            )
+            
+            conn.commit()
+            conn.close()
+            return {"success": True}
+            
+        except Exception as e:
+            return {"error": str(e)}
+    
+    def reset_password(self, email, new_password):
+        """Reset user password directly"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            # Check if user exists
+            cursor.execute("SELECT user_id FROM users WHERE email = ? AND is_active = 1", (email.lower(),))
+            result = cursor.fetchone()
+            
+            if not result:
+                return {"error": "E-pasts nav atrasts"}
+            
+            # Generate new salt and hash the new password
+            salt = secrets.token_hex(16)
+            password_hash = self._hash_password(new_password, salt)
+            
+            # Update password in database
+            cursor.execute(
+                "UPDATE users SET password_hash = ?, salt = ? WHERE email = ?",
+                (password_hash, salt, email.lower())
             )
             
             conn.commit()

@@ -12,8 +12,6 @@ import {
   Grid,
   Chip,
   Autocomplete,
-  IconButton,
-  Paper,
   Collapse,
   useTheme
 } from '@mui/material';
@@ -42,7 +40,6 @@ const SearchForm = ({
   onSearch = () => {}, 
   loading = false
 }) => {
-  const theme = useTheme();
 
   // Local state for form values with validation
   const [localParams, setLocalParams] = useState({...params});
@@ -135,16 +132,6 @@ const SearchForm = ({
     
     setAdvanced(false);
   };
-
-  // Active filters count for chip display
-  const activeFiltersCount = Object.entries(localParams).filter(([key, value]) => {
-    if (key === 'yearFrom' && value !== new Date().getFullYear() - 10) return true;
-    if (key === 'yearTo' && value !== new Date().getFullYear()) return true;
-    if (key === 'priceFrom' && value !== 0) return true;
-    if (key === 'priceTo' && value !== 100000) return true;
-    if (key === 'sortBy' || key === 'sortOrder') return false;
-    return value !== '';
-  }).length;
 
   // Format currencies
   const formatCurrency = (value) => {

@@ -46,7 +46,6 @@ const Header = ({
   
   // State for menus and drawer
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [anchorElNotifications, setAnchorElNotifications] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Handle opening the user menu
@@ -54,19 +53,12 @@ const Header = ({
     setAnchorElUser(event.currentTarget);
   };
   
-  // Handle opening the notifications menu
-  const handleOpenNotificationsMenu = (event) => {
-    setAnchorElNotifications(event.currentTarget);
-  };
   
   // Handle closing menus
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
   
-  const handleCloseNotificationsMenu = () => {
-    setAnchorElNotifications(null);
-  };
   
   // Toggle mobile drawer
   const toggleMobileMenu = () => {

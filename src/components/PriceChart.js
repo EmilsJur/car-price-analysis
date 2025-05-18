@@ -255,13 +255,15 @@ const PriceChart = ({
         </Typography>
         
         <Box>
-          <Tooltip title="Download Chart">
-            <IconButton 
-              onClick={handleDownload}
-              disabled={!chartData}
-            >
-              <DownloadIcon />
-            </IconButton>
+          <Tooltip title="Refresh Chart">
+            <span>
+              <IconButton 
+                onClick={onRefresh}
+                disabled={loading}
+              >
+                <RefreshIcon />
+              </IconButton>
+            </span>
           </Tooltip>
           
           <Tooltip title="Refresh Chart">

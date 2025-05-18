@@ -39,7 +39,9 @@ import {
   updatePreferences, 
   getFavorites,
   getSearchHistory,
-  logout
+  logout,
+  removeFavorite,
+  getToken
 } from '../services/authService';
 
 const UserProfilePage = ({ 
@@ -127,13 +129,30 @@ const UserProfilePage = ({
   // Handle save profile
   const handleSaveProfile = async () => {
     try {
-      // In a full implementation, you would update the user profile here
-      // For now, we just update the local state
-      setUser(editedUser);
+      // Actually update the profile in the backend
+      const response = await fetch('/api/user/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getToken()}`
+        },
+        body: JSON.stringify({
+          username: editedUser.username,
+          email: editedUser.email
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+      
+      const updatedUser = await response.json();
+      setUser(updatedUser);
       setEditMode(false);
       
       showNotification('Profils saglabāts', 'success');
     } catch (err) {
+      console.error('Error updating profile:', err);
       showNotification('Neizdevās saglabāt profilu', 'error');
     }
   };
@@ -393,10 +412,19 @@ const UserProfilePage = ({
                           <ListItem
                             key={car.id}
                             secondaryAction={
-                              <IconButton edge="end" onClick={() => {
-                                // In a full implementation, would call removeFavorite here
-                                setFavorites(prev => prev.filter(c => c.id !== car.id));
-                                showNotification('Automašīna noņemta no izlases', 'info');
+                              <IconButton edge="end" onClick={async () => {
+                                try {
+                                  // Remove from backend
+                                  await removeFavorite(car.id);
+                                  
+                                  // Update local state
+                                  setFavorites(prev => prev.filter(c => c.id !== car.id));
+                                  
+                                  showNotification('Automašīna noņemta no izlases', 'info');
+                                } catch (error) {
+                                  console.error('Error removing favorite:', error);
+                                  showNotification('Neizdevās noņemt no izlases', 'error');
+                                }
                               }}>
                                 <DeleteIcon />
                               </IconButton>

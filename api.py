@@ -954,6 +954,7 @@ def get_profile(current_user):
     """Get the user's profile information"""
     return jsonify(current_user)
 
+
 @app.route('/api/user/preferences', methods=['PUT'])
 @token_required
 def update_preferences(current_user):
@@ -1185,7 +1186,31 @@ def system_status():
         logger.error(f"Error retrieving system status: {str(e)}", exc_info=True)
         return jsonify({"error": "Failed to retrieve system status."}), 500
 
-
+@app.route('/api/auth/reset-password', methods=['POST'])
+def reset_password():
+    """Reset user password"""
+    try:
+        data = request.json
+        
+        if not data or not data.get('email') or not data.get('new_password'):
+            return jsonify({"error": "E-pasts un jauna parole ir nepieciešami"}), 400
+        
+        # Validate new password
+        if len(data['new_password']) < 8:
+            return jsonify({"error": "Parolei jābūt vismaz 8 simbolus garai"}), 400
+        
+        # Reset password using auth_db
+        result = auth_db.reset_password(data['email'], data['new_password'])
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        return jsonify({"message": "Parole veiksmīgi atjaunota"})
+        
+    except Exception as e:
+        logger.error(f"Password reset error: {str(e)}", exc_info=True)
+        return jsonify({"error": "Paroles atjaunošana neizdevās"}), 500
+    
 if __name__ == "__main__":
     # This block runs when the script is executed directly (e.g., python api.py)
     # Ensure your database session and analyzer are available to the routes if they are not already

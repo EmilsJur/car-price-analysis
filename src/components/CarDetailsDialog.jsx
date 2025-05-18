@@ -10,7 +10,6 @@ import {
   Box,
   Chip,
   IconButton,
-  Divider,
   CircularProgress,
   Link,
   Paper,
@@ -20,7 +19,6 @@ import {
   Alert,
   Tooltip,
   useTheme,
-  useMediaQuery
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -30,7 +28,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import SpeedIcon from '@mui/icons-material/Speed';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { getListingDetails } from '../services/apiService';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -39,9 +36,7 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import BuildIcon from '@mui/icons-material/Build';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
-import axios from 'axios';
 
 const CarDetailsDialog = ({
   open,
@@ -53,7 +48,6 @@ const CarDetailsDialog = ({
   onImageError
 }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   // State management
   const [fullDetails, setFullDetails] = useState(null);
@@ -69,25 +63,7 @@ const CarDetailsDialog = ({
   
   // Fetch full details when dialog opens
   useEffect(() => {
-    if (open && car) {
-      resetState();
-      if (car.listing_url) {
-        fetchFullDetails();
-      } else {
-        setFullDetails(car);
-      }
-    }
-  }, [open, car]);
-  
-  const resetState = () => {
-    setFullDetails(null);
-    setLoading(false);
-    setError(null);
-    setImageErrors({});
-  };
-  
-   
-  const fetchFullDetails = async () => {
+    const fetchFullDetails = async () => {
     setLoading(true);
     setError(null);
     
@@ -130,6 +106,25 @@ const CarDetailsDialog = ({
       setLoading(false);
     }
   };
+
+    if (open && car) {
+      resetState();
+      if (car.listing_url) {
+        fetchFullDetails();
+      } else {
+        setFullDetails(car);
+      }
+    }
+  }, [open, car]);
+  
+  const resetState = () => {
+    setFullDetails(null);
+    setLoading(false);
+    setError(null);
+    setImageErrors({});
+  };
+  
+  
   
   const handleImageError = (imageIndex) => {
     setImageErrors(prev => ({

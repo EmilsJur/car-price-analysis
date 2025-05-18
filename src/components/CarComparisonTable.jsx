@@ -12,9 +12,7 @@ import {
   Button,
   IconButton,
   Tooltip,
-  Chip,
   Link,
-  useTheme
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -25,13 +23,18 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import SpeedIcon from '@mui/icons-material/Speed';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DownloadIcon from '@mui/icons-material/Download';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PaletteIcon from '@mui/icons-material/Palette';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LinkIcon from '@mui/icons-material/Link';
 
 const CarComparisonTable = ({
   cars = [],
   onRemoveCar = () => {},
-  onExportComparison = () => {}
+  onExportComparison = () => {},
+  isAuthenticated = false // Add this prop
 }) => {
-  const theme = useTheme();
   
   // If no cars to compare
   if (!cars || cars.length === 0) {
@@ -105,23 +108,26 @@ const CarComparisonTable = ({
     return bestIndex;
   };
   
-  // Get comparison rows
+  // Get comparison rows - separated by those with icons and those without
   const getComparisonRows = () => {
-    // Define the attributes to compare
-    const attributes = [
-      { key: 'price', label: 'Cena', format: (value) => `€${value?.toLocaleString() || 'Nav norādīts'}` },
-      { key: 'year', label: 'Izlaiduma gads', icon: <CalendarMonthIcon color="primary" fontSize="small" /> },
+    // Attributes with icons (prioritized)
+    const attributesWithIcons = [
+      { 
+        key: 'year', 
+        label: 'Izlaiduma gads', 
+        icon: <CalendarMonthIcon color="primary" fontSize="small" /> 
+      },
       { 
         key: 'engine_type', 
         label: 'Degvielas tips', 
         format: (value) => formatFuelType(value),
         icon: <LocalGasStationIcon color="primary" fontSize="small" />
       },
-      { key: 'engine_volume', label: 'Motora tilpums', format: (value) => value ? `${value}L` : 'Nav norādīts' },
       { 
         key: 'transmission', 
         label: 'Ātrumkārba', 
-        format: (value) => formatTransmission(value)
+        format: (value) => formatTransmission(value),
+        icon: <SettingsIcon color="primary" fontSize="small" />
       },
       { 
         key: 'mileage', 
@@ -129,12 +135,36 @@ const CarComparisonTable = ({
         format: (value) => value ? `${value.toLocaleString()} km` : 'Nav norādīts',
         icon: <SpeedIcon color="primary" fontSize="small" />
       },
-      { key: 'body_type', label: 'Virsbūves tips' },
-      { key: 'color', label: 'Krāsa' },
-      { key: 'region', label: 'Reģions' }
+      { 
+        key: 'body_type', 
+        label: 'Virsbūves tips',
+        icon: <DirectionsCarIcon color="primary" fontSize="small" />
+      },
+      { 
+        key: 'color', 
+        label: 'Krāsa',
+        icon: <PaletteIcon color="primary" fontSize="small" />
+      },
+      { 
+        key: 'region', 
+        label: 'Reģions',
+        icon: <LocationOnIcon color="primary" fontSize="small" />
+      }
     ];
     
-    return attributes.map(attr => {
+    // Attributes without icons (shown after)
+    const attributesWithoutIcons = [
+      { 
+        key: 'engine_volume', 
+        label: 'Motora tilpums', 
+        format: (value) => value ? `${value}L` : 'Nav norādīts' 
+      }
+    ];
+    
+    // Combine both arrays
+    const allAttributes = [...attributesWithIcons, ...attributesWithoutIcons];
+    
+    return allAttributes.map(attr => {
       const bestValueIndex = getBestValue(attr.key);
       
       return (
@@ -192,15 +222,30 @@ const CarComparisonTable = ({
           Automašīnu salīdzinājums
         </Typography>
         
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<DownloadIcon />}
-          onClick={onExportComparison}
-          disabled={cars.length === 0}
-        >
-          Eksportēt
-        </Button>
+        {isAuthenticated ? (
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<DownloadIcon />}
+            onClick={onExportComparison}
+            disabled={cars.length === 0}
+          >
+            Eksportēt
+          </Button>
+        ) : (
+          <Tooltip title="Pieslēdzieties, lai eksportētu salīdzinājumu">
+            <span>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<DownloadIcon />}
+                disabled
+              >
+                Eksportēt
+              </Button>
+            </span>
+          </Tooltip>
+        )}
       </Box>
       
       <TableContainer>
@@ -236,9 +281,7 @@ const CarComparisonTable = ({
           </TableHead>
           
           <TableBody>
-            {/* Images row - can be added if you have car images */}
-            
-            {/* Prices row with highlighting */}
+            {/* Price row with its own special icon and styling */}
             <TableRow>
               <TableCell component="th" scope="row" sx={{ display: 'flex', alignItems: 'center' }}>
                 <PriceCheckIcon color="primary" fontSize="small" sx={{ mr: 1 }} />
@@ -284,7 +327,8 @@ const CarComparisonTable = ({
             
             {/* Links to listings */}
             <TableRow>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ display: 'flex', alignItems: 'center' }}>
+                <LinkIcon color="primary" fontSize="small" sx={{ mr: 1 }} />
                 Saite
               </TableCell>
               

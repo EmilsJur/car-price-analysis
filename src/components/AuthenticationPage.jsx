@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -32,6 +32,8 @@ import {
 
 // Import authentication services
 import { login, register } from '../services/authService';
+
+const API_BASE_URL = 'http://localhost:5000/api';
 
 const AuthenticationPage = ({ 
   onLogin = () => {}, 
@@ -212,7 +214,7 @@ const AuthenticationPage = ({
   };
   
   // Handle password reset
-  const handleResetPassword = (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
     
     // Validate form
@@ -224,25 +226,50 @@ const AuthenticationPage = ({
       return;
     }
     
-    // Simulate API call
     setLoading(true);
     
-    // In a real app, you would call a password reset API here
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      // For demo purposes, use a simple new password
+      const tempPassword = 'newpassword123';
       
-      // Show success message
+      const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          new_password: tempPassword
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Password reset failed');
+      }
+      
+      // Show success message with new password
       setNotification({
         open: true,
-        message: 'Paroles atjaunošanas saite ir nosūtīta uz jūsu e-pastu',
+        message: `Parole atjaunota! Jauna parole: ${tempPassword}`,
         severity: 'success'
       });
       
       // Switch to login mode after a delay
       setTimeout(() => {
         setMode('login');
-      }, 3000);
-    }, 1500);
+      }, 5000);
+      
+    } catch (err) {
+      setNotification({
+        open: true,
+        message: err.message || 'Neizdevās atjaunot paroli',
+        severity: 'error'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
   
   // Toggle password visibility

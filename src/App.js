@@ -25,7 +25,7 @@ import {
   getPriceTrendChart, 
   getPopularBrands,
   getPopularModels,
-  getRegionStatistics
+  getRegionStatistics,
 } from './services/apiService';
 
 // Import authentication services
@@ -36,7 +36,8 @@ import {
   getFavorites,
   addFavorite,
   removeFavorite,
-  addSearchHistory
+  addSearchHistory,
+  updatePreferences
 } from './services/authService';
 
 // Import MUI components
@@ -47,40 +48,34 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 
 // Main App component
 function App() {
-  // Current page state - we'll use this instead of Router for now
+  // Current page state
   const [currentPage, setCurrentPage] = useState('home');
   
-  // Authentication state
+  // Auth state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return checkAuthStatus(); // Check if user is authenticated on component mount
+    return checkAuthStatus(); 
   });
   
   const [currentUser, setCurrentUser] = useState(null);
   
   // Theme state
   const [darkMode, setDarkMode] = useState(() => {
-    // First check if user is authenticated and has preference
-    if (checkAuthStatus()) {
+  if (checkAuthStatus()) {
+    return false;
+  } else {
+    // Fallback to checking localStorage
+    const userPrefs = localStorage.getItem('userProfile');
+    if (userPrefs) {
       try {
-        // This will be replaced by actual user preference once loaded
-        return false;
+        const { preferences } = JSON.parse(userPrefs);
+        return preferences?.darkMode || false;
       } catch (e) {
         return false;
       }
-    } else {
-      // Fallback to checking localStorage
-      const userPrefs = localStorage.getItem('userProfile');
-      if (userPrefs) {
-        try {
-          const { preferences } = JSON.parse(userPrefs);
-          return preferences?.darkMode || false;
-        } catch (e) {
-          return false;
-        }
-      }
-      return false;
     }
-  });
+    return false;
+  }
+});
   
   // Create MUI theme
   const theme = createTheme({
@@ -119,20 +114,27 @@ function App() {
     // Update user preferences if authenticated
     if (isAuthenticated && currentUser) {
       try {
-        // In a full implementation, you would update user preferences in the database
-        // For now, we just update the local state
-        const updatedPreferences = {
+        // Actually save to backend
+        updatePreferences({
           ...currentUser.preferences,
           darkMode: newDarkMode
-        };
+        });
         
-        // This would be an API call in the full implementation
+        // Update local state
         setCurrentUser({
           ...currentUser,
-          preferences: updatedPreferences
+          preferences: {
+            ...currentUser.preferences,
+            darkMode: newDarkMode
+          }
         });
       } catch (e) {
         console.error('Error updating dark mode preference:', e);
+        setNotification({
+          open: true,
+          message: 'Neizdevās saglabāt tumšā režīma iestatījumu',
+          severity: 'warning'
+        });
       }
     } else {
       // Fallback to localStorage for non-authenticated users
@@ -236,13 +238,12 @@ function App() {
   const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [systemStatus, setSystemStatus] = useState(null);
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [tabValue, setTabValue] = useState(0);
   const [regionStatistics, setRegionStatistics] = useState(null);
   const [regionStatsLoading, setRegionStatsLoading] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedRegion,] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [chartType, setChartType] = useState('distribution');
   const [chartLoading, setChartLoading] = useState(false);
@@ -273,9 +274,8 @@ function App() {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        // Fetch system status
-        const status = await getSystemStatus();
-        setSystemStatus(status);
+        // trigger system status
+        await getSystemStatus()
         
         // Fetch brands
         const brandsResponse = await getPopularBrands(20);
@@ -341,6 +341,24 @@ function App() {
   useEffect(() => {
     localStorage.setItem('carsToCompare', JSON.stringify(carsToCompare));
   }, [carsToCompare]);
+
+  useEffect(() => {
+    // when user in home,refetch fav if auth
+    const syncFavorites = async () => {
+      if (currentPage === 'home' && isAuthenticated) {
+        try {
+          const userFavorites = await getFavorites();
+          if (userFavorites) {
+            setFavorites(userFavorites);
+          }
+        } catch (error) {
+          console.error('Failed to sync favorites:', error);
+        }
+      }
+    };
+    
+    syncFavorites();
+  }, [currentPage, isAuthenticated]); // Run when page, auth status change
 
   // Function to fetch region statistics
   const fetchRegionStatistics = async (brand = '', model = '') => {
@@ -498,56 +516,24 @@ function App() {
   
   // Toggle favorite car
   const handleToggleFavorite = async (car) => {
+    // Check if user is authenticated first
+    if (!isAuthenticated) {
+      setNotification({
+        open: true,
+        message: 'Lūdzu, pieslēdzieties, lai izmantotu izlasi',
+        severity: 'warning'
+      });
+      setCurrentPage('login');
+      return; // Exit early if not authenticated
+    }
+
     const isFavorite = favorites.some(fav => fav.id === car.id);
     
-    if (isAuthenticated) {
-      // User is authenticated, use the backend services
-      try {
-        if (isFavorite) {
-          await removeFavorite(car.id);
-          setFavorites(prev => prev.filter(fav => fav.id !== car.id));
-          
-          setNotification({
-            open: true,
-            message: `${car.brand} ${car.model} noņemts no izlases`,
-            severity: 'info'
-          });
-        } else {
-          await addFavorite(car);
-          setFavorites(prev => [...prev, car]);
-          
-          setNotification({
-            open: true,
-            message: `${car.brand} ${car.model} pievienots izlasei`,
-            severity: 'success'
-          });
-        }
-      } catch (error) {
-        console.error('Error updating favorites:', error);
-        
-        setNotification({
-          open: true,
-          message: 'Neizdevās atjaunināt izlasi',
-          severity: 'error'
-        });
-        
-        // If unauthorized, prompt to login
-        if (error.message && (error.message.includes('token') || error.message.includes('authentication'))) {
-          setNotification({
-            open: true,
-            message: 'Lūdzu, pieslēdzieties, lai izmantotu izlasi',
-            severity: 'warning'
-          });
-          
-          setCurrentPage('login');
-        }
-      }
-    } else {
-      // User is not authenticated, use localStorage
-      let updatedFavorites;
+    // User is authenticated, use the backend services
+    try {
       if (isFavorite) {
-        updatedFavorites = favorites.filter(fav => fav.id !== car.id);
-        setFavorites(updatedFavorites);
+        await removeFavorite(car.id);
+        setFavorites(prev => prev.filter(fav => fav.id !== car.id));
         
         setNotification({
           open: true,
@@ -555,25 +541,33 @@ function App() {
           severity: 'info'
         });
       } else {
-        // Ensure the car has all necessary fields
-        const carForFavorite = {
-          ...car,
-          id: car.id || car.external_id || `car-${Date.now()}`,
-          brand: car.brand || 'Nav norādīts',
-          model: car.model || 'Nav norādīts',
-          year: car.year || 'Nav norādīts',
-          price: car.price || 0,
-          mileage: car.mileage || 0
-        };
-        
-        updatedFavorites = [...favorites, carForFavorite];
-        setFavorites(updatedFavorites);
+        await addFavorite(car);
+        setFavorites(prev => [...prev, car]);
         
         setNotification({
           open: true,
           message: `${car.brand} ${car.model} pievienots izlasei`,
           severity: 'success'
         });
+      }
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+      
+      setNotification({
+        open: true,
+        message: 'Neizdevās atjaunināt izlasi',
+        severity: 'error'
+      });
+      
+      // If unauthorized, prompt to login
+      if (error.message && (error.message.includes('token') || error.message.includes('authentication'))) {
+        setNotification({
+          open: true,
+          message: 'Lūdzu, pieslēdzieties, lai izmantotu izlasi',
+          severity: 'warning'
+        });
+        
+        setCurrentPage('login');
       }
     }
   };
@@ -687,28 +681,6 @@ function App() {
         message: 'Neizdevās lejupielādēt grafiku',
         severity: 'error'
       });
-    }
-  };
-
-  // Handle region click on map
-  const handleRegionClick = (regionId) => {
-    // Toggle region selection
-    setSelectedRegion(prevRegion => prevRegion === regionId ? null : regionId);
-    
-    // Update search params if region is selected
-    if (regionId && regionId !== selectedRegion) {
-      // Find real name for the region - uppercase first letter
-      const regionName = regionId.charAt(0).toUpperCase() + regionId.slice(1);
-      handleParamChange('region', regionName);
-      
-      setNotification({
-        open: true,
-        message: `Atlasīti sludinājumi no reģiona: ${regionName}`,
-        severity: 'info'
-      });
-    } else if (selectedRegion) {
-      // Clear region filter if deselecting
-      handleParamChange('region', '');
     }
   };
 
@@ -866,7 +838,8 @@ function App() {
                 <CarComparisonTable 
                   cars={carsToCompare}
                   onRemoveCar={handleRemoveFromCompare}
-                  onExportComparison={() => {}}
+                  isAuthenticated={isAuthenticated}
+                  onExportComparison={handleExportComparison}
                 />
               </Grid>
               
@@ -889,6 +862,67 @@ function App() {
       </>
     );
   };
+
+const handleExportComparison = () => {
+  if (!isAuthenticated) {
+    setNotification({
+      open: true,
+      message: 'Lūdzu, pieslēdzieties, lai eksportētu salīdzinājumu',
+      severity: 'warning'
+    });
+    return;
+  }
+
+  if (carsToCompare.length === 0) return;
+
+  try {
+    const exportData = {
+      date: new Date().toISOString(),
+      comparison: carsToCompare.map(car => ({
+        brand: car.brand,
+        model: car.model,
+        year: car.year,
+        price: car.price,
+        engine_type: car.engine_type,
+        engine_volume: car.engine_volume,
+        transmission: car.transmission,
+        mileage: car.mileage,
+        body_type: car.body_type,
+        color: car.color,
+        region: car.region,
+        listing_url: car.listing_url || car.url
+      }))
+    };
+    
+    const jsonStr = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `car_comparison_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    
+    setTimeout(() => {
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }, 100);
+    
+    setNotification({
+      open: true,
+      message: 'Salīdzinājums eksportēts',
+      severity: 'success'
+    });
+  } catch (err) {
+    console.error('Error exporting comparison:', err);
+    setNotification({
+      open: true,
+      message: 'Neizdevās eksportēt salīdzinājumu',
+      severity: 'error'
+    });
+  }
+};
 
   // Render page based on current page state
   const renderCurrentPage = () => {
