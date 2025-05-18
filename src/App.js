@@ -954,10 +954,34 @@ function App() {
           currentPage={currentPage}
           user={currentUser}
         />
-        
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-          {renderCurrentPage()}
-        </Container>
+        <Box 
+    component="div" 
+    sx={{ 
+      width: '100%', 
+      overflow: 'hidden',
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+    }}
+  >
+    <Box
+      component="img"
+      src="/car_banner.jpg"
+      alt="Auto tirgus analīze"
+      sx={{
+        width: '100%',
+        maxWidth: '1920px',
+        height: 'auto',
+        maxHeight: '300px',
+        objectFit: 'cover',
+      }}
+    />
+  </Box>
+  
+  <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+    {renderCurrentPage()}
+  </Container>
         
         {/* Notification */}
         <Snackbar
