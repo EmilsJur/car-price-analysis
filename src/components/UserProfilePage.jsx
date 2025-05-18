@@ -129,23 +129,30 @@ const UserProfilePage = ({
   // Handle save profile
   const handleSaveProfile = async () => {
     try {
-      // Actually update the profile in the backend
-      const response = await fetch('/api/user/profile', {
+      // Get the auth token
+      const token = getToken();
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+
+      // Make the API request with proper headers
+      const response = await fetch('http://localhost:5000/api/user/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getToken()}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           username: editedUser.username,
           email: editedUser.email
         })
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to update profile');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
       }
-      
+
       const updatedUser = await response.json();
       setUser(updatedUser);
       setEditMode(false);
