@@ -1,12 +1,26 @@
-npm install @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/utils @testing-library/jest-dom @testing-library/react @testing-library/user-event axios react react-bootstrap react-dom react-scripts web-vitals
-npm install react-router-dom
-pip install PyJWT
-database:
-python app.py --mode init
+#Prerequisites:
+Python 3.8+ (recommended 3.9+)
+Node.js 14+ and npm 6+
+Git
+
+#Clone
+git clone https://github.com/EmilsJur/car-price-analysis
+cd car-price-analysis
+
+#Windows Python virtual environment:
+python -m venv car_analysis_env
+car_analysis_env\Scripts\activate
+
+#Install Python Dependencies
+pip install flask flask-cors sqlalchemy requests beautifulsoup4 aiohttp numpy pandas matplotlib seaborn PyJWT python-dateutil
+npm install @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/utils @testing-library/jest-dom @testing-library/react @testing-library/user-event axios react react-dom react-scripts web-vitals react-router-dom
+
+#If dependency conflicts try:
+npm install --legacy-peer-deps
+
+#Database scraper:
 python app.py --mode scrape --debug
 
-api: 
-python app.py --mode api --debug
-
-front:
+#Start
+python app.py --mode init
 npm start
