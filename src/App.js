@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 // Import components
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -755,6 +754,7 @@ function App() {
                   onSelectCar={handleAddToCompare}
                   onToggleFavorite={handleToggleFavorite}
                   favorites={favorites}
+                  isAuthenticated={isAuthenticated}
                 />
               </Grid>
             </Grid>
@@ -1006,7 +1006,7 @@ const handleExportComparison = () => {
                 ${theme.palette.background.paper} 0%, 
                 rgba(25, 118, 210, 0.02) 100%)`,
               borderTop: `4px solid ${theme.palette.primary.main}`,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `4px solid ${theme.palette.primary.main}`,
               py: 2.5,
               position: 'relative',
               textAlign: 'center'

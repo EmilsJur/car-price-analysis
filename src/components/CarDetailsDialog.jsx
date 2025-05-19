@@ -18,7 +18,6 @@ import {
   AccordionDetails,
   Alert,
   Tooltip,
-  useTheme,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -44,100 +43,87 @@ const CarDetailsDialog = ({
   onClose,
   onAddToCompare,
   onToggleFavorite,
-  isFavorite,
-  onImageError
+  isFavorite
 }) => {
-  const theme = useTheme();
   
-  // State management
-  const [fullDetails, setFullDetails] = useState(null);
+  // State for dialog content
+  const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
-  const [expandedSections, setExpandedSections] = useState({
+  const [expanded, setExpanded] = useState({
     basic: true,
     technical: false,
     equipment: false,
     description: false
   });
   
-  // Fetch full details when dialog opens
+  // Load car details when dialog opens
   useEffect(() => {
-    const fetchFullDetails = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      console.log('Fetching details for URL:', car.listing_url);
-      const response = await getListingDetails(car.listing_url);
+    const fetchDetails = async () => {
+      setLoading(true);
+      setError(null);
       
-      // Check for error in the response directly
-      if (response.error) {
-        throw new Error(response.error);
+      try {
+        console.log('Getting details for:', car.listing_url);
+        const response = await getListingDetails(car.listing_url);
+        
+        if (response.error) {
+          throw new Error(response.error);
+        }
+        
+        // Merge with existing car data
+        const fullDetails = {
+          ...car,
+          description: response.description,
+          equipment: response.equipment || [],
+          image_url: response.image_url,
+          region: response.region || car.region,
+          year: response.year_detail || car.year,
+          engine: response.engine_detail || car.engine,
+          transmission: response.transmission_detail || car.transmission,
+          mileage: response.mileage_detail || car.mileage,
+          color: response.color_detail || car.color,
+          body_type: response.body_type_detail || car.body_type,
+          tech_inspection: response.tech_inspection || car.tech_inspection,
+          price: response.price_detail || car.price
+        };
+        
+        console.log('Details loaded:', fullDetails);
+        setDetails(fullDetails);
+        
+      } catch (err) {
+        console.error('Failed to get details:', err);
+        setError('Neizdevās ielādēt pilnu informāciju. Rāda pamata datus.');
+        setDetails(car);
+      } finally {
+        setLoading(false);
       }
-      
-      // Merge the original car data with the new details
-      const mergedDetails = {
-        ...car,
-        description: response.description,
-        equipment: response.equipment || [],
-        image_url: response.image_url,
-        region: response.region || car.region,
-        // Use the detailed fields if available
-        year: response.year_detail || car.year,
-        engine: response.engine_detail || car.engine,
-        transmission: response.transmission_detail || car.transmission,
-        mileage: response.mileage_detail || car.mileage,
-        color: response.color_detail || car.color,
-        body_type: response.body_type_detail || car.body_type,
-        tech_inspection: response.tech_inspection || car.tech_inspection,
-        // Add price from the details
-        price: response.price_detail || car.price
-      };
-      
-      console.log('Merged details:', mergedDetails);
-      setFullDetails(mergedDetails);
-      
-    } catch (err) {
-      console.error('Error fetching car details:', err);
-      setError('Neizdevās ielādēt pilno informāciju. Tiek rādīta pamata informācija.');
-      setFullDetails(car);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
     if (open && car) {
-      resetState();
+      setDetails(null);
+      setLoading(false);
+      setError(null);
+      setImageErrors({});
+      
       if (car.listing_url) {
-        fetchFullDetails();
+        fetchDetails();
       } else {
-        setFullDetails(car);
+        setDetails(car);
       }
     }
   }, [open, car]);
-  
-  const resetState = () => {
-    setFullDetails(null);
-    setLoading(false);
-    setError(null);
-    setImageErrors({});
-  };
-  
-  
   
   const handleImageError = (imageIndex) => {
     setImageErrors(prev => ({
       ...prev,
       [imageIndex]: true
     }));
-    if (onImageError) {
-      onImageError(imageIndex);
-    }
   };
   
-  const handleSectionExpand = (section) => {
-    setExpandedSections(prev => ({
+  const toggleSection = (section) => {
+    setExpanded(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
@@ -145,9 +131,9 @@ const CarDetailsDialog = ({
   
   if (!car) return null;
   
-  const details = fullDetails || car;
+  const currentDetails = details || car;
   
-  // Format values with fallbacks
+  // Helper functions
   const formatValue = (value, defaultText = 'Nav norādīts') => {
     if (value === null || value === undefined || value === '') {
       return defaultText;
@@ -155,7 +141,7 @@ const CarDetailsDialog = ({
     return value;
   };
   
-  const formatCurrency = (value) => {
+  const formatPrice = (value) => {
     return value ? `€${Number(value).toLocaleString()}` : 'Nav norādīts';
   };
   
@@ -185,26 +171,25 @@ const CarDetailsDialog = ({
     }
   };
 
-  
-  // Determine engine type details
+  // Engine info helper
   const getEngineInfo = () => {
-  if (details.engine) {
-    return details.engine
-      .replace(/Petrol/i, 'Benzīns')
-      .replace(/Diesel/i, 'Dīzelis')
-      .replace(/Hybrid/i, 'Hibrīds')
-      .replace(/Electric/i, 'Elektriskais')
-      .replace(/Gas/i, 'Gāze');
-  }
+    if (currentDetails.engine) {
+      return currentDetails.engine
+        .replace(/Petrol/i, 'Benzīns')
+        .replace(/Diesel/i, 'Dīzelis')
+        .replace(/Hybrid/i, 'Hibrīds')
+        .replace(/Electric/i, 'Elektriskais')
+        .replace(/Gas/i, 'Gāze');
+    }
 
-  const volume = details.engine_volume ? `${details.engine_volume}L` : '';
-  const type = formatEngineType(details.engine_type);
-  
-  if (volume && type) return `${volume} ${type}`;
-  if (type) return type;
-  if (volume) return volume;
-  return 'Nav norādīts';
-};
+    const volume = currentDetails.engine_volume ? `${currentDetails.engine_volume}L` : '';
+    const type = formatEngineType(currentDetails.engine_type);
+    
+    if (volume && type) return `${volume} ${type}`;
+    if (type) return type;
+    if (volume) return volume;
+    return 'Nav norādīts';
+  };
   
   return (
     <Dialog 
@@ -223,7 +208,7 @@ const CarDetailsDialog = ({
       <DialogTitle sx={{ m: 0, p: 2, pr: 6 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <DirectionsCarIcon color="primary" />
-          <Typography variant="h6" component="div">
+          <Typography variant="h6">
             {car.brand} {car.model}
           </Typography>
           <Chip 
@@ -235,7 +220,6 @@ const CarDetailsDialog = ({
         </Box>
         
         <IconButton
-          aria-label="close"
           onClick={onClose}
           sx={{
             position: 'absolute',
@@ -261,12 +245,12 @@ const CarDetailsDialog = ({
           </Box>
         ) : (
           <Box>
-            {/* Image Section */}
-            {(details.image_url || details.image || details.images) && (
+            {/* Car image */}
+            {(currentDetails.image_url || currentDetails.image || currentDetails.images) && (
               <Box sx={{ position: 'relative', mb: 2 }}>
                 <Box
                   component="img"
-                  src={details.image_url || details.image || (details.images && details.images[0])}
+                  src={currentDetails.image_url || currentDetails.image || (currentDetails.images && currentDetails.images[0])}
                   alt={`${car.brand} ${car.model}`}
                   onError={() => handleImageError(0)}
                   sx={{
@@ -296,15 +280,15 @@ const CarDetailsDialog = ({
               </Box>
             )}
             
-            {/* Price Header */}
+            {/* Price header */}
             <Paper elevation={1} sx={{ p: 2, m: 2, bgcolor: 'background.default' }}>
               <Grid container alignItems="center" justifyContent="space-between">
                 <Grid item>
-                  <Typography variant="h5" component="div" color="primary" fontWeight="bold">
-                    {formatCurrency(details.price)}
+                  <Typography variant="h5" color="primary" fontWeight="bold">
+                    {formatPrice(currentDetails.price)}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Publicēts: {formatDate(details.listing_date)}
+                    Publicēts: {formatDate(currentDetails.listing_date)}
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -327,10 +311,10 @@ const CarDetailsDialog = ({
               </Grid>
             </Paper>
             
-            {/* Basic Information Section */}
+            {/* Basic info */}
             <Accordion 
-              expanded={expandedSections.basic} 
-              onChange={() => handleSectionExpand('basic')}
+              expanded={expanded.basic} 
+              onChange={() => toggleSection('basic')}
               sx={{ mx: 2, mb: 1 }}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -342,60 +326,46 @@ const CarDetailsDialog = ({
               <AccordionDetails>
                 <Grid container spacing={2}>
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Izlaiduma gads
-                    </Typography>
-                    <Typography variant="body1">
-                      {formatValue(details.year)}
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Gads</Typography>
+                    <Typography variant="body1">{formatValue(currentDetails.year)}</Typography>
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Reģions
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Reģions</Typography>
                     <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <LocationOnIcon fontSize="small" color="action" />
-                      {formatValue(details.region)}
+                      {formatValue(currentDetails.region)}
                     </Typography>
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Krāsa
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Krāsa</Typography>
                     <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <PaletteIcon fontSize="small" color="action" />
-                      {formatValue(details.color)}
+                      {formatValue(currentDetails.color)}
                     </Typography>
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Virsbūves tips
-                    </Typography>
-                    <Typography variant="body1">
-                      {formatValue(details.body_type)}
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Virsbūve</Typography>
+                    <Typography variant="body1">{formatValue(currentDetails.body_type)}</Typography>
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Tehniskā apskate
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Tehniskā apskate</Typography>
                     <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <CalendarMonthIcon fontSize="small" color="action" />
-                      {formatValue(details.tech_inspection)}
+                      {formatValue(currentDetails.tech_inspection)}
                     </Typography>
                   </Grid>
                 </Grid>
               </AccordionDetails>
             </Accordion>
             
-            {/* Technical Information Section */}
+            {/* Technical info */}
             <Accordion 
-              expanded={expandedSections.technical} 
-              onChange={() => handleSectionExpand('technical')}
+              expanded={expanded.technical} 
+              onChange={() => toggleSection('technical')}
               sx={{ mx: 2, mb: 1 }}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -407,9 +377,7 @@ const CarDetailsDialog = ({
               <AccordionDetails>
                 <Grid container spacing={2}>
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Motors
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Motors</Typography>
                     <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <LocalGasStationIcon fontSize="small" color="action" />
                       {getEngineInfo()}
@@ -417,43 +385,37 @@ const CarDetailsDialog = ({
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Ātrumkārba
-                    </Typography>
-                    <Typography variant="body1">
-                      {formatValue(details.transmission)}
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Ātrumkārba</Typography>
+                    <Typography variant="body1">{formatValue(currentDetails.transmission)}</Typography>
                   </Grid>
                   
                   <Grid item xs={6} sm={4}>
-                    <Typography variant="caption" color="text.secondary">
-                      Nobraukums
-                    </Typography>
+                    <Typography variant="caption" color="text.secondary">Nobraukums</Typography>
                     <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <SpeedIcon fontSize="small" color="action" />
-                      {formatMileage(details.mileage)}
+                      {formatMileage(currentDetails.mileage)}
                     </Typography>
                   </Grid>
                 </Grid>
               </AccordionDetails>
             </Accordion>
             
-            {/* Equipment Section */}
-            {details.equipment && details.equipment.length > 0 && (
+            {/* Equipment */}
+            {currentDetails.equipment && currentDetails.equipment.length > 0 && (
               <Accordion 
-                expanded={expandedSections.equipment} 
-                onChange={() => handleSectionExpand('equipment')}
+                expanded={expanded.equipment} 
+                onChange={() => toggleSection('equipment')}
                 sx={{ mx: 2, mb: 1 }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <CheckCircleIcon color="primary" />
-                    Aprīkojums ({details.equipment.length})
+                    Aprīkojums ({currentDetails.equipment.length})
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                    {details.equipment.map((item, index) => (
+                    {currentDetails.equipment.map((item, index) => (
                       <Chip 
                         key={index} 
                         label={item} 
@@ -467,17 +429,17 @@ const CarDetailsDialog = ({
               </Accordion>
             )}
             
-            {/* Description Section */}
-            {details.description && (
+            {/* Description */}
+            {currentDetails.description && (
               <Accordion 
-                expanded={expandedSections.description} 
-                onChange={() => handleSectionExpand('description')}
+                expanded={expanded.description} 
+                onChange={() => toggleSection('description')}
                 sx={{ mx: 2, mb: 1 }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <DescriptionIcon color="primary" />
-                    Sludinājuma apraksts
+                    Apraksts
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -489,7 +451,7 @@ const CarDetailsDialog = ({
                       lineHeight: 1.6
                     }}
                   >
-                    {details.description}
+                    {currentDetails.description}
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -499,11 +461,7 @@ const CarDetailsDialog = ({
       </DialogContent>
       
       <DialogActions sx={{ p: 2, justifyContent: 'space-between' }}>
-        <Box>
-          <Button onClick={onClose}>
-            Aizvērt
-          </Button>
-        </Box>
+        <Button onClick={onClose}>Aizvērt</Button>
         
         <Box sx={{ display: 'flex', gap: 1 }}>
           {car.listing_url && (

@@ -28,7 +28,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import DownloadIcon from '@mui/icons-material/Download';
-import { visuallyHidden } from '@mui/utils';
 
 // Import export helpers
 import { exportToCSV } from '../utils/exporthelpers';
@@ -44,13 +43,12 @@ const ResultsSection = ({
   onOpenCarDetails = () => {},
   onToggleFavorite = () => {},
   favorites = [],
-  searchParams = {}
+  searchParams = {},
+  isAuthenticated = false
 }) => {
   // State for pagination and sorting
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('price');
   const [expandedRow, setExpandedRow] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [actionCar, setActionCar] = useState(null);
@@ -89,13 +87,6 @@ const ResultsSection = ({
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  // Handle sort request
-  const handleRequestSort = (property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
   };
 
   // Toggle row expansion
@@ -167,12 +158,7 @@ const ResultsSection = ({
   };
 
   // Sort cars based on the current order and orderBy
-  const sortedCars = React.useMemo(() => {
-  if (!cars || !cars.length) return [];
-  
-  // The API is sortin already
-  return [...cars];
-}, [cars]);
+  const sortedCars = cars || [];
 
   // Calculate empty rows for consistent table height
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - sortedCars.length) : 0;
@@ -256,15 +242,30 @@ const ResultsSection = ({
           Meklēšanas rezultāti ({cars.length})
         </Typography>
         
-        <Button
-          size="small"
-          variant="outlined"
-          startIcon={<DownloadIcon />}
-          onClick={handleExportCSV}
-          disabled={!cars || cars.length === 0}
-        >
-          Eksportēt CSV
-        </Button>
+        {isAuthenticated ? (
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<DownloadIcon />}
+            onClick={handleExportCSV}
+            disabled={!cars || cars.length === 0}
+          >
+            Eksportēt CSV
+          </Button>
+        ) : (
+          <Tooltip title="Pieslēdzieties, lai eksportētu rezultātus">
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<DownloadIcon />}
+                disabled
+              >
+                Eksportēt CSV
+              </Button>
+            </span>
+          </Tooltip>
+        )}
       </Box>
       
       <TableContainer component={Paper}>

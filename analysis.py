@@ -11,10 +11,9 @@ import base64
 import sqlite3
 from dateutil.relativedelta import relativedelta
 import matplotlib
-matplotlib.use('Agg')  # noninteractive agg backend prieks matplitlib
-import matplotlib.pyplot as plt
+matplotlib.use('Agg')  # Set backend to non-interactive for server use
 
-# Set up logging
+# Basic logging setup
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -24,25 +23,18 @@ logger = logging.getLogger('car_analysis')
 
 
 class CarDataAnalyzer:
-    """Class for analyzing car price data"""
+    """Main class for car price analysis stuff"""
 
     def __init__(self, session):
-        """
-        Initialize the analyzer
-        
-        Args:
-            session: SQLAlchemy session for database operations
-        """
         self.session = session
-        self._register_sqlite_functions()  # Call the function to register SQLite functions
+        self._setup_sqlite_functions()  # Setup custom SQL functions if needed
     
-    def _register_sqlite_functions(self):
-        """Register custom SQLite functions if using SQLite"""
+    def _setup_sqlite_functions(self):
+        """Register some custom functions for SQLite since it's missing some features"""
         if 'sqlite' in self.session.bind.dialect.name:
-            # Check if we're using SQLite
             conn = self.session.bind.raw_connection()
             
-            # Define a date_trunc function for SQLite
+            # Custom date truncation function - SQLite doesn't have this built-in
             def date_trunc(interval, date_str):
                 if date_str is None:
                     return None
@@ -53,46 +45,22 @@ class CarDataAnalyzer:
                     return date_obj.replace(day=1).strftime('%Y-%m-%d')
                 elif interval.lower() == 'year':
                     return date_obj.replace(month=1, day=1).strftime('%Y-%m-%d')
-                elif interval.lower() == 'day':
-                    return date_str
                 elif interval.lower() == 'week':
-                    # Get the first day of the week (Monday)
+                    # Get Monday of that week
                     days_to_subtract = date_obj.weekday()
                     return (date_obj - timedelta(days=days_to_subtract)).strftime('%Y-%m-%d')
                 else:
                     return date_str
             
-            # Register the function with SQLite
             conn.create_function("date_trunc", 2, date_trunc)
-    def __init__(self, session):
-        """
-        Initialize the analyzer
-        
-        Args:
-            session: SQLAlchemy session for database operations
-        """
-        self.session = session
     
     def get_price_statistics(self, brand=None, model=None, year_from=None, 
                              year_to=None, region=None, fuel_type=None):
-        """
-        Get price statistics for cars matching the specified criteria
-        
-        Args:
-            brand: Car brand name (optional)
-            model: Car model name (optional)
-            year_from: Minimum year (optional)
-            year_to: Maximum year (optional)
-            region: Region name (optional)
-            fuel_type: Engine fuel type (optional)
-            
-        Returns:
-            Dictionary with statistics or None if no data found
-        """
+        """Calculate basic price stats - average, min, max, etc."""
         from models import Brand, Model, Car, Listing, Region
         
         try:
-            # Build query with joins
+            # Build the query step by step
             query = self.session.query(
                 Listing.price
             ).join(
@@ -105,7 +73,7 @@ class CarDataAnalyzer:
                 Region, Car.region_id == Region.region_id
             )
             
-            # Apply filters
+            # Add filters one by one
             if brand:
                 query = query.filter(func.lower(Brand.name) == func.lower(brand))
             
@@ -124,14 +92,14 @@ class CarDataAnalyzer:
             if fuel_type:
                 query = query.filter(func.lower(Car.engine_type) == func.lower(fuel_type))
             
-            # Execute query and get prices
+            # Get all the prices
             prices = [item[0] for item in query.all()]
             
             if not prices:
-                logger.info(f"No data found for the specified criteria")
+                logger.info(f"No data found for the given criteria")
                 return None
             
-            # Calculate statistics
+            # Do the math
             prices_array = np.array(prices)
             stats = {
                 "count": len(prices),
@@ -144,33 +112,19 @@ class CarDataAnalyzer:
                 "price_75_percentile": int(np.percentile(prices_array, 75))
             }
             
-            logger.info(f"Statistics calculated for {len(prices)} listings")
+            logger.info(f"Stats calculated for {len(prices)} cars")
             return stats
             
         except Exception as e:
-            logger.error(f"Error calculating price statistics: {str(e)}")
+            logger.error(f"Failed to get price stats: {str(e)}")
             return None
     
     def get_similar_listings(self, brand, model, year, mileage=None, 
                               engine_type=None, limit=10):
-        """
-        Get similar car listings
-        
-        Args:
-            brand: Car brand name
-            model: Car model name
-            year: Car year
-            mileage: Car mileage (optional)
-            engine_type: Engine fuel type (optional)
-            limit: Maximum number of listings to return
-            
-        Returns:
-            List of similar listings or empty list if no data found
-        """
+        """Find cars similar to what user is looking for"""
         from models import Brand, Model, Car, Listing
         
         try:
-            # Build query with joins
             query = self.session.query(
                 Brand.name.label('brand'),
                 Model.name.label('model'),
@@ -190,33 +144,30 @@ class CarDataAnalyzer:
                 Brand, Model.brand_id == Brand.brand_id
             )
             
-            # Apply filters
+            # Filter by brand and model
             query = query.filter(func.lower(Brand.name) == func.lower(brand))
             query = query.filter(func.lower(Model.name) == func.lower(model))
             
-            # Year range (±2 years)
+            # Year range - give or take 2 years
             query = query.filter(Car.year.between(year - 2, year + 2))
             
-            # Mileage range if provided (±30%)
+            # Mileage range if provided - within 30% of target
             if mileage is not None:
                 mileage_min = max(0, int(mileage * 0.7))
                 mileage_max = int(mileage * 1.3)
                 query = query.filter(Car.mileage.between(mileage_min, mileage_max))
             
-            # Engine type if provided
+            # Engine type if specified
             if engine_type:
                 query = query.filter(func.lower(Car.engine_type) == func.lower(engine_type))
             
-            # Order by similarity to the specified year
+            # Sort by how close the year is
             query = query.order_by(func.abs(Car.year - year))
-            
-            # Limit results
             query = query.limit(limit)
             
-            # Execute query
             results = query.all()
             
-            # Convert to list of dictionaries
+            # Format results
             listings = []
             for row in results:
                 listings.append({
@@ -231,34 +182,23 @@ class CarDataAnalyzer:
                     'url': row.listing_url
                 })
             
-            logger.info(f"Found {len(listings)} similar listings")
+            logger.info(f"Found {len(listings)} similar cars")
             return listings
             
         except Exception as e:
-            logger.error(f"Error finding similar listings: {str(e)}")
+            logger.error(f"Error finding similar cars: {str(e)}")
             return []
     
     def get_price_history(self, brand, model, months=6):
-        """
-        Get price history data for a specific car model
-        
-        Args:
-            brand: Car brand name
-            model: Car model name
-            months: Number of months to look back
-            
-        Returns:
-            Dictionary with dates and average prices or None if no data found
-        """
+        """Get price trends over time for a car model"""
         from models import Brand, Model, Car, Listing
-        from sqlalchemy import func, and_, extract
         
         try:
-            # Calculate start date
+            # Look back X months
             end_date = datetime.now().date()
             start_date = end_date - timedelta(days=30 * months)
             
-            # Build query with joins and grouping by month
+            # Query with monthly grouping
             query = self.session.query(
                 func.date_trunc('month', Listing.listing_date).label('month'),
                 func.avg(Listing.price).label('avg_price'),
@@ -279,14 +219,13 @@ class CarDataAnalyzer:
                 func.date_trunc('month', Listing.listing_date)
             )
             
-            # Execute query
             results = query.all()
             
             if not results:
-                logger.info(f"No price history data found for {brand} {model}")
+                logger.info(f"No price history for {brand} {model}")
                 return None
             
-            # Prepare data for plotting
+            # Prepare chart data
             dates = [row.month.strftime('%Y-%m') for row in results]
             prices = [int(row.avg_price) for row in results]
             counts = [row.count for row in results]
@@ -297,32 +236,19 @@ class CarDataAnalyzer:
                 'counts': counts
             }
             
-            logger.info(f"Retrieved price history for {brand} {model} with {len(dates)} data points")
+            logger.info(f"Got price history for {brand} {model} - {len(dates)} months")
             return history_data
             
         except Exception as e:
-            logger.error(f"Error getting price history: {str(e)}")
+            logger.error(f"Price history failed: {str(e)}")
             return None
     
     def estimate_car_value(self, brand, model, year, mileage, engine_type=None, transmission=None):
-        """
-        Estimate the market value of a car based on similar listings
-        
-        Args:
-            brand: Car brand name
-            model: Car model name
-            year: Car year
-            mileage: Car mileage
-            engine_type: Engine fuel type (optional)
-            transmission: Transmission type (optional)
-            
-        Returns:
-            Dictionary with estimated value and range or None if estimation not possible
-        """
+        """Try to estimate what a car is worth based on similar ones"""
         from models import Brand, Model, Car, Listing
         
         try:
-            # Get similar listings
+            # Get similar cars
             query = self.session.query(
                 Listing.price,
                 Car.year,
@@ -335,31 +261,33 @@ class CarDataAnalyzer:
                 Brand, Model.brand_id == Brand.brand_id
             )
             
-            # Apply filters
+            # Basic filters
             query = query.filter(func.lower(Brand.name) == func.lower(brand))
             query = query.filter(func.lower(Model.name) == func.lower(model))
             query = query.filter(Car.year.between(year - 3, year + 3))
             
+            # Optional filters
             if engine_type:
                 query = query.filter(func.lower(Car.engine_type) == func.lower(engine_type))
             
             if transmission:
                 query = query.filter(func.lower(Car.transmission) == func.lower(transmission))
             
-            # Execute query
             results = query.all()
             
+            # Need at least 5 cars for a decent estimate
             if not results or len(results) < 5:
-                logger.info(f"Insufficient data for estimation: {len(results) if results else 0} listings found")
+                logger.info(f"Not enough data for estimation - only {len(results) if results else 0} cars")
                 return None
             
-            # Extract prices and features
+            # Extract data for calculation
             prices = np.array([row.price for row in results])
             years = np.array([row.year for row in results])
             mileages = np.array([row.mileage if row.mileage else 0 for row in results])
             
-            # Calculate similarity scores based on year and mileage
-            year_weights = 1.0 - np.abs(years - year) / 10.0  # Penalize by 10% per year difference
+            # Weight cars by similarity
+            # Newer cars get higher weight, closer mileage gets higher weight
+            year_weights = 1.0 - np.abs(years - year) / 10.0
             year_weights = np.clip(year_weights, 0.0, 1.0)
             
             mileage_weights = np.ones_like(mileages)
@@ -368,8 +296,8 @@ class CarDataAnalyzer:
                 mileage_weights = 1.0 - mileage_diffs
                 mileage_weights = np.clip(mileage_weights, 0.0, 1.0)
             
-            # Combined weights
-            weights = (year_weights * 0.7) + (mileage_weights * 0.3)  # 70% year, 30% mileage
+            # Combine weights (70% year importance, 30% mileage)
+            weights = (year_weights * 0.7) + (mileage_weights * 0.3)
             
             # Calculate weighted average
             weighted_sum = np.sum(prices * weights)
@@ -380,11 +308,11 @@ class CarDataAnalyzer:
             else:
                 estimated_value = int(np.mean(prices))
             
-            # Calculate confidence interval (±15%)
+            # Give some range (±15%)
             value_min = int(estimated_value * 0.85)
             value_max = int(estimated_value * 1.15)
             
-            # Calculate confidence level based on sample size and similarity
+            # How confident are we?
             if len(results) >= 20 and np.mean(weights) > 0.8:
                 confidence_level = "high"
             elif len(results) >= 10 and np.mean(weights) > 0.6:
@@ -400,30 +328,18 @@ class CarDataAnalyzer:
                 "confidence_level": confidence_level
             }
             
-            logger.info(f"Estimated value for {brand} {model} ({year}): {estimated_value} EUR")
+            logger.info(f"Estimated {brand} {model} ({year}) at {estimated_value} EUR")
             return estimation
             
         except Exception as e:
-            logger.error(f"Error estimating car value: {str(e)}")
+            logger.error(f"Estimation failed: {str(e)}")
             return None
     
     def create_price_distribution_chart(self, brand=None, model=None, year_from=None, year_to=None):
-        """
-        Create a price distribution histogram
-        
-        Args:
-            brand: Car brand name (optional)
-            model: Car model name (optional)
-            year_from: Minimum year (optional)
-            year_to: Maximum year (optional)
-            
-        Returns:
-            Base64 encoded image or None if chart creation failed
-        """
+        """Make a histogram showing price distribution"""
         from models import Brand, Model, Car, Listing
         
         try:
-            # Build query with joins
             query = self.session.query(
                 Listing.price
             ).join(
@@ -447,21 +363,18 @@ class CarDataAnalyzer:
             if year_to:
                 query = query.filter(Car.year <= year_to)
             
-            # Execute query and get prices
             prices = [item[0] for item in query.all()]
             
             if not prices or len(prices) < 5:
-                logger.info(f"Insufficient data for chart: {len(prices) if prices else 0} listings found")
+                logger.info(f"Not enough data for chart - only {len(prices) if prices else 0} cars")
                 return None
             
-            # Create figure
+            # Create the chart
             plt.figure(figsize=(10, 6))
-            
-            # Create histogram
             sns.histplot(prices, bins=20, kde=True)
             
-            # Add labels and title
-            title = "Price Distribution"
+            # Chart title
+            title = "Cenu sadalījums"
             if brand:
                 title += f" - {brand}"
                 if model:
@@ -476,99 +389,63 @@ class CarDataAnalyzer:
                 title += f" ({years})"
             
             plt.title(title)
-            plt.xlabel("Price (EUR)")
-            plt.ylabel("Number of Listings")
-            
-            # Add grid
+            plt.xlabel("Cena (EUR)")
+            plt.ylabel("Sludinājumu skaits")
             plt.grid(True, alpha=0.3)
             
-            # Save to buffer
+            # Convert to base64 for API response
             buffer = BytesIO()
             plt.savefig(buffer, format='png', dpi=100)
             buffer.seek(0)
             
-            # Convert to base64
             image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
             plt.close()
             
-            logger.info(f"Created price distribution chart with {len(prices)} data points")
+            logger.info(f"Created price distribution chart with {len(prices)} cars")
             return image_base64
             
         except Exception as e:
-            logger.error(f"Error creating price distribution chart: {str(e)}")
+            logger.error(f"Chart creation failed: {str(e)}")
             return None
     
     def create_price_trend_chart(self, brand, model, months=12):
-        """
-        Create a price trend chart
-        
-        Args:
-            brand: Car brand name
-            model: Car model name
-            months: Number of months to look back
-            
-        Returns:
-            Base64 encoded image or None if chart creation failed
-        """
+        """Create a line chart showing price changes over time"""
         try:
-            # Get price history data
+            # Get historical data
             history_data = self.get_price_history(brand, model, months)
             
             if not history_data or len(history_data['dates']) < 2:
-                logger.info(f"Insufficient price history data for chart")
+                logger.info(f"Not enough historical data for trend chart")
                 return None
             
-            # Create figure
+            # Create the chart
             plt.figure(figsize=(10, 6))
-            
-            # Create line plot
             plt.plot(history_data['dates'], history_data['prices'], 'o-', linewidth=2, markersize=8)
             
-            # Add labels and title
-            plt.title(f"Price Trend - {brand} {model}")
-            plt.xlabel("Month")
-            plt.ylabel("Average Price (EUR)")
-            
-            # Rotate x-axis labels
+            plt.title(f"Cenu tendences - {brand} {model}")
+            plt.xlabel("Mēnesis")
+            plt.ylabel("Vidējā cena (EUR)")
             plt.xticks(rotation=45)
-            
-            # Add grid
             plt.grid(True, alpha=0.3)
-            
-            # Tight layout to ensure all elements are visible
             plt.tight_layout()
             
-            # Save to buffer
+            # Convert to base64
             buffer = BytesIO()
             plt.savefig(buffer, format='png', dpi=100)
             buffer.seek(0)
             
-            # Convert to base64
             image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
             plt.close()
             
-            logger.info(f"Created price trend chart for {brand} {model} with {len(history_data['dates'])} data points")
+            logger.info(f"Created trend chart for {brand} {model}")
             return image_base64
             
         except Exception as e:
-            logger.error(f"Error creating price trend chart: {str(e)}")
+            logger.error(f"Trend chart failed: {str(e)}")
             return None
     
     def save_analysis(self, title, description, params, results, car_id=None, model_id=None):
-        """
-        Save analysis results to the database
-        
-        Args:
-            title: Analysis title
-            description: Analysis description
-            params: Dictionary with analysis parameters
-            results: Dictionary with analysis results
-            car_id: Car ID (optional - for specific car analysis)
-            model_id: Model ID (optional - for model-wide analysis)
-            
-        Returns:
-            Analysis ID or None if saving failed
-        """
+        """Save analysis results to database for later"""
         from models import Analysis
         
         try:
@@ -584,26 +461,17 @@ class CarDataAnalyzer:
             self.session.add(analysis)
             self.session.commit()
             
-            logger.info(f"Saved analysis: {title} (ID: {analysis.analysis_id})")
+            logger.info(f"Saved analysis: {title}")
             return analysis.analysis_id
             
         except Exception as e:
-            logger.error(f"Error saving analysis: {str(e)}")
+            logger.error(f"Failed to save analysis: {str(e)}")
             self.session.rollback()
             return None
     
     def get_popular_brands(self, limit=10):
-        """
-        Get the most popular car brands based on listing count
-        
-        Args:
-            limit: Maximum number of brands to return
-            
-        Returns:
-            List of tuples with brand name and count
-        """
+        """Get most popular brands by number of listings"""
         from models import Brand, Model, Car, Listing
-        from sqlalchemy import func
         
         try:
             query = self.session.query(
@@ -622,8 +490,7 @@ class CarDataAnalyzer:
             ).limit(limit)
             
             results = query.all()
-            
-            logger.info(f"Retrieved {len(results)} popular brands")
+            logger.info(f"Got {len(results)} popular brands")
             return [(row[0], row[1]) for row in results]
             
         except Exception as e:
@@ -631,18 +498,8 @@ class CarDataAnalyzer:
             return []
     
     def get_popular_models(self, brand=None, limit=10):
-        """
-        Get the most popular car models based on listing count
-        
-        Args:
-            brand: Brand name to filter by (optional)
-            limit: Maximum number of models to return
-            
-        Returns:
-            List of tuples with brand name, model name and count
-        """
+        """Get popular models, optionally filtered by brand"""
         from models import Brand, Model, Car, Listing
-        from sqlalchemy import func
         
         try:
             query = self.session.query(
@@ -668,8 +525,7 @@ class CarDataAnalyzer:
             ).limit(limit)
             
             results = query.all()
-            
-            logger.info(f"Retrieved {len(results)} popular models")
+            logger.info(f"Got {len(results)} popular models")
             return [(row.brand, row.model, row.count) for row in results]
             
         except Exception as e:
