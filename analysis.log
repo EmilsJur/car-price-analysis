@@ -8335,3 +8335,9 @@ WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND lo
 2025-05-19 16:44:36,905 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
 2025-05-19 16:44:36,916 - car_analysis - INFO - Created price distribution chart with 68 data points
 2025-05-19 16:44:36,916 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:45:26,297 - car_app - INFO - Starting API server on port 5000
+2025-05-19 16:45:26,305 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 16:45:26,306 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

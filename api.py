@@ -156,11 +156,11 @@ def search_cars():
                 else:
                     query = query.order_by(asc(Car.year))
             elif sort_by == 'mileage':
-                # Handle null values properly - put nulls last, treat null as 0 for consistency
+                # Handle null values properly - put nulls last
                 if sort_order == 'desc':
-                    query = query.order_by(desc(func.coalesce(Car.mileage, 0)))
+                    query = query.order_by(desc(Car.mileage.nullslast()))
                 else:
-                    query = query.order_by(asc(func.coalesce(Car.mileage, 999999999)))  # Put nulls at end for asc
+                    query = query.order_by(asc(Car.mileage.nullslast()))
             else:
                 # Default ordering - newest listings first
                 query = query.order_by(desc(Listing.listing_date))
