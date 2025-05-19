@@ -8828,3 +8828,632 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listin
 2025-05-19 17:37:36,191 - car_analysis - INFO - Insufficient price history data for chart
 2025-05-19 17:37:36,191 - car_api - WARNING - Insufficient data to generate price trend chart for Brand=Tesla, Model=.
 2025-05-19 17:37:36,191 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:36] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-19 21:12:59,320 - car_app - INFO - Starting API server on port 5000
+2025-05-19 21:12:59,339 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 21:12:59,340 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 21:12:59,390 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:12:59,440 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:12:59,441 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:12:59,444 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:12:59,449 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:12:59,454 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:12:59,697 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:12:59,758 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:12:59,760 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:12:59,765 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:12:59,765 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:12:59,765 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:12:59] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:13:00,005 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:13:00,066 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:13:00,081 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:13:00,081 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:13:00,374 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:13:00,681 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:13:00,929 - car_analysis - INFO - Got 4 popular models
+2025-05-19 21:13:00,929 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:00] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 21:13:01,798 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:01] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:02,059 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:13:02,062 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:13:02,068 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:02] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:02,105 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:02] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:13:02,387 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:02] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:13:02,412 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:13:02,563 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:13:02,563 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:02] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:02,704 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:13:02,708 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:13:02,708 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:02] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:06,799 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:13:06,801 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:13:06,805 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:06] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:07,139 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:07] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:13:07,394 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:13:07,457 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:13:07,461 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:13:07,461 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:07] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:07,466 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:13:07,467 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:07] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:10,786 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:10] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:11,099 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:13:11,100 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:13:11,105 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:11] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:11,359 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:11] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:13:11,425 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:11] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:13:11,665 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:13:11,917 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:13:11,950 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:13:11,953 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:11] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:12,042 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:13:12,042 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:12] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:13:18,434 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:18] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:13:18,748 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:13:18,750 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:13:18,752 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "DESC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:13:18,779 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:13:18] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:15:20,823 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:15:20,824 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:20,827 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:15:20,828 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:15:20,829 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:20,829 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:15:21,133 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:15:21,135 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:21,139 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:15:21,139 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:15:21,140 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:15:21,140 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:15:21,439 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:15:21,440 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:21,469 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:15:21,470 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:15:21,748 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:21] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:22,055 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:22] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:15:26,037 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:26] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:15:26,298 - car_api - INFO - Search: brand=, model=, fuel=
+2025-05-19 21:15:26,301 - car_analysis - INFO - Stats calculated for 98 cars
+2025-05-19 21:15:26,301 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:26] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:15:26,344 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:26] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:15:26,611 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:26] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:15:28,933 - car_analysis - INFO - Got 4 popular models
+2025-05-19 21:15:28,934 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:28] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 21:15:29,995 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:15:29,996 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:15:29,998 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    query = query.order_by(asc(Car.mileage.nullslast()))
+      ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:15:30,008 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:30] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:15:48,142 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:48] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:15:48,449 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:15:48,450 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:15:48,451 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:15:48,460 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:48] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:15:49,731 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:15:49,733 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:15:49,735 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:49] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:15:50,068 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:50] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:15:50,334 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:50] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:15:50,374 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:15:50,453 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:15:50,453 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:50] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:15:50,651 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:15:50,653 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:15:50,653 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:15:50] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:17:45,994 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:17:45] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:17:46,240 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:17:46,242 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:17:46,243 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:17:46,245 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:17:46] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:18:56,350 - car_app - INFO - Starting API server on port 5000
+2025-05-19 21:18:56,359 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 21:18:56,359 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 21:19:00,837 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:19:00] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:19:01,083 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:19:01,136 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:19:01,139 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:19:01,143 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:19:01] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:19:05,708 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:19:05,710 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:19:05,711 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "DESC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:19:05,712 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:19:05] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:19:06,881 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:19:06] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:19:07,144 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:19:07,145 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:19:07,145 - car_api - ERROR - Search failed: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "DESC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 163, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "DESC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST DESC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 21:19:07,147 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:19:07] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 21:20:14,437 - car_app - INFO - Starting API server on port 5000
+2025-05-19 21:20:14,446 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 21:20:14,446 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 21:20:18,597 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:20:18,652 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:18,652 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:20:18,656 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:20:18,662 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:18,666 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:20:18,906 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:20:18,968 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 21:20:18,968 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:18,972 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 21:20:18,983 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:20:18,984 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:18] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:20:19,215 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 21:20:19,280 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:19,296 - car_analysis - INFO - Got 4 popular brands
+2025-05-19 21:20:19,296 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 21:20:19,586 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:19,864 - car_analysis - INFO - Got 4 popular models
+2025-05-19 21:20:19,864 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 21:20:19,894 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:19] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 21:20:20,386 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:20] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:20:20,650 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:20:20,651 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:20:20,655 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:20] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:20:20,696 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:20] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:20:20,963 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:20] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:20:21,004 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:20:21,106 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:20:21,106 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:21] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:20:21,281 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:20:21,283 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:20:21,283 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:21] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:20:26,626 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:26] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 21:20:26,931 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:20:26,932 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:20:26,935 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:26] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:20:27,199 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:27] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:20:27,250 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:27] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:20:27,507 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:20:27,568 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:20:27,570 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:20:27,570 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:27] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:20:27,591 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:20:27,591 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:27] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:20:30,713 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-19 21:20:30,715 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-19 21:20:30,720 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:30] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 21:20:31,061 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:31] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 21:20:31,317 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-19 21:20:31,379 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-19 21:20:31,381 - car_api - INFO - Found stats for 10 regions
+2025-05-19 21:20:31,381 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:31] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:20:31,390 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-19 21:20:31,390 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 21:20:31] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 21:21:17,527 - car_app - INFO - Starting API server on port 5000
+2025-05-19 21:21:17,535 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 21:21:17,535 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
