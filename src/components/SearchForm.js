@@ -205,7 +205,7 @@ const SearchForm = ({
               {...params} 
               label="Modelis" 
               variant="outlined"
-              placeholder="Jebkurš modelis"
+              placeholder={!localParams.brand ? "Vispirms izvēlieties marku" : models.length === 0 ? "Ielādē modeļus..." : "Jebkurš modelis"}
             />
           )}
           renderOption={(props, option) => (

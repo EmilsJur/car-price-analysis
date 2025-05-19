@@ -8734,3 +8734,97 @@ WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND lo
 2025-05-19 17:12:36,667 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:36] "PUT /api/user/preferences HTTP/1.1" 200 -
 2025-05-19 17:12:36,914 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:36] "PUT /api/user/preferences HTTP/1.1" 200 -
 2025-05-19 17:12:37,383 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:37] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:37:14,921 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:14] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:37:15,168 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:15] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:37:15,861 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 17:37:15,861 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:15] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 17:37:17,363 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:17] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 17:37:17,624 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 17:37:17,624 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 17:37:17,625 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 17:37:17,626 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 17:37:17,628 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:17] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 17:37:17,670 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:17] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 17:37:17,935 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:17] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 17:37:17,978 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:18,047 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:18,047 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:18] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:18,239 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:18,240 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 17:37:18,241 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:18] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:24,357 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:24] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 17:37:24,672 - car_api - INFO - Search request with filters - region: , fuel_type: Gas
+2025-05-19 17:37:24,672 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=Gas, transmission=, price=0-100000
+2025-05-19 17:37:24,673 - car_analysis - INFO - No data found for the specified criteria
+2025-05-19 17:37:24,674 - car_api - INFO - Applying fuel type filter: Gas
+2025-05-19 17:37:24,674 - car_api - INFO - Applied gas filter
+2025-05-19 17:37:24,674 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 17:37:24,677 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:24] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 17:37:24,919 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:24] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 17:37:25,001 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:25] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 17:37:25,225 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:25,411 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:25,449 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 17:37:25,449 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:25] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:25,537 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:25,537 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:25] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:29,197 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 17:37:29,197 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 17:37:29,199 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 17:37:29,199 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 17:37:29,202 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:29] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 17:37:29,542 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:29] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 17:37:29,797 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:29,862 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:29,899 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 17:37:29,900 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:29] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:29,987 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:29,988 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:29] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:30,885 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:30,887 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 17:37:30,887 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:30] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:31,195 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:31,385 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:31,385 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:31] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:32,055 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:32,057 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 17:37:32,057 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:32,057 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:32] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:32,349 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:32,350 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:32] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:34,447 - car_api - INFO - Price trend chart request: Brand=Tesla, Model=, Months=12
+2025-05-19 17:37:34,450 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-24', '2025-05-19', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 17:37:34,451 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-19 17:37:34,451 - car_api - WARNING - Insufficient data to generate price trend chart for Brand=Tesla, Model=.
+2025-05-19 17:37:34,451 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:34] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-19 17:37:35,096 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:35,296 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:35,296 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:35] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:35,358 - car_api - INFO - Price trend chart request: Brand=Tesla, Model=, Months=12
+2025-05-19 17:37:35,360 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-24', '2025-05-19', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 17:37:35,360 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-19 17:37:35,360 - car_api - WARNING - Insufficient data to generate price trend chart for Brand=Tesla, Model=.
+2025-05-19 17:37:35,360 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:35] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
+2025-05-19 17:37:35,578 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 17:37:35,875 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 17:37:35,875 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:35] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 17:37:36,189 - car_api - INFO - Price trend chart request: Brand=Tesla, Model=, Months=12
+2025-05-19 17:37:36,191 - car_analysis - ERROR - Error getting price history: (sqlite3.OperationalError) no such function: date_trunc
+[SQL: SELECT date_trunc(?, listings.listing_date) AS month, avg(listings.price) AS avg_price, count(listings.listing_id) AS count 
+FROM listings JOIN cars ON listings.car_id = cars.car_id JOIN models ON cars.model_id = models.model_id JOIN brands ON models.brand_id = brands.brand_id 
+WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listings.listing_date BETWEEN ? AND ? GROUP BY date_trunc(?, listings.listing_date) ORDER BY date_trunc(?, listings.listing_date)]
+[parameters: ('month', 'Tesla', '', '2024-05-24', '2025-05-19', 'month', 'month')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 17:37:36,191 - car_analysis - INFO - Insufficient price history data for chart
+2025-05-19 17:37:36,191 - car_api - WARNING - Insufficient data to generate price trend chart for Brand=Tesla, Model=.
+2025-05-19 17:37:36,191 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:37:36] "[33mGET /api/charts/price-trend?brand=Tesla&model=&months=12 HTTP/1.1[0m" 404 -
