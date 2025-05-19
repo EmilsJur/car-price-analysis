@@ -49,7 +49,7 @@ import axios from 'axios';
 import CarDetailsDialog from './CarDetailsDialog';
 
 function CarPriceAnalysisDashboard() {
-  // State for car data and search parameters
+  // Pamatdati par automašīnām un meklēšanas parametriem
   const [carData, setCarData] = useState([]);
   const [statistics, setStatistics] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ function CarPriceAnalysisDashboard() {
   const [selectedCarDetails, setSelectedCarDetails] = useState(null);
   const [favorites, setFavorites] = useState([]);
   
-  // Search parameters state
+  // Search stuff - meklēšanas parametri
   const [searchParams, setSearchParams] = useState({
     brand: '',
     model: '',
@@ -72,7 +72,7 @@ function CarPriceAnalysisDashboard() {
     transmission: ''
   });
   
-  // UI state
+  // UI state - dažādi UI mainīgie
   const [tabValue, setTabValue] = useState(0);
   const [compareMode, setCompareMode] = useState(false);
   const [selectedCars, setSelectedCars] = useState([]);
@@ -83,17 +83,17 @@ function CarPriceAnalysisDashboard() {
     severity: 'info'
   });
   
-  // Fetch brands on component mount
+  // Iegūstam markas when component loads
   useEffect(() => {
     const fetchBrands = async () => {
       try {
         const response = await axios.get('/api/popular/brands');
         setBrands(response.data.brands || []);
       } catch (error) {
-        console.error('Error fetching brands:', error);
+        console.error('Error getting brands:', error);
         setNotification({
           open: true,
-          message: 'Error fetching brands: ' + (error.message || 'Unknown error'),
+          message: 'Kļūda ielādējot markas: ' + (error.message || 'Nezināma kļūda'),
           severity: 'error'
         });
       }
@@ -102,7 +102,7 @@ function CarPriceAnalysisDashboard() {
     fetchBrands();
   }, []);
 
-  // Fetch models when brand changes
+  // Kad marka mainās, iegūstam modeļus
   useEffect(() => {
     const fetchModels = async () => {
       if (!searchParams.brand) {
@@ -114,10 +114,10 @@ function CarPriceAnalysisDashboard() {
         const response = await axios.get(`/api/popular/models?brand=${searchParams.brand}`);
         setModels(response.data.models || []);
       } catch (error) {
-        console.error('Error fetching models:', error);
+        console.error('Models loading failed:', error);
         setNotification({
           open: true,
-          message: 'Error fetching models: ' + (error.message || 'Unknown error'),
+          message: 'Neizdevās ielādēt modeļus: ' + (error.message || 'Nezināma kļūda'),
           severity: 'error'
         });
       }
@@ -126,14 +126,14 @@ function CarPriceAnalysisDashboard() {
     fetchModels();
   }, [searchParams.brand]);
 
-  // Handle search function
+  // Meklēšanas funkcija - the main search logic
   const handleSearch = async () => {
     setLoading(true);
     try {
-      // Search for car listings
+      // Meklējam automašīnas
       const searchResponse = await axios.post('/api/search', searchParams);
       
-      // Add a unique ID to each car for comparison feature
+      // Pievienojam unique ID katrai mašīnai comparison feature jauns
       const carsWithIds = (searchResponse.data.listings || []).map((car, index) => ({
         ...car,
         id: car.external_id || `car-${index}`
@@ -142,10 +142,10 @@ function CarPriceAnalysisDashboard() {
       setCarData(carsWithIds);
       setStatistics(searchResponse.data.statistics || null);
 
-      // Reset selected cars when new search is performed
+      // Notiram selected cars kad jauna meklēšana
       setSelectedCars([]);
 
-      // Get price distribution chart if brand is selected
+      // Iegūstam price distribution chart ja ir brand
       if (searchParams.brand) {
         try {
           const chartResponse = await axios.get(
@@ -153,27 +153,27 @@ function CarPriceAnalysisDashboard() {
           );
           setChartData(chartResponse.data.chart);
         } catch (chartError) {
-          console.error('Error fetching chart data:', chartError);
+          console.error('Chart loading error:', chartError);
           setChartData(null);
           setNotification({
             open: true,
-            message: 'Error fetching chart data',
+            message: 'Grafika ielāde neizdevās',
             severity: 'warning'
           });
         }
       }
       
-      // Show success notification
+      // Success notification
       setNotification({
         open: true,
-        message: `Found ${carsWithIds.length} cars matching your criteria`,
+        message: `Atrasti ${carsWithIds.length} auto atbilstoši kritērijiem`,
         severity: 'success'
       });
     } catch (error) {
-      console.error('Error searching cars:', error);
+      console.error('Search error:', error);
       setNotification({
         open: true,
-        message: 'Error searching cars: ' + (error.message || 'Unknown error'),
+        message: 'Meklēšana neizdevās: ' + (error.message || 'Nezināma kļūda'),
         severity: 'error'
       });
     } finally {
@@ -181,7 +181,7 @@ function CarPriceAnalysisDashboard() {
     }
   };
 
-  // Handle parameter change
+  // Handle parametru maiņu
   const handleParamChange = (param, value) => {
     setSearchParams({
       ...searchParams,
@@ -189,26 +189,26 @@ function CarPriceAnalysisDashboard() {
     });
   };
 
-  // Handle toggle favorite
+  // Toggle favorite automašīna
   const handleToggleFavorite = (car) => {
     const isFavorite = favorites.some(fav => fav.id === car.id);
     
     if (isFavorite) {
-      // Remove from favorites
+      // Noņemam no favorites
       setFavorites(prev => prev.filter(fav => fav.id !== car.id));
       
       setNotification({
         open: true,
-        message: `${car.brand} ${car.model} removed from favorites`,
+        message: `${car.brand} ${car.model} noņemts no favorītiem`,
         severity: 'info'
       });
     } else {
-      // Add to favorites
+      // Pievienojam to favorites
       setFavorites(prev => [...prev, car]);
       
       setNotification({
         open: true,
-        message: `${car.brand} ${car.model} added to favorites`,
+        message: `${car.brand} ${car.model} pievienots favorītiem`,
         severity: 'success'
       });
     }
@@ -223,7 +223,7 @@ function CarPriceAnalysisDashboard() {
     setCarDetailsOpen(false);
   };
   
-  // Handle tab change
+  // Tab nomaiņa
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
@@ -236,13 +236,13 @@ function CarPriceAnalysisDashboard() {
     } else {
       setNotification({
         open: true,
-        message: 'Compare mode enabled: Select up to 3 cars to compare',
+        message: 'Compare mode ieslēgts: Izvēlies līdz 3 auto salīdzināšanai',
         severity: 'info'
       });
     }
   };
   
-  // Handle selecting cars for comparison
+  // Handle car selection priekš comparison
   const handleSelectCar = (car) => {
     if (!compareMode) return;
     
@@ -256,14 +256,14 @@ function CarPriceAnalysisDashboard() {
       } else {
         setNotification({
           open: true,
-          message: 'You can compare up to 3 cars at a time',
+          message: 'Var salīdzināt maksimum 3 auto vienlaikus',
           severity: 'warning'
         });
       }
     }
   };
   
-  // Handle exporting statistics
+  // Export statistiku
   const handleExportStatistics = () => {
     if (!statistics) return;
     
@@ -278,6 +278,7 @@ function CarPriceAnalysisDashboard() {
       document.body.appendChild(link);
       link.click();
       
+      // Cleanup after download
       setTimeout(() => {
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
@@ -285,20 +286,20 @@ function CarPriceAnalysisDashboard() {
       
       setNotification({
         open: true,
-        message: 'Statistics exported successfully',
+        message: 'Statistika eksportēta veiksmīgi',
         severity: 'success'
       });
     } catch (error) {
-      console.error('Error exporting statistics:', error);
+      console.error('Export error:', error);
       setNotification({
         open: true,
-        message: 'Error exporting statistics',
+        message: 'Eksportēšana neizdevās',
         severity: 'error'
       });
     }
   };
   
-  // Handle exporting comparison data
+  // Export comparison dati
   const handleExportComparison = () => {
     if (!selectedCars.length) return;
     
@@ -332,20 +333,20 @@ function CarPriceAnalysisDashboard() {
       setCompareDialogOpen(false);
       setNotification({
         open: true,
-        message: 'Comparison exported successfully',
+        message: 'Salīdzinājums eksportēts veiksmīgi',
         severity: 'success'
       });
     } catch (error) {
-      console.error('Error exporting comparison:', error);
+      console.error('Comparison export error:', error);
       setNotification({
         open: true,
-        message: 'Error exporting comparison',
+        message: 'Salīdzinājuma eksportēšana neizdevās',
         severity: 'error'
       });
     }
   };
   
-  // Handle notification close
+  // Close notification
   const handleCloseNotification = () => {
     setNotification({
       ...notification,
@@ -353,7 +354,7 @@ function CarPriceAnalysisDashboard() {
     });
   };
   
-  // Render price statistics
+  // Price statistics rendering
   const renderPriceStatistics = () => {
     if (!statistics) return null;
     
@@ -362,8 +363,8 @@ function CarPriceAnalysisDashboard() {
         <CardContent>
           <Typography variant="h6" component="div" sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
             <InfoIcon sx={{ mr: 1 }} color="primary" />
-            Market Price Statistics
-            <Tooltip title="Based on all listings matching your search criteria">
+            Tirgus cenu statistika
+            <Tooltip title="Balstīts uz visiem sludinājumiem kas atbilst jūsu meklēšanas kritērijiem">
               <IconButton size="small" sx={{ ml: 1 }}>
                 <InfoIcon fontSize="small" />
               </IconButton>
@@ -373,7 +374,7 @@ function CarPriceAnalysisDashboard() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ p: 1, borderRadius: 1, bgcolor: 'rgba(25, 118, 210, 0.08)' }}>
-                <Typography variant="body2" color="text.secondary">Average Price</Typography>
+                <Typography variant="body2" color="text.secondary">Vidējā cena</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 1 }}>
                   €{statistics.average_price?.toLocaleString() || 'N/A'}
                 </Typography>
@@ -382,7 +383,7 @@ function CarPriceAnalysisDashboard() {
             
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ p: 1, borderRadius: 1, bgcolor: 'rgba(76, 175, 80, 0.08)' }}>
-                <Typography variant="body2" color="text.secondary">Median Price</Typography>
+                <Typography variant="body2" color="text.secondary">Mediāna cena</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 1, color: 'success.main' }}>
                   €{statistics.median_price?.toLocaleString() || 'N/A'}
                 </Typography>
@@ -391,7 +392,7 @@ function CarPriceAnalysisDashboard() {
             
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ p: 1, borderRadius: 1, bgcolor: 'rgba(0, 200, 83, 0.08)' }}>
-                <Typography variant="body2" color="text.secondary">Lowest Price</Typography>
+                <Typography variant="body2" color="text.secondary">Zemākā cena</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 1, color: 'success.dark' }}>
                   €{statistics.min_price?.toLocaleString() || 'N/A'}
                 </Typography>
@@ -400,7 +401,7 @@ function CarPriceAnalysisDashboard() {
             
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ p: 1, borderRadius: 1, bgcolor: 'rgba(211, 47, 47, 0.08)' }}>
-                <Typography variant="body2" color="text.secondary">Highest Price</Typography>
+                <Typography variant="body2" color="text.secondary">Augstākā cena</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 1, color: 'error.main' }}>
                   €{statistics.max_price?.toLocaleString() || 'N/A'}
                 </Typography>
@@ -411,13 +412,13 @@ function CarPriceAnalysisDashboard() {
           <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Stack direction="row" spacing={1}>
               <Chip 
-                label={`${statistics.count || 0} listings`} 
+                label={`${statistics.count || 0} sludinājumi`} 
                 size="small" 
                 color="primary" 
                 variant="outlined"
               />
               <Chip 
-                label={`Price Range: €${statistics.min_price?.toLocaleString() || 0} - €${statistics.max_price?.toLocaleString() || 0}`} 
+                label={`Cenu diapazons: €${statistics.min_price?.toLocaleString() || 0} - €${statistics.max_price?.toLocaleString() || 0}`} 
                 size="small" 
                 color="secondary" 
                 variant="outlined"
@@ -429,7 +430,7 @@ function CarPriceAnalysisDashboard() {
               startIcon={<DownloadIcon />}
               onClick={handleExportStatistics}
             >
-              Export
+              Eksportēt
             </Button>
           </Box>
         </CardContent>
@@ -437,20 +438,20 @@ function CarPriceAnalysisDashboard() {
     );
   };
   
-  // Render results tabs
+  // Results tabs renderēšana
   const renderResultsTabs = () => (
     <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
-      <Tabs value={tabValue} onChange={handleTabChange} aria-label="results view tabs">
-        <Tab label="Table View" />
-        <Tab label="Card View" />
-        <Tab label="Price Chart" />
+      <Tabs value={tabValue} onChange={handleTabChange} aria-label="rezultātu skatīšanas tabi">
+        <Tab label="Tabulas skats" />
+        <Tab label="Kartīšu skats" />
+        <Tab label="Cenu grafiks" />
       </Tabs>
       
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="body1">
           {carData && carData.length > 0 
-            ? `Showing ${carData.length} car listings` 
-            : 'No results to display'}
+            ? `Rāda ${carData.length} auto sludinājumus` 
+            : 'Nav rezultātu ko rādīt'}
         </Typography>
         
         {carData && carData.length > 0 && (
@@ -462,7 +463,7 @@ function CarPriceAnalysisDashboard() {
             size="small"
             disabled={carData.length < 2}
           >
-            {compareMode ? "Exit Compare Mode" : "Compare Cars"}
+            {compareMode ? "Iziet no salīdzināšanas" : "Salīdzināt auto"}
           </Button>
         )}
         
@@ -474,20 +475,20 @@ function CarPriceAnalysisDashboard() {
             size="small"
             sx={{ ml: 1 }}
           >
-            Compare Selected ({selectedCars.length})
+            Salīdzināt izvēlētos ({selectedCars.length})
           </Button>
         )}
       </Box>
     </Box>
   );
   
-  // Render card view
+  // Card view renderēšana
   const renderCardView = () => {
     if (!carData || carData.length === 0) {
       return (
         <Box sx={{ py: 4, textAlign: 'center' }}>
           <Typography variant="body1" color="text.secondary">
-            No cars found matching your search criteria.
+            Nav atrasti auto kas atbilst jūsu meklēšanas kritērijiem.
           </Typography>
         </Box>
       );
@@ -522,25 +523,25 @@ function CarPriceAnalysisDashboard() {
                 
                 <Box sx={{ mb: 2 }}>
                   <Typography variant="body2" color="text.secondary">
-                    Year: <Typography component="span" variant="body2" fontWeight="medium">{car.year}</Typography>
+                    Gads: <Typography component="span" variant="body2" fontWeight="medium">{car.year}</Typography>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Engine: <Typography component="span" variant="body2" fontWeight="medium">
+                    Dzinējs: <Typography component="span" variant="body2" fontWeight="medium">
                       {car.engine || `${car.engine_volume}L ${car.engine_type}`}
                     </Typography>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Transmission: <Typography component="span" variant="body2" fontWeight="medium">
+                    Ātrumkārba: <Typography component="span" variant="body2" fontWeight="medium">
                       {car.transmission}
                     </Typography>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Mileage: <Typography component="span" variant="body2" fontWeight="medium">
-                      {car.mileage ? `${car.mileage.toLocaleString()} km` : 'N/A'}
+                    Nobraukums: <Typography component="span" variant="body2" fontWeight="medium">
+                      {car.mileage ? `${car.mileage.toLocaleString()} km` : 'Nav norādīts'}
                     </Typography>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Region: <Typography component="span" variant="body2" fontWeight="medium">
+                    Reģions: <Typography component="span" variant="body2" fontWeight="medium">
                       {car.region}
                     </Typography>
                   </Typography>
@@ -556,7 +557,7 @@ function CarPriceAnalysisDashboard() {
                     rel="noopener"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    View Listing
+                    Skatīt sludinājumu
                   </Button>
                 )}
                 
@@ -569,7 +570,7 @@ function CarPriceAnalysisDashboard() {
                       handleSelectCar(car);
                     }}
                   >
-                    {selectedCars.some(selected => selected.id === car.id) ? "Selected" : "Select"}
+                    {selectedCars.some(selected => selected.id === car.id) ? "Izvēlēts" : "Izvēlēties"}
                   </Button>
                 )}
               </Box>
@@ -580,7 +581,7 @@ function CarPriceAnalysisDashboard() {
     );
   };
   
-  // Render comparison dialog
+  // Comparison dialog renderēšana
   const renderCompareDialog = () => (
     <Dialog 
       open={compareDialogOpen} 
@@ -589,9 +590,9 @@ function CarPriceAnalysisDashboard() {
       maxWidth="md"
     >
       <DialogTitle>
-        Car Comparison
+        Auto salīdzinājums
         <IconButton
-          aria-label="close"
+          aria-label="aizvērt"
           onClick={() => setCompareDialogOpen(false)}
           sx={{ position: 'absolute', right: 8, top: 8 }}
         >
@@ -604,7 +605,7 @@ function CarPriceAnalysisDashboard() {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Feature</TableCell>
+                  <TableCell>Īpašība</TableCell>
                   {selectedCars.map((car, index) => (
                     <TableCell key={index}>
                       {car.brand} {car.model} ({car.year})
@@ -614,47 +615,47 @@ function CarPriceAnalysisDashboard() {
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell>Price</TableCell>
+                  <TableCell>Cena</TableCell>
                   {selectedCars.map((car, index) => (
                     <TableCell key={index}>
                       <Typography fontWeight="bold">
-                        €{car.price?.toLocaleString() || 'N/A'}
+                        €{car.price?.toLocaleString() || 'Nav norādīts'}
                       </Typography>
                     </TableCell>
                   ))}
                 </TableRow>
                 <TableRow>
-                  <TableCell>Year</TableCell>
+                  <TableCell>Gads</TableCell>
                   {selectedCars.map((car, index) => (
-                    <TableCell key={index}>{car.year || 'N/A'}</TableCell>
+                    <TableCell key={index}>{car.year || 'Nav norādīts'}</TableCell>
                   ))}
                 </TableRow>
                 <TableRow>
-                  <TableCell>Engine</TableCell>
+                  <TableCell>Dzinējs</TableCell>
                   {selectedCars.map((car, index) => (
                     <TableCell key={index}>
-                      {car.engine || `${car.engine_volume}L ${car.engine_type}` || 'N/A'}
+                      {car.engine || `${car.engine_volume}L ${car.engine_type}` || 'Nav norādīts'}
                     </TableCell>
                   ))}
                 </TableRow>
                 <TableRow>
-                  <TableCell>Transmission</TableCell>
+                  <TableCell>Ātrumkārba</TableCell>
                   {selectedCars.map((car, index) => (
-                    <TableCell key={index}>{car.transmission || 'N/A'}</TableCell>
+                    <TableCell key={index}>{car.transmission || 'Nav norādīts'}</TableCell>
                   ))}
                 </TableRow>
                 <TableRow>
-                  <TableCell>Mileage</TableCell>
+                  <TableCell>Nobraukums</TableCell>
                   {selectedCars.map((car, index) => (
                     <TableCell key={index}>
-                      {car.mileage ? `${car.mileage.toLocaleString()} km` : 'N/A'}
+                      {car.mileage ? `${car.mileage.toLocaleString()} km` : 'Nav norādīts'}
                     </TableCell>
                   ))}
                 </TableRow>
                 <TableRow>
-                  <TableCell>Region</TableCell>
+                  <TableCell>Reģions</TableCell>
                   {selectedCars.map((car, index) => (
-                    <TableCell key={index}>{car.region || 'N/A'}</TableCell>
+                    <TableCell key={index}>{car.region || 'Nav norādīts'}</TableCell>
                   ))}
                 </TableRow>
               </TableBody>
@@ -663,27 +664,27 @@ function CarPriceAnalysisDashboard() {
         ) : (
           <Box sx={{ py: 4, textAlign: 'center' }}>
             <Typography variant="body1" color="text.secondary">
-              No cars selected for comparison.
+              Nav izvēlēti auto salīdzināšanai.
             </Typography>
           </Box>
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setCompareDialogOpen(false)}>Close</Button>
+        <Button onClick={() => setCompareDialogOpen(false)}>Aizvērt</Button>
         {selectedCars.length > 0 && (
           <Button 
             variant="contained" 
             onClick={handleExportComparison}
             startIcon={<DownloadIcon />}
           >
-            Export Comparison
+            Eksportēt salīdzinājumu
           </Button>
         )}
       </DialogActions>
     </Dialog>
   );
   
-  // Render notification
+  // Notification renderēšana
   const renderNotification = () => (
     <Snackbar 
       open={notification.open} 
@@ -697,7 +698,7 @@ function CarPriceAnalysisDashboard() {
     </Snackbar>
   );
 
-  // Main render
+  // Main render - galvenā renderēšana
   return (
     <div className="dashboard-container">
       <Header />
@@ -705,10 +706,10 @@ function CarPriceAnalysisDashboard() {
       <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
         <Box sx={{ mb: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
-            Car Price Analysis Dashboard
+            Auto cenu analīzes dashboard
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            Search, analyze, and track car prices across different marketplaces
+            Meklē, analizē un izseko auto cenas dažādos marketplace
           </Typography>
         </Box>
 
@@ -719,7 +720,7 @@ function CarPriceAnalysisDashboard() {
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <FilterAltIcon sx={{ mr: 1 }} />
                 <Typography variant="h6" component="h2">
-                  Search Filters
+                  Meklēšanas filtri
                 </Typography>
               </Box>
               <SearchForm 
@@ -735,7 +736,7 @@ function CarPriceAnalysisDashboard() {
 
           {/* Results Section */}
           <Grid item xs={12} md={9}>
-            {/* Statistics */}
+            {/* Statistika */}
             {renderPriceStatistics()}
             
             {/* Results */}
@@ -784,7 +785,7 @@ function CarPriceAnalysisDashboard() {
       
       <Footer />
       
-      {/* Comparison Dialog */}
+      {/* Comparison Dlog */}
       {renderCompareDialog()}
       
       {/* Notifications */}

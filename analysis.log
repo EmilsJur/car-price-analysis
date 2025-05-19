@@ -8725,3 +8725,12 @@ WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND lo
 2025-05-19 17:04:22,354 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:04:22] "GET /api/regions HTTP/1.1" 200 -
 2025-05-19 17:04:22,357 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:04:22] "GET /api/user/favorites HTTP/1.1" 200 -
 2025-05-19 17:04:22,663 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:04:22] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 17:12:35,018 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:12:35,269 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:12:35,359 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 17:12:35,663 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 17:12:35,664 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 17:12:35,971 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:35] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 17:12:36,667 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:36] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:12:36,914 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:36] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 17:12:37,383 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 17:12:37] "PUT /api/user/preferences HTTP/1.1" 200 -
