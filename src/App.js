@@ -713,7 +713,9 @@ function App() {
               <Grid item xs={12} md={4}>
                 <Paper elevation={3} sx={{ 
                   p: 3, 
-                  background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                  background: theme.palette.mode === 'dark' 
+                    ? 'linear-gradient(145deg, #2e2e2e 0%, #1e1e1e 100%)' 
+                    : 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
                   border: '1px solid',
                   borderColor: 'divider'
                 }}>
@@ -1010,7 +1012,7 @@ const handleExportComparison = () => {
               textAlign: 'center'
             }}
           >
-            {/* Subtle side accent */}
+            {/* Left side accent */}
             <Box
               sx={{
                 position: 'absolute',
@@ -1021,6 +1023,18 @@ const handleExportComparison = () => {
                 background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
               }}
             />
+    
+    {/* Right side accent */}
+    <Box
+      sx={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        bottom: 0,
+        width: '3px',
+        background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+      }}
+    />
             
             <Container maxWidth="xl">
               <Typography 

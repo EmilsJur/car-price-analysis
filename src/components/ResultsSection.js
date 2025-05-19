@@ -43,7 +43,8 @@ const ResultsSection = ({
   onSelectCar = () => {},
   onOpenCarDetails = () => {},
   onToggleFavorite = () => {},
-  favorites = []
+  favorites = [],
+  searchParams = {}
 }) => {
   // State for pagination and sorting
   const [page, setPage] = useState(0);
@@ -76,6 +77,8 @@ const ResultsSection = ({
     setDetailsOpen(false);
     setSelectedCarForDetails(null);
   };
+
+
 
   // Handle change page
   const handleChangePage = (event, newPage) => {
@@ -165,36 +168,11 @@ const ResultsSection = ({
 
   // Sort cars based on the current order and orderBy
   const sortedCars = React.useMemo(() => {
-    if (!cars || !cars.length) return [];
-    
-    const comparator = (a, b) => {
-      let valueA, valueB;
-      
-      if (orderBy === 'price') {
-        valueA = a.price || 0;
-        valueB = b.price || 0;
-      } else if (orderBy === 'year') {
-        valueA = a.year || 0;
-        valueB = b.year || 0;
-      } else if (orderBy === 'mileage') {
-        valueA = a.mileage || 0;
-        valueB = b.mileage || 0;
-      } else {
-        valueA = a[orderBy] || '';
-        valueB = b[orderBy] || '';
-      }
-      
-      if (typeof valueA === 'string' && typeof valueB === 'string') {
-        return order === 'asc' 
-          ? valueA.localeCompare(valueB)
-          : valueB.localeCompare(valueA);
-      }
-      
-      return order === 'asc' ? valueA - valueB : valueB - valueA;
-    };
-    
-    return [...cars].sort(comparator);
-  }, [cars, order, orderBy]);
+  if (!cars || !cars.length) return [];
+  
+  // The API is sortin already
+  return [...cars];
+}, [cars]);
 
   // Calculate empty rows for consistent table height
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - sortedCars.length) : 0;
@@ -232,61 +210,37 @@ const ResultsSection = ({
           </TableCell>
         )}
         <TableCell>
-          <TableSortLabel
-            active={orderBy === 'brand'}
-            direction={orderBy === 'brand' ? order : 'asc'}
-            onClick={() => handleRequestSort('brand')}
-          >
+          <Typography variant="body2" fontWeight="bold">
             Marka un Modelis
-            {orderBy === 'brand' ? (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
-              </Box>
-            ) : null}
-          </TableSortLabel>
+          </Typography>
         </TableCell>
         <TableCell>
           <TableSortLabel
-            active={orderBy === 'year'}
-            direction={orderBy === 'year' ? order : 'asc'}
-            onClick={() => handleRequestSort('year')}
+            active={searchParams?.sortBy === 'year'}
+            direction={searchParams?.sortBy === 'year' ? searchParams?.sortOrder || 'asc' : 'asc'}
+            hideSortIcon={searchParams?.sortBy !== 'year'}
           >
             Gads
-            {orderBy === 'year' ? (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
-              </Box>
-            ) : null}
           </TableSortLabel>
         </TableCell>
         <TableCell>Dzinējs</TableCell>
         <TableCell>Ātrumkārba</TableCell>
         <TableCell>
           <TableSortLabel
-            active={orderBy === 'mileage'}
-            direction={orderBy === 'mileage' ? order : 'asc'}
-            onClick={() => handleRequestSort('mileage')}
+            active={searchParams?.sortBy === 'mileage'}
+            direction={searchParams?.sortBy === 'mileage' ? searchParams?.sortOrder || 'asc' : 'asc'}
+            hideSortIcon={searchParams?.sortBy !== 'mileage'}
           >
             Nobraukums
-            {orderBy === 'mileage' ? (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
-              </Box>
-            ) : null}
           </TableSortLabel>
         </TableCell>
         <TableCell>
           <TableSortLabel
-            active={orderBy === 'price'}
-            direction={orderBy === 'price' ? order : 'asc'}
-            onClick={() => handleRequestSort('price')}
+            active={searchParams?.sortBy === 'price'}
+            direction={searchParams?.sortBy === 'price' ? searchParams?.sortOrder || 'asc' : 'asc'}
+            hideSortIcon={searchParams?.sortBy !== 'price'}
           >
             Cena
-            {orderBy === 'price' ? (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'kārtots dilstoši' : 'kārtots augoši'}
-              </Box>
-            ) : null}
           </TableSortLabel>
         </TableCell>
         <TableCell>Darbības</TableCell>

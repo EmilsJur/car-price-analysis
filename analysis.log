@@ -7124,3 +7124,1214 @@ WHERE lower(brands.name) = lower(?) AND lower(models.name) = lower(?) AND listin
 2025-05-18 21:03:22,500 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:03:22] "GET /api/popular/models?brand=Suzuki&limit=30 HTTP/1.1" 200 -
 2025-05-18 21:03:22,759 - car_analysis - INFO - Retrieved 4 popular brands
 2025-05-18 21:03:22,760 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:03:22] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:49:24,549 - car_app - INFO - Starting API server on port 5000
+2025-05-18 21:49:24,558 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-18 21:49:24,558 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-18 21:49:24,674 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:24] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:49:24,888 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:24] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:49:24,889 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:24] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 21:49:24,983 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:24] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 21:49:25,198 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 21:49:25,198 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:25] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:49:25,242 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 21:49:25,242 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:49:25] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:50:31,764 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:50:31] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-18 21:50:32,026 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-18 21:50:32,026 - car_api - INFO - Search request received: brand=, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-18 21:50:32,030 - car_analysis - INFO - Statistics calculated for 98 listings
+2025-05-18 21:50:32,031 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:50:32] "POST /api/search HTTP/1.1" 200 -
+2025-05-18 21:50:33,280 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-18 21:50:33,280 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:50:33] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-18 21:50:37,615 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-18 21:50:37,615 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:50:37] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-18 21:58:40,621 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:40] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:58:40,881 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:40] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:58:58,878 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-18 21:58:59,181 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-18 21:58:59,181 - car_api - INFO - Search request received: brand=Tesla, model=Tesla Model 3, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-18 21:58:59,183 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-18 21:58:59,187 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:59] "POST /api/search HTTP/1.1" 200 -
+2025-05-18 21:58:59,442 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-18 21:58:59,506 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-18 21:58:59,508 - car_api - INFO - Found statistics for 4 regions
+2025-05-18 21:58:59,508 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:59] "GET /api/region-stats?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 21:58:59,557 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-18 21:58:59,558 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:58:59] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 21:59:02,813 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-18 21:59:02,921 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-18 21:59:02,924 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-18 21:59:02,924 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html complete. Desc: True, Img: False, PubDate: 11.05.2025 10:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-18 21:59:02,925 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:02] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html HTTP/1.1" 200 -
+2025-05-18 21:59:17,257 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:17] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:17,519 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:17] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:31,054 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-18 21:59:31,362 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-18 21:59:31,614 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:31,736 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:31,736 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:31,741 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:31,742 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 21:59:31,928 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:31] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:32,052 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 21:59:32,053 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:32] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:59:32,053 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:32] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:32,067 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:32] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:33,123 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:33] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:33,436 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:33] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:33,437 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:33] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:33,744 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:33] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:33,745 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:33] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:34,006 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:34] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:34,052 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:34] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:39,251 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:39] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:39,562 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:39] "PUT /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:43,380 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:43,694 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:43,695 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:43,698 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:43,702 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:43,702 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 21:59:43,709 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:43] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:44,001 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:44,003 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:44,008 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 21:59:44,025 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 21:59:44,025 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:59:44,309 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:44,341 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 21:59:44,341 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 21:59:44,616 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:44,923 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:44] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:45,692 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:45] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:45,693 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:45] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:45,955 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:45] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:46,001 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:46,263 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:46,264 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:46,570 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:46,571 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:46,878 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:46] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:47,186 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:47] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 21:59:52,168 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:52] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:52,170 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:52] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:52,430 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:52] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:52,476 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:52] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:54,005 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:54] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:54,319 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:54] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 21:59:55,397 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-18 21:59:55,397 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:55] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-18 21:59:55,718 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:55] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-18 21:59:56,027 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-18 21:59:56,027 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-18 21:59:56,028 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-18 21:59:56,031 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:56] "POST /api/search HTTP/1.1" 200 -
+2025-05-18 21:59:56,289 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:56] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-18 21:59:56,340 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:56] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-18 21:59:56,596 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-18 21:59:56,658 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-18 21:59:56,660 - car_api - INFO - Found statistics for 10 regions
+2025-05-18 21:59:56,660 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:56] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 21:59:56,678 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-18 21:59:56,678 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:56] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 21:59:58,908 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:58] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:59,214 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:59] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:59,215 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:59] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:59,522 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:59] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 21:59:59,522 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:59] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-18 21:59:59,829 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 21:59:59] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 22:00:00,090 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-18 22:00:00,136 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 22:00:00,137 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 22:00:00,397 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 22:00:00,444 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-18 22:00:00,718 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:00] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:01,030 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:01] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:01,031 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:01] "GET /api/status HTTP/1.1" 200 -
+2025-05-18 22:00:01,351 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-18 22:00:01,352 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:01] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-18 22:00:35,541 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:35] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:35,850 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:35] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:38,357 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-18 22:00:38,358 - car_api - INFO - Found statistics for 10 regions
+2025-05-18 22:00:38,358 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:38] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 22:00:38,358 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-18 22:00:38,450 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-18 22:00:38,450 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:38] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-18 22:00:38,620 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:38] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:38,696 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:38] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:40,374 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:40] "GET /api/regions HTTP/1.1" 200 -
+2025-05-18 22:00:40,680 - werkzeug - INFO - 127.0.0.1 - - [18/May/2025 22:00:40] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:40:09,106 - car_app - INFO - Starting API server on port 5000
+2025-05-19 12:40:09,127 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 12:40:09,127 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 12:40:20,871 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:40:20,886 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 12:40:20,974 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:40:21,191 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 12:40:21,191 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:21] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 12:40:21,195 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:21] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 12:40:21,220 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 12:40:21,220 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:21] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 12:40:43,743 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 12:40:43,743 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:40:43] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 12:41:20,504 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:41:20] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 12:41:20,767 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 12:41:20,767 - car_api - INFO - Search request received: brand=Tesla, model=Tesla Model 3, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 12:41:20,771 - car_analysis - INFO - Statistics calculated for 27 listings
+2025-05-19 12:41:20,775 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:41:20] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 12:41:20,813 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-19 12:41:21,091 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-19 12:41:21,095 - car_api - INFO - Found statistics for 4 regions
+2025-05-19 12:41:21,095 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:41:21] "GET /api/region-stats?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:41:21,168 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-19 12:41:21,169 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:41:21] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:41:50,887 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:41:51,069 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:41:51,074 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-19 12:41:51,074 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html complete. Desc: True, Img: False, PubDate: 11.05.2025 10:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-19 12:41:51,075 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:41:51] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html HTTP/1.1" 200 -
+2025-05-19 12:44:19,405 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:19] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+2025-05-19 12:44:19,672 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:19] "POST /api/auth/login HTTP/1.1" 200 -
+2025-05-19 12:44:19,743 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:19] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:44:20,051 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:44:20,054 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:44:20,057 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:44:20,058 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 12:44:20,358 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:44:20,360 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:44:20,374 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 12:44:20,374 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 12:44:20,666 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:44:25,862 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:44:25,940 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:44:25,944 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-19 12:44:25,945 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html complete. Desc: True, Img: False, PubDate: 11.05.2025 10:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-19 12:44:25,945 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:25] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html HTTP/1.1" 200 -
+2025-05-19 12:44:28,689 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:28] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:44:29,009 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:29] "POST /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:44:36,176 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:44:36,249 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html
+2025-05-19 12:44:36,253 - car_api.listing_details - INFO - Found Region in contacts section: R\u012bga
+2025-05-19 12:44:36,253 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html complete. Desc: True, Img: False, PubDate: 11.05.2025 10:34, TechInsp: True, Equip#: 0, Region: R\u012bga
+2025-05-19 12:44:36,254 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:36] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cgxibp.html HTTP/1.1" 200 -
+2025-05-19 12:44:39,352 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:39] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:44:39,612 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:39] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:44:40,108 - car_api.listing_details - INFO - Attempting to fetch details for URL: https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfplcc.html
+2025-05-19 12:44:40,191 - car_api.listing_details - WARNING - Main image element not found for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfplcc.html
+2025-05-19 12:44:40,194 - car_api.listing_details - INFO - Found Region in contacts section: Jelgava un raj.
+2025-05-19 12:44:40,194 - car_api.listing_details - INFO - Scraping for https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfplcc.html complete. Desc: True, Img: False, PubDate: 06.05.2025 08:59, TechInsp: True, Equip#: 0, Region: Jelgava un raj.
+2025-05-19 12:44:40,195 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:44:40] "GET /api/listing-details?url=https://www.ss.lv/msg/lv/transport/cars/tesla/model-3/cfplcc.html HTTP/1.1" 200 -
+2025-05-19 12:45:02,297 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-19 12:45:02,299 - car_api - INFO - Found statistics for 4 regions
+2025-05-19 12:45:02,299 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:02] "GET /api/region-stats?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:02,300 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=Tesla Model 3, YearRange=2015-2025
+2025-05-19 12:45:02,609 - car_analysis - INFO - Created price distribution chart with 27 data points
+2025-05-19 12:45:02,609 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:02] "GET /api/charts/price-distribution?brand=Tesla&model=Tesla+Model+3&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:04,931 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:04] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:45:05,242 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:05] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:45:09,492 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:09] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 12:45:09,755 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 12:45:09,755 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 12:45:09,758 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 12:45:09,763 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:09] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 12:45:09,801 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:09] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 12:45:10,085 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:10] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 12:45:10,110 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:10,380 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 12:45:10,381 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:10] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:10,389 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:10,392 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 12:45:10,392 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:10] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:11,103 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:11,104 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 12:45:11,105 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:11] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:11,405 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:11,561 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 12:45:11,561 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:11] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:28,855 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:28] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:45:29,121 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:29] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:45:30,282 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:30,284 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 12:45:30,284 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:30] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:30,593 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:45:30,758 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 12:45:30,759 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:30] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:45:58,391 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:58] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:45:58,655 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:45:58] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:01,968 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:46:01,970 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 12:46:01,970 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:01] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:46:02,276 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 12:46:02,558 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 12:46:02,558 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:02] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 12:46:17,428 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:17] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:17,690 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:17] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:23,033 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:23] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:23,347 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:23] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:23,762 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:23] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:26,450 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:26] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:26,451 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:26] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:26,715 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:26] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:26,761 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:26] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:30,815 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:30] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:46:31,131 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:46:31,133 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:46:31,440 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:46:31,441 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:31,751 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:46:31,753 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:31] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:32,013 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:32] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:46:32,058 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:32] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:46:34,696 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:34] "OPTIONS /api/user/favorites/56348493 HTTP/1.1" 200 -
+2025-05-19 12:46:35,005 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:35] "DELETE /api/user/favorites/56348493 HTTP/1.1" 200 -
+2025-05-19 12:46:35,980 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:35] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:36,283 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:36] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:36,285 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:36] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:46:36,601 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:36] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:46:57,817 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:57] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:58,071 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:58] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:58,167 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:58] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 12:46:59,954 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:59] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:46:59,955 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:46:59] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:47:00,201 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:47:00,263 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 12:47:00,509 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:47:00,511 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:47:00,573 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:47:00,818 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 12:47:00,879 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:47:00,880 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:00] "OPTIONS /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:47:01,127 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:01] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:47:01,188 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:01] "GET /api/user/search-history?limit=10 HTTP/1.1" 200 -
+2025-05-19 12:47:01,653 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:01] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:47:01,963 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:01] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 12:47:01,963 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 12:47:01] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:05:38,583 - car_app - INFO - Starting API server on port 5000
+2025-05-19 16:05:38,602 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 16:05:38,602 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 16:05:38,721 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:38] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:05:38,733 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:38] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:05:38,937 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:05:38,937 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:38] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:05:42,553 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:42] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:05:42,863 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:42] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:05:49,686 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:05:49,686 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:49] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:05:53,090 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:53] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:05:53,403 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:05:53,403 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:05:53,406 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:05:53,412 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:53] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:05:53,665 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:53] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:05:53,732 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:53] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:05:53,972 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:05:54,098 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:05:54,146 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:05:54,146 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:54] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:05:54,269 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:05:54,270 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:54] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:05:59,651 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:59] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:05:59,960 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:05:59,961 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:05:59,962 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:05:59,965 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:05:59] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:00,221 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:00] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:00,289 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:00] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:00,528 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:00,639 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:00,677 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:06:00,678 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:00] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:00,765 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:06:00,765 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:00] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:03,662 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:06:03,662 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:06:03,664 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:06:03,667 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:03] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:04,003 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:04] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:04,258 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:04,358 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:04,397 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:06:04,397 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:04] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:04,484 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:06:04,485 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:04] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:07,954 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:07] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:08,262 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:06:08,262 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:06:08,264 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:06:08,267 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:08] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:08,523 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:08] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:08,590 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:08] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:08,831 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:08,917 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:08,919 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:06:08,919 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:08] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:09,009 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:06:09,009 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:09] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:13,001 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:13] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:13,316 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:06:13,316 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:06:13,318 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:06:13,321 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:13] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:13,569 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:13] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:13,640 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:13,825 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:06:13,825 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:13] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:13,886 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:13,888 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:06:13,888 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:13] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:18,986 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:18] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:19,301 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:06:19,301 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:06:19,303 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:06:19,306 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:19] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:06:19,548 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:19] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:19,630 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:19] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:06:19,854 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:20,029 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:06:20,067 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:06:20,068 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:20] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:06:20,156 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:06:20,156 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:06:20] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:07:44,574 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:44] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:07:44,836 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:07:44,836 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:07:44,837 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:07:44,840 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:44] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:07:44,883 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:44] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:07:45,149 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:45] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:07:45,190 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:07:45,264 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:07:45,265 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:45] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:07:45,467 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:07:45,468 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:07:45,468 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:07:45] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:10:09,904 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:10:09,905 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:09,908 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:10:09,910 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:09,912 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:10:09,912 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:09] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:10:10,211 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:10:10,212 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:10,218 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:10:10,218 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:10:10,220 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:10:10,221 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:10:10,518 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:10:10,520 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:10,579 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:10:10,579 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:10:10,826 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:10:10,827 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:10] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:11,134 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:11] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:10:11,144 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:11] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:10:11,364 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:11] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:10:26,178 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:26] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:10:26,446 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:26] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:10:26,491 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:10:26] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:14,746 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:14] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:15,058 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:15] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:15,318 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:15] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:16,322 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:16] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:17,036 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:17] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:17,529 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:17] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:18,234 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:18] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:18,673 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:18] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:19,553 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:19] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:20,192 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:20] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:20,504 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:20] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:20,763 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:20] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:21,270 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:21] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:22,052 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:22] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:23,522 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:23] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:11:24,198 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:11:24] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:05,008 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:12:05,310 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:05,313 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:12:05,314 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:12:05,619 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:05,649 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:12:05,650 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:12:05,927 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:05] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:06,585 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:12:06,588 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:12:06,592 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:12:06,593 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:06,831 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:12:06,893 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:12:06,896 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:12:06,897 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:12:06,897 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:12:06,897 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:06,922 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:06] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:07,215 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:12:07,215 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:07] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:12:07,232 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:07] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:12:09,270 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:09] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:09,585 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:09] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:09,846 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:09] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:12,276 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:12] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:14,894 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:14] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:12:15,161 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:12:15] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:16:53,080 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:16:53] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:16:53,339 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:16:53] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:16:55,395 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:16:55] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:16:55,714 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:16:55] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:16:55,974 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:16:55] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:16,829 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:16] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:20:16,830 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:16] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:20:16,835 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:20:17,091 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:17] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:20:17,138 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:20:17,138 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:17] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:20:17,138 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:17] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:20:17,140 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:17] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:20:19,792 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:19] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:20,058 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:20] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:20,104 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:20] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:32,005 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:32] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:32,315 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:32] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:20:32,576 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:20:32] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:22:40,311 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:22:40,311 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:40] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:22:43,532 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:43] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:43,846 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:22:43,846 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:22:43,847 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:22:43,849 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:43] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:44,092 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:44] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:44,157 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:44] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:44,398 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:44,469 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:22:44,470 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:44] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:44,471 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:44,472 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:22:44,473 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:44] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:50,109 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:50] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:50,422 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:22:50,422 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:22:50,424 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:22:50,427 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:50] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:50,683 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:50] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:50,751 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:50] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:50,990 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:51,072 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:51,074 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:22:51,074 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:51] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:51,149 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:22:51,149 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:51] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:54,374 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:22:54,374 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:22:54,376 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:22:54,380 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:54] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:54,725 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:54] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:54,981 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:55,060 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:55,065 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:22:55,065 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:55] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:55,157 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:22:55,157 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:55] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:22:58,922 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:58] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:59,234 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:22:59,234 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:22:59,236 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:22:59,239 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:59] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:22:59,493 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:59] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:59,562 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:59] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:22:59,800 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:59,955 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:22:59,993 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:22:59,994 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:22:59] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:23:00,082 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:23:00,082 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:23:00] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:23:02,960 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:23:02] "OPTIONS /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:23:03,281 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:23:03] "PUT /api/user/preferences HTTP/1.1" 200 -
+2025-05-19 16:24:12,623 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:24:12] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:26:49,186 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:26:49,187 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:26:49,188 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:49,191 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:26:49,193 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:49,195 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:26:49,494 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:26:49,495 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:26:49,498 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:49,502 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:26:49,523 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:26:49,523 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:26:49,801 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:26:49,802 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:49,832 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:26:49,832 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:49] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:26:50,108 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:50] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:50,416 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:50] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:26:51,740 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:26:51,740 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:51] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:26:53,717 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:53] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:26:54,025 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:26:54,025 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:26:54,027 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:26:54,030 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:54] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:26:54,286 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:54] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:26:54,352 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:54] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:26:54,593 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:26:54,731 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:26:54,770 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:26:54,771 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:54] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:26:54,861 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:26:54,862 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:26:54] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:00,542 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:00] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:27:00,851 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:27:00,851 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:27:00,853 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:27:00,856 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:00] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:27:01,111 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:01] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:27:01,178 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:01] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:27:01,417 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:01,500 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:01,502 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:27:01,503 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:01] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:01,640 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:27:01,640 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:01] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:16,592 - car_app - INFO - Starting API server on port 5000
+2025-05-19 16:27:16,600 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-19 16:27:16,600 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-19 16:27:19,493 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:27:19,494 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:27:19,495 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:19,499 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:27:19,503 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:19,507 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:27:19,811 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:27:19,814 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:27:19,821 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:19,822 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:27:19,823 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:27:19,823 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:19] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:27:20,118 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:20] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:27:20,134 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:27:20,135 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:20] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:27:20,135 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:20,442 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:20,749 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:20] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:27:21,319 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:27:21,320 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:21] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:27:22,736 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:22] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:27:23,038 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:27:23,038 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:27:23,040 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:27:23,040 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:27:23,043 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:23] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:27:23,299 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:23] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:27:23,365 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:23] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:27:23,606 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:23,694 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:23,716 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:27:23,717 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:23] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:23,836 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:27:23,837 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:23] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:25,808 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:27:25,808 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:27:25,810 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:27:25,810 - car_api - INFO - Sorting by: price, order: desc
+2025-05-19 16:27:25,815 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:25] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:27:26,149 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:26] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:27:26,405 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:26,476 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:27:26,478 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:27:26,478 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:26] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:26,566 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:27:26,567 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:26] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:27:37,078 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:27:37] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:28:08,690 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:28:08] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:31:48,269 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:48] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:31:48,530 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:31:48,530 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:31:48,531 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:31:48,532 - car_api - INFO - Sorting by: price, order: desc
+2025-05-19 16:31:48,534 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:48] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:31:48,577 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:48] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:31:48,843 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:48] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:31:48,885 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:31:48,958 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:31:48,958 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:48] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:31:49,161 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:31:49,163 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:31:49,163 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:49] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:31:52,952 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:31:52,952 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:31:52,954 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:31:52,955 - car_api - INFO - Sorting by: year, order: desc
+2025-05-19 16:31:52,958 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:52] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:31:53,297 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:53] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:31:53,555 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:31:53,601 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:31:53,603 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:31:53,603 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:53] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:31:53,630 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:31:53,630 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:31:53] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:32:38,412 - car_api - INFO - Search request with filters - region: None, fuel_type: None
+2025-05-19 16:32:38,412 - car_api - INFO - Search request received: brand=Tesla, model=None, year=None-None, fuel=None, transmission=None, price=None-None
+2025-05-19 16:32:38,414 - car_analysis - INFO - Statistics calculated for 77 listings
+2025-05-19 16:32:38,414 - car_api - INFO - Sorting by: price, order: desc
+2025-05-19 16:32:38,417 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:32:38] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:29,108 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:34:29,110 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:34:29,111 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:29,114 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:34:29,116 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:29,119 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:34:29,416 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:34:29,417 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:34:29,418 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:29,423 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:34:29,439 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:34:29,440 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:34:29,724 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:34:29,725 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:29,754 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:34:29,754 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:29] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:34:30,030 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:30] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:30,338 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:30] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:34:30,970 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:34:30,970 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:30] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:34:34,364 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:34] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:34,671 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:34,671 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:34,672 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:34,673 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:34:34,674 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:34] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:34,931 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:34] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:34,982 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:34] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:35,240 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:35,301 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:35,309 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:34:35,309 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:35] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:35,320 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:34:35,320 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:35] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:40,980 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:40] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:41,287 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:41,287 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:41,289 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:41,289 - car_api - INFO - Sorting by: price, order: desc
+2025-05-19 16:34:41,292 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:41] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:41,548 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:41] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:41,615 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:41] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:41,855 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:41,973 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:42,012 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:34:42,012 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:42] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:42,100 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:34:42,100 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:42] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:45,780 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:45,780 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:45,782 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:45,782 - car_api - INFO - Sorting by: year, order: desc
+2025-05-19 16:34:45,786 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:45] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:46,129 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:46] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:46,384 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:46,455 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:46,457 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:34:46,458 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:46] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:46,548 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:34:46,549 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:46] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:49,513 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:49] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:49,825 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:49,825 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:49,827 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:49,827 - car_api - INFO - Sorting by: year, order: asc
+2025-05-19 16:34:49,831 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:49] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:50,086 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:50] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:50,153 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:50] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:34:50,393 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:50,476 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:34:50,478 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:34:50,478 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:50] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:50,566 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:34:50,567 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:50] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:34:53,716 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:53,716 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:53,718 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:53,718 - car_api - INFO - Sorting by: mileage, order: asc
+2025-05-19 16:34:53,720 - car_api - ERROR - Error during car search: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 171, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 16:34:53,748 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:53] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 16:34:56,212 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:56] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:34:56,473 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:34:56,473 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:34:56,475 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:34:56,475 - car_api - INFO - Sorting by: mileage, order: asc
+2025-05-19 16:34:56,476 - car_api - ERROR - Error during car search: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 171, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 16:34:56,477 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:34:56] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 16:35:47,379 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:47] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:35:47,686 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:35:47,686 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:35:47,688 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:35:47,689 - car_api - INFO - Sorting by: year, order: asc
+2025-05-19 16:35:47,692 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:47] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:35:47,947 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:47] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:35:48,015 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:48] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:35:48,255 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:35:48,346 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:35:48,380 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:35:48,384 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:48] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:35:48,473 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:35:48,473 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:35:48] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:36:22,443 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:22] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:36:22,756 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:36:22,757 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:36:22,758 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:36:22,759 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:36:22,761 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:22] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:36:23,017 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:23] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:36:23,085 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:23] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:36:23,325 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:36:23,494 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:36:23,534 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:36:23,534 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:23] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:36:23,620 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:36:23,621 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:36:23] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:37:45,763 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:37:45] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:37:46,024 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:37:46,024 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:37:46,025 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:37:46,026 - car_api - INFO - Sorting by: mileage, order: asc
+2025-05-19 16:37:46,026 - car_api - ERROR - Error during car search: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 171, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 16:37:46,037 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:37:46] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 16:41:51,672 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:51,673 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:51,674 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:51,675 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:51,677 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:51,677 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:41:51,980 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:51,982 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:51,984 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:51,985 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:41:51,986 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "GET /api/regions HTTP/1.1" 200 -
+2025-05-19 16:41:51,987 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:51] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:52,290 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:41:52,291 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:41:52,291 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:52,292 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-19 16:41:52,294 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/status HTTP/1.1" 200 -
+2025-05-19 16:41:52,597 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:52,627 - car_analysis - INFO - Retrieved 4 popular brands
+2025-05-19 16:41:52,627 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-19 16:41:52,904 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:52] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:53,212 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:53] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-19 16:41:54,316 - car_analysis - INFO - Retrieved 4 popular models
+2025-05-19 16:41:54,317 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:54] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-19 16:41:57,046 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:57] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:41:57,359 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:41:57,359 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:41:57,360 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:41:57,360 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:41:57,362 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:57] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:41:57,620 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:57] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:41:57,671 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:57] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:41:57,927 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:41:57,991 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:41:57,992 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:41:57,992 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:57] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:41:58,020 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:41:58,020 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:41:58] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:06,280 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:06] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:06,590 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:42:06,590 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:42:06,591 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:42:06,592 - car_api - INFO - Sorting by: price, order: desc
+2025-05-19 16:42:06,593 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:06] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:06,851 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:06] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:42:06,903 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:06] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:42:07,158 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:07,220 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:07,221 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:42:07,221 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:07] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:07,238 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:42:07,239 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:07] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:13,365 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:13] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:13,672 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:42:13,672 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:42:13,674 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:42:13,675 - car_api - INFO - Sorting by: year, order: desc
+2025-05-19 16:42:13,678 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:13] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:13,934 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:13] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:42:14,002 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:14] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:42:14,241 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:14,396 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:14,399 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:42:14,399 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:14] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:14,486 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:42:14,487 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:14] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:17,709 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:42:17,709 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:42:17,710 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:42:17,711 - car_api - INFO - Sorting by: year, order: asc
+2025-05-19 16:42:17,714 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:17] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:18,059 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:18] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:42:18,312 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:18,430 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:42:18,468 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:42:18,469 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:18] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:18,557 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:42:18,557 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:18] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:42:22,398 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:22] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:42:22,703 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:42:22,703 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=, price=0-100000
+2025-05-19 16:42:22,705 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:42:22,706 - car_api - INFO - Sorting by: mileage, order: asc
+2025-05-19 16:42:22,706 - car_api - ERROR - Error during car search: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 171, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 16:42:22,708 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:42:22] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 16:44:22,290 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:22] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:44:22,551 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:44:22,551 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=Automatic, price=0-100000
+2025-05-19 16:44:22,553 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:44:22,553 - car_api - INFO - Sorting by: mileage, order: asc
+2025-05-19 16:44:22,554 - car_api - ERROR - Error during car search: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND lower(cars.transmission) = lower(?) AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 'Automatic', 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: near "ASC": syntax error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\PC\Desktop\claude\car-price-analysis\api.py", line 171, in search_cars
+    results = query.all()
+              ^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) near "ASC": syntax error
+[SQL: SELECT brands.name AS brand, models.name AS model, cars.year AS cars_year, cars.engine_volume AS cars_engine_volume, cars.engine_type AS cars_engine_type, cars.transmission AS cars_transmission, cars.mileage AS cars_mileage, cars.body_type AS cars_body_type, cars.color AS cars_color, cars.tech_inspection AS cars_tech_inspection, listings.price AS listings_price, listings.listing_date AS listings_listing_date, listings.listing_url AS listings_listing_url, listings.external_id AS listings_external_id, regions.name AS region 
+FROM brands JOIN models ON brands.brand_id = models.brand_id JOIN cars ON models.model_id = cars.model_id JOIN listings ON cars.car_id = listings.car_id JOIN regions ON cars.region_id = regions.region_id 
+WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND lower(cars.transmission) = lower(?) AND listings.price <= ? AND listings.is_active = 1 ORDER BY cars.mileage NULLS LAST ASC
+ LIMIT ? OFFSET ?]
+[parameters: ('Tesla', 2015, 2025, 'Automatic', 100000, 200, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-19 16:44:22,555 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:22] "[35m[1mPOST /api/search HTTP/1.1[0m" 500 -
+2025-05-19 16:44:25,744 - car_api - INFO - Search request with filters - region: , fuel_type: 
+2025-05-19 16:44:25,744 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=, transmission=Automatic, price=0-100000
+2025-05-19 16:44:25,746 - car_analysis - INFO - Statistics calculated for 68 listings
+2025-05-19 16:44:25,746 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:44:25,750 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:25] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:44:26,082 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:26] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:44:26,348 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:26] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:44:26,389 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:44:26,471 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:44:26,471 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:26] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:44:26,666 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:44:26,667 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:44:26,668 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:26] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:44:35,947 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:35] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-19 16:44:36,257 - car_api - INFO - Search request with filters - region: , fuel_type: Electric
+2025-05-19 16:44:36,257 - car_api - INFO - Search request received: brand=Tesla, model=, year=2015-2025, fuel=Electric, transmission=Automatic, price=0-100000
+2025-05-19 16:44:36,258 - car_analysis - INFO - No data found for the specified criteria
+2025-05-19 16:44:36,259 - car_api - INFO - Applying fuel type filter: Electric
+2025-05-19 16:44:36,259 - car_api - INFO - Applied electric filter
+2025-05-19 16:44:36,259 - car_api - INFO - Sorting by: price, order: asc
+2025-05-19 16:44:36,263 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "POST /api/search HTTP/1.1" 200 -
+2025-05-19 16:44:36,519 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:44:36,586 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-19 16:44:36,825 - car_api - INFO - Price distribution chart request: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:44:36,903 - car_api - INFO - Region statistics request for: Brand=Tesla, Model=None, YearRange=2015-2025
+2025-05-19 16:44:36,904 - car_api - INFO - Found statistics for 10 regions
+2025-05-19 16:44:36,905 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-19 16:44:36,916 - car_analysis - INFO - Created price distribution chart with 68 data points
+2025-05-19 16:44:36,916 - werkzeug - INFO - 127.0.0.1 - - [19/May/2025 16:44:36] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -

@@ -137,9 +137,36 @@ def search_cars():
             if region:
                 query = query.filter(func.lower(Region.name) == func.lower(region))
             
-            query = query.filter(Listing.is_active == True) # Only active listings
-            query = query.order_by(Listing.listing_date.desc()) # Newest first
-            query = query.limit(200) # Limiting results for performance
+            query = query.filter(Listing.is_active == True)
+
+            # Apply sorting based on frontend parameters - kad user izvelas sort order
+            sort_by = data.get('sortBy', 'price')
+            sort_order = data.get('sortOrder', 'asc')
+
+            logger.info(f"Sorting by: {sort_by}, order: {sort_order}")
+
+            if sort_by == 'price':
+                if sort_order == 'desc':
+                    query = query.order_by(desc(Listing.price))
+                else:
+                    query = query.order_by(asc(Listing.price))
+            elif sort_by == 'year':
+                if sort_order == 'desc':
+                    query = query.order_by(desc(Car.year))
+                else:
+                    query = query.order_by(asc(Car.year))
+            elif sort_by == 'mileage':
+                # Handle null values properly - put nulls last, treat null as 0 for consistency
+                if sort_order == 'desc':
+                    query = query.order_by(desc(func.coalesce(Car.mileage, 0)))
+                else:
+                    query = query.order_by(asc(func.coalesce(Car.mileage, 999999999)))  # Put nulls at end for asc
+            else:
+                # Default ordering - newest listings first
+                query = query.order_by(desc(Listing.listing_date))
+
+            # Limit results for performance
+            query = query.limit(200)
             
             results = query.all()
             

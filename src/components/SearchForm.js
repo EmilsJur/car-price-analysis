@@ -43,6 +43,7 @@ const SearchForm = ({
   onSearch = () => {}, 
   loading = false
 }) => {
+   const theme = useTheme();
 
   // Local state for form values with validation
   const [localParams, setLocalParams] = useState({...params});
@@ -215,7 +216,15 @@ const SearchForm = ({
         />
       </FormControl>
       
-      <Paper variant="outlined" sx={{ p: 2, mt: 2, mb: 2, bgcolor: 'rgba(25, 118, 210, 0.02)' }}>
+      <Paper variant="outlined" sx={{ 
+        p: 2, 
+        mt: 2, 
+        mb: 2, 
+        bgcolor: theme.palette.mode === 'dark' 
+          ? 'rgba(25, 118, 210, 0.12)' 
+          : 'rgba(25, 118, 210, 0.02)',
+        border: `1px solid ${theme.palette.divider}`
+      }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
           <Typography id="year-range-slider" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
             <CalendarMonthIcon sx={{ mr: 1, color: 'primary.main' }} />
@@ -269,7 +278,15 @@ const SearchForm = ({
         </Grid>
       </Paper>
       
-      <Paper variant="outlined" sx={{ p: 2, mt: 2, mb: 2, bgcolor: 'rgba(76, 175, 80, 0.02)' }}>
+      <Paper variant="outlined" sx={{ 
+        p: 2, 
+        mt: 2, 
+        mb: 2, 
+        bgcolor: theme.palette.mode === 'dark' 
+          ? 'rgba(76, 175, 80, 0.12)' 
+          : 'rgba(76, 175, 80, 0.02)',
+        border: `1px solid ${theme.palette.divider}`
+      }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
           <Typography id="price-range-slider" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
             <MonetizationOnIcon sx={{ mr: 1, color: 'success.main' }} />

@@ -156,7 +156,10 @@ const Header = ({
   );
   
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ 
+      bgcolor: darkMode ? 'grey.900' : 'primary.main',
+      color: 'white'
+    }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Mobile menu icon */}
