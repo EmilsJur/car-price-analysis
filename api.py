@@ -653,60 +653,6 @@ def debug_counts():
     except Exception as e:
         logger.error(f"Debug counts failed: {str(e)}", exc_info=True)
         return jsonify({"error": "Debug counts failed"}), 500
-    
-@app.route('/api/estimate', methods=['POST'])
-def estimate_value():
-    """Estimate car value based on similar cars"""
-    try:
-        data = request.json
-        
-        brand = data.get('brand')
-        model = data.get('model')
-        year = data.get('year')
-        mileage = data.get('mileage')
-        fuel_type = data.get('fuelType')
-        transmission = data.get('transmission')
-        
-        if not all([brand, model, year, mileage]):
-            return jsonify({"error": "Missing required fields"}), 400
-        
-        logger.info(f"Estimating: {brand} {model} ({year}), {mileage}km")
-        
-        # Get estimate from analyzer
-        estimation = analyzer.estimate_car_value(
-            brand=brand,
-            model=model,
-            year=int(year),
-            mileage=int(mileage),
-            engine_type=fuel_type,
-            transmission=transmission
-        )
-        
-        if not estimation:
-            logger.warning(f"No estimation possible for {brand} {model}")
-            return jsonify({"error": "Not enough data for estimation"}), 404
-        
-        # Get similar cars too
-        similar_cars = analyzer.get_similar_listings(
-            brand=brand,
-            model=model,
-            year=int(year),
-            mileage=int(mileage),
-            engine_type=fuel_type,
-            limit=10
-        )
-        
-        return jsonify({
-            "estimation": estimation,
-            "similar_listings": similar_cars
-        })
-        
-    except ValueError:
-        logger.error("Invalid year/mileage format")
-        return jsonify({"error": "Year and mileage must be numbers"}), 400
-    except Exception as e:
-        logger.error(f"Estimation failed: {str(e)}", exc_info=True)
-        return jsonify({"error": "Estimation failed"}), 500
 
 
 @app.route('/api/price-history', methods=['GET'])

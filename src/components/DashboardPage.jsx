@@ -30,8 +30,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 
 // Import API
 import { 
-  searchCars, 
-  estimateCarValue, 
+  searchCars,
   getPriceDistributionChart,
   getPriceTrendChart,
   getPopularBrands,
@@ -277,38 +276,6 @@ const DashboardPage = () => {
     }
   };
 
-  // Apstrādāt auto vērtējumu
-  const handleEstimateCar = async (carData) => {
-    setLoading(prev => ({ ...prev, estimation: true }));
-    setError(prev => ({ ...prev, estimation: null }));
-
-    try {
-      const response = await estimateCarValue(carData);
-      setEstimationResult(response.estimation);
-      
-      // Parādīt paziņojumu
-      setNotification({
-        open: true,
-        message: 'Automašīnas vērtība aprēķināta',
-        severity: 'success'
-      });
-      
-    } catch (err) {
-      console.error('Error estimating car value:', err);
-      setError(prev => ({ 
-        ...prev, 
-        estimation: 'Neizdevās aprēķināt automašīnas vērtību. Lūdzu, mēģiniet vēlreiz.' 
-      }));
-      
-      setNotification({
-        open: true,
-        message: 'Neizdevās aprēķināt automašīnas vērtību',
-        severity: 'error'
-      });
-    } finally {
-      setLoading(prev => ({ ...prev, estimation: false }));
-    }
-  };
 
   // Apstrādāt grafika tipa maiņu
   const handleChartTypeChange = (type) => {
@@ -783,36 +750,6 @@ const DashboardPage = () => {
                   </Grid>
                 </>
               )}
-            </Grid>
-          )}
-        </Box>
-        
-        {/* vertejumu tab */}
-        <Box role="tabpanel" hidden={tabValue !== 2}>
-          {tabValue === 2 && (
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <CarEstimationForm 
-                  brands={brands}
-                  models={models}
-                  onEstimate={handleEstimateCar}
-                  loading={loading.estimation}
-                  estimationResult={estimationResult}
-                  error={error.estimation}
-                />
-              </Grid>
-              
-              <Grid item xs={12} md={6}>
-                <SimilarListings 
-                  listings={estimationResult?.similar_listings || []}
-                  title="Līdzīgi sludinājumi"
-                  onToggleFavorite={handleToggleFavorite}
-                  onAddToCompare={handleAddToCompare}
-                  onShowDetails={() => {}}
-                  favorites={favorites}
-                  viewMode="card"
-                />
-              </Grid>
             </Grid>
           )}
         </Box>
