@@ -67,7 +67,7 @@ const CarComparisonTable = ({
     }
   };
   
-  // Format transmission in Latvian
+  // Format
   const formatTransmission = (transmission) => {
     switch(transmission) {
       case 'Manual': return 'Manuālā';
@@ -77,36 +77,56 @@ const CarComparisonTable = ({
     }
   };
   
-  // Find the best value in a row (lowest price, newest year, lowest mileage)
+  // Find the best value in a row (low price, new year, low km)
   const getBestValue = (attribute) => {
-    if (cars.length <= 1) return null;
+  if (cars.length <= 1) return null;
+  
+  // Tikai aprēķināmi atribūti var būt "labākie"
+  const calculateableAttributes = ['price', 'year', 'mileage', 'engine_volume'];
+  if (!calculateableAttributes.includes(attribute)) {
+    return null;
+  }
+  
+  // Savācam tikai tos auto, kuriem ir derīgas vērtības
+  const validCars = [];
+  cars.forEach((car, index) => {
+    const value = car[attribute];
     
-    let bestIndex = 0;
-    let bestValue = cars[0][attribute];
-    let isNumeric = !isNaN(parseFloat(bestValue)) && isFinite(bestValue);
-    
-    // Determine if a higher or lower value is better
-    const isHigherBetter = attribute === 'year';
-    
-    for (let i = 1; i < cars.length; i++) {
-      const currentValue = cars[i][attribute];
-      
-      // Skip if value is missing
-      if (currentValue === undefined || currentValue === null) continue;
-      
-      if (isNumeric) {
-        if (isHigherBetter && currentValue > bestValue) {
-          bestValue = currentValue;
-          bestIndex = i;
-        } else if (!isHigherBetter && currentValue < bestValue) {
-          bestValue = currentValue;
-          bestIndex = i;
-        }
-      }
+    // Ignorē "Nav norādīts", null, undefined, 0 (mazāk mileage gadījumā)
+    if (value === undefined || value === null || value === 0 || 
+        value === "Nav norādīts" || value === "" ||
+        isNaN(parseFloat(value)) || !isFinite(value)) {
+      return; // Šo auto ignorējam
     }
     
-    return bestIndex;
-  };
+    validCars.push({ index, value: parseFloat(value) });
+  });
+  
+  // Ja nav vismaz 2 derīgas vērtības, nav ko salīdzināt
+  if (validCars.length < 2) return null;
+  
+  // Pārbaudām, vai ir atšķirības starp derīgajām vērtībām
+  const firstValue = validCars[0].value;
+  const hasVariation = validCars.some(car => car.value !== firstValue);
+  
+  if (!hasVariation) return null; // Visas vienādas = nav "labākās"
+  
+  // Atrast labāko starp derīgajiem auto
+  const isHigherBetter = attribute === 'year';
+  let bestCar = validCars[0];
+  
+  for (let i = 1; i < validCars.length; i++) {
+    const currentCar = validCars[i];
+    
+    if (isHigherBetter && currentCar.value > bestCar.value) {
+      bestCar = currentCar;
+    } else if (!isHigherBetter && currentCar.value < bestCar.value) {
+      bestCar = currentCar;
+    }
+  }
+  
+  return bestCar.index; // Atgriezam oriģinālo indeksu cars masīvā
+};
   
   // Get comparison rows - separated by those with icons and those without
   const getComparisonRows = () => {

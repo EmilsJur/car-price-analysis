@@ -133,6 +133,24 @@ const PriceAnalysisChart = ({
             alt={`${chartTitles[chartType]} grafiks`}
             style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
           />
+        ) : chartType === 'trend' ? (
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <img 
+              src="/placeholder-trend-chart.png"
+              alt="Cenu tendenču grafiks - demonstrācija"
+              style={{ maxWidth: '80%', maxHeight: '300px', opacity: 0.7 }}
+              onError={(e) => {
+                // Ja nav placeholder bildes, parādi tekstu
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
+            />
+            <Box sx={{ display: 'none' }}>
+              <Typography variant="body2" color="text.secondary">
+                Vēsturiskie dati nav pieejami (nepieciešams laika periods)
+              </Typography>
+            </Box>
+          </Box>
         ) : (
           <Box sx={{ textAlign: 'center', p: 2 }}>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>

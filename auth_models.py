@@ -128,13 +128,13 @@ class AuthDB:
             
             result = cursor.fetchone()
             if not result:
-                return {"error": "Invalid email or password"}
+                return {"error": "Nepareizs e-pasts vai parole"}
             
             user_id, stored_hash, salt = result
             
             # Verify password
             if self._hash_password(password, salt) != stored_hash:
-                return {"error": "Invalid email or password"}
+                return {"error": "Nepareizs e-pasts vai parole"}
             
             # Update last login time
             cursor.execute(
