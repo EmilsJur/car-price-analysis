@@ -16,8 +16,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SearchForm from '../components/SearchForm';
 import PriceAnalysisChart from '../components/PriceAnalysisChart';
-import CarEstimationForm from '../components/CarEstimationForm';
-import MarketInsights from '../components/MarketInsights';
 import RegionalPriceComparison from '../components/RegionalPriceComparison';
 import SimilarListings from '../components/SimilarListings';
 import CarComparisonTable from '../components/CarComparisonTable';
@@ -48,10 +46,8 @@ const DashboardPage = () => {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [searchResults, setSearchResults] = useState(null);
-  const [estimationResult, setEstimationResult] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [chartType, setChartType] = useState('distribution');
-  const [marketInsights, setMarketInsights] = useState({});
   
   // Stāvoklis reģionu datiem
   const [regionStatistics, setRegionStatistics] = useState(null);
@@ -665,9 +661,6 @@ const DashboardPage = () => {
         <Box role="tabpanel" hidden={tabValue !== 1}>
           {tabValue === 1 && (
             <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <MarketInsights insights={marketInsights} />
-              </Grid>
               
               <Grid item xs={12}>
                 <RegionalPriceComparison 

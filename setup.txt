@@ -1,26 +1,28 @@
-#Prerequisites:
-Python 3.8+ (recommended 3.9+)
-Node.js 14+ and npm 6+
-Git
+# Prerequisites:
+- Python 3.8+ (recommended 3.9+)
+- Node.js 14+ and npm 6+
+- Git
 
-#Clone
+# Clone repository
 git clone https://github.com/EmilsJur/car-price-analysis
 cd car-price-analysis
 
-#Windows Python virtual environment:
+# (Optional) Create and activate Python virtual environment on Windows
 python -m venv car_analysis_env
 car_analysis_env\Scripts\activate
 
-#Install Python Dependencies
+# Install Python dependencies
 pip install flask flask-cors sqlalchemy requests beautifulsoup4 aiohttp numpy pandas matplotlib seaborn PyJWT python-dateutil
+
+# Install frontend (React) dependencies
 npm install @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/utils @testing-library/jest-dom @testing-library/react @testing-library/user-event axios react react-dom react-scripts web-vitals react-router-dom
 
-#If dependency conflicts try:
+# If dependency conflicts occur, try:
 npm install --legacy-peer-deps
 
-#Database scraper:
-python app.py --mode scrape --debug
+# Scrape data (optional)
+python ss_scraper.py
 
-#Start
+# Start backend and frontend
 python app.py --mode init
 npm start
