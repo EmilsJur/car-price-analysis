@@ -1184,28 +1184,13 @@ def reset_password():
 
 @app.route('/')
 def serve_react():
-    """Serve React app homepage"""
-    try:
-        return send_from_directory('build', 'index.html')
-    except:
-        return jsonify({"error": "React app not built"}), 404
+    return send_from_directory('build', 'index.html')
 
-@app.route('/<path:filename>')
-def serve_static_files(filename):
-    """Serve static files from build directory"""
-    # Skip API routes - let Flask handle them normally
-    if filename.startswith('api/'):
-        return jsonify({"error": f"API endpoint /{filename} not found"}), 404
-    
-    # Try to serve the exact file from build directory
-    try:
-        return send_from_directory('build', filename)
-    except:
-        # If file not found, check if it's a React route and serve index.html
-        try:
-            return send_from_directory('build', 'index.html')
-        except:
-            return jsonify({"error": "React app not available"}), 404
+@app.route('/<path:path>')
+def serve_catch_all(path):
+    if path.startswith('api/'):
+        return jsonify({"error": "API not found"}), 404
+    return send_from_directory('build', 'index.html')
 
 # NOW the if __name__ block
 if __name__ == "__main__":
