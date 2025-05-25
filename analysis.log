@@ -11338,3 +11338,9 @@ WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND li
 2025-05-25 16:50:26,206 - car_api - INFO - Price distribution chart: Tesla None
 2025-05-25 16:50:26,378 - car_analysis - INFO - Created price distribution chart with 68 cars
 2025-05-25 16:50:26,379 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 16:50:26] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-25 17:18:29,885 - car_app - INFO - Starting API server on port 5000
+2025-05-25 17:18:29,894 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.246:5000
+2025-05-25 17:18:29,894 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
