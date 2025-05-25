@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 import json
 import logging
@@ -1181,7 +1181,33 @@ def reset_password():
     except Exception as e:
         logger.error(f"Password reset failed: {str(e)}", exc_info=True)
         return jsonify({"error": "Password reset failed"}), 500
+
+@app.route('/')
+def serve_react():
+    """Serve the React app homepage"""
+    if os.path.exists('build/index.html'):
+        return send_file('build/index.html')
+    else:
+        return jsonify({"error": "React app nav uzbūvēts. Run npm run build first."}), 404
+
+@app.route('/<path:path>')
+def serve_static_files(path):
+    """Serve static files vai fallback uz React app"""
+    # Ja tas ir API call, let existing routes handle it
+    if path.startswith('api/'):
+        return jsonify({"error": f"API endpoint /{path} not found"}), 404
     
+    # Check if static file exists
+    if os.path.exists(f'build/{path}'):
+        return send_from_directory('build', path)
+    else:
+        # Fallback to React app for client-side routing
+        if os.path.exists('build/index.html'):
+            return send_file('build/index.html')
+        else:
+            return jsonify({"error": "React app nav pieejams"}), 404
+
+# NOW the if __name__ block
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
