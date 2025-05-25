@@ -29,7 +29,7 @@ logger = logging.getLogger('car_api')
 logger_listing_details = logging.getLogger('car_api.listing_details')
 
 # Flask app setup
-app = Flask(__name__, static_folder='build', static_url_path='/static')
+app = Flask(__name__, static_folder=None)
 CORS(app, origins=['http://localhost:3000'])
 
 # Database connection
@@ -1184,12 +1184,37 @@ def reset_password():
 
 @app.route('/')
 def serve_react():
+    """Serve React app homepage"""
     return send_from_directory('build', 'index.html')
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    """Serve static files (JS, CSS, etc.)"""
+    return send_from_directory('build/static', filename)
+
+@app.route('/manifest.json')
+def serve_manifest():
+    """Serve manifest.json"""
+    return send_from_directory('build', 'manifest.json')
+
+@app.route('/favicon.ico')
+def serve_favicon():
+    """Serve favicon"""
+    return send_from_directory('build', 'favicon.ico')
 
 @app.route('/<path:path>')
 def serve_catch_all(path):
+    """Catch all other routes"""
+    # Skip API routes - let them 404 properly
     if path.startswith('api/'):
-        return jsonify({"error": "API not found"}), 404
+        return jsonify({"error": f"API endpoint /{path} not found"}), 404
+    
+    # For any other path, check if it's a file in build directory
+    file_path = os.path.join('build', path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return send_from_directory('build', path)
+    
+    # Otherwise serve React app for client-side routing
     return send_from_directory('build', 'index.html')
 
 # NOW the if __name__ block
