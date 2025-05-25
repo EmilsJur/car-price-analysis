@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://car-price-analysis.onrender.com/api';
 
 // Search for cars with filters
 export const searchCars = async (params) => {
