@@ -29,7 +29,7 @@ logger = logging.getLogger('car_api')
 logger_listing_details = logging.getLogger('car_api.listing_details')
 
 # Flask app setup
-app = Flask(__name__)
+app = Flask(__name__, static_folder='build', static_url_path='/static')
 CORS(app, origins=['http://localhost:3000'])
 
 # Database connection
@@ -1184,28 +1184,28 @@ def reset_password():
 
 @app.route('/')
 def serve_react():
-    """Serve the React app homepage"""
-    if os.path.exists('build/index.html'):
-        return send_file('build/index.html')
-    else:
-        return jsonify({"error": "React app nav uzbūvēts. Run npm run build first."}), 404
+    """Serve React app homepage"""
+    try:
+        return send_from_directory('build', 'index.html')
+    except:
+        return jsonify({"error": "React app not built"}), 404
 
-@app.route('/<path:path>')
-def serve_static_files(path):
-    """Serve static files vai fallback uz React app"""
-    # Ja tas ir API call, let existing routes handle it
-    if path.startswith('api/'):
-        return jsonify({"error": f"API endpoint /{path} not found"}), 404
+@app.route('/<path:filename>')
+def serve_static_files(filename):
+    """Serve static files from build directory"""
+    # Skip API routes - let Flask handle them normally
+    if filename.startswith('api/'):
+        return jsonify({"error": f"API endpoint /{filename} not found"}), 404
     
-    # Check if static file exists
-    if os.path.exists(f'build/{path}'):
-        return send_from_directory('build', path)
-    else:
-        # Fallback to React app for client-side routing
-        if os.path.exists('build/index.html'):
-            return send_file('build/index.html')
-        else:
-            return jsonify({"error": "React app nav pieejams"}), 404
+    # Try to serve the exact file from build directory
+    try:
+        return send_from_directory('build', filename)
+    except:
+        # If file not found, check if it's a React route and serve index.html
+        try:
+            return send_from_directory('build', 'index.html')
+        except:
+            return jsonify({"error": "React app not available"}), 404
 
 # NOW the if __name__ block
 if __name__ == "__main__":
