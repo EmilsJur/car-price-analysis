@@ -13,6 +13,7 @@ import jwt
 from functools import wraps
 from auth_models import AuthDB
 import re
+import os
 import sqlite3
 
 # Setup auth database
@@ -1182,5 +1183,8 @@ def reset_password():
         return jsonify({"error": "Password reset failed"}), 500
     
 if __name__ == "__main__":
-    logger.info("Starting Car Price Analysis API...")
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    
+    logger.info(f"Starting API server on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
