@@ -11344,3 +11344,35 @@ WHERE lower(brands.name) = lower(?) AND cars.year >= ? AND cars.year <= ? AND li
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.0.246:5000
 2025-05-25 17:18:29,894 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-25 17:18:49,813 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "GET /api/regions HTTP/1.1" 200 -
+2025-05-25 17:18:49,814 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-25 17:18:49,819 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:49,823 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "OPTIONS /api/user/profile HTTP/1.1" 200 -
+2025-05-25 17:18:49,827 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "OPTIONS /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:49,832 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:49] "GET /api/status HTTP/1.1" 200 -
+2025-05-25 17:18:50,131 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/regions HTTP/1.1" 200 -
+2025-05-25 17:18:50,132 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-25 17:18:50,133 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:50,138 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-25 17:18:50,142 - car_analysis - INFO - Got 4 popular brands
+2025-05-25 17:18:50,142 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-25 17:18:50,438 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/user/profile HTTP/1.1" 200 -
+2025-05-25 17:18:50,439 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:50,470 - car_analysis - INFO - Got 4 popular brands
+2025-05-25 17:18:50,470 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/popular/brands?limit=20 HTTP/1.1" 200 -
+2025-05-25 17:18:50,746 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:50] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:51,054 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:51] "GET /api/user/favorites HTTP/1.1" 200 -
+2025-05-25 17:18:51,178 - car_analysis - INFO - Got 4 popular models
+2025-05-25 17:18:51,178 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:51] "GET /api/popular/models?brand=Tesla&limit=30 HTTP/1.1" 200 -
+2025-05-25 17:18:51,790 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:51] "OPTIONS /api/search HTTP/1.1" 200 -
+2025-05-25 17:18:52,052 - car_api - INFO - Search: brand=Tesla, model=, fuel=
+2025-05-25 17:18:52,055 - car_analysis - INFO - Stats calculated for 68 cars
+2025-05-25 17:18:52,060 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:52] "POST /api/search HTTP/1.1" 200 -
+2025-05-25 17:18:52,098 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:52] "OPTIONS /api/user/search-history HTTP/1.1" 200 -
+2025-05-25 17:18:52,381 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:52] "POST /api/user/search-history HTTP/1.1" 200 -
+2025-05-25 17:18:52,405 - car_api - INFO - Price distribution chart: Tesla None
+2025-05-25 17:18:52,507 - car_analysis - INFO - Created price distribution chart with 68 cars
+2025-05-25 17:18:52,508 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:52] "GET /api/charts/price-distribution?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
+2025-05-25 17:18:52,698 - car_api - INFO - Region stats: Brand=Tesla, Model=None
+2025-05-25 17:18:52,700 - car_api - INFO - Found stats for 10 regions
+2025-05-25 17:18:52,700 - werkzeug - INFO - 127.0.0.1 - - [25/May/2025 17:18:52] "GET /api/region-stats?brand=Tesla&yearFrom=2015&yearTo=2025 HTTP/1.1" 200 -
