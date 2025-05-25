@@ -1,9 +1,0 @@
-requirements.txt
-api.py
-models.py
-ss_scraper.py
-analysis.py
-auth_models.py
-*.db
-*.log
-__pycache__/

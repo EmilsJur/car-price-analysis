@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://car-price-analysis.onrender.com/api';
+const API_BASE_URL = 'https://car-price-analysis.onrender.com';
 
 // Helper to store the authentication token
 const setToken = (token) => {
