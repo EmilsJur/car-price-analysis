@@ -133,34 +133,12 @@ const PriceAnalysisChart = ({
             alt={`${chartTitles[chartType]} grafiks`}
             style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
           />
-        ) : chartType === 'distribution' ? (
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-              Pārāk maz automašīnu, lai parādītu cenu sadalījumu.
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Nepieciešamas vismaz 5 automašīnas statistiskai analīzei.
-            </Typography>
-            <Button 
-              variant="outlined" 
-              startIcon={<RefreshIcon />}
-              onClick={onRefresh}
-            >
-              Mēģināt vēlreiz
-            </Button>
-          </Box>
         ) : chartType === 'trend' ? (
           <Box sx={{ textAlign: 'center', p: 2 }}>
             <img 
               src="/trend_example.PNG"
-              alt="Cenu tendenču grafika piemērs"
-              style={{ 
-                maxWidth: '80%', 
-                maxHeight: '300px', 
-                opacity: 0.7,
-                borderRadius: '8px',
-                border: '1px dashed #ccc'
-              }}
+              alt="Cenu tendenču grafiks - demonstrācija"
+              style={{ maxWidth: '80%', maxHeight: '300px', opacity: 0.7 }}
               onError={(e) => {
                 // Ja nav placeholder bildes, parādi tekstu
                 e.target.style.display = 'none';
@@ -168,11 +146,8 @@ const PriceAnalysisChart = ({
               }}
             />
             <Box sx={{ display: 'none' }}>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Tendenču grafiks nav pieejams
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                (Nepieciešami vēsturiskie dati)
+              <Typography variant="body2" color="text.secondary">
+                Vēsturiskie dati nav pieejami (nepieciešams laika periods)
               </Typography>
             </Box>
           </Box>
