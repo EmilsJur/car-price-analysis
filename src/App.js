@@ -465,10 +465,11 @@ function App() {
     }
   };
   
-  // Handle chart type change
   const handleChartTypeChange = (type) => {
     setChartType(type);
-    handleFetchChart(type);
+    if (type === 'distribution') {
+      handleFetchChart(type);
+    }
   };
   
   // Fetch chart
