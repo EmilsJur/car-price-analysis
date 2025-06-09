@@ -180,7 +180,7 @@ const ResultsSection = ({
           Nav atrasta neviena automašīna, kas atbilst jūsu meklēšanas kritērijiem.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          Mēģiniet pielāgot filtrus, lai redzētu vairāk rezultātu.
+          Mēģiniet pielāgot filtrus un nospiediet pogu 'Meklēt', lai redzētu vairāk rezultātu.
         </Typography>
       </Box>
     );
