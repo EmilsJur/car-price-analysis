@@ -33,7 +33,7 @@ import {
 // Import authentication services
 import { login, register } from '../services/authService';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://car-price-analysis.onrender.com/api';
 
 const AuthenticationPage = ({ 
   onLogin = () => {}, 
